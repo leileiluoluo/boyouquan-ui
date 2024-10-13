@@ -1,3 +1,6 @@
 # nodejs
 package-lock.json
 node_modules
+
+# mac
+**.DS_Store

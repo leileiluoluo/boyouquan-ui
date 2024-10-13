@@ -1,6 +1,6 @@
-import ReactDOM from 'react-dom';
+import ReactDOMClient from 'react-dom/client';
 import './styles.css';
 
 import App from './App';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOMClient.createRoot(document.getElementById('top')).render(<App />);

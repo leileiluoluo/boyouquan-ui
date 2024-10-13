@@ -2,6 +2,11 @@ import React, { useEffect, Fragment } from 'react';
 import Header from '../components/Header'
 import MainContentHeader from '../components/MainContentHeader';
 import { monthlySelectedData } from '../data/MonthlySelectedData';
+import FooterBlock from '../components/FooterBlock';
+import SiteFooter from '../components/SiteFooter';
+import FooterJS from '../components/FooterJS';
+import HeaderJS from '../components/HeaderJS';
+import GoToTop from '../components/GoToTop';
 
 export default function MonthlySelected() {
     useEffect(() => {
@@ -13,9 +18,10 @@ export default function MonthlySelected() {
 
     return (
         <>
-            <Header></Header>
+            <HeaderJS />
+            <Header />
             <main className="main">
-                <MainContentHeader></MainContentHeader>
+                <MainContentHeader />
 
                 <div className="monthly-selected-container">
                     <div className="monthly-selected-single">
@@ -66,12 +72,16 @@ export default function MonthlySelected() {
                         </div>
                     </div>
                 </div>
-                <footer className="page-footer blog-footer">
+                {/* <footer className="page-footer blog-footer">
                     <nav className="pagination">
                         <a className="next" href="/monthly-selected/page/2">下一页 »</a>
                     </nav>
-                </footer>
+                </footer> */}
             </main>
+            <FooterBlock />
+            <SiteFooter />
+            <GoToTop />
+            <FooterJS />
         </>
     )
 }

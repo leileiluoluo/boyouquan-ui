@@ -19,7 +19,7 @@ export default function FooterBlock() {
                     </div>
                     <div className="popular-bloggers">
                         <div className="blogger-one">
-                            <a href="https://boke.lu/"><img src="/assets/images/sites/special_thanks/bokelu.png" /></a>
+                            <a href="https://boke.lu/"><img src="https://www.boyouquan.com/assets/images/sites/special_thanks/bokelu/logo.png" /></a>
                             <span className="tooltiptext">博客录</span>
                         </div>
                         <div className="blogger-one">
@@ -55,7 +55,7 @@ export default function FooterBlock() {
                             <span className="tooltiptext">懋和道人</span>
                         </div>
                         <div className="blogger-one">
-                            <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
+                            <a href="/sponsor"><img src="https://www.boyouquan.com/assets/images/sites/special_thanks/plus/plus.svg" /></a>
                             <span className="tooltiptext">我也要赞助</span>
                         </div>
                     </div>

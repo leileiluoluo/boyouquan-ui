@@ -4,21 +4,43 @@ export default function MonthlySelectedComp() {
     const tableStyle = { display: 'table', tableLayout: 'fixed' };
     const dateStyle = { marginRight: '6px' };
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize, setPageSize] = useState(0);
+    const [total, setTotal] = useState(0);
     const [items, setItems] = useState([]);
+
+    const [hasPre, setHasPre] = useState(false);
+    const [hasNext, setHasNext] = useState(false);
+
+    const fetchData = async (page) => {
+        try {
+            const response = await fetch(`https://www.boyouquan.com/api/monthly-selected?page=${page}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const resp = await response.json();
+
+            setPageSize(resp.pageSize);
+            setTotal(resp.total);
+            setItems(resp.results);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
         document.title = '每月精选 - 博友圈 · 博客人的朋友圈！';
 
-        fetch('https://www.boyouquan.com/api/monthly-selected/all')
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setItems(data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, []);
+        fetchData(currentPage);
+
+        // hasPre
+        (currentPage > 1) ? setHasPre(true) : setHasPre(false);
+
+        // hasNext
+        (total > currentPage * pageSize) ? setHasNext(true) : setHasNext(false);
+    }, [currentPage]);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <>
@@ -68,12 +90,16 @@ export default function MonthlySelectedComp() {
                         ))
                 }
             </div>
-            {/* <footer className="page-footer blog-footer">
+            <footer className="page-footer blog-footer">
                 <nav className="pagination">
-                    <a className="next" onClick={() => goToPage(currentPage - 1)}>上一页 《</a>
-                    <a className="next" onClick={() => goToPage(currentPage + 1)}>下一页 »</a>
+                    {
+                        hasPre && <a className="pre" onClick={() => paginate(currentPage - 1)}>« 上一页</a>
+                    }
+                    {
+                        hasNext && <a className="next" onClick={() => paginate(currentPage + 1)}>下一页 »</a>
+                    }
                 </nav>
-            </footer> */}
+            </footer>
         </>
     )
 }

@@ -40,7 +40,7 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: './*'
+          source: './build/*'
           target: '/usr/share/nginx/html/boyouquan-ui/monthly-selected/'
       - name: Start Service
         uses: appleboy/ssh-action@v0.1.4

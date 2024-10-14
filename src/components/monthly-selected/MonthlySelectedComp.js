@@ -34,11 +34,21 @@ export default function MonthlySelectedComp() {
         fetchData(currentPage);
 
         // hasPre
-        (currentPage > 1) ? setHasPre(true) : setHasPre(false);
+        if (currentPage > 1) {
+            setHasPre(true);
+        } else {
+            setHasPre(false);
+        }
 
         // hasNext
-        (total > currentPage * pageSize) ? setHasNext(true) : setHasNext(false);
-    }, [currentPage]);
+        if (total > currentPage * pageSize) {
+            setHasNext(true);
+        } else {
+            setHasNext(false);
+        }
+
+        console.log('total: ' + currentPage * pageSize);
+    }, [currentPage, pageSize, total]);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -93,10 +103,10 @@ export default function MonthlySelectedComp() {
             <footer className="page-footer blog-footer">
                 <nav className="pagination">
                     {
-                        hasPre && <a className="pre" onClick={() => paginate(currentPage - 1)}>« 上一页</a>
+                        hasPre && <button className="pre" onClick={() => paginate(currentPage - 1)}>« 上一页</button>
                     }
                     {
-                        hasNext && <a className="next" onClick={() => paginate(currentPage + 1)}>下一页 »</a>
+                        hasNext && <button className="next" onClick={() => paginate(currentPage + 1)}>下一页 »</button>
                     }
                 </nav>
             </footer>

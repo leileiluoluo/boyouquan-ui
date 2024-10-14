@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: npm run build
   deploy:
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: './build/*'
-          target: '/usr/share/nginx/html/boyouquan-ui/monthly-selected/'
+          target: '/usr/share/nginx/html/boyouquan-ui/'
       - name: Start Service
         uses: appleboy/ssh-action@v0.1.4
         with:
@@ -50,5 +50,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
+            mv /usr/share/nginx/html/boyouquan-ui/build/ /usr/share/nginx/html/boyouquan-ui/monthly-selected/
             service nginx reload
             echo "Server started!"

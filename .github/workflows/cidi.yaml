@@ -34,7 +34,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Zip
-        run: zip -r build.zip ./build
+        run: zip -r dist.zip ./dist
       - name: Copy file via ssh key
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -42,7 +42,7 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: './build.zip'
+          source: './dist.zip'
           target: '/usr/share/nginx/html/boyouquan-ui'
       - name: Start Service
         uses: appleboy/ssh-action@v0.1.4
@@ -52,8 +52,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            unzip /usr/share/nginx/html/boyouquan-ui/build.zip -d /usr/share/nginx/html/boyouquan-ui/
-            rm -rf /usr/share/nginx/html/boyouquan-ui/monthly-selected/
-            mv /usr/share/nginx/html/boyouquan-ui/build/ /usr/share/nginx/html/boyouquan-ui/monthly-selected/
+            unzip /usr/share/nginx/html/boyouquan-ui/dist.zip -d /usr/share/nginx/html/boyouquan-ui/
             service nginx reload
             echo "Server started!"

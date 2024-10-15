@@ -1,4 +1,8 @@
 export default function FooterBlock() {
+    const summaryStyle = {
+        color: '#cb2e58', margin: '0 2px 0 2px'
+    }
+
     const thanksStyle = {
         paddingTop: '8px',
         paddingBottom: '4px',
@@ -9,6 +13,17 @@ export default function FooterBlock() {
 
     return (
         <footer className="footer-block">
+            <div className="footer-summary">
+                <div className="flex-item">
+                    <p>收录博客</p><a style={summaryStyle}>661</a><p>个</p>
+                </div>
+                <div className="flex-item">
+                    <p>收录文章</p><a style={summaryStyle}>34436</a><p>篇</p>
+                </div>
+                <div className="flex-item">
+                    <p>浏览文章</p><a style={summaryStyle}>619562</a><p>次</p>
+                </div>
+            </div>
             <div className="planet-shuttle">
                 <a href="/planet-shuttle">「博友圈 · 星球穿梭」</a>
             </div>

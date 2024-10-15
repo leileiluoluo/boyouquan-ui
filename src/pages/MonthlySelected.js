@@ -1,4 +1,3 @@
-import React from 'react';
 import MainContentHeader from '../components/common/MainContentHeader';
 import MonthlySelectedComp from '../components/monthly-selected/MonthlySelectedComp';
 import CommonHeader from '../components/common/CommonHeader';

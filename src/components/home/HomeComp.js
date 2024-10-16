@@ -58,7 +58,7 @@ export default function HomeComp() {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
 
-        document.getElementsByClassName('first-entry home-info')[0].scrollIntoView();
+        document.getElementsByClassName('switch-sort-type')[0].scrollIntoView();
     }
 
     return (

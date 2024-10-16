@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import getURLParameter from '../../utils/CommonUtil';
 
 export default function HomeComp() {
-    const tableStyle = { display: 'table', tableLayout: 'fixed' };
-    const dateStyle = { marginRight: '6px' };
+    const displayNoneStyle = { display: 'none' };
 
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(0);
@@ -12,9 +12,9 @@ export default function HomeComp() {
     const [hasPre, setHasPre] = useState(false);
     const [hasNext, setHasNext] = useState(false);
 
-    const fetchData = async (page) => {
+    const fetchData = async (sortType, keyword, page) => {
         try {
-            const response = await fetch(`https://www.boyouquan.com/api/monthly-selected?page=${page}`);
+            const response = await fetch(`https://www.boyouquan.com/api/posts?sort=${sortType}&keyword=${keyword}&page=${page}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -31,7 +31,12 @@ export default function HomeComp() {
     useEffect(() => {
         document.title = '首页 - 博友圈 · 博客人的朋友圈！';
 
-        fetchData(currentPage);
+        let sort = getURLParameter('sort') || 'recommended';
+        let keyword = getURLParameter('keyword') || '';
+        if (keyword.length > 0) {
+            sort = 'latest';
+        }
+        fetchData(sort, keyword, currentPage);
 
         // hasPre
         if (currentPage > 1) {
@@ -50,56 +55,59 @@ export default function HomeComp() {
         console.log('total: ' + currentPage * pageSize);
     }, [currentPage, pageSize, total]);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+
+        document.getElementsByClassName('first-entry home-info')[0].scrollIntoView();
+    }
 
     return (
         <>
-            <div className="monthly-selected-container">
-                {
-                    items.map(
-                        (item, index) => (
-                            <div className="monthly-selected-single">
-                                <div className="blog-detail-articles">
-                                    <div className="articles-title">
-                                        <h4 key={`Outter-${index}`}>{item.yearMonthStr}</h4>
-                                    </div>
-                                    <div className="articles-container">
-                                        <table style={tableStyle}>
-                                            <thead>
-                                                <tr>
-                                                    <td width="20%"><span>博客名称</span></td>
-                                                    <td width="60%"><span>文章标题</span></td>
-                                                    <td width="20%"><span>发布时间</span></td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    item.postInfos.map(
-                                                        (itemt, indext) => {
-                                                            return (
-                                                                <tr key={`Inner-${indext}`}>
-                                                                    <td width="20%">
-                                                                        <a href={`https://www.boyouquan.com/blogs/${itemt.blogDomainName}`}>{itemt.blogName}</a>
-                                                                    </td>
-                                                                    <td width="60%">
-                                                                        <a href={`https://www.boyouquan.com/go?link=${itemt.link}`} target="_blank">{itemt.title}</a>
-                                                                    </td>
-                                                                    <td width="20%">
-                                                                        <p style={dateStyle}>{itemt.publishedAt}</p>
-                                                                    </td>
-                                                                </tr>
-                                                            )
-                                                        }
-                                                    )
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
+            {
+                items.map(
+                    (item, index) => (
+                        <article className={item.pinned ? 'post-entry pinned' : 'post-entry'}>
+                            <header className="entry-header">
+                                {
+                                    item.pinned ? <div className="pinned-icon">
+                                    <img src="/assets/images/sites/pinned/pinned.svg" />
+                                </div> : ''
+                                }
+                                
+                                <div className="article-go">
+                                    <a href={`/go?from=website&link=${item.link}`} target="_blank"><h4>{item.title}</h4></a>
                                 </div>
+                            </header>
+                            <div className="entry-content">
+                                <p>{item.description}</p>
+                                <a style={displayNoneStyle} href={`/abstract?link=${item.link}`}>[完整摘要]</a>
                             </div>
-                        ))
-                }
-            </div>
+                            <footer className="entry-footer">
+                                <div className="flex-item">
+                                    <a href="/blogs/ihaihe.cn">
+                                        <img src={`https://www.boyouquan.com${item.blogAdminMediumImageURL}`} />
+                                    </a>
+                                </div>
+                                <div className="flex-item">
+                                    <a href={`/blogs/${item.blogDomainName}`}>{item.blogName}</a>
+                                </div>
+                                <div className="flex-item">
+                                    · <span>{item.publishedAt}</span>
+                                </div>
+                                <div className="flex-item">
+                                    · <span>{item.linkAccessCount}</span>次浏览 ·
+                                </div>
+                                <div className="flex-item">
+                                    <a href={`/sharing?link=${item.link}`}>
+                                        <div className="sharing">
+                                            <img src="/assets/images/sites/share/share-black.png" width="20px" height="20px" />
+                                        </div>
+                                    </a>
+                                </div>
+                            </footer>
+                        </article>
+                    ))
+            }
             <footer className="page-footer blog-footer">
                 <nav className="pagination">
                     {

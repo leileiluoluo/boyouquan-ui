@@ -53,7 +53,11 @@ export default function BlogsContainerComp() {
         console.log('total: ' + currentPage * pageSize);
     }, [currentPage, pageSize, total]);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+
+        document.getElementsByClassName('first-entry home-info')[0].scrollIntoView();
+    }
 
     return (
         <>

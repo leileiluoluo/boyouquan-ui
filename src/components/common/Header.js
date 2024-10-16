@@ -1,4 +1,18 @@
+import { useEffect } from 'react';
+
 export default function Header() {
+    useEffect(() => {
+        let currentURL = window.location.href;
+        let currentPath = currentURL.split('?')[0];
+        let menuItems = document.getElementById('menu').getElementsByTagName('a');
+        for (let i = 0; i < menuItems.length; i++) {
+            let item = menuItems[i];
+            if (currentPath == item.href) {
+                item.classList.add('active');
+            }
+        }
+    });
+
     return (
         <header className="header">
             <nav className="nav">

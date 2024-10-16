@@ -50,7 +50,11 @@ export default function MonthlySelectedComp() {
         console.log('total: ' + currentPage * pageSize);
     }, [currentPage, pageSize, total]);
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+
+        document.getElementsByClassName('monthly-selected-container')[0].scrollIntoView();
+    }
 
     return (
         <>

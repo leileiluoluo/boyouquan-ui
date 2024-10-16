@@ -8,7 +8,7 @@ export default function MonthlySelected() {
         <>
             <CommonHeader />
             <main className="main">
-                <MainContentHeader />
+                <MainContentHeader content='首页文章更新的太快？几天不刷就感觉错过了什么？快来每月精选看看过去几个月的精选文章吧！' />
                 <MonthlySelectedComp />
             </main>
             <CommonFooter />

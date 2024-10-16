@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function MonthlySelectedComp() {
+export default function HomeComp() {
     const tableStyle = { display: 'table', tableLayout: 'fixed' };
     const dateStyle = { marginRight: '6px' };
 
@@ -29,7 +29,7 @@ export default function MonthlySelectedComp() {
     };
 
     useEffect(() => {
-        document.title = '每月精选 - 博友圈 · 博客人的朋友圈！';
+        document.title = '首页 - 博友圈 · 博客人的朋友圈！';
 
         fetchData(currentPage);
 

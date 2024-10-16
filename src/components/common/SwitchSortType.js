@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
+import getURLParameter from '../../utils/CommonUtil';
 
 export default function SwitchSortType({ types }) {
     const [activeType, setActiveType] = useState('xxx');
-    const getURLParameter = (name) => {
-        var urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
-    }
 
     useEffect(() => {
         let sort = getURLParameter('sort');
-        console.log('sort: ' + sort);
         setActiveType(sort);
     }, []);
-
-    console.log('activeType: ' + activeType);
 
     return (
         <div className="switch-sort-type">

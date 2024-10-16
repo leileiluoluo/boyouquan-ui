@@ -16,7 +16,7 @@ export default function Blogs() {
             <CommonHeader />
             <main className="main">
                 <BlogsMainContentHeader />
-                <SearchBox placeholder='搜索博客 ↵' />
+                <SearchBox placeholder='搜索博客 ↵' gotoPage='/blogs' />
                 <SwitchSortType types={switchTypes}/>
                 <BlogsContainerComp />
             </main>

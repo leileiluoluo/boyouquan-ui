@@ -52,6 +52,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            unzip /usr/share/nginx/html/boyouquan-ui/dist.zip -d /usr/share/nginx/html/boyouquan-ui/
+            unzip -o /usr/share/nginx/html/boyouquan-ui/dist.zip -d /usr/share/nginx/html/boyouquan-ui/
             service nginx reload
             echo "Server started!"

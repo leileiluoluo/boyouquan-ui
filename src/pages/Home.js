@@ -16,7 +16,7 @@ export default function Home() {
             <CommonHeader />
             <main className="main">
                 <MainContentHeader content='您有多久没有读过一篇长文了？那些记忆中有趣的博客还在更新吗？博友圈是博客人的专属朋友圈，连接还在写博的博友，让那属于文字的时代延续光辉！' />
-                <SearchBox placeholder='搜索文章 ↵' />
+                <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' />
                 <SwitchSortType types={switchTypes}/>
                 <HomeComp />
             </main>

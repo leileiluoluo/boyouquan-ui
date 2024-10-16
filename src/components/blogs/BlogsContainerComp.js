@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import md5 from 'js-md5';
+import getURLParameter from '../../utils/CommonUtil';
 
 export default function BlogsContainerComp() {
     const marginRightStyle = { marginRight: '6px' };
@@ -13,9 +13,9 @@ export default function BlogsContainerComp() {
     const [hasPre, setHasPre] = useState(false);
     const [hasNext, setHasNext] = useState(false);
 
-    const fetchData = async (page) => {
+    const fetchData = async (sortType, keyword, page) => {
         try {
-            const response = await fetch(`https://www.boyouquan.com/api/blogs?page=${page}`);
+            const response = await fetch(`https://www.boyouquan.com/api/blogs?sort=${sortType}&keyword=${keyword}&page=${page}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -32,7 +32,9 @@ export default function BlogsContainerComp() {
     useEffect(() => {
         document.title = '博客广场 - 博友圈 · 博客人的朋友圈！';
 
-        fetchData(currentPage);
+        let sort = getURLParameter('sort') || 'collect_time';
+        let keyword = getURLParameter('keyword') || '';
+        fetchData(sort, keyword, currentPage);
 
         // hasPre
         if (currentPage > 1) {

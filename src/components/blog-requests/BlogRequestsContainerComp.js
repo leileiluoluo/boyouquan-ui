@@ -52,7 +52,7 @@ export default function BlogRequestsContainerComp() {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
 
-        document.getElementsByClassName('switch-sort-type')[0].scrollIntoView();
+        document.getElementsByClassName('blog-requests')[0].scrollIntoView();
     }
 
     return (

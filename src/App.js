@@ -3,6 +3,7 @@ import MonthlySelected from './pages/MonthlySelected';
 import Blogs from './pages/Blogs';
 import Home from './pages/Home';
 import Index from './pages/Index';
+import BlogRequests from './pages/BlogRequests';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/monthly-selected' element={<MonthlySelected />} />
         <Route path='/blogs' element={<Blogs />} />
+        <Route path='/blog-requests' element={<BlogRequests />} />
       </Routes>
     </Router>
   );

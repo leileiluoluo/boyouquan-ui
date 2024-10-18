@@ -39,7 +39,7 @@ export default function PlanetShuttle() {
 
                     setTimeout(function () {
                         window.location.href = '/go?from=website&link=' + data.blogAddress;
-                    }, 3 * 1000);
+                    }, 30 * 1000);
                 })
                 .catch(error => { throw new Error('Network response was not ok') });
         } catch (error) {
@@ -71,6 +71,7 @@ export default function PlanetShuttle() {
             position: fixed;
             height: 100vh;
             width: 100vw;
+            pointer-events: none; /* 让 canvas 不阻止鼠标事件 */
             }
 
             @keyframes typing {
@@ -83,7 +84,6 @@ export default function PlanetShuttle() {
                 <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
                 <script src="/assets/js/tongji.js" type="text/javascript"></script>
             </Helmet>
-            <canvas height="615" width="1280"></canvas>
             <div style={planetStyle}>
                 <div style={textAliginStyle}>
                     <a style={fontStyle} href="/home">博友圈</a>

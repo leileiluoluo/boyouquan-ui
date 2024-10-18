@@ -25,6 +25,7 @@ import ReleaseNoteV1_0 from './pages/release-notes/ReleaseNoteV1.0';
 import About from './pages/About';
 import Thanks from './pages/Thanks';
 import SimilarSites from './pages/SimilarSites';
+import PlanetShuttle from './pages/PlanetShuttle';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
         <Route path='/blog-requests/:id' element={<BlogRequest />} />
         <Route path='/sharing' element={<Sharing />} />
         <Route path='/abstract' element={<Abstract />} />
+        <Route path='/planet-shuttle' element={<PlanetShuttle />} />
         <Route path='/go' element={<Go />} />
         <Route path='/sponsor' element={<Sponsor />} />
         <Route path='/about' element={<About />} />

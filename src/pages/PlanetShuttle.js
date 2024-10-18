@@ -9,25 +9,34 @@ export default function PlanetShuttle() {
     const fontSizeStyle = { fontSize: '12px' };
     const animationStyle = { color: 'white', textDecoration: 'auto', animation: 'typing 0.7s infinite' };
     const colorWhiteStyle = { color: 'white' };
+    const marginOneStyle = {margin: '1px 1px'};
 
     const [item, setItem] = useState({
-        'blogInfo': {'posts': []},
-        'randomBlogInfos': []
+        'blogName': '',
+        'fromBlogInitiatedCount': 0,
+        'fromBlog': {},
+        'blogAddress': ''
     });
 
-    const fetchData = async () => {
+    const fetchData = async (referrer) => {
         try {
-            const response = await fetch(`https://www.boyouquan.com/api/planet-shuttle`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const resp = await response.json();
-
-            setItem(prevItem=> ({
-                ...prevItem,
-                ['blogInfo']: resp.blogInfo,
-                ['randomBlogInfos']: resp.randomBlogInfos,
-              }));
+            fetch(`https://www.boyouquan.com/api/planet-shuttle`, {
+                method: 'GET',
+                headers: {
+                  'Referrer': referrer
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                setItem(prevItem=> ({
+                    ...prevItem,
+                    ['blogName']: data.blogName,
+                    ['fromBlogInitiatedCount']: data.fromBlogInitiatedCount,
+                    ['fromBlog']: data.fromBlog,
+                    ['blogAddress']: data.blogAddress,
+                  }));
+              })
+              .catch(error => {throw new Error('Network response was not ok')});
         } catch (error) {
             console.error(error);
         }
@@ -37,9 +46,7 @@ export default function PlanetShuttle() {
         document.body.classList.remove('list');
 
         let referrer = document.referrer;
-        alert(referrer);
-
-        fetchData();
+        fetchData(referrer);
     }, []);
 
     return (
@@ -80,7 +87,9 @@ export default function PlanetShuttle() {
                     <a style={fontStyle} href="/home">博友圈</a>
                 </div>
                 <div>
-                    <p>您即将穿梭到「<a id="shuttle" href="/go?from=website&amp;link=https%3A%2F%2Fwww.xalaok.top%2F" style={animationStyle}>Xalaok</a>」的星球！</p>
+                    {
+                        (null != item.fromBlog) ? <><p style={marginOneStyle}>总助力值为 {item.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/go?from=website&link=${item.fromBlog.blogAddress}`} style={animationStyle}>{item.fromBlog.blogName}</a>」正在带您穿梭到「<a id="shuttle" href={`/go?from=website&link=${item.blogAddress}`} style={animationStyle}>{item.blogName}</a>」的星球！</p></> : <p>您即将穿梭到「<a id="shuttle" href={`/go?from=website&link=${item.blogAddress}`} style={animationStyle}>{item.blogName}</a>」的星球！</p>
+                    }
                 </div>
                 <div style={marginStyle}>
                     <span style={fontSizeStyle}>© 2023-2024 <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>博友圈</a></span>

@@ -8,6 +8,8 @@ import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
 import Sharing from './pages/Sharing';
 import Abstract from './pages/Abstract';
+import Go from './pages/Go';
+import Sponsor from './pages/Sponsor';
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
         <Route path='/blog-requests/:id' element={<BlogRequest />} />
         <Route path='/sharing' element={<Sharing />} />
         <Route path='/abstract' element={<Abstract />} />
+        <Route path='/go' element={<Go />} />
+        <Route path='/sponsor' element={<Sponsor />} />
       </Routes>
     </Router>
   );

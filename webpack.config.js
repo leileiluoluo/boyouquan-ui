@@ -71,6 +71,10 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
+                    from: "public/planet-shuttle",
+                    to: path.resolve(__dirname, 'dist', 'planet-shuttle')
+                },
+                {
                     from: "public/assets",
                     to: path.resolve(__dirname, 'dist', 'assets')
                 }

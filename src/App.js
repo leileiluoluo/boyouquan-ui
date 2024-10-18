@@ -7,6 +7,7 @@ import Index from './pages/Index';
 import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
 import Sharing from './pages/Sharing';
+import Abstract from './pages/Abstract';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path='/blog-requests' element={<BlogRequests />} />
         <Route path='/blog-requests/:id' element={<BlogRequest />} />
         <Route path='/sharing' element={<Sharing />} />
+        <Route path='/abstract' element={<Abstract />} />
       </Routes>
     </Router>
   );

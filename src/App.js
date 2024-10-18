@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Index from './pages/Index';
 import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
+import Sharing from './pages/Sharing';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path='/blogs/:domain' element={<Blog />} />
         <Route path='/blog-requests' element={<BlogRequests />} />
         <Route path='/blog-requests/:id' element={<BlogRequest />} />
+        <Route path='/sharing' element={<Sharing />} />
       </Routes>
     </Router>
   );

@@ -5,6 +5,7 @@ import Blog from './pages/Blog';
 import Home from './pages/Home';
 import Index from './pages/Index';
 import BlogRequests from './pages/BlogRequests';
+import BlogRequest from './pages/BlogRequest';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/blogs/:domain' element={<Blog />} />
         <Route path='/blog-requests' element={<BlogRequests />} />
+        <Route path='/blog-requests/:id' element={<BlogRequest />} />
       </Routes>
     </Router>
   );

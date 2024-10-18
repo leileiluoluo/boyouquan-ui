@@ -19,7 +19,9 @@ module.exports = {
         },
         compress: true,
         port: 3000, // 本地开发服务器端口
-        historyApiFallback: true, // 处理 SPA 的路由
+        historyApiFallback: {
+            disableDotRule: true
+        }
     },
     module: {
         rules: [

@@ -35,12 +35,10 @@ export default function BlogContainerComp() {
     };
 
     useEffect(() => {
-        document.title = '博客广场 - 博友圈 · 博客人的朋友圈！';
-
         fetchData(domain);
     }, [domain]);
 
-    console.log(item);
+    document.title = item.blogInfo.name + ' - 博友圈 · 博客人的朋友圈！';
 
     return (
         <>

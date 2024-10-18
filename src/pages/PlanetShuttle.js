@@ -35,6 +35,11 @@ export default function PlanetShuttle() {
 
     useEffect(() => {
         document.body.classList.remove('list');
+
+        let referrer = document.referrer;
+        alert(referrer);
+
+        fetchData();
     }, []);
 
     return (

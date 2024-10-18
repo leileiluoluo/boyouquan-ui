@@ -10,12 +10,12 @@ export default function PlanetShuttle() {
     const fontSizeStyle = { fontSize: '12px' };
     const animationStyle = { color: 'white', textDecoration: 'auto', animation: 'typing 0.7s infinite' };
     const colorWhiteStyle = { color: 'white' };
-    const marginOneStyle = {margin: '1px 1px'};
+    const marginOneStyle = { margin: '1px 1px' };
 
     const [item, setItem] = useState({
         'blogName': '',
         'fromBlogInitiatedCount': 0,
-        'fromBlog': {'blogName': '', 'blogAddress': ''},
+        'fromBlog': { 'blogName': '', 'blogAddress': '' },
         'blogAddress': ''
     });
 
@@ -24,20 +24,24 @@ export default function PlanetShuttle() {
             fetch(`https://www.boyouquan.com/api/planet-shuttle`, {
                 method: 'GET',
                 headers: {
-                  'From': referrer
+                    'From': referrer
                 }
-              })
-              .then(response => response.json())
-              .then(data => {
-                setItem(prevItem=> ({
-                    ...prevItem,
-                    ['blogName']: data.blogName,
-                    ['fromBlogInitiatedCount']: data.fromBlogInitiatedCount,
-                    ['fromBlog']: data.fromBlog,
-                    ['blogAddress']: data.blogAddress,
-                  }));
-              })
-              .catch(error => {throw new Error('Network response was not ok')});
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setItem(prevItem => ({
+                        ...prevItem,
+                        ['blogName']: data.blogName,
+                        ['fromBlogInitiatedCount']: data.fromBlogInitiatedCount,
+                        ['fromBlog']: data.fromBlog,
+                        ['blogAddress']: data.blogAddress,
+                    }));
+
+                    setTimeout(function () {
+                        window.location.href = '/go?from=website&link=' + data.blogAddress;
+                    }, 30 * 1000);
+                })
+                .catch(error => { throw new Error('Network response was not ok') });
         } catch (error) {
             console.error(error);
         }
@@ -67,6 +71,7 @@ export default function PlanetShuttle() {
             position: fixed;
             height: 100vh;
             width: 100vw;
+            pointer-events: none; /* 让 canvas 不阻止鼠标事件 */
             }
 
             @keyframes typing {
@@ -75,14 +80,10 @@ export default function PlanetShuttle() {
             }
             }
         `}</style>
-
-                <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
                 <script src="/assets/js/planet-shuttle/lib/TweenMax.min.js" type="text/javascript"></script>
+                <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
                 <script src="/assets/js/tongji.js" type="text/javascript"></script>
-                <script src="/assets/js/planet-shuttle/go.js" type="text/javascript"></script>
             </Helmet>
-            <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
-            <canvas height="615" width="1280"></canvas>
             <div style={planetStyle}>
                 <div style={textAliginStyle}>
                     <a style={fontStyle} href="/home">博友圈</a>

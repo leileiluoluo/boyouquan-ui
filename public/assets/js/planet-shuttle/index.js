@@ -158,7 +158,7 @@ class JumpToHyperspace {
         initiating: true,
         initiateTimestamp: new Date().getTime() };
 
-      TweenMax.to(this.STATE, 0.25, { velocity: VELOCITY_INIT_INC, bgAlpha: 0.3 });
+      // TweenMax.to(this.STATE, 0.25, { velocity: VELOCITY_INIT_INC, bgAlpha: 0.3 });
       // When we initiate, stop the XY origin from moving so that we draw
       // longer lines until the jump
       for (const star of this.STATE.stars.filter(s => s.STATE.active)) {
@@ -177,13 +177,13 @@ class JumpToHyperspace {
         bgAlpha: 0,
         jumping: true };
 
-      TweenMax.to(this.STATE, 0.25, { velocity: JUMP_VELOCITY_INC, bgAlpha: 0.75, sizeInc: JUMP_SIZE_INC });
+      // TweenMax.to(this.STATE, 0.25, { velocity: JUMP_VELOCITY_INC, bgAlpha: 0.75, sizeInc: JUMP_SIZE_INC });
       setTimeout(() => {
         this.STATE = {
           ...this.STATE,
           jumping: false };
 
-        TweenMax.to(this.STATE, 0.25, { bgAlpha: 0, velocity: VELOCITY_INC, sizeInc: SIZE_INC });
+        // TweenMax.to(this.STATE, 0.25, { bgAlpha: 0, velocity: VELOCITY_INC, sizeInc: SIZE_INC });
       }, 2500);
     });_defineProperty(this, "enter",
     () => {
@@ -197,7 +197,7 @@ class JumpToHyperspace {
       if (new Date().getTime() - initiateTimestamp > 600) {
         this.jump();
       } else {
-        TweenMax.to(this.STATE, 0.25, { velocity: VELOCITY_INC, bgAlpha: 0 });
+        // TweenMax.to(this.STATE, 0.25, { velocity: VELOCITY_INC, bgAlpha: 0 });
       }
     });_defineProperty(this, "bind",
     () => {

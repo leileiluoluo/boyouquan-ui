@@ -39,7 +39,7 @@ export default function PlanetShuttle() {
 
                     setTimeout(function () {
                         window.location.href = '/go?from=website&link=' + data.blogAddress;
-                    }, 30 * 1000);
+                    }, 3 * 1000);
                 })
                 .catch(error => { throw new Error('Network response was not ok') });
         } catch (error) {

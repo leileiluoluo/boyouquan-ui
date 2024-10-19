@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
@@ -63,6 +64,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html', // HTML 模板
             filename: 'index.html', // 输出 HTML 文件名
+        }),
+        new FaviconsWebpackPlugin({
+            logo: './public/favicon.ico',
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css', // 输出 CSS 文件名

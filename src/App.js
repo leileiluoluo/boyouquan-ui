@@ -38,6 +38,7 @@ export default function App() {
         <Route path='/monthly-selected' element={<MonthlySelected />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/blogs/:domain' element={<Blog />} />
+        <Route path='/blogs/:domain/:sub' element={<Blog />} />
         <Route path='/blog-requests' element={<BlogRequests />} />
         <Route path='/blog-requests/add' element={<BlogRequestAdd />} />
         <Route path='/blog-requests/:id' element={<BlogRequest />} />

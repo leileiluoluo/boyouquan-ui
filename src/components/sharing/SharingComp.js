@@ -61,13 +61,13 @@ export default function SharingComp() {
             </Helmet>
     <article className="share post-entry">
         <header className="entry-header sharing">
-            <h4>发现一篇有趣的文章：「<a href={`/go?from=website&link=${item.link}`}><strong>{item.title}</strong></a>」</h4>
+            <h4>发现一篇有趣的文章：「<a href={`/go?from=website&link=${encodeURIComponent(item.link)}`}><strong>{item.title}</strong></a>」</h4>
         </header>
         <div className="entry-content">
             <p>{item.description}</p>
         </div>
         <div className="source-site-go">
-            <a href={`/go?from=website&link=${item.link}`}><h4>[阅读原文]</h4></a>
+            <a href={`/go?from=website&link=${encodeURIComponent(item.link)}`}><h4>[阅读原文]</h4></a>
         </div>
         <footer className="entry-footer">
             <div className="flex-item">

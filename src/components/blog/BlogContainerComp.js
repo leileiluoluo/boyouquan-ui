@@ -57,7 +57,10 @@ export default function BlogContainerComp() {
         'showLatestInitiatedChart': false
     });
 
-    const { domain } = useParams();
+    let { domain, sub } = useParams();
+    if (undefined !== sub) {
+        domain += '/' + sub;
+    }
 
     const fetchData = async (domain) => {
         try {
@@ -128,16 +131,16 @@ export default function BlogContainerComp() {
 
                 <header className="blog-detail-header">
                     <div className="icon">
-                        <a href={`/go?from=website&link=${item.blogInfo.address}`} target="_blank">
+                        <a href={`/go?from=website&link=${encodeURIComponent(item.blogInfo.address)}`} target="_blank">
                             <img src={`https://www.boyouquan.com/${item.blogInfo.blogAdminLargeImageURL}`} />
                         </a>
                     </div>
                     <div className="title">
-                        <a href={`/go?from=website&link=${item.blogInfo.address}`} target="_blank"><h3>{item.blogInfo.name}</h3></a>
+                        <a href={`/go?from=website&link=${encodeURIComponent(item.blogInfo.address)}`} target="_blank"><h3>{item.blogInfo.name}</h3></a>
                     </div>
                     <div className="domain">
-                        <a href={`/go?from=website&link=${item.blogInfo.address}`} target="_blank">{item.blogInfo.domainName} </a>
-                        <a href={`/go?from=website&link=${item.blogInfo.address}`} target="_blank">
+                        <a href={`/go?from=website&link=${encodeURIComponent(item.blogInfo.address)}`} target="_blank">{item.blogInfo.domainName} </a>
+                        <a href={`/go?from=website&link=${encodeURIComponent(item.blogInfo.address)}`} target="_blank">
                             <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
                                 <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
                                 <path d="M15 3h6v6"></path>
@@ -204,7 +207,7 @@ export default function BlogContainerComp() {
                                             </td>
 
                                             <td style={postTableClumn80Style}>
-                                                <a href={`/go?from=website&link=${post.link}`} target="_blank">{post.title}</a>
+                                                <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
                                             </td>
                                         </tr>
                                     )
@@ -245,10 +248,10 @@ export default function BlogContainerComp() {
                                             <div className="domain">
                                                 <div className="flex-item-left">
                                                     <div className="domain-name">
-                                                        <a href={`/go?from=website&link=${blog.address}`}>{blog.domainName}</a>
+                                                        <a href={`/go?from=website&link=${encodeURIComponent(blog.address)}`}>{blog.domainName}</a>
                                                     </div>
                                                     <div className="link">
-                                                        <a href={`/go?from=website&link=${blog.address}`}>
+                                                        <a href={`/go?from=website&link=${encodeURIComponent(blog.address)}`}>
                                                             <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
                                                                 <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
                                                                 <path d="M15 3h6v6"></path>

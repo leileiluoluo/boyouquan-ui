@@ -66,7 +66,7 @@ export default function BlogsContainerComp() {
                             <article key={index} className="blog-entry">
                                 <header className="blog-entry-header">
                                     <div className="blogger-icon">
-                                        <a href="/blogs/www.hats-land.com">
+                                        <a href={`/blogs/${blog.domainName}`}>
                                             <img src={`https://www.boyouquan.com/${blog.blogAdminLargeImageURL}`} />
                                         </a>
                                     </div>
@@ -79,10 +79,10 @@ export default function BlogsContainerComp() {
                                         <div className="domain">
                                             <div className="flex-item-left">
                                                 <div className="domain-name">
-                                                    <a href={`/go?from=website&link=${blog.address}`} target="_blank">{blog.domainName}</a>
+                                                    <a href={`/go?from=website&link=${encodeURIComponent(blog.address)}`} target="_blank">{blog.domainName}</a>
                                                 </div>
                                                 <div className="link">
-                                                    <a href={`/go?from=website&link=${blog.address}`} target="_blank">
+                                                    <a href={`/go?from=website&link=${encodeURIComponent(blog.address)}`} target="_blank">
                                                         <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
                                                             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
                                                             <path d="M15 3h6v6"></path>
@@ -138,7 +138,7 @@ export default function BlogsContainerComp() {
                                             (post, index) => (
                                                 <p key={index}>
                                                     <a style={marginRightStyle}>{post.publishedAt}</a>
-                                                    <a href={`/go?from=website&link=${post.link}`} target="_blank">{post.title}</a>
+                                                    <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
                                                 </p>
                                             )
                                         )

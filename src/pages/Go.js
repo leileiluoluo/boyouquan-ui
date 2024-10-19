@@ -14,17 +14,16 @@ export default function Go() {
 
     const fetchData = async (link, from) => {
         try {
-            url = `https://www.boyouquan.com/api/go?link=${link}&from=${from}`;
-            url = encodeURIComponent(url);
+            link = encodeURIComponent(link);
+
+            let url = `https://www.boyouquan.com/api/go?from=${from}&link=${link}`;
+
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+
             const resp = await response.json();
-            setItem(prevItem=> ({
-                ...prevItem,
-                ['link']: resp.link,
-              }));
 
             window.location.href = resp.link;
         } catch (error) {
@@ -38,6 +37,6 @@ export default function Go() {
     }, [link, from]);
 
     return (
-        <Meta meta={meta}/>
+        <Meta meta={meta} />
     )
 }

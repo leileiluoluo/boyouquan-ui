@@ -9,8 +9,10 @@ module.exports = {
     entry: './src/index.js', // 入口文件
     output: {
         path: path.resolve(__dirname, 'dist'), // 输出目录
-        filename: 'bundle.js', // 输出文件名
+        filename: '[name].[contenthash].js', // 输出文件名
+        chunkFilename: '[name].[contenthash].chunk.js',
         publicPath: '/', // 资源的公共路径
+        clean: true, // 清理旧的文件
     },
     mode: 'development', // 开发模式
     devtool: 'source-map', // 生成 source map
@@ -69,8 +71,8 @@ module.exports = {
             logo: './public/favicon.ico',
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css', // 输出 CSS 文件名
-            chunkFilename: '[id].css', // 生成的 chunk CSS 文件名
+            filename: '[name].[contenthash].css',
+            chunkFilename: '[id].[contenthash].css',
         }),
         new CopyWebpackPlugin({
             patterns: [

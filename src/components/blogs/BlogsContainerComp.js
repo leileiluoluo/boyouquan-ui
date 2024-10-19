@@ -3,7 +3,8 @@ import getURLParameter from '../../utils/CommonUtil';
 
 export default function BlogsContainerComp() {
     const marginRightStyle = { marginRight: '6px' };
-    const backgroundColorStyle = { backgroundColor: '#0dcb0d' };
+    const statusOkBackgroundColorStyle = { backgroundColor: '#0dcb0d' };
+    const statusBadBackgroundColorStyle = { backgroundColor: 'red' };
 
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(0);
@@ -148,7 +149,7 @@ export default function BlogsContainerComp() {
                                 </div>
                                 <footer className="bottom-info">
                                     <div className="status-info">
-                                        <div style={backgroundColorStyle} className="status-icon"></div>
+                                        <div style={blog.statusOk ? statusOkBackgroundColorStyle: statusBadBackgroundColorStyle} className="status-icon"></div>
                                         <p>{blog.statusOk ? '运行良好' : '无法访问'}</p>
                                         <span className="tooltiptext">{blog.statusOk ? '该博客运行状态良好' : '该博客目前无法访问'}</span>
                                     </div>

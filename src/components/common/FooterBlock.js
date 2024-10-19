@@ -70,6 +70,10 @@ export default function FooterBlock() {
                             <span className="tooltiptext">懋和道人</span>
                         </div>
                         <div className="blogger-one">
+                            <a href="/blogs/www.dolingou.com"><img src="https://www.boyouquan.com/gravatar/bf756ed91099e8ee30a2c7c506e800d1?size=80" /></a>
+                            <span className="tooltiptext">Dolingou</span>
+                        </div>
+                        <div className="blogger-one">
                             <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                             <span className="tooltiptext">我也要赞助</span>
                         </div>

@@ -2,14 +2,21 @@ import { useEffect } from 'react';
 
 function setMenuActive() {
     let currentURL = window.location.href;
-        let currentPath = currentURL.split('?')[0];
-        let menuItems = document.getElementById('menu').getElementsByTagName('a');
-        for (let i = 0; i < menuItems.length; i++) {
-            let item = menuItems[i];
-            if (currentPath.startsWith(item.href)) {
-                item.classList.add('active');
-            }
+    let currentPath = currentURL.split('?')[0];
+    let menuItems = document.getElementById('menu').getElementsByTagName('a');
+
+    let activeItem = null;
+    for (let i = 0; i < menuItems.length; i++) {
+        let item = menuItems[i];
+        if (currentPath.startsWith(item.href)) {
+            activeItem = item;
+            break;
         }
+    }
+
+    if (null !== activeItem) {
+        activeItem.classList.add('active');
+    }
 }
 
 export default function Header() {

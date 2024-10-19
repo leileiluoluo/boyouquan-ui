@@ -38,6 +38,8 @@ export default function SharingComp() {
                 ['linkAccessCount']: resp.linkAccessCount,
                 ['blogAdminMediumImageURL']: resp.blogAdminMediumImageURL,
               }));
+
+              document.title = '博客「' + resp.title + '」审核详情 - 博友圈 · 博客人的朋友圈！';
         } catch (error) {
             console.error(error);
         }
@@ -47,8 +49,6 @@ export default function SharingComp() {
         let link = getURLParameter('link') || '';
         fetchData(link);
     }, [id]);
-
-    document.title = '博客「' + item.title + '」审核详情 - 博友圈 · 博客人的朋友圈！';
 
     return (
         <>

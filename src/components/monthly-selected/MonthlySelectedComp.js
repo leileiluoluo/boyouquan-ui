@@ -29,8 +29,6 @@ export default function MonthlySelectedComp() {
     };
 
     useEffect(() => {
-        document.title = '每月精选 - 博友圈 · 博客人的朋友圈！';
-
         fetchData(currentPage);
 
         // hasPre
@@ -47,7 +45,6 @@ export default function MonthlySelectedComp() {
             setHasNext(false);
         }
 
-        console.log('total: ' + currentPage * pageSize);
     }, [currentPage, pageSize, total]);
 
     const paginate = (pageNumber) => {
@@ -62,10 +59,10 @@ export default function MonthlySelectedComp() {
                 {
                     items.map(
                         (item, index) => (
-                            <div className="monthly-selected-single">
+                            <div key={index} className="monthly-selected-single">
                                 <div className="blog-detail-articles">
                                     <div className="articles-title">
-                                        <h4 key={`Outter-${index}`}>{item.yearMonthStr}</h4>
+                                        <h4>{item.yearMonthStr}</h4>
                                     </div>
                                     <div className="articles-container">
                                         <table style={tableStyle}>
@@ -79,17 +76,17 @@ export default function MonthlySelectedComp() {
                                             <tbody>
                                                 {
                                                     item.postInfos.map(
-                                                        (itemt, indext) => {
+                                                        (post, index) => {
                                                             return (
-                                                                <tr key={`Inner-${indext}`}>
+                                                                <tr key={index}>
                                                                     <td width="20%">
-                                                                        <a href={`/blogs/${itemt.blogDomainName}`}>{itemt.blogName}</a>
+                                                                        <a href={`/blogs/${post.blogDomainName}`}>{post.blogName}</a>
                                                                     </td>
                                                                     <td width="60%">
-                                                                        <a href={`/go?link=${itemt.link}`} target="_blank">{itemt.title}</a>
+                                                                        <a href={`/go?link=${post.link}`} target="_blank">{post.title}</a>
                                                                     </td>
                                                                     <td width="20%">
-                                                                        <p style={dateStyle}>{itemt.publishedAt}</p>
+                                                                        <p style={dateStyle}>{post.publishedAt}</p>
                                                                     </td>
                                                                 </tr>
                                                             )

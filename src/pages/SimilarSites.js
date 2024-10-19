@@ -1,23 +1,26 @@
-import { useEffect } from 'react';
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
+import Meta from '../components/common/Meta';
 
 export default function SimilarSites() {
-    useEffect(() => {
-        document.title = '同类网站 - 博友圈 · 博客人的朋友圈！';
-    }, []);
+    const meta = {
+        title: '同类网站 - 博友圈 · 博客人的朋友圈！',
+        keywords: '同类网站',
+        description: '博友圈同类网站列表。'
+    }
 
     return (
         <>
+            <Meta meta={meta} />
             <CommonHeader />
-            <main class="main">
-                <header class="post-header">
-                    <h1 class="post-title">
+            <main className="main">
+                <header className="post-header">
+                    <h1 className="post-title">
                         同类网站
                     </h1>
                 </header>
-                <article class="post-single">
-                    <div class="post-content">
+                <article className="post-single">
+                    <div className="post-content">
                         <p>下面列出一些与博友圈类似的博客收录网站，希望关注博友圈的朋友们也可以同时关注一下这些同类网站，其中有的收录站点已有接近 20 年的站龄，感谢他们的陪伴与引流，让这个年代还在坚持写博客的人有了一些温暖!</p>
                         <br />
                         <ul>

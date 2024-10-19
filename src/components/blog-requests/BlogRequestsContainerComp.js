@@ -27,8 +27,6 @@ export default function BlogRequestsContainerComp() {
     };
 
     useEffect(() => {
-        document.title = '博客审核结果 - 博友圈 · 博客人的朋友圈！';
-
         let keyword = getURLParameter('keyword') || '';
         fetchData(keyword, currentPage);
 
@@ -46,7 +44,6 @@ export default function BlogRequestsContainerComp() {
             setHasNext(false);
         }
 
-        console.log('total: ' + currentPage * pageSize);
     }, [currentPage, pageSize, total]);
 
     const paginate = (pageNumber) => {
@@ -57,8 +54,8 @@ export default function BlogRequestsContainerComp() {
 
     return (
         <>
-            <div class="blog-requests">
-                <div class="requests-container">
+            <div className="blog-requests">
+                <div className="requests-container">
                     <table>
                         <thead>
                             <tr>
@@ -70,18 +67,18 @@ export default function BlogRequestsContainerComp() {
                         </thead>
                         <tbody>
                             {
-                            blogRequests.map((item, index) => (
-                                <tr key={index}>
-                                <td width="35%">
-                                    <p><a href={`/blog-requests/${item.id}`}>{item.name}</a></p>
-                                </td>
-                                <td width="35%"><p>{item.adminEmail}</p></td>
-                                <td width="20%"><p>2024/10/15</p></td>
-                                <td width="10%">
-                                    <p>{item.statusInfo}</p>
-                                </td>
-                            </tr>
-                            ))
+                                blogRequests.map((item, index) => (
+                                    <tr key={index}>
+                                        <td width="35%">
+                                            <p><a href={`/blog-requests/${item.id}`}>{item.name}</a></p>
+                                        </td>
+                                        <td width="35%"><p>{item.adminEmail}</p></td>
+                                        <td width="20%"><p>2024/10/15</p></td>
+                                        <td width="10%">
+                                            <p>{item.statusInfo}</p>
+                                        </td>
+                                    </tr>
+                                ))
                             }
                         </tbody>
                     </table>

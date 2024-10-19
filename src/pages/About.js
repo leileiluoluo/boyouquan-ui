@@ -1,16 +1,19 @@
-import { useEffect } from 'react';
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
+import Meta from '../components/common/Meta';
 
 export default function About() {
-    const tableStyle = { display: 'table', tableLayout: 'fixed' };
+    const meta = {
+        title: '关于本站 - 博友圈 · 博客人的朋友圈！',
+        keywords: '关于本站',
+        description: '博友圈网站介绍。'
+    }
 
-    useEffect(() => {
-        document.title = '关于本站 - 博友圈 · 博客人的朋友圈！';
-    }, []);
+    const tableStyle = { display: 'table', tableLayout: 'fixed' };
 
     return (
         <>
+            <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
                 <header className="post-header">

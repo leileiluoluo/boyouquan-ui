@@ -1,25 +1,26 @@
-import { useEffect } from 'react';
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
+import Meta from '../components/common/Meta';
 
 export default function Thanks() {
-    const tableStyle = { display: 'table', tableLayout: 'fixed' };
-
-    useEffect(() => {
-        document.title = '感谢名单 - 博友圈 · 博客人的朋友圈！';
-    }, []);
+    const meta = {
+        title: '感谢名单 - 博友圈 · 博客人的朋友圈！',
+        keywords: '感谢名单',
+        description: '记录博友圈建站以来，对博友圈作出过帮助的朋友们。'
+    }
 
     return (
         <>
+            <Meta meta={meta} />
             <CommonHeader />
-            <main class="main">
-                <header class="post-header">
-                    <h1 class="post-title">
+            <main className="main">
+                <header className="post-header">
+                    <h1 className="post-title">
                         感谢名单
                     </h1>
                 </header>
-                <article class="post-single">
-                    <div class="post-content">
+                <article className="post-single">
+                    <div className="post-content">
                         <p>本页用于记录博友圈建站以来，对博友圈网站有过大力帮助的朋友们！</p>
 
                         <h3>2024-04-23 感谢免费的 IP 地址位置信息获取网站</h3>

@@ -8,10 +8,10 @@ function showChart(id, title, note, labels, values, color) {
             labels: labels,
 
             datasets: [
-              {
-                name: note, chartType: 'line',
-                values: values
-              }
+                {
+                    name: note, chartType: 'line',
+                    values: values
+                }
             ],
         },
 
@@ -33,14 +33,15 @@ function showChart(id, title, note, labels, values, color) {
         },
 
         tooltipOptions: {
-          formatTooltipX: d => (d + '').toUpperCase(),
-          formatTooltipY: d => d,
+            formatTooltipX: d => (d + '').toUpperCase(),
+            formatTooltipY: d => d,
         }
     });
 }
 
 export default function BlogContainerComp() {
-    const blogStatusStyle = { backgroundColor: '#0dcb0d' };
+    const blogStatusOkStyle = { backgroundColor: '#0dcb0d' };
+    const blogStatusBadStyle = { backgroundColor: 'red' };
     const blogStatisticsStyle = { fontSize: '16px', color: 'var(--secondary)' };
     const postsTableStyle = { display: 'table', tableLayout: 'fixed' };
     const postTableClumn20Style = { width: '20%' };
@@ -92,16 +93,16 @@ export default function BlogContainerComp() {
 
     return (
         <>
-        <Helmet>
-        <script src="/assets/js/charts/frappe-charts@1.6.2.min.umd.js" type="text/javascript"></script>
-        </Helmet>
+            <Helmet>
+                <script src="/assets/js/charts/frappe-charts@1.6.2.min.umd.js" type="text/javascript"></script>
+            </Helmet>
             <div className="blog-detail-main">
                 <header className="header-info">
 
                     <div className="status-info">
-                        <div style={blogStatusStyle} className="status-icon"></div>
+                        <div style={item.blogInfo.statusOk ? blogStatusOkStyle : blogStatusBadStyle} className="status-icon"></div>
                         <p>{item.blogInfo.statusOk ? '运行良好' : '无法访问'}</p>
-                        <span className="tooltiptext">该博客运行状态良好</span>
+                        <span className="tooltiptext">{item.blogInfo.statusOk ? '该博客运行状态良好' : '该博客目前无法访问'}</span>
                     </div>
 
 
@@ -111,6 +112,10 @@ export default function BlogContainerComp() {
                         <span className="tooltiptext">{item.blogInfo.submittedInfoTip}</span>
                     </div>
                 </header>
+
+                { item.blogInfo.statusOk ? '' : <header class="blog-can-not-access-tip">
+                    <strong>{item.blogInfo.statusUnOkInfo}</strong>
+                </header>}
 
                 <header className="blog-detail-header">
                     <div className="icon">

@@ -27,6 +27,7 @@ import Thanks from './pages/Thanks';
 import SimilarSites from './pages/SimilarSites';
 import PlanetShuttle from './pages/PlanetShuttle';
 import BlogRequestAdd from './pages/BlogRequestAdd';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -60,6 +61,7 @@ export default function App() {
         <Route path='/release-notes/v1.2' element={<ReleaseNoteV1_2 />} />
         <Route path='/release-notes/v1.1' element={<ReleaseNoteV1_1 />} />
         <Route path='/release-notes/v1.0' element={<ReleaseNoteV1_0 />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

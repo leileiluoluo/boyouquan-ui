@@ -83,10 +83,10 @@ export default function MonthlySelectedComp() {
                                                             return (
                                                                 <tr key={`Inner-${indext}`}>
                                                                     <td width="20%">
-                                                                        <a href={`https://www.boyouquan.com/blogs/${itemt.blogDomainName}`}>{itemt.blogName}</a>
+                                                                        <a href={`/blogs/${itemt.blogDomainName}`}>{itemt.blogName}</a>
                                                                     </td>
                                                                     <td width="60%">
-                                                                        <a href={`https://www.boyouquan.com/go?link=${itemt.link}`} target="_blank">{itemt.title}</a>
+                                                                        <a href={`/go?link=${itemt.link}`} target="_blank">{itemt.title}</a>
                                                                     </td>
                                                                     <td width="20%">
                                                                         <p style={dateStyle}>{itemt.publishedAt}</p>

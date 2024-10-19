@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-function showChart(id, labels, values, color) {
+function showChart(id, title, note, labels, values, color) {
     new frappe.Chart(id, { // or DOM element
         data: {
             labels: labels,
 
             datasets: [
               {
-                name: "次浏览", chartType: 'line',
+                name: note, chartType: 'line',
                 values: values
               }
             ],
         },
 
-        title: "最近一年文章浏览统计",
+        title: title,
         type: 'bar', // or 'bar', 'line', 'pie', 'percentage'
         height: 200,
         colors: [color],
@@ -74,12 +74,12 @@ export default function BlogContainerComp() {
 
             document.title = resp.blogInfo.name + ' - 博友圈 · 博客人的朋友圈！';
 
-            showChart('#access-charts', resp.yearlyAccessDataLabels, resp.yearlyAccessDataValues, '#fd8754');
+            showChart('#access-charts', '最近一年文章浏览统计', '次浏览', resp.yearlyAccessDataLabels, resp.yearlyAccessDataValues, '#fd8754');
             if (resp.showLatestPublishedAtChart) {
-                showChart('#publish-charts', resp.yearlyPublishDataLabels, resp.yearlyPublishDataValues, '#cc6cf6');
+                showChart('#publish-charts', '最近一年文章收录统计', '篇文章', resp.yearlyPublishDataLabels, resp.yearlyPublishDataValues, '#cc6cf6');
             }
             if (resp.showLatestInitiatedChart) {
-                showChart('#initiated-charts', resp.yearlyInitiatedDataLabels, resp.yearlyInitiatedDataValues, '#4299f5');
+                showChart('#initiated-charts', '最近一年星球穿梭助力统计', '次助力', resp.yearlyInitiatedDataLabels, resp.yearlyInitiatedDataValues, '#4299f5');
             }
         } catch (error) {
             console.error(error);

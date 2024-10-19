@@ -26,6 +26,7 @@ import About from './pages/About';
 import Thanks from './pages/Thanks';
 import SimilarSites from './pages/SimilarSites';
 import PlanetShuttle from './pages/PlanetShuttle';
+import BlogRequestAdd from './pages/BlogRequestAdd';
 
 export default function App() {
   return (
@@ -36,7 +37,8 @@ export default function App() {
         <Route path='/monthly-selected' element={<MonthlySelected />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/blogs/:domain' element={<Blog />} />
-        <Route path='/blog-requests' element={<BlogRequests />} />
+        <Route exact path='/blog-requests' element={<BlogRequests />} />
+        <Route path='/blog-requests/add' element={<BlogRequestAdd />} />
         <Route path='/blog-requests/:id' element={<BlogRequest />} />
         <Route path='/sharing' element={<Sharing />} />
         <Route path='/abstract' element={<Abstract />} />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getURLParameter from '../../utils/CommonUtil';
+import { Helmet } from 'react-helmet';
 
 export default function SharingComp() {
     const style = { display: 'table', tableLayout: 'fixed'}
@@ -39,7 +40,7 @@ export default function SharingComp() {
                 ['blogAdminMediumImageURL']: resp.blogAdminMediumImageURL,
               }));
 
-              document.title = '博客「' + resp.title + '」审核详情 - 博友圈 · 博客人的朋友圈！';
+              document.title = '发现一篇有趣的文章：「' + resp.title + '」- 博友圈 · 博客人的朋友圈！';
         } catch (error) {
             console.error(error);
         }
@@ -52,9 +53,15 @@ export default function SharingComp() {
 
     return (
         <>
+        <Helmet>
+                <meta name="keywords" content='文章分享' />
+                <meta name="description" content={item.description} />
+                <meta property="og:title" content={`发现一篇有趣的文章：「${item.title}」- 博友圈 · 博客人的朋友圈！`} />
+                <meta property="og:description" content={item.description} />
+            </Helmet>
     <article className="share post-entry">
         <header className="entry-header sharing">
-            <h4>我在博友圈发现一篇有意思的文章：「<a href={`/go?from=website&link=${item.link}`}><strong>{item.title}</strong></a>」，快点击阅读原文看看吧！</h4>
+            <h4>发现一篇有趣的文章：「<a href={`/go?from=website&link=${item.link}`}><strong>{item.title}</strong></a>」</h4>
         </header>
         <div className="entry-content">
             <p>{item.description}</p>

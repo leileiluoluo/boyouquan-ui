@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getURLParameter from '../../utils/CommonUtil';
+import { Helmet } from 'react-helmet';
 
 export default function AbstractComp() {
     const [item, setItem] = useState({
@@ -37,7 +38,7 @@ export default function AbstractComp() {
                 ['blogAdminMediumImageURL']: resp.blogAdminMediumImageURL,
             }));
 
-            document.title = '「' + resp.title + '」的摘要信息 - 博友圈 · 博客人的朋友圈！';
+            document.title = '文章摘要：「' + resp.title + '」 - 博友圈 · 博客人的朋友圈！';
         } catch (error) {
             console.error(error);
         }
@@ -50,9 +51,15 @@ export default function AbstractComp() {
 
     return (
         <>
+            <Helmet>
+                <meta name="keywords" content='文章摘要' />
+                <meta name="description" content={item.description} />
+                <meta property="og:title" content={`文章摘要：「${item.title}<」 - 博友圈 · 博客人的朋友圈！`} />
+                <meta property="og:description" content={item.description} />
+            </Helmet>
             <article className="abstract post-entry">
                 <header className="entry-header sharing">
-                    <h4>「<a href={`/go?from=website&link=${item.link}`}><strong>{item.title}</strong></a>」的摘要信息</h4>
+                    <h4>文章摘要：「<a href={`/go?from=website&link=${item.link}`}><strong>{item.title}</strong></a>」</h4>
                 </header>
                 <div className="entry-content">
                     <p>{item.description}</p>

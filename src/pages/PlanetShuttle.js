@@ -45,7 +45,7 @@ export default function PlanetShuttle() {
 
                     setTimeout(function () {
                         window.location.href = '/go?from=website&link=' + encodeURIComponent(data.blogAddress);
-                    }, 30 * 1000);
+                    }, 3 * 1000);
                 })
                 .catch(error => { throw new Error('Network response was not ok') });
         } catch (error) {
@@ -101,7 +101,7 @@ export default function PlanetShuttle() {
                 </div>
                 <div style={fontSizeLargeStyle}>
                     {
-                        (null != item.fromBlog) ? <><p style={marginOneStyle}>总助力值为 {item.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/go?from=website&link=${encodeURIComponent(item.fromBlog.blogAddress)}`} style={animationStyle}>{item.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={`/go?from=website&link=${encodeURIComponent(item.blogAddress)}`} style={animationStyle}>{item.blogName}</a>」的星球！</p></> : <p>您即将穿梭到「<a id="shuttle" href={`/go?from=website&link=${encodeURIComponent(item.blogAddress)}`} style={animationStyle}>{item.blogName}</a>」的星球！</p>
+                        (null != item.fromBlog) ? <><p style={marginOneStyle}>总助力值为 {item.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${item.fromBlog.domainName}`} style={animationStyle}>{item.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={`/go?from=website&link=${encodeURIComponent(item.blogAddress)}`} style={animationStyle}>{item.blogName}</a>」的星球！</p></> : <p>您即将穿梭到「<a id="shuttle" href={`/go?from=website&link=${encodeURIComponent(item.blogAddress)}`} style={animationStyle}>{item.blogName}</a>」的星球！</p>
                     }
                 </div>
                 <div style={marginStyle}>

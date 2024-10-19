@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
 
 export default function BlogsContainerComp() {
-    const marginRightStyle = { marginRight: '6px' };
+    const marginRightStyle = { marginRight: '6px', color: 'var(--secondary)' };
     const statusOkBackgroundColorStyle = { backgroundColor: '#0dcb0d' };
     const statusBadBackgroundColorStyle = { backgroundColor: 'red' };
 
@@ -31,8 +31,6 @@ export default function BlogsContainerComp() {
     };
 
     useEffect(() => {
-        document.title = '博客广场 - 博友圈 · 博客人的朋友圈！';
-
         let sort = getURLParameter('sort') || 'collect_time';
         let keyword = getURLParameter('keyword') || '';
         fetchData(sort, keyword, currentPage);
@@ -51,7 +49,6 @@ export default function BlogsContainerComp() {
             setHasNext(false);
         }
 
-        console.log('total: ' + currentPage * pageSize);
     }, [currentPage, pageSize, total]);
 
     const paginate = (pageNumber) => {
@@ -66,7 +63,7 @@ export default function BlogsContainerComp() {
                 {
                     blogs.map(
                         (blog, index) => (
-                            <article className="blog-entry">
+                            <article key={index} className="blog-entry">
                                 <header className="blog-entry-header">
                                     <div className="blogger-icon">
                                         <a href="/blogs/www.hats-land.com">
@@ -86,7 +83,7 @@ export default function BlogsContainerComp() {
                                                 </div>
                                                 <div className="link">
                                                     <a href={`/go?from=website&link=${blog.address}`} target="_blank">
-                                                        <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                                                        <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
                                                             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
                                                             <path d="M15 3h6v6"></path>
                                                             <path d="M10 14L21 3"></path>
@@ -139,8 +136,8 @@ export default function BlogsContainerComp() {
                                     {
                                         blog.posts.map(
                                             (post, index) => (
-                                                <p>
-                                                    <text style={marginRightStyle}>{post.publishedAt}</text>
+                                                <p key={index}>
+                                                    <a style={marginRightStyle}>{post.publishedAt}</a>
                                                     <a href={`/go?from=website&link=${post.link}`} target="_blank">{post.title}</a>
                                                 </p>
                                             )
@@ -149,7 +146,7 @@ export default function BlogsContainerComp() {
                                 </div>
                                 <footer className="bottom-info">
                                     <div className="status-info">
-                                        <div style={blog.statusOk ? statusOkBackgroundColorStyle: statusBadBackgroundColorStyle} className="status-icon"></div>
+                                        <div style={blog.statusOk ? statusOkBackgroundColorStyle : statusBadBackgroundColorStyle} className="status-icon"></div>
                                         <p>{blog.statusOk ? '运行良好' : '无法访问'}</p>
                                         <span className="tooltiptext">{blog.statusOk ? '该博客运行状态良好' : '该博客目前无法访问'}</span>
                                     </div>

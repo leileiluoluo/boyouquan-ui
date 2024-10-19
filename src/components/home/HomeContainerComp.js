@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
 
-export default function HomeComp() {
+export default function HomeContainerComp() {
     const displayNoneStyle = { display: 'none' };
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,8 +29,6 @@ export default function HomeComp() {
     };
 
     useEffect(() => {
-        document.title = '首页 - 博友圈 · 博客人的朋友圈！';
-
         let sort = getURLParameter('sort') || 'recommended';
         let keyword = getURLParameter('keyword') || '';
         if (keyword.length > 0) {
@@ -51,8 +49,6 @@ export default function HomeComp() {
         } else {
             setHasNext(false);
         }
-
-        console.log('total: ' + currentPage * pageSize);
     }, [currentPage, pageSize, total]);
 
     const paginate = (pageNumber) => {
@@ -66,14 +62,14 @@ export default function HomeComp() {
             {
                 items.map(
                     (item, index) => (
-                        <article className={item.pinned ? 'post-entry pinned' : 'post-entry'}>
+                        <article key={index} className={item.pinned ? 'post-entry pinned' : 'post-entry'}>
                             <header className="entry-header">
                                 {
                                     item.pinned ? <div className="pinned-icon">
-                                    <img src="/assets/images/sites/pinned/pinned.svg" />
-                                </div> : ''
+                                        <img src="/assets/images/sites/pinned/pinned.svg" />
+                                    </div> : ''
                                 }
-                                
+
                                 <div className="article-go">
                                     <a href={`/go?from=website&link=${item.link}`} target="_blank"><h4>{item.title}</h4></a>
                                 </div>

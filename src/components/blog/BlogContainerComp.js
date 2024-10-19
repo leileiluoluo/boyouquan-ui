@@ -64,7 +64,6 @@ export default function BlogContainerComp() {
                 throw new Error('Network response was not ok');
             }
             const resp = await response.json();
-            console.log('resp: ' + resp);
             setItem(prevItem => ({
                 ...prevItem,
                 ['blogInfo']: resp.blogInfo,
@@ -94,6 +93,10 @@ export default function BlogContainerComp() {
     return (
         <>
             <Helmet>
+                <meta name="keywords" content={item.blogInfo.name} />
+                <meta name="description" content={item.blogInfo.description} />
+                <meta property="og:title" content={item.blogInfo.name} />
+                <meta property="og:description" content={item.blogInfo.description} />
                 <script src="/assets/js/charts/frappe-charts@1.6.2.min.umd.js" type="text/javascript"></script>
             </Helmet>
             <div className="blog-detail-main">
@@ -113,7 +116,7 @@ export default function BlogContainerComp() {
                     </div>
                 </header>
 
-                { item.blogInfo.statusOk ? '' : <header class="blog-can-not-access-tip">
+                {item.blogInfo.statusOk ? '' : <header className="blog-can-not-access-tip">
                     <strong>{item.blogInfo.statusUnOkInfo}</strong>
                 </header>}
 
@@ -129,7 +132,7 @@ export default function BlogContainerComp() {
                     <div className="domain">
                         <a href={`/go?from=website&link=${item.blogInfo.address}`} target="_blank">{item.blogInfo.domainName} </a>
                         <a href={`/go?from=website&link=${item.blogInfo.address}`} target="_blank">
-                            <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                            <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
                                 <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
                                 <path d="M15 3h6v6"></path>
                                 <path d="M10 14L21 3"></path>
@@ -189,9 +192,9 @@ export default function BlogContainerComp() {
                             {
                                 item.blogInfo.posts.map(
                                     (post, index) => (
-                                        <tr>
+                                        <tr key={index}>
                                             <td style={postTableClumn20Style}>
-                                                <text style={textStyle}>{post.publishedAt}</text>
+                                                <p style={textStyle}>{post.publishedAt}</p>
                                             </td>
 
                                             <td style={postTableClumn80Style}>
@@ -215,7 +218,7 @@ export default function BlogContainerComp() {
                     {
                         item.randomBlogInfos.map(
                             (blog, index) => (
-                                <div className="blog-entry">
+                                <div key={index} className="blog-entry">
                                     <header className="blog-entry-header">
                                         <div className="blogger-icon">
                                             <a href={`/blogs/${blog.domainName}`}>
@@ -235,7 +238,7 @@ export default function BlogContainerComp() {
                                                     </div>
                                                     <div className="link">
                                                         <a href={`/go?from=website&link=${blog.address}`}>
-                                                            <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                                                            <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
                                                                 <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
                                                                 <path d="M15 3h6v6"></path>
                                                                 <path d="M10 14L21 3"></path>
@@ -247,7 +250,7 @@ export default function BlogContainerComp() {
                                         </div>
                                     </header>
                                     <div className="description">
-                                        <p>糖果补充能量，谎言侵蚀灵魂</p>
+                                        <p>{blog.description}</p>
                                     </div>
                                 </div>
                             )

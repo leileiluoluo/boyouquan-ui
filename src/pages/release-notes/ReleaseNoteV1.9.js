@@ -1,14 +1,17 @@
-import { useEffect } from 'react';
 import CommonHeader from '../../components/common/CommonHeader';
 import CommonFooter from '../../components/common/CommonFooter';
+import Meta from '../../components/common/Meta';
 
 export default function ReleaseNoteV1_9() {
-    useEffect(() => {
-        document.title = 'v1.9 版本说明 - 博友圈 · 博客人的朋友圈！';
-    }, []);
+    const meta = {
+        title: 'v1.9 版本说明 - 博友圈 · 博客人的朋友圈！',
+        keywords: '博友圈, 版本说明, v1.9',
+        description: '博友圈 v1.9 版本说明。'
+    }
 
     return (
         <>
+            <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
                 <header className="post-header">

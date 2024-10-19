@@ -16,7 +16,7 @@ export default function SwitchSortType({ types }) {
                     types.map(
                         (item, index) => (
                             <li key={index}>
-                                <a href={item.href} title={item.name} class={item.href.endsWith(activeType) ? 'active' : (null == activeType && item.default ? 'active' : '')}>
+                                <a href={item.href} title={item.name} className={item.href.endsWith(activeType) ? 'active' : (null == activeType && item.default ? 'active' : '')}>
                                     <span>{item.name}</span>
                                 </a>
                             </li>

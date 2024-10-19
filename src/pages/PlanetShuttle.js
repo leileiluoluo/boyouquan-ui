@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 export default function PlanetShuttle() {
+    const meta = {
+        title: '星球穿梭 - 博友圈 · 博客人的朋友圈！',
+        keywords: '星球穿梭, 博友圈',
+        description: '博友圈星球穿梭，随机穿梭到一位博友的星球！'
+    }
+
     const textAliginStyle = { textAlign: 'center', marginBottom: '28px' };
     const planetStyle = { fontFamily: '-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif', color: 'white', textAlign: 'center', position: 'absolute', top: '45%', left: '50%', transform: 'translate(-50%, -50%)' };
     const fontStyle = { fontSize: '20px', textDecoration: 'none', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundImage: 'linear-gradient(to right, #d3a497, #d55b5b, #9877f1)' };
@@ -80,6 +86,11 @@ export default function PlanetShuttle() {
             }
             }
         `}</style>
+                <title>{meta.title}</title>
+                <meta name="keywords" content={meta.keywords} />
+                <meta name="description" content={meta.description} />
+                <meta property="og:title" content={meta.title} />
+                <meta property="og:description" content={meta.description} />
                 <script src="/assets/js/planet-shuttle/lib/TweenMax.min.js" type="text/javascript"></script>
                 <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
                 <script src="/assets/js/tongji.js" type="text/javascript"></script>

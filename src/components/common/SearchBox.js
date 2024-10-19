@@ -25,7 +25,7 @@ export default function SearchBox({ placeholder, gotoPage, sortType }) {
 
     return (
         <div id="searchbox">
-            <input id="searchInput" autofocus="" placeholder={placeholder} aria-label="search" type="search" autocomplete="off" />
+            <input id="searchInput" autoFocus="" placeholder={placeholder} aria-label="search" type="search" autoComplete="off" />
         </div>
     )
 }

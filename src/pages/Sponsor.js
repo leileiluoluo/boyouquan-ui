@@ -1,18 +1,21 @@
-import { useEffect } from 'react';
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
+import Meta from '../components/common/Meta';
 
 export default function Sponsor() {
+    const meta = {
+        title: '赞助本站 - 博友圈 · 博客人的朋友圈！',
+        keywords: '赞助本站',
+        description: '赞助本站，以使得本站能更好的运营下去。'
+    }
+
     const wechatStyle = { display: 'block', margin: '0 auto', width: '50%' };
     const fontSizeStyle = { fontSize: '14px' };
     const fontWeightStyle = { fontWeight: 'bold' };
 
-    useEffect(() => {
-        document.title = '赞助本站 - 博友圈 · 博客人的朋友圈！';
-    }, []);
-
     return (
-        <>
+        <>  
+            <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
                 <header className="post-header">

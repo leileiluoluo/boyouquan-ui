@@ -29,6 +29,8 @@ export default function BlogContainerComp() {
                 ['blogInfo']: resp.blogInfo,
                 ['randomBlogInfos']: resp.randomBlogInfos,
               }));
+
+            document.title = resp.blogInfo.name + ' - 博友圈 · 博客人的朋友圈！';  
         } catch (error) {
             console.error(error);
         }
@@ -37,8 +39,6 @@ export default function BlogContainerComp() {
     useEffect(() => {
         fetchData(domain);
     }, [domain]);
-
-    document.title = item.blogInfo.name + ' - 博友圈 · 博客人的朋友圈！';
 
     return (
         <>

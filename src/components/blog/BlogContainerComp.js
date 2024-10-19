@@ -48,6 +48,8 @@ export default function BlogContainerComp() {
     const postTableClumn80Style = { width: '80%' };
     const textStyle = { marginRight: '6px' };
 
+    const [showPostsLimit, setShowPostsLimit] = useState(false);
+
     const [item, setItem] = useState({
         'blogInfo': { 'posts': [] },
         'randomBlogInfos': [],
@@ -71,6 +73,10 @@ export default function BlogContainerComp() {
                 ['showLatestPublishedAtChart']: resp.showLatestPublishedAtChart,
                 ['showLatestInitiatedChart']: resp.showLatestInitiatedChart,
             }));
+
+            if (resp.blogInfo.postCount >= 100) {
+                setShowPostsLimit(true);
+            }
 
             document.title = resp.blogInfo.name + ' - 博友圈 · 博客人的朋友圈！';
 
@@ -207,6 +213,11 @@ export default function BlogContainerComp() {
                         </tbody>
                     </table>
                 </div>
+                {
+                    showPostsLimit ? <div class="articles-footer">
+                        <p>* 仅显示最新100篇文章</p>
+                    </div> : ''
+                }
 
             </div>
 

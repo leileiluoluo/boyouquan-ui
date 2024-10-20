@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import formatDateStr from '../../utils/DateUtil';
 
 export default function MonthlySelectedComp() {
     const tableStyle = { display: 'table', tableLayout: 'fixed' };
@@ -86,7 +87,7 @@ export default function MonthlySelectedComp() {
                                                                         <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
                                                                     </td>
                                                                     <td width="20%">
-                                                                        <p style={dateStyle}>{post.publishedAt}</p>
+                                                                        <p style={dateStyle}>{formatDateStr(post.publishedAt)}</p>
                                                                     </td>
                                                                 </tr>
                                                             )

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
+import formatDateStr from '../../utils/DateUtil';
 
 export default function HomeContainerComp() {
     const displayNoneStyle = { display: 'none' };
@@ -95,7 +96,7 @@ export default function HomeContainerComp() {
                                     <a href={`/blogs/${item.blogDomainName}`}>{item.blogName}</a>
                                 </div>
                                 <div className="flex-item">
-                                    · <span>{item.publishedAt}</span>
+                                    · <span>{formatDateStr(item.publishedAt)}</span>
                                 </div>
                                 <div className="flex-item">
                                     · <span>{item.linkAccessCount}</span>次浏览 ·

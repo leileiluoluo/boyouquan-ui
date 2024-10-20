@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
+import formatDateStr from '../../utils/DateUtil';
 
 export default function BlogRequestsContainerComp() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -73,7 +74,7 @@ export default function BlogRequestsContainerComp() {
                                             <p><a href={`/blog-requests/${item.id}`}>{item.name}</a></p>
                                         </td>
                                         <td width="35%"><p>{item.adminEmail}</p></td>
-                                        <td width="20%"><p>{item.requestedAt}</p></td>
+                                        <td width="20%"><p>{formatDateStr(item.requestedAt, true)}</p></td>
                                         <td width="10%">
                                             <p>{item.statusInfo}</p>
                                         </td>

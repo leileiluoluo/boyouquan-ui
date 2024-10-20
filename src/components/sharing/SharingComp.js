@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getURLParameter from '../../utils/CommonUtil';
+import formatDateStr from '../../utils/DateUtil';
 import { Helmet } from 'react-helmet';
 
 export default function SharingComp() {
@@ -79,7 +80,7 @@ export default function SharingComp() {
                 <a href={`/blogs/${item.blogDomainName}`}>{item.blogName}</a>
             </div>
             <div className="flex-item">
-                · <span>{item.publishedAt}</span>
+                · <span>{formatDateStr(item.publishedAt)}</span>
             </div>
             <div className="flex-item">
                 · <span>{item.linkAccessCount}</span>次浏览

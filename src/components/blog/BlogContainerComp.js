@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import AccessChart from './AccessChart';
 import CollectChart from './CollectChart';
 import PlanetShuttleChart from './PlanetShuttleChart';
+import formatDateStr from '../../utils/DateUtil';
 
 export default function BlogContainerComp() {
     const blogStatusOkStyle = { backgroundColor: '#0dcb0d' };
@@ -71,14 +72,6 @@ export default function BlogContainerComp() {
     useEffect(() => {
         fetchData(domain);
     }, [domain]);
-
-    // showChart('#access-charts', '最近一年文章浏览统计', '次浏览', item.yearlyAccessDataLabels, item.yearlyAccessDataValues, '#fd8754');
-    //         if (item.showLatestPublishedAtChart) {
-    //             showChart('#publish-charts', '最近一年文章收录统计', '篇文章', item.yearlyPublishDataLabels, item.yearlyPublishDataValues, '#cc6cf6');
-    //         }
-    //         if (item.showLatestInitiatedChart) {
-    //             showChart('#initiated-charts', '最近一年星球穿梭助力统计', '次助力', item.yearlyInitiatedDataLabels, item.yearlyInitiatedDataValues, '#4299f5');
-    //         }
 
     return (
         <>
@@ -157,11 +150,11 @@ export default function BlogContainerComp() {
                         </div>
                         <div className="flex-item three">
                             <p style={blogStatisticsStyle}>最近更新</p>
-                            <p>{item.blogInfo.latestPublishedAt}</p>
+                            <p>{formatDateStr(item.blogInfo.latestPublishedAt)}</p>
                         </div>
                         <div className="flex-item four">
                             <p style={blogStatisticsStyle}>收录时间</p>
-                            <p>{item.blogInfo.collectedAt}</p>
+                            <p>{formatDateStr(item.blogInfo.collectedAt)}</p>
                         </div>
                     </footer>
 
@@ -186,7 +179,7 @@ export default function BlogContainerComp() {
                                             (post, index) => (
                                                 <tr key={index}>
                                                     <td style={postTableClumn20Style}>
-                                                        <p style={textStyle}>{post.publishedAt}</p>
+                                                        <p style={textStyle}>{formatDateStr(post.publishedAt, true)}</p>
                                                     </td>
 
                                                     <td style={postTableClumn80Style}>

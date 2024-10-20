@@ -73,7 +73,7 @@ export default function BlogRequestsContainerComp() {
                                             <p><a href={`/blog-requests/${item.id}`}>{item.name}</a></p>
                                         </td>
                                         <td width="35%"><p>{item.adminEmail}</p></td>
-                                        <td width="20%"><p>2024/10/15</p></td>
+                                        <td width="20%"><p>{item.requestedAt}</p></td>
                                         <td width="10%">
                                             <p>{item.statusInfo}</p>
                                         </td>

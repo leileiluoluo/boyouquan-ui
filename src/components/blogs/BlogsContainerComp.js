@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
+import formatDateStr from '../../utils/DateUtil';
 
 export default function BlogsContainerComp() {
     const marginRightStyle = { marginRight: '6px', color: 'var(--secondary)' };
     const statusOkBackgroundColorStyle = { backgroundColor: '#0dcb0d' };
     const statusBadBackgroundColorStyle = { backgroundColor: 'red' };
+    const highlightStyle = { color: '#cb2e58' };
 
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
     const [blogs, setBlogs] = useState([]);
+
+    const [publishedAtHighlight, setPublishedAtHighlight] = useState(false);
+    const [accessCountHighlight, setAccessCountHighlight] = useState(false);
 
     const [hasPre, setHasPre] = useState(false);
     const [hasNext, setHasNext] = useState(false);
@@ -33,6 +38,13 @@ export default function BlogsContainerComp() {
     useEffect(() => {
         let sort = getURLParameter('sort') || 'collect_time';
         let keyword = getURLParameter('keyword') || '';
+
+        if ('collect_time' === sort) {
+            setPublishedAtHighlight(true);
+        } else {
+            setAccessCountHighlight(true);
+        }
+
         fetchData(sort, keyword, currentPage);
 
         // hasPre
@@ -108,10 +120,10 @@ export default function BlogsContainerComp() {
                                     </div>
                                     <div className="flex-item">
                                         <div className="title">
-                                            <p>文章浏览</p>
+                                            <p style={accessCountHighlight ? highlightStyle : { color: 'inherit' }}>文章浏览</p>
                                         </div>
                                         <div className="count">
-                                            <p>{blog.accessCount}</p>
+                                            <p style={accessCountHighlight ? highlightStyle : { color: 'inherit' }}>{blog.accessCount}</p>
                                         </div>
                                     </div>
                                     <div className="flex-item">
@@ -119,15 +131,15 @@ export default function BlogsContainerComp() {
                                             <p>最近更新</p>
                                         </div>
                                         <div className="count">
-                                            <p>{blog.latestPublishedAt}</p>
+                                            <p>{formatDateStr(blog.latestPublishedAt)}</p>
                                         </div>
                                     </div>
                                     <div className="flex-item">
                                         <div className="title">
-                                            <p>收录时间</p>
+                                            <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>收录时间</p>
                                         </div>
                                         <div className="count">
-                                            <p>{blog.collectedAt}</p>
+                                            <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>{formatDateStr(blog.collectedAt)}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +149,7 @@ export default function BlogsContainerComp() {
                                         blog.posts.map(
                                             (post, index) => (
                                                 <p key={index}>
-                                                    <a style={marginRightStyle}>{post.publishedAt}</a>
+                                                    <a style={marginRightStyle}>{formatDateStr(post.publishedAt, true)}</a>
                                                     <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
                                                 </p>
                                             )

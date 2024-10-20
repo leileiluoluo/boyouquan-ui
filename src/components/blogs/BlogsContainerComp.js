@@ -119,7 +119,7 @@ export default function BlogsContainerComp() {
                                             <p>最近更新</p>
                                         </div>
                                         <div className="count">
-                                            <p>5天前</p>
+                                            <p>{blog.latestPublishedAt}</p>
                                         </div>
                                     </div>
                                     <div className="flex-item">
@@ -127,7 +127,7 @@ export default function BlogsContainerComp() {
                                             <p>收录时间</p>
                                         </div>
                                         <div className="count">
-                                            <p>2天前</p>
+                                            <p>{blog.collectedAt}</p>
                                         </div>
                                     </div>
                                 </div>

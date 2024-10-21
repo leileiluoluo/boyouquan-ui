@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 import Meta from '../components/common/Meta';
-import scrollToHash from '../utils/ScrollUtil';
+import { scrollToHash } from '../utils/ScrollUtil';
 
 export default function About() {
     const meta = {

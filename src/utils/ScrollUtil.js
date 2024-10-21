@@ -1,4 +1,4 @@
-export default function scrollToHash() {
+export function scrollToHash() {
     let hash = window.location.hash;
 
     if (hash) {
@@ -10,4 +10,8 @@ export default function scrollToHash() {
     if (elem) {
         elem.scrollIntoView();
     }
+}
+
+export function clearHash() {
+    window.history.replaceState(null, null, ' ');
 }

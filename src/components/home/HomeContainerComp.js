@@ -88,7 +88,7 @@ export default function HomeContainerComp() {
                             </div>
                             <footer className="entry-footer">
                                 <div className="flex-item">
-                                    <a href="/blogs/ihaihe.cn">
+                                    <a href={`/blogs/${item.blogDomainName}`}>
                                         <img src={`https://www.boyouquan.com${item.blogAdminMediumImageURL}`} />
                                     </a>
                                 </div>

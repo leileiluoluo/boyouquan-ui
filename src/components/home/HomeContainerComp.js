@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
 import formatDateStr from '../../utils/DateUtil';
-import scrollToHash from '../../utils/ScrollUtil';
+import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 
 export default function HomeContainerComp() {
     const displayNoneStyle = { display: 'none' };
@@ -64,6 +64,8 @@ export default function HomeContainerComp() {
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
+
+        clearHash();
 
         document.getElementsByClassName('switch-sort-type')[0].scrollIntoView();
     }

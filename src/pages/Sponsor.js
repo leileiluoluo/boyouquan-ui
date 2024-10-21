@@ -14,7 +14,7 @@ export default function Sponsor() {
     const fontWeightStyle = { fontWeight: 'bold' };
 
     return (
-        <>  
+        <>
             <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
@@ -188,11 +188,13 @@ export default function Sponsor() {
                                     <td>2024/10/16</td>
                                     <td>18.00 元</td>
                                     <td>支持站长，让服务器多运行一会~</td>
-                                    <td>已计入总额，待后续使用</td>
-                                    <td>--</td>
-                                    <td>--</td>
+                                    <td>已完成</td>
+                                    <td>2024/10/21</td>
+                                    <td>域名续费</td>
                                     <td>
-                                        <p>当前总额：97.31 元</p>
+                                        <p>当前总额：97.31 元，本次花费：79.42 元，本次结余：17.89 元</p>
+                                        <p>腾讯云域名续费一年，由 2027/06/28 续费至 2028/06/28</p>
+                                        <p><a href="/assets/images/sites/sponsor/cost_details/2024/10/domain_name_renewal.png">花费证明</a></p>
                                     </td>
                                 </tr>
                             </tbody>

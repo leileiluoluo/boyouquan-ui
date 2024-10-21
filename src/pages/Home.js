@@ -1,4 +1,3 @@
-import HomeComp from '../components/home/HomeContainerComp';
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 import SearchBox from '../components/common/SearchBox';

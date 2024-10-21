@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
 import formatDateStr from '../../utils/DateUtil';
+import scrollToHash from '../../utils/ScrollUtil';
 
 export default function HomeContainerComp() {
     const displayNoneStyle = { display: 'none' };
@@ -57,6 +58,8 @@ export default function HomeContainerComp() {
         } else {
             setHasNext(false);
         }
+
+        scrollToHash();
     }, [currentPage, pageSize, total]);
 
     const paginate = (pageNumber) => {

@@ -35,6 +35,7 @@ export default function App() {
       <Routes>
         <Route path="/" exact element={<Index />} />
         <Route path='/home' element={<Home />} />
+        <Route path='/home/page/:page' element={<Home />} /> // FIXME: just for compatibility, please remove me later
         <Route path='/monthly-selected' element={<MonthlySelected />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/blogs/:domain' element={<Blog />} />

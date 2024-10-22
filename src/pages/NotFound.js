@@ -1,11 +1,20 @@
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
+import Meta from '../components/common/Meta';
 
 export default function NotFound() {
+    const meta = {
+        title: '404 - 博友圈 · 博客人的朋友圈！',
+        keywords: '404',
+        description: '404'
+    }
+
     const titleStyle = { textAlign: 'center' };
     const contentStyle = { textAlign: 'center', fontSize: '100px' };
+
     return (
         <>
+            <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
                 <article className="post-single">

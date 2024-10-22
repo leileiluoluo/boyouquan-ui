@@ -84,7 +84,10 @@ export default function HomeContainerComp() {
                                 }
 
                                 <div className="article-go">
-                                    <a href={`/go?from=website&link=${encodeURIComponent(item.link)}`} target="_blank"><h4>{item.title}</h4></a>
+                                    {
+                                        item.blogStatusOk ? <a href={`/go?from=website&link=${encodeURIComponent(item.link)}`} target="_blank"><h4>{item.title}</h4></a>
+                                            : <a href={`/abstract?link=${encodeURIComponent(item.link)}`} target="_blank"><h4>{item.title}</h4></a>
+                                    }
                                 </div>
                             </header>
                             <div className="entry-content">

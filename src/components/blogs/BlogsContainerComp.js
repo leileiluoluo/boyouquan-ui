@@ -149,7 +149,9 @@ export default function BlogsContainerComp() {
                                             (post, index) => (
                                                 <p key={index}>
                                                     <a style={marginRightStyle}>{formatDateStr(post.publishedAt, true)}</a>
-                                                    <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+
+                                                    {blog.statusOk ? <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+                                                        : <a href={`/abstract?link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>}
                                                 </p>
                                             )
                                         )

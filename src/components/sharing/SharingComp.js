@@ -19,8 +19,6 @@ export default function SharingComp() {
             const resp = await response.json();
             setItem(resp);
             setLoaded(true);
-
-            document.title = '发现一篇有趣的文章：「' + resp.title + '」- 博友圈 · 博客人的朋友圈！';
         } catch (error) {
             console.error(error);
         }

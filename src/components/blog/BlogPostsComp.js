@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import formatDateStr from '../../utils/DateUtil';
 
-export default function BlogPostsComp({ domain }) {
+export default function BlogPostsComp({ domain, blogStatusOk }) {
     const postsTableStyle = { display: 'table', tableLayout: 'fixed' };
     const postTableClumn20Style = { width: '20%' };
     const postTableClumn80Style = { width: '80%' };
@@ -48,7 +48,10 @@ export default function BlogPostsComp({ domain }) {
                                         </td>
 
                                         <td style={postTableClumn80Style}>
-                                            <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+                                            {
+                                                blogStatusOk ? <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+                                                    : <a href={`/abstract?link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+                                            }
                                         </td>
                                     </tr>
                                 )
@@ -58,7 +61,7 @@ export default function BlogPostsComp({ domain }) {
                 </table>
             </div>
             {
-                showPostsLimit ? <div class="articles-footer">
+                showPostsLimit ? <div className="articles-footer">
                     <p>* 仅显示最新100篇文章</p>
                 </div> : ''
             }

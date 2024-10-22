@@ -128,7 +128,7 @@ export default function BlogContainerComp() {
                     </footer>
                     <Suspense>
                         <BlogChartsComp domain={domain} />
-                        <BlogPostsComp domain={domain} />
+                        <BlogPostsComp domain={domain} blogStatusOk={item.statusOk}/>
                         <RandomBlogsComp domain={domain} />
                     </Suspense>
                 </Fragment> : ''

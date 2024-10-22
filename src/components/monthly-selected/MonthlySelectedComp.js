@@ -83,7 +83,11 @@ export default function MonthlySelectedComp() {
                                                                         <a href={`/blogs/${post.blogDomainName}`}>{post.blogName}</a>
                                                                     </td>
                                                                     <td width="60%">
-                                                                        <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+                                                                        {
+                                                                            post.blogStatusOk ? <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+                                                                                : <a href={`/abstract?link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
+                                                                        }
+
                                                                     </td>
                                                                     <td width="20%">
                                                                         <p style={dateStyle}>{formatDateStr(post.publishedAt)}</p>

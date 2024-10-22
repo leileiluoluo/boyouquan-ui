@@ -1,10 +1,12 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, Suspense, useEffect, useState, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import formatDateStr from '../../utils/DateUtil';
-import BlogChartsComp from './BlogChartsComp';
-import BlogPostsComp from './BlogPostsComp';
-import RandomBlogsComp from './RandomBlogsComp';
+
+const BlogChartsComp = lazy(() => import('./BlogChartsComp'));
+const RandomBlogsComp = lazy(() => import('./RandomBlogsComp'));
+const BlogPostsComp = lazy(() => import('./BlogPostsComp'));
+
 
 export default function BlogContainerComp() {
     const blogStatusOkStyle = { backgroundColor: '#0dcb0d' };
@@ -50,7 +52,6 @@ export default function BlogContainerComp() {
                         <meta name="description" content={item.description} />
                         <meta property="og:title" content={item.name} />
                         <meta property="og:description" content={item.description} />
-                        <script src="/assets/js/charts/frappe-charts@1.6.2.min.umd.js" type="text/javascript"></script>
                     </Helmet>
                     <div className="blog-detail-main">
                         <header className="header-info">
@@ -125,10 +126,11 @@ export default function BlogContainerComp() {
                             <p>{formatDateStr(item.collectedAt)}</p>
                         </div>
                     </footer>
-
-                    <BlogChartsComp domain={domain}/>
-                    <BlogPostsComp domain={domain} />
-                    <RandomBlogsComp domain={domain} />
+                    <Suspense>
+                        <BlogChartsComp domain={domain} />
+                        <BlogPostsComp domain={domain} />
+                        <RandomBlogsComp domain={domain} />
+                    </Suspense>
                 </Fragment> : ''
             }
         </>

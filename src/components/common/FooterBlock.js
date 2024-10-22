@@ -1,4 +1,6 @@
-import FooterStatistic from "./FooterStatistic"
+import { Suspense, lazy } from 'react';
+
+const FooterStatistic = lazy(() => import('./FooterStatistic'));
 
 export default function FooterBlock() {
     const thanksStyle = {
@@ -11,7 +13,10 @@ export default function FooterBlock() {
 
     return (
         <footer className="footer-block">
-            <FooterStatistic />
+            <Suspense>
+                <FooterStatistic />
+            </Suspense>
+
             <div className="planet-shuttle">
                 <a href="/planet-shuttle">「博友圈 · 星球穿梭」</a>
             </div>

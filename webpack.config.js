@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -25,6 +25,13 @@ module.exports = {
         historyApiFallback: {
             disableDotRule: true
         }
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+        minimize: true,
+        minimizer: [new TerserPlugin()],
     },
     module: {
         rules: [
@@ -67,9 +74,6 @@ module.exports = {
             template: './public/index.html', // HTML 模板
             filename: 'index.html', // 输出 HTML 文件名
         }),
-        new FaviconsWebpackPlugin({
-            logo: './public/favicon.ico',
-        }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
             chunkFilename: '[id].[contenthash].css',
@@ -81,7 +85,7 @@ module.exports = {
                     to: path.resolve(__dirname, 'dist', 'assets')
                 }
             ]
-        })
+        }),
     ],
     resolve: {
         extensions: ['.js', '.jsx'], // 解析文件扩展名

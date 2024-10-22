@@ -2,10 +2,12 @@ import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 import SearchBox from '../components/common/SearchBox';
 import SwitchSortType from '../components/common/SwitchSortType';
-import HomeLatestNewsComp from '../components/home/HomeLatestNewsComp';
 import HomeMainContentHeaderComp from '../components/home/HomeMainContentHeaderComp';
 import HomeContainerComp from '../components/home/HomeContainerComp';
 import Meta from '../components/common/Meta';
+import { Suspense, lazy } from 'react';
+
+const HomeLatestNewsComp = lazy(() => import('../components/home/HomeLatestNewsComp'));
 
 export default function Home() {
     const switchTypes = [
@@ -19,7 +21,9 @@ export default function Home() {
             <CommonHeader />
             <main className="main">
                 <HomeMainContentHeaderComp />
-                <HomeLatestNewsComp />
+                <Suspense>
+                    <HomeLatestNewsComp />
+                </Suspense>
                 <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
                 <SwitchSortType types={switchTypes} />
                 <HomeContainerComp />

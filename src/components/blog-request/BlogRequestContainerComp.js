@@ -51,7 +51,6 @@ export default function BlogRequestContainerComp() {
                 <meta name="description" content={item.description} />
                 <meta property="og:title" content={item.name} />
                 <meta property="og:description" content={item.description} />
-                <script src="/assets/js/charts/frappe-charts@1.6.2.min.umd.js" type="text/javascript"></script>
             </Helmet>
             <header className="post-header">
                 <h3 className="post-title">{`博客「${item.name}」审核详情`}</h3>

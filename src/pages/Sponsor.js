@@ -40,7 +40,7 @@ export default function Sponsor() {
                         </div>
 
                         <br />
-                        <strong id="sponsor-list">赞助名单（同步在全站底部的「<a href="/home#special-thanks">感谢赞助</a>」模块显示）：</strong>
+                        <strong id="sponsor-list">赞助名单（同步在全站底部的「<a href="/home">感谢赞助</a>」模块显示）：</strong>
                         <table style={fontSizeStyle}>
                             <thead style={fontWeightStyle}>
                                 <tr>

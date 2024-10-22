@@ -27,6 +27,20 @@ export default function HomeContainerComp() {
             setPageSize(resp.pageSize);
             setTotal(resp.total);
             setItems(resp.results);
+
+            // hasPre
+            if (page > 1) {
+                setHasPre(true);
+            } else {
+                setHasPre(false);
+            }
+
+            // hasNext
+            if (resp.total > page * resp.pageSize) {
+                setHasNext(true);
+            } else {
+                setHasNext(false);
+            }
         } catch (error) {
             console.error(error);
         }
@@ -45,22 +59,8 @@ export default function HomeContainerComp() {
 
         fetchData(sort, keyword, currentPage);
 
-        // hasPre
-        if (currentPage > 1) {
-            setHasPre(true);
-        } else {
-            setHasPre(false);
-        }
-
-        // hasNext
-        if (total > currentPage * pageSize) {
-            setHasNext(true);
-        } else {
-            setHasNext(false);
-        }
-
         scrollToHash();
-    }, [currentPage, pageSize, total]);
+    }, [currentPage]);
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);

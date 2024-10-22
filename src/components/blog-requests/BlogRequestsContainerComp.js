@@ -22,6 +22,20 @@ export default function BlogRequestsContainerComp() {
             setPageSize(resp.pageSize);
             setTotal(resp.total);
             setBlogRequests(resp.results);
+
+            // hasPre
+            if (page > 1) {
+                setHasPre(true);
+            } else {
+                setHasPre(false);
+            }
+
+            // hasNext
+            if (resp.total > page * resp.pageSize) {
+                setHasNext(true);
+            } else {
+                setHasNext(false);
+            }
         } catch (error) {
             console.error(error);
         }
@@ -30,22 +44,7 @@ export default function BlogRequestsContainerComp() {
     useEffect(() => {
         let keyword = getURLParameter('keyword') || '';
         fetchData(keyword, currentPage);
-
-        // hasPre
-        if (currentPage > 1) {
-            setHasPre(true);
-        } else {
-            setHasPre(false);
-        }
-
-        // hasNext
-        if (total > currentPage * pageSize) {
-            setHasNext(true);
-        } else {
-            setHasNext(false);
-        }
-
-    }, [currentPage, pageSize, total]);
+    }, [currentPage]);
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);

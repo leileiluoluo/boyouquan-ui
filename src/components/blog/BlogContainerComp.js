@@ -17,9 +17,12 @@ export default function BlogContainerComp() {
 
     const [item, setItem] = useState({});
 
-    let { domain, sub } = useParams();
+    let { domain, sub, subsub } = useParams();
     if (undefined !== sub) {
         domain += '/' + sub;
+    }
+    if (undefined !== subsub) {
+        domain += '/' + subsub;
     }
 
     const fetchData = async (domain) => {

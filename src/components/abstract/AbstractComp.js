@@ -36,6 +36,7 @@ export default function AbstractComp() {
             {loaded ?
                 <Fragment>
                     <Helmet>
+                        <title>{`文章摘要：「${item.title}」 - 博友圈 · 博客人的朋友圈！`}</title>
                         <meta name="keywords" content='文章摘要' />
                         <meta name="description" content={item.description} />
                         <meta property="og:title" content={`文章摘要：「${item.title}」 - 博友圈 · 博客人的朋友圈！`} />

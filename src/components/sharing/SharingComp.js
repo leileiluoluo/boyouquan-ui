@@ -34,6 +34,7 @@ export default function SharingComp() {
             {loaded ?
                 <Fragment>
                     <Helmet>
+                        <title>{`发现一篇有趣的文章：「${item.title}」- 博友圈 · 博客人的朋友圈！`}</title>
                         <meta name="keywords" content='文章分享' />
                         <meta name="description" content={item.description} />
                         <meta property="og:title" content={`发现一篇有趣的文章：「${item.title}」- 博友圈 · 博客人的朋友圈！`} />

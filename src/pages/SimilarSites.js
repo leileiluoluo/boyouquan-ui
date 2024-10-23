@@ -29,8 +29,8 @@ export default function SimilarSites() {
                             <li><a href="https://www.foreverblog.cn/">十年之约</a> · 博客收录网站，申请加入者需要遵守博客十年不关闭的诺言</li>
                             <li><a href="https://bf.zzxworld.com/">BlogFinder</a> · 每个博客都是一座宝藏，发现优秀的个人博客</li>
                             <li><a href="https://blogwe.com/">BlogWe</a> · 博客我们，愿景是做最好的个人博客导航</li>
+                            <li><a href="https://blogscn.fun/">笔墨迹</a> · 致敬还在写博客的我们</li>
                             <li><a href="https://storeweb.cn/">个站商店</a> · 一个精致地带社交元素的个人网站发布平台，博客收录网站</li>
-                            <li><a href="https://firewood.news/">积薪</a> · 致敬写博客的人，在这个时代，依然相信文字的力量</li>
                             <li><a href="https://bokequan.cn/">博客圈</a> · 一个按地区分组的博客收录网站</li>
                             <li><a href="https://daohang.lusongsong.com/">博客大全</a> · 优秀的草根博客导航</li>
                             <li><a href="https://chuanliu.org/">川流</a> · 一个博客导航网站</li>

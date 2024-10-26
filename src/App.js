@@ -28,6 +28,8 @@ import SimilarSites from './pages/SimilarSites';
 import PlanetShuttle from './pages/PlanetShuttle';
 import BlogRequestAdd from './pages/BlogRequestAdd';
 import NotFound from './pages/NotFound';
+import Login from './pages/admin/Login';
+import AdminBlogRequests from './pages/admin/AdminBlogRequests';
 
 export default function App() {
   return (
@@ -44,6 +46,8 @@ export default function App() {
         <Route path='/blog-requests' element={<BlogRequests />} />
         <Route path='/blog-requests/add' element={<BlogRequestAdd />} />
         <Route path='/blog-requests/:id' element={<BlogRequest />} />
+        <Route path='/admin/login' element={<Login />} />
+        <Route path='/admin/blog-requests' element={<AdminBlogRequests />} />
         <Route path='/sharing' element={<Sharing />} />
         <Route path='/abstract' element={<Abstract />} />
         <Route path='/planet-shuttle' element={<PlanetShuttle />} />

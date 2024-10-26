@@ -30,6 +30,7 @@ import BlogRequestAdd from './pages/BlogRequestAdd';
 import NotFound from './pages/NotFound';
 import Login from './pages/admin/Login';
 import AdminBlogRequests from './pages/admin/AdminBlogRequests';
+import AdminBlogRequest from './pages/admin/AdminBlogRequest';
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
         <Route path='/blog-requests/:id' element={<BlogRequest />} />
         <Route path='/admin/login' element={<Login />} />
         <Route path='/admin/blog-requests' element={<AdminBlogRequests />} />
+        <Route path='/admin/blog-requests/:id' element={<AdminBlogRequest />} />
         <Route path='/sharing' element={<Sharing />} />
         <Route path='/abstract' element={<Abstract />} />
         <Route path='/planet-shuttle' element={<PlanetShuttle />} />

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import getURLParameter from '../../utils/CommonUtil';
-import formatDateStr from '../../utils/DateUtil';
 import { getCookie } from '../../utils/CookieUtil';
 import SearchBox from '../../components/common/SearchBox';
 
 export default function AdminBlogRequestsComp() {
+    const redStyle = { color: 'red' };
+    const flexStyle = { display: 'flex', fontSize: '14px' };
+
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
@@ -30,7 +32,7 @@ export default function AdminBlogRequestsComp() {
 
             const resp = await response.json();
             if (resp.status == 'error') {
-                alert(resp.message);
+                window.location = '/admin/login';
             } else {
                 setPageSize(resp.result.pageSize);
                 setTotal(resp.result.total);
@@ -55,6 +57,29 @@ export default function AdminBlogRequestsComp() {
         }
     };
 
+    const sendLogout = async () => {
+        try {
+            const sessionId = getCookie("sessionId");
+
+            const response = await fetch(`https://www.boyouquan.com/api/admin/logout`, {
+                method: 'GET',
+                headers: {
+                    'sessionid': sessionId,
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const resp = await response.json();
+            if (resp.status == 'error') {
+                alert(resp.message);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     useEffect(() => {
         let keyword = getURLParameter('keyword') || '';
         fetchData(keyword, currentPage);
@@ -66,35 +91,50 @@ export default function AdminBlogRequestsComp() {
         document.getElementsByClassName('blog-requests')[0].scrollIntoView();
     }
 
+    const logout = () => {
+        sendLogout();
+        window.location = '/admin/login';
+    }
+
     return (
         <>
             <header className="post-header">
-                <h3 className="post-title">
+                <h3 className="post-title" style={redStyle}>
                     博客审核 - 管理页面
                 </h3>
             </header>
-            <SearchBox placeholder='搜索已提交的博客 ↵' gotoPage='/admin/blog-requests' />
             <div className="blog-requests">
+                <div className="requests-header">
+                    <h4 style={redStyle}><a href="/admin/blog-requests/add">提交博客 - 管理页面</a></h4>
+                    <h4 style={redStyle}><a href="/admin/recommended-posts">推荐文章管理 - 管理页面</a></h4>
+                    <div style={flexStyle}>
+                        <p>olzhy</p>
+                        <p><button onClick={() => logout()}> 退出登录</button></p>
+                    </div>
+                </div>
+                <SearchBox placeholder='搜索已提交的博客 ↵' gotoPage='/admin/blog-requests' />
                 <div className="requests-container">
                     <table>
                         <thead>
                             <tr>
-                                <td width="35%"><span>博客名称</span></td>
-                                <td width="35%"><span>博主邮箱</span></td>
-                                <td width="20%"><span>提交时间</span></td>
-                                <td width="10%"><span>审核状态</span></td>
+                                <td><span>博客名称</span></td>
+                                <td><span>博主邮箱</span></td>
+                                <td><span>自行提交</span></td>
+                                <td><span>提交时间</span></td>
+                                <td><span>审核状态</span></td>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 blogRequests.map((item, index) => (
                                     <tr key={index}>
-                                        <td width="35%">
-                                            <p><a href={`/blog-requests/${item.id}`}>{item.name}</a></p>
+                                        <td>
+                                            <p><a href={`/admin/blog-requests/${item.id}`}>{item.name}</a></p>
                                         </td>
-                                        <td width="35%"><p>{item.adminEmail}</p></td>
-                                        <td width="20%"><p>{formatDateStr(item.requestedAt, true)}</p></td>
-                                        <td width="10%">
+                                        <td><p>{item.adminEmail}</p></td>
+                                        <td><p>{item.selfSubmitted ? '是' : '否'}</p></td>
+                                        <td><p>{item.requestedAt}</p></td>
+                                        <td>
                                             <p>{item.statusInfo}</p>
                                         </td>
                                     </tr>

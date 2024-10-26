@@ -14,8 +14,9 @@ export default function AdminRecommendedPostsComp() {
     const [hasPre, setHasPre] = useState(false);
     const [hasNext, setHasNext] = useState(false);
 
-    const operation = async (url, method) => {
+    const operation = async (url, method, formData) => {
         try {
+            alert(JSON.stringify(formData));
             const sessionId = getCookie("sessionId");
 
             const response = await fetch(url, {
@@ -23,7 +24,8 @@ export default function AdminRecommendedPostsComp() {
                 headers: {
                     'sessionId': sessionId,
                     'Content-Type': 'application/json',
-                }
+                },
+                body: JSON.stringify(formData),
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');

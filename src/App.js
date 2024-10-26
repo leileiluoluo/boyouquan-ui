@@ -31,6 +31,9 @@ import NotFound from './pages/NotFound';
 import Login from './pages/admin/Login';
 import AdminBlogRequests from './pages/admin/AdminBlogRequests';
 import AdminBlogRequest from './pages/admin/AdminBlogRequest';
+import AdminRecommendedPosts from './pages/admin/AdminRecommendedPosts';
+import AdminRecommendPost from './pages/admin/AdminRecommendPost';
+import AdminBlogRequestAdd from './pages/admin/AdminBlogRequestAdd';
 
 export default function App() {
   return (
@@ -50,6 +53,9 @@ export default function App() {
         <Route path='/admin/login' element={<Login />} />
         <Route path='/admin/blog-requests' element={<AdminBlogRequests />} />
         <Route path='/admin/blog-requests/:id' element={<AdminBlogRequest />} />
+        <Route path='/admin/blog-requests/add' element={<AdminBlogRequestAdd />} />
+        <Route path='/admin/recommended-posts' element={<AdminRecommendedPosts />} />
+        <Route path='/admin/recommended-posts/add' element={<AdminRecommendPost />} />
         <Route path='/sharing' element={<Sharing />} />
         <Route path='/abstract' element={<Abstract />} />
         <Route path='/planet-shuttle' element={<PlanetShuttle />} />

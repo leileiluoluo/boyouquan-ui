@@ -16,7 +16,6 @@ export default function AdminRecommendedPostsComp() {
 
     const operation = async (url, method, formData) => {
         try {
-            alert(JSON.stringify(formData));
             const sessionId = getCookie("sessionId");
 
             const response = await fetch(url, {

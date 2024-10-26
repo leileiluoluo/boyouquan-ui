@@ -107,10 +107,6 @@ export default function AdminBlogRequestAddComp() {
                         <div className="key-value-entry">
                             <input type="submit" value="提交" />
                         </div>
-
-                        <div style={noticeStyle}>
-                            <p><a style={noticeFontStyle} href="mailto:contact@boyouquan.com?subject=提交博客时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">提交遇到问题？我要联系站长！</a></p>
-                        </div>
                     </div>
                 </form>
             </div>

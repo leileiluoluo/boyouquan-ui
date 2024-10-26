@@ -36,7 +36,7 @@ export default function AdminBlogRequestComp() {
                 alert(resp.message);
             } else {
                 setTimeout(function () {
-                    window.location.href = '/blog-requests';
+                    window.location.href = '/admin/blog-requests';
                 }, 3 * 1000);
             }
         } catch (error) {
@@ -82,7 +82,7 @@ export default function AdminBlogRequestComp() {
         operation(url, 'PATCH', formData);
     }
 
-    const reject = () => {
+    const reject = (e) => {
         e.preventDefault();
 
         const url = `https://www.boyouquan.com/api/admin/blog-requests/reject/${id}`;
@@ -96,7 +96,7 @@ export default function AdminBlogRequestComp() {
         operation(url, 'PATCH', formData);
     }
 
-    const deleteAllInfos = () => {
+    const deleteAllInfos = (e) => {
         e.preventDefault();
 
         const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}`;

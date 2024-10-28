@@ -10,12 +10,12 @@ import { Suspense, lazy } from 'react';
 
 const HomeLatestNewsComp = lazy(() => import('../components/home/HomeLatestNewsComp'));
 
-export default function HomePage() {
-    const switchTypes = [
-        { name: '推荐', href: '/home', default: true },
-        { name: '最新', href: '/home?sort=latest', default: false }
-    ];
+const switchTypes = [
+    { name: '推荐', href: '/home', default: true },
+    { name: '最新', href: '/home?sort=latest', default: false }
+];
 
+const getSortAndKeywordAndShowPinned = () => {
     let sort = getURLParameter('sort') || 'recommended';
     const keyword = getURLParameter('keyword') || '';
     let showPinned = false;
@@ -25,6 +25,12 @@ export default function HomePage() {
     if ('recommended' === sort) {
         showPinned = true;
     }
+
+    return { sort, keyword, showPinned };
+}
+
+export default function HomePage() {
+    const { sort, keyword, showPinned } = getSortAndKeywordAndShowPinned();
 
     return (
         <>

@@ -37,9 +37,7 @@ export default function HomePage() {
                 </Suspense>
                 <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
                 <SwitchSortType types={switchTypes} />
-                <Suspense>
-                    <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
-                </Suspense>
+                <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
             </main>
             <CommonFooter />
         </>

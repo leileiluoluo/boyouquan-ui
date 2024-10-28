@@ -1,9 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MonthlySelected from './pages/MonthlySelected';
 import Blogs from './pages/Blogs';
 import Blog from './pages/Blog';
-import Home from './pages/Home';
-import Index from './pages/Index';
 import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
 import Sharing from './pages/Sharing';
@@ -34,14 +32,15 @@ import AdminBlogRequest from './pages/admin/AdminBlogRequest';
 import AdminRecommendedPosts from './pages/admin/AdminRecommendedPosts';
 import AdminRecommendPost from './pages/admin/AdminRecommendPost';
 import AdminBlogRequestAdd from './pages/admin/AdminBlogRequestAdd';
+import HomePage from './pages/HomePage';
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" exact element={<Index />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/home/page/:page' element={<Home />} /> // FIXME: just for compatibility, please remove me later
+        <Route path='/' exact element={<Navigate to='/home' />} />
+        <Route path='/home' element={<HomePage />} />
+        <Route path='/home/page/:page' element={<HomePage />} /> // FIXME: just for compatibility, please remove me later
         <Route path='/monthly-selected' element={<MonthlySelected />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/blogs/:domain' element={<Blog />} />

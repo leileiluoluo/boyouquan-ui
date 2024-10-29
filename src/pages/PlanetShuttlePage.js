@@ -10,28 +10,28 @@ const meta = {
 };
 
 const headStyle = `
-          * {
-            box-sizing: border-box;
-            }
+    * {
+    box-sizing: border-box;
+    }
 
-            body {
-            background: radial-gradient(#000, #111), #000;
-            min-height: 100vh;
-            }
+    body {
+    background: radial-gradient(#000, #111), #000;
+    min-height: 100vh;
+    }
 
-            canvas {
-            position: fixed;
-            height: 100vh;
-            width: 100vw;
-            pointer-events: none; /* 让 canvas 不阻止鼠标事件 */
-            }
+    canvas {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    pointer-events: none; /* 让 canvas 不阻止鼠标事件 */
+    }
 
-            @keyframes typing {
-            50% {
-                opacity: 0.0;
-            }
-            }
-        `
+    @keyframes typing {
+    50% {
+        opacity: 0.0;
+    }
+    }
+`;
 
 const textAliginStyle = { textAlign: 'center', marginBottom: '28px' };
 const planetStyle = { fontFamily: '-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif', color: 'white', textAlign: 'center', position: 'absolute', top: '45%', left: '50%', transform: 'translate(-50%, -50%)' };

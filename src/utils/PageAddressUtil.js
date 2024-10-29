@@ -6,6 +6,10 @@ export function getBlogAddress(domainName) {
     return `/blogs/${domainName}`;
 }
 
+export function getAbstractAddress(originalLink) {
+    return `/abstract?link=${encodeURIComponent(link)}`;
+}
+
 export function getGravatarImageFullURL(imageURL) {
     return `https://www.boyouquan.com${imageURL}`;
 }

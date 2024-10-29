@@ -4,7 +4,6 @@ import Blogs from './pages/Blogs';
 import Blog from './pages/Blog';
 import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
-import Sharing from './pages/Sharing';
 import BlogRequestAdd from './pages/BlogRequestAdd';
 import NotFound from './pages/NotFound';
 import Login from './pages/admin/Login';
@@ -46,7 +45,7 @@ export default function App() {
         <Route path='/admin/blog-requests/add' element={<AdminBlogRequestAdd />} />
         <Route path='/admin/recommended-posts' element={<AdminRecommendedPosts />} />
         <Route path='/admin/recommended-posts/add' element={<AdminRecommendPost />} />
-        <Route path='/sharing' element={<Sharing />} />
+        <Route path='/sharing' element={<AbstractPage isSharingPage='true' />} />
         <Route path='/abstract' element={<AbstractPage />} />
         <Route path='/planet-shuttle' element={<PlanetShuttlePage />} />
         <Route path='/go' element={<GoPage />} />

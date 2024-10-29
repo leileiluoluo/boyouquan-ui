@@ -10,8 +10,8 @@ export default function PostCardList({ sort, keyword, showPinned }) {
     const [total, setTotal] = useState(0);
     const [posts, setPosts] = useState([]);
 
-    const fetchData = async (sortType, keyword, page) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts?sort=${sortType}&keyword=${keyword}&page=${page}`);
+    const fetchData = async (sortType, keyword, pageNo) => {
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts?sort=${sortType}&keyword=${keyword}&page=${pageNo}`);
 
         setPageSize(resp.pageSize);
         setTotal(resp.total);

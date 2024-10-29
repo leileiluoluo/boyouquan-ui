@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import RequestUtil from '../utils/RequestUtil';
 import Meta from '../components/common/Meta';
+import { getGoAddress } from '../utils/PageAddressUtil';
 
 const meta = {
     title: '星球穿梭 - 博友圈 · 博客人的朋友圈！',
@@ -44,7 +45,7 @@ const colorWhiteStyle = { color: 'white' };
 const marginOneStyle = { margin: '1px 1px' };
 
 export default function PlanetShuttlePage() {
-    const [item, setItem] = useState({
+    const [shuttleInfo, setShuttleInfo] = useState({
         'fromBlog': { 'blogName': '', 'blogAddress': '' },
     });
 
@@ -53,10 +54,10 @@ export default function PlanetShuttlePage() {
             'From': referrer
         });
 
-        setItem(resp);
+        setShuttleInfo(resp);
 
         setTimeout(function () {
-            window.location.href = '/go?from=website&link=' + encodeURIComponent(resp.blogAddress);
+            window.location.href = getGoAddress(resp.link);
         }, 3 * 1000);
     };
 
@@ -82,8 +83,8 @@ export default function PlanetShuttlePage() {
                 </div>
                 <div style={fontSizeLargeStyle}>
                     {
-                        (null != item.fromBlog) ? <><p style={marginOneStyle}>总助力值为 {item.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${item.fromBlog.domainName}`} style={animationStyle}>{item.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={`/go?from=website&link=${encodeURIComponent(item.blogAddress)}`} style={animationStyle}>{item.blogName}</a>」的星球！</p></>
-                            : <p>您即将穿梭到「<a id="shuttle" href={`/go?from=website&link=${encodeURIComponent(item.blogAddress)}`} style={animationStyle}>{item.blogName}</a>」的星球！</p>
+                        (null != shuttleInfo.fromBlog) ? <><p style={marginOneStyle}>总助力值为 {shuttleInfo.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${shuttleInfo.fromBlog.domainName}`} style={animationStyle}>{shuttleInfo.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p></>
+                            : <p>您即将穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p>
                     }
                 </div>
                 <div style={marginStyle}>

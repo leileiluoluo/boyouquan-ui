@@ -5,7 +5,6 @@ import Blog from './pages/Blog';
 import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
 import Sharing from './pages/Sharing';
-import Abstract from './pages/Abstract';
 import BlogRequestAdd from './pages/BlogRequestAdd';
 import NotFound from './pages/NotFound';
 import Login from './pages/admin/Login';
@@ -23,6 +22,7 @@ import AboutPage from './pages/AboutPage';
 import SponsorPage from './pages/SponsorPage';
 import GoPage from './pages/GoPage';
 import PlanetShuttlePage from './pages/PlanetShuttlePage';
+import AbstractPage from './pages/AbstractPage';
 
 export default function App() {
   return (
@@ -47,7 +47,7 @@ export default function App() {
         <Route path='/admin/recommended-posts' element={<AdminRecommendedPosts />} />
         <Route path='/admin/recommended-posts/add' element={<AdminRecommendPost />} />
         <Route path='/sharing' element={<Sharing />} />
-        <Route path='/abstract' element={<Abstract />} />
+        <Route path='/abstract' element={<AbstractPage />} />
         <Route path='/planet-shuttle' element={<PlanetShuttlePage />} />
         <Route path='/go' element={<GoPage />} />
         <Route path='/sponsor' element={<SponsorPage />} />

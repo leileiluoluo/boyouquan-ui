@@ -7,7 +7,7 @@ export function getBlogAddress(domainName) {
 }
 
 export function getAbstractAddress(originalLink) {
-    return `/abstract?link=${encodeURIComponent(link)}`;
+    return `/abstract?link=${encodeURIComponent(originalLink)}`;
 }
 
 export function getGravatarImageFullURL(imageURL) {

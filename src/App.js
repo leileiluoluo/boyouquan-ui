@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Blogs from './pages/Blogs';
 import Blog from './pages/Blog';
 import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
@@ -22,6 +21,7 @@ import PlanetShuttlePage from './pages/PlanetShuttlePage';
 import AbstractPage from './pages/AbstractPage';
 import NotFoundPage from './pages/NotFoundPage';
 import MonthlySelectedPage from './pages/MonthlySelectedPage';
+import BlogsPage from './pages/BlogsPage';
 
 export default function App() {
   return (
@@ -32,7 +32,7 @@ export default function App() {
         // FIXME: just for compatibility, please remove me later
         <Route path='/home/page/:page' element={<HomePage />} />
         <Route path='/monthly-selected' element={<MonthlySelectedPage />} />
-        <Route path='/blogs' element={<Blogs />} />
+        <Route path='/blogs' element={<BlogsPage />} />
         <Route path='/blogs/:domain' element={<Blog />} />
         <Route path='/blogs/:domain/:sub' element={<Blog />} />
         <Route path='/blogs/:domain/:sub/:subsub' element={<Blog />} />

@@ -7,17 +7,10 @@ export default function BlogsMainContentHeader() {
     const [statistic, setStatistic] = useState({});
 
     const fetchData = async () => {
-        try {
-            const response = await fetch(`https://www.boyouquan.com/api/statistic`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const resp = await response.json();
-            setStatistic(resp);
-            setLoaded(true);
-        } catch (error) {
-            console.error(error);
-        }
+        const resp = await fetch(`https://www.boyouquan.com/api/statistic`);
+
+        setStatistic(resp);
+        setLoaded(true);
     };
 
     useEffect(() => {

@@ -5,7 +5,6 @@ import Blog from './pages/Blog';
 import BlogRequests from './pages/BlogRequests';
 import BlogRequest from './pages/BlogRequest';
 import BlogRequestAdd from './pages/BlogRequestAdd';
-import NotFound from './pages/NotFound';
 import Login from './pages/admin/Login';
 import AdminBlogRequests from './pages/admin/AdminBlogRequests';
 import AdminBlogRequest from './pages/admin/AdminBlogRequest';
@@ -22,6 +21,7 @@ import SponsorPage from './pages/SponsorPage';
 import GoPage from './pages/GoPage';
 import PlanetShuttlePage from './pages/PlanetShuttlePage';
 import AbstractPage from './pages/AbstractPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return (
@@ -55,7 +55,7 @@ export default function App() {
         <Route path='/similar-sites' element={<SimilarSitesPage />} />
         <Route path='/release-notes' element={<ReleaseNotesPage />} />
         <Route path='/release-notes/:version' element={<ReleaseNotePage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

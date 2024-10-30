@@ -1,21 +1,10 @@
 import { useEffect } from 'react';
 import { Chart } from 'frappe-charts';
+import RequestUtil from '../../utils/RequestUtil';
 
-export default function BlogChartsComp({ domain }) {
+export default function BlogCharts({ domain }) {
     const fetchData = async (domain) => {
-        try {
-            const response = await fetch(`https://www.boyouquan.com/api/blogs/charts?domainName=${domain}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return await response.json();
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    useEffect(async () => {
-        const item = await fetchData(domain);
+        const item = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/charts?domainName=${domain}`);
 
         const accessChart = newChart('#access-charts', '最近一年文章浏览统计', '次浏览', item.yearlyAccessDataLabels, item.yearlyAccessDataValues, '#fd8754');
 
@@ -31,13 +20,17 @@ export default function BlogChartsComp({ domain }) {
 
         return () => {
             accessChart.destroy();
-            if (null != publishChart) {
+            if (null !== publishChart) {
                 publishChart.destroy();
             }
-            if (null != initiatedChart) {
+            if (null !== initiatedChart) {
                 initiatedChart.destroy();
             }
         };
+    };
+
+    useEffect(() => {
+        fetchData(domain);
     }, [domain]);
 
     return (

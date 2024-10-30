@@ -1,4 +1,5 @@
 import formatDateStr from '../../utils/DateUtil';
+import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
 
 export default function PostCard({
     showPinned,
@@ -16,11 +17,11 @@ export default function PostCard({
 
     const className = showPinned && pinned ? 'post-entry pinned' : 'post-entry';
 
-    const gravatarURL = `https://www.boyouquan.com${blogAdminMediumImageURL}`;
-    const blogURL = `/blogs/${blogDomainName}`;
-    const linkURL = `/go?from=website&link=${encodeURIComponent(link)}`;
-    const abstractURL = `/abstract?link=${encodeURIComponent(link)}`;
-    const sharingURL = `/sharing?link=${encodeURIComponent(link)}`;
+    const gravatarURL = getGravatarImageFullURL(blogAdminMediumImageURL);
+    const blogURL = getBlogAddress(blogDomainName);
+    const linkURL = getGoAddress(link);
+    const abstractURL = getAbstractAddress(link);
+    const sharingURL = getSharingAddress(link);
     const publishedAtFormatted = formatDateStr(publishedAt);
 
     return (

@@ -1,19 +1,12 @@
 import { useEffect, useState } from 'react';
+import RequestUtil from '../../utils/RequestUtil';
 
-export default function RandomBlogsComp({ domain }) {
+export default function RandomBlogs({ domain }) {
     const [blogs, setBlogs] = useState([]);
 
     const fetchData = async (domain) => {
-        try {
-            const response = await fetch(`https://www.boyouquan.com/api/blogs/random-blogs?domainName=${domain}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const resp = await response.json();
-            setBlogs(resp);
-        } catch (error) {
-            console.error(error);
-        }
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/random-blogs?domainName=${domain}`);
+        setBlogs(resp);
     };
 
     useEffect(() => {

@@ -1,13 +1,13 @@
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
-import BlogContainerComp from '../components/blog/BlogContainerComp';
+import BlogDetail from '../components/blog/BlogDetail';
 
 export default function Blog() {
     return (
         <>
             <CommonHeader />
             <main className="main">
-                <BlogContainerComp />
+                <BlogDetail />
             </main>
             <CommonFooter />
         </>

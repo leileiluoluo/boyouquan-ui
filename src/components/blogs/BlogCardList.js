@@ -30,9 +30,10 @@ export default function BlogCardList() {
     const fetchData = async (sortType, keyword, pageNo) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs?sort=${sortType}&keyword=${keyword}&page=${pageNo}`);
 
-        setPageSize(resp.pageSize);
-        setTotal(resp.total);
-        setBlogs(resp.results);
+        const respBody = await resp.json();
+        setPageSize(respBody.pageSize);
+        setTotal(respBody.total);
+        setBlogs(respBody.results);
     };
 
     useEffect(() => {

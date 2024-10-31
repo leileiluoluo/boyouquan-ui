@@ -27,10 +27,12 @@ export default function AdminBlogRequest() {
             'sessionId': getCookie('sessionId')
         });
 
-        if (resp.status == 'error') {
+        const respBody = await resp.json();
+
+        if (respBody.status == 'error') {
             redirectTo(ADMIN_LOGIN_ADDRESS);
         } else {
-            setBlogRequest(resp.result);
+            setBlogRequest(respBody.result);
         }
     };
 

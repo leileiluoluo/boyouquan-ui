@@ -7,7 +7,7 @@ import { redirectTo } from '../../utils/CommonUtil';
 
 export default function Login() {
     const [formData, setFormData] = useState({});
-    const [errorMessage, setErrorMessage] = useState({});
+    const [error, setError] = useState({});
 
     const postData = async (formData) => {
         const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/login',
@@ -15,10 +15,11 @@ export default function Login() {
             { 'Content-Type': 'application/json' }
         );
 
-        if (resp.status == 'error') {
-            setErrorMessage(resp.message);
+        const respBody = await resp.json();
+        if (resp.status != 200) {
+            setError(respBody);
         } else {
-            setCookie("sessionId", resp.result);
+            setCookie("sessionId", respBody.sessionId);
 
             redirectTo(ADMIN_BLOG_REQUESTS_ADDRESS, 3);
         }
@@ -38,7 +39,7 @@ export default function Login() {
     return (
         <LoginForm
             formData={formData}
-            errorMessage={errorMessage}
+            error={error}
             handleChange={handleChange}
             handleSubmit={handleSubmit} />
     )

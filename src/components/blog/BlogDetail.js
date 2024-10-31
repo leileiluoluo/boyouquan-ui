@@ -37,7 +37,8 @@ export default function BlogDetail() {
     const fetchData = async (domain) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs?domainName=${domain}`);
 
-        setBlogDetail(resp);
+        const respBody = await resp.json();
+        setBlogDetail(respBody);
         setLoaded(true);
     };
 

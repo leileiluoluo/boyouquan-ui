@@ -12,9 +12,10 @@ export default function MonthlySelectedCardList() {
     const fetchData = async (pageNo) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/monthly-selected?page=${pageNo}`);
 
-        setPageSize(resp.pageSize);
-        setTotal(resp.total);
-        setItems(resp.results);
+        const respBody = await resp.json();
+        setPageSize(respBody.pageSize);
+        setTotal(respBody.total);
+        setItems(respBody.results);
     };
 
     useEffect(() => {

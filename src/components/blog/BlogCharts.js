@@ -4,18 +4,20 @@ import RequestUtil from '../../utils/RequestUtil';
 
 export default function BlogCharts({ domain }) {
     const fetchData = async (domain) => {
-        const item = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/charts?domainName=${domain}`);
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/charts?domainName=${domain}`);
 
-        const accessChart = newChart('#access-charts', '最近一年文章浏览统计', '次浏览', item.yearlyAccessDataLabels, item.yearlyAccessDataValues, '#fd8754');
+        const respBody = await resp.json();
+
+        const accessChart = newChart('#access-charts', '最近一年文章浏览统计', '次浏览', respBody.yearlyAccessDataLabels, respBody.yearlyAccessDataValues, '#fd8754');
 
         let publishChart = null;
-        if (item.showLatestPublishedAtChart) {
-            publishChart = newChart('#publish-charts', '最近一年文章收录统计', '篇文章', item.yearlyPublishDataLabels, item.yearlyPublishDataValues, '#cc6cf6');
+        if (respBody.showLatestPublishedAtChart) {
+            publishChart = newChart('#publish-charts', '最近一年文章收录统计', '篇文章', respBody.yearlyPublishDataLabels, respBody.yearlyPublishDataValues, '#cc6cf6');
         }
 
         let initiatedChart = null;
-        if (item.showLatestInitiatedChart) {
-            initiatedChart = newChart('#initiated-charts', '最近一年星球穿梭助力统计', '次助力', item.yearlyInitiatedDataLabels, item.yearlyInitiatedDataValues, '#4299f5');
+        if (respBody.showLatestInitiatedChart) {
+            initiatedChart = newChart('#initiated-charts', '最近一年星球穿梭助力统计', '次助力', respBody.yearlyInitiatedDataLabels, respBody.yearlyInitiatedDataValues, '#4299f5');
         }
 
         return () => {

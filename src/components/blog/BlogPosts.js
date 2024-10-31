@@ -13,7 +13,9 @@ export default function BlogPosts({ domain, blogStatusOk }) {
 
     const fetchData = async (domain) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/posts?domainName=${domain}`);
-        setPosts(resp);
+
+        const respBody = await resp.json();
+        setPosts(respBody);
 
         if (resp.length == 100) {
             setShowPostsLimit(true);

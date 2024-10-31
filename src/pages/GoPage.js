@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Meta from '../components/common/Meta';
 import RequestUtil from '../utils/RequestUtil';
-import { getURLParameter } from '../utils/CommonUtil';
+import { getURLParameter, redirectTo } from '../utils/CommonUtil';
 
 const meta = {
     title: '网址跳转 - 博友圈 · 博客人的朋友圈！',
@@ -16,7 +16,9 @@ export default function GoPage() {
     const fetchData = async (link, from) => {
         const linkEncoded = encodeURIComponent(link);
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/go?from=${from}&link=${linkEncoded}`);
-        window.location.href = resp.link;
+
+        const respBody = await resp.json();
+        redirectTo(respBody.link);
     };
 
     useEffect(() => {

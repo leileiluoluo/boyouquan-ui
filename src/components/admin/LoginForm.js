@@ -1,7 +1,7 @@
 const inputFontSizeStyle = { fontSize: '14px' };
 const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
 
-export default function LoginForm({ formData, errorMessage, handleChange, handleSubmit }) {
+export default function LoginForm({ formData, error, handleChange, handleSubmit }) {
     return (
         <>
             <header className="post-header">
@@ -15,7 +15,8 @@ export default function LoginForm({ formData, errorMessage, handleChange, handle
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>账号 *</p>
-                                {errorMessage.username ? <p style={errorStyle}>{errorMessage.username}</p> : ''}
+                                {(error.code == 'login_username_invalid' || error.code == 'login_username_password_invalid') 
+                                ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} name="username" placeholder="账号" id="username" value={formData.username} onChange={handleChange} />
@@ -24,7 +25,7 @@ export default function LoginForm({ formData, errorMessage, handleChange, handle
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>密码 *</p>
-                                {errorMessage.password ? <p style={errorStyle}>{errorMessage.password}</p> : ''}
+                                {error.code == 'login_password_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} type="password" name="password" placeholder="密码" id="password" value={formData.password} onChange={handleChange} />

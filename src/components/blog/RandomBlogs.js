@@ -6,7 +6,9 @@ export default function RandomBlogs({ domain }) {
 
     const fetchData = async (domain) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/random-blogs?domainName=${domain}`);
-        setBlogs(resp);
+
+        const respBody = await resp.json();
+        setBlogs(respBody);
     };
 
     useEffect(() => {

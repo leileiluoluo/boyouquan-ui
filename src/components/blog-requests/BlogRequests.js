@@ -13,9 +13,10 @@ export default function BlogRequests() {
     const fetchData = async (keyword, pageNo) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests?keyword=${keyword}&page=${pageNo}`);
 
-        setPageSize(resp.pageSize);
-        setTotal(resp.total);
-        setBlogRequests(resp.results);
+        const respBody = await resp.json();
+        setPageSize(respBody.pageSize);
+        setTotal(respBody.total);
+        setBlogRequests(respBody.results);
     };
 
     useEffect(() => {

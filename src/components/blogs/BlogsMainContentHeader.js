@@ -10,7 +10,8 @@ export default function BlogsMainContentHeader() {
     const fetchData = async () => {
         const resp = await RequestUtil.get('https://www.boyouquan.com/api/statistic');
 
-        setStatistic(resp);
+        const respBody = await resp.json();
+        setStatistic(respBody);
         setLoaded(true);
     };
 

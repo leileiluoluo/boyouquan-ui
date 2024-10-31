@@ -17,8 +17,10 @@ export default function AdminBlogRequestAdd() {
             'sessionId': getCookie('sessionId')
         });
 
-        if (resp.status == 'error') {
-            setErrorMessage(resp.message);
+        const respBody = await resp.json();
+
+        if (respBody.status == 'error') {
+            setErrorMessage(respBody.message);
         } else {
             redirectTo(ADMIN_BLOG_REQUESTS_ADDRESS, 3);
         }

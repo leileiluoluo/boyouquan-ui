@@ -20,12 +20,14 @@ export default function AdminBlogRequests() {
             'sessionId': getCookie('sessionId'),
         });
 
-        if (resp.status == 'error') {
+        const respBody = await resp.json();
+
+        if (respBody.status == 'error') {
             redirectTo(ADMIN_LOGIN_ADDRESS);
         } else {
-            setPageSize(resp.result.pageSize);
-            setTotal(resp.result.total);
-            setBlogRequests(resp.result.results);
+            setPageSize(respBody.result.pageSize);
+            setTotal(respBody.result.total);
+            setBlogRequests(respBody.result.results);
         }
     };
 

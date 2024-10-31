@@ -19,7 +19,9 @@ export default function BlogRequest() {
 
     const fetchData = async (id) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests/${id}`);
-        setBlogRequest(resp);
+
+        const respBody = await resp.json();
+        setBlogRequest(respBody);
     };
 
     useEffect(() => {

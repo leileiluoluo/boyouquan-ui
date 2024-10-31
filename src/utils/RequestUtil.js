@@ -23,7 +23,7 @@ const request = async (url, method, data, headers) => {
         if (null != response && !response.ok) {
             console.error('request error: ' + response.body);
         }
-        return response.json();
+        return response;
     } catch (error) {
         console.error(error);
     }

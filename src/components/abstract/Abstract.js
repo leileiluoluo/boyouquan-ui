@@ -34,7 +34,8 @@ export default function Abstract({ isSharingPage }) {
         const linkEncoded = encodeURIComponent(link);
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts/by-link?link=${linkEncoded}`);
 
-        setPostInfo(resp);
+        const respBody = await resp.json();
+        setPostInfo(respBody);
         setLoaded(true);
     };
 

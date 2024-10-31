@@ -1,3 +1,5 @@
+export const BLOG_REQUESTS_ADDRESS = '/blog-requests';
+
 export const ADMIN_LOGIN_ADDRESS = '/admin/login';
 export const ADMIN_BLOG_REQUESTS_ADDRESS = '/admin/blog-requests';
 export const ADMIN_RECOMMENDED_POSTS_ADDRESS = '/admin/recommended-posts';

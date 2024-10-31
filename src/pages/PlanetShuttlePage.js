@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import RequestUtil from '../utils/RequestUtil';
 import Meta from '../components/common/Meta';
 import { getGoAddress } from '../utils/PageAddressUtil';
+import { redirectTo } from '../utils/CommonUtil';
 
 const meta = {
     title: '星球穿梭 - 博友圈 · 博客人的朋友圈！',
@@ -54,11 +55,11 @@ export default function PlanetShuttlePage() {
             'From': referrer
         });
 
-        setShuttleInfo(resp);
+        const respBody = await resp.json();
 
-        setTimeout(function () {
-            window.location.href = getGoAddress(resp.link);
-        }, 3 * 1000);
+        setShuttleInfo(respBody);
+
+        redirectTo(getGoAddress(respBody.link), 3);
     };
 
     useEffect(() => {

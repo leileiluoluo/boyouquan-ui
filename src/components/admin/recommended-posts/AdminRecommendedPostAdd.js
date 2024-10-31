@@ -23,8 +23,10 @@ export default function AdminRecommendedPostAdd() {
             'Content-Type': 'application/json'
         });
 
-        if (resp.status == 'error') {
-            setErrorMessage(resp.message);
+        const respBody = await resp.json();
+
+        if (respBody.status == 'error') {
+            setErrorMessage(respBody.message);
         } else {
             redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS);
         }

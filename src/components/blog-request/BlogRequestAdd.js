@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import BlogRequestAddForm from './BlogRequestAddForm';
 import RequestUtil from '../../utils/RequestUtil';
+import { redirectTo } from '../../utils/CommonUtil';
+import { BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
 
 export default function BlogRequestAdd() {
     const [formData, setFormData] = useState({});
@@ -12,12 +14,12 @@ export default function BlogRequestAdd() {
             { 'Content-Type': 'application/json' }
         );
 
-        if (resp.status == 'error') {
-            setErrorMessage(resp.message);
+        const respBody = await resp.json();
+
+        if (respBody.status == 'error') {
+            setErrorMessage(respBody.message);
         } else {
-            setTimeout(function () {
-                window.location.href = '/blog-requests';
-            }, 3 * 1000);
+            redirectTo(BLOG_REQUESTS_ADDRESS, 3);
         }
     };
 

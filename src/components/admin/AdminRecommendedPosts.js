@@ -19,12 +19,14 @@ export default function AdminRecommendedPosts() {
             'sessionId': getCookie('sessionId')
         });
 
-        if (resp.status == 'error') {
+        const respBody = await resp.json();
+
+        if (respBody.status == 'error') {
             redirectTo(ADMIN_LOGIN_ADDRESS);
         } else {
-            setPageSize(resp.result.pageSize);
-            setTotal(resp.result.total);
-            setPosts(resp.result.results);
+            setPageSize(respBody.result.pageSize);
+            setTotal(respBody.result.total);
+            setPosts(respBody.result.results);
         }
     };
 

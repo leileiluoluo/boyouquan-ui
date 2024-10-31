@@ -7,6 +7,7 @@ const request = async (url, method, data, headers) => {
             });
         } else {
             response = await fetch(url, {
+                method: 'POST',
                 headers: headers,
                 body: data
             });

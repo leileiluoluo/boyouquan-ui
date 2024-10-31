@@ -1,3 +1,5 @@
+export const ADMIN_BLOG_REQUEST_ADDRESS = '/admin/blog-requests';
+
 export function getGoAddress(originalLink) {
     return '/go?from=website&link=' + encodeURIComponent(originalLink);
 }

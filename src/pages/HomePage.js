@@ -4,9 +4,9 @@ import SearchBox from '../components/common/SearchBox';
 import SwitchSortType from '../components/common/SwitchSortType';
 import HomeMainContentHeaderComp from '../components/home/HomeMainContentHeaderComp';
 import PostCardList from '../components/post-card/PostCardList';
-import getURLParameter from '../utils/CommonUtil';
 import Meta from '../components/common/Meta';
 import { Suspense, lazy } from 'react';
+import { getURLParameter } from '../utils/CommonUtil';
 
 const HomeLatestNewsComp = lazy(() => import('../components/home/HomeLatestNewsComp'));
 

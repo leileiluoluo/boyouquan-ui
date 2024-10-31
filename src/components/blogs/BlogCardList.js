@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import getURLParameter from '../../utils/CommonUtil';
 import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/RequestUtil';
 import BlogCard from './BlogCard';
+import { getURLParameter } from '../../utils/CommonUtil';
 
 const getSortAndKeywordAndHighligts = () => {
     let sort = getURLParameter('sort') || 'collect_time';

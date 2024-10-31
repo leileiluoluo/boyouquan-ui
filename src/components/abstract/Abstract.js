@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from 'react';
-import getURLParameter from '../../utils/CommonUtil';
 import AbstractNotice from './AbstractNotice';
 import RequestUtil from '../../utils/RequestUtil';
 import AbstractTitle from './AbstractTitle';
@@ -7,6 +6,7 @@ import AbstractFooter from './AbstractFooter';
 import AbstractGo from './AbstractGo';
 import AbstractDescription from './AbstractDescription';
 import Meta from '../common/Meta';
+import { getURLParameter } from '../../utils/CommonUtil';
 
 const getMeta = (isSharingPage, title, description) => {
     if (isSharingPage) {

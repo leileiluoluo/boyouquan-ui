@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import getURLParameter from '../utils/CommonUtil';
 import Meta from '../components/common/Meta';
 import RequestUtil from '../utils/RequestUtil';
+import { getURLParameter } from '../utils/CommonUtil';
 
 const meta = {
     title: '网址跳转 - 博友圈 · 博客人的朋友圈！',

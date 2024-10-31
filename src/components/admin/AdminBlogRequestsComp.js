@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import getURLParameter from '../../utils/CommonUtil';
 import { getCookie } from '../../utils/CookieUtil';
 import SearchBox from '../../components/common/SearchBox';
+import { getURLParameter } from '../../utils/CommonUtil';
 
 export default function AdminBlogRequestsComp() {
     const redStyle = { color: 'red' };

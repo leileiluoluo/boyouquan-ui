@@ -9,18 +9,17 @@ import AdminMenu from './AdminMenu';
 
 export default function AdminBlogRequestAdd() {
     const [formData, setFormData] = useState({});
-    const [errorMessage, setErrorMessage] = useState({});
+    const [error, setError] = useState({});
 
     const postData = async (formData) => {
-        const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/blog-requests/add', JSON.stringify(formData), {
+        const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/blog-requests', JSON.stringify(formData), {
             'Content-Type': 'application/json',
             'sessionId': getCookie('sessionId')
         });
 
-        const respBody = await resp.json();
-
-        if (respBody.status == 'error') {
-            setErrorMessage(respBody.message);
+        if (resp.status != 201) {
+            const respBody = await resp.json();
+            setError(respBody);
         } else {
             redirectTo(ADMIN_BLOG_REQUESTS_ADDRESS, 3);
         }
@@ -43,7 +42,7 @@ export default function AdminBlogRequestAdd() {
             <AdminMenu />
             <BlogRequestAddForm
                 formData={formData}
-                errorMessage={errorMessage}
+                error={error}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 isAdminPage='true' />

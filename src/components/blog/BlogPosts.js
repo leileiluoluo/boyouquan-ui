@@ -17,7 +17,7 @@ export default function BlogPosts({ domain, blogStatusOk }) {
         const respBody = await resp.json();
         setPosts(respBody);
 
-        if (resp.length == 100) {
+        if (respBody.length == 100) {
             setShowPostsLimit(true);
         }
     };

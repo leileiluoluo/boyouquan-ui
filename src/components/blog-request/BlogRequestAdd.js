@@ -6,7 +6,7 @@ import { BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
 
 export default function BlogRequestAdd() {
     const [formData, setFormData] = useState({});
-    const [errorMessage, setErrorMessage] = useState({});
+    const [error, setError] = useState({});
 
     const postData = async (formData) => {
         const resp = await RequestUtil.post('https://www.boyouquan.com/api/blog-requests',
@@ -14,10 +14,9 @@ export default function BlogRequestAdd() {
             { 'Content-Type': 'application/json' }
         );
 
-        const respBody = await resp.json();
-
-        if (respBody.status == 'error') {
-            setErrorMessage(respBody.message);
+        if (resp.status != 201) {
+            const respBody = await resp.json();
+            setError(respBody);
         } else {
             redirectTo(BLOG_REQUESTS_ADDRESS, 3);
         }
@@ -37,7 +36,7 @@ export default function BlogRequestAdd() {
     return (
         <BlogRequestAddForm
             formData={formData}
-            errorMessage={errorMessage}
+            error={error}
             handleChange={handleChange}
             handleSubmit={handleSubmit} />
     )

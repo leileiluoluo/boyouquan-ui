@@ -14,6 +14,10 @@ export function getSharingAddress(originalLink) {
     return `/sharing?link=${encodeURIComponent(originalLink)}`;
 }
 
+export function getBlogRequestAddress(id) {
+    return `/blog-requests/${id}`;
+}
+
 export function getGravatarImageFullURL(imageURL) {
     return `https://www.boyouquan.com${imageURL}`;
 }

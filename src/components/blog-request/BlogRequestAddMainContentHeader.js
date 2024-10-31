@@ -1,6 +1,6 @@
+const colorStyle = { color: '#cb2e58' };
+
 export default function BlogRequestAddMainContentHeader() {
-    const colorStyle = { color: '#cb2e58' };
-    
     return (
         <article className="first-entry home-info">
             <div className="entry-content">

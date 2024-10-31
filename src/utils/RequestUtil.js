@@ -6,11 +6,18 @@ const request = async (url, method, data, headers) => {
                 headers: headers
             });
         } else {
-            response = await fetch(url, {
-                method: 'POST',
-                headers: headers,
-                body: data
-            });
+            if (null == data) {
+                response = await fetch(url, {
+                    method: method,
+                    headers: headers
+                });
+            } else {
+                response = await fetch(url, {
+                    method: method,
+                    headers: headers,
+                    body: data
+                });
+            }
         }
 
         if (null != response && !response.ok) {
@@ -29,6 +36,12 @@ const RequestUtil = {
     },
     post: (url, data, headers) => {
         return request(url, 'POST', data, headers);
+    },
+    patch: (url, data, headers) => {
+        return request(url, 'PATCH', data, headers);
+    },
+    delete: (url, data, headers) => {
+        return request(url, 'DELETE', data, headers);
     }
 }
 

@@ -1,7 +1,7 @@
 import formatDateStr from '../../utils/DateUtil';
-import { getBlogRequestAddress } from '../../utils/PageAddressUtil';
+import { getAdminBlogRequestAddress, getBlogRequestAddress } from '../../utils/PageAddressUtil';
 
-export default function BlogRequestsTable({ requests }) {
+export default function BlogRequestsTable({ requests, adminPage }) {
     return (
         <div className="blog-requests">
             <div className="requests-container">
@@ -19,7 +19,7 @@ export default function BlogRequestsTable({ requests }) {
                             requests.map((request, index) => (
                                 <tr key={index}>
                                     <td width="35%">
-                                        <p><a href={getBlogRequestAddress(request.id)}>{request.name}</a></p>
+                                        <p><a href={adminPage ? getAdminBlogRequestAddress(request.id) : getBlogRequestAddress(request.id)}>{request.name}</a></p>
                                     </td>
                                     <td width="35%"><p>{request.adminEmail}</p></td>
                                     <td width="20%"><p>{formatDateStr(request.requestedAt, true)}</p></td>

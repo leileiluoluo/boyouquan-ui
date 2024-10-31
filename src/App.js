@@ -1,8 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Blog from './pages/Blog';
-import BlogRequests from './pages/BlogRequests';
-import BlogRequest from './pages/BlogRequest';
-import BlogRequestAdd from './pages/BlogRequestAdd';
 import Login from './pages/admin/Login';
 import AdminBlogRequests from './pages/admin/AdminBlogRequests';
 import AdminBlogRequest from './pages/admin/AdminBlogRequest';
@@ -22,6 +18,10 @@ import AbstractPage from './pages/AbstractPage';
 import NotFoundPage from './pages/NotFoundPage';
 import MonthlySelectedPage from './pages/MonthlySelectedPage';
 import BlogsPage from './pages/BlogsPage';
+import BlogPage from './pages/BlogPage';
+import BlogRequestsPage from './pages/BlogRequestsPage';
+import BlogRequestPage from './pages/BlogRequestPage';
+import BlogRequestAddPage from './pages/BlogRequestAddPage';
 
 export default function App() {
   return (
@@ -33,12 +33,12 @@ export default function App() {
         <Route path='/home/page/:page' element={<HomePage />} />
         <Route path='/monthly-selected' element={<MonthlySelectedPage />} />
         <Route path='/blogs' element={<BlogsPage />} />
-        <Route path='/blogs/:domain' element={<Blog />} />
-        <Route path='/blogs/:domain/:sub' element={<Blog />} />
-        <Route path='/blogs/:domain/:sub/:subsub' element={<Blog />} />
-        <Route path='/blog-requests' element={<BlogRequests />} />
-        <Route path='/blog-requests/add' element={<BlogRequestAdd />} />
-        <Route path='/blog-requests/:id' element={<BlogRequest />} />
+        <Route path='/blogs/:domain' element={<BlogPage />} />
+        <Route path='/blogs/:domain/:sub' element={<BlogPage />} />
+        <Route path='/blogs/:domain/:sub/:subsub' element={<BlogPage />} />
+        <Route path='/blog-requests' element={<BlogRequestsPage />} />
+        <Route path='/blog-requests/add' element={<BlogRequestAddPage />} />
+        <Route path='/blog-requests/:id' element={<BlogRequestPage />} />
         <Route path='/admin/login' element={<Login />} />
         <Route path='/admin/blog-requests' element={<AdminBlogRequests />} />
         <Route path='/admin/blog-requests/:id' element={<AdminBlogRequest />} />

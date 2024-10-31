@@ -14,7 +14,8 @@ export default function GoPage() {
     const link = getURLParameter('link') || '';
 
     const fetchData = async (link, from) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/go?from=${from}&link=${link}`);
+        const linkEncoded = encodeURIComponent(link);
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/go?from=${from}&link=${linkEncoded}`);
         window.location.href = resp.link;
     };
 

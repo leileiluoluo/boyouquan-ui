@@ -2,7 +2,7 @@ import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 import BlogDetail from '../components/blog/BlogDetail';
 
-export default function Blog() {
+export default function BlogPage() {
     return (
         <>
             <CommonHeader />

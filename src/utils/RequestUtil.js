@@ -1,14 +1,21 @@
-const request = async (url, method, headers) => {
+const request = async (url, method, data, headers) => {
     try {
+        let response = null;
         if ('GET' === method) {
-            const response = await fetch(url, {
+            response = await fetch(url, {
                 headers: headers
             });
-            if (!response.ok) {
-                console.error('request error: ' + response.body);
-            }
-            return response.json();
+        } else {
+            response = await fetch(url, {
+                headers: headers,
+                body: data
+            });
         }
+
+        if (null != response && !response.ok) {
+            console.error('request error: ' + response.body);
+        }
+        return response.json();
     } catch (error) {
         console.error(error);
     }
@@ -17,7 +24,10 @@ const request = async (url, method, headers) => {
 
 const RequestUtil = {
     get: (url, headers) => {
-        return request(url, 'GET', headers);
+        return request(url, 'GET', null, headers);
+    },
+    post: (url, data, headers) => {
+        return request(url, 'POST', data, headers);
     }
 }
 

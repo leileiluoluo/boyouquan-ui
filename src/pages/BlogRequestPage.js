@@ -1,13 +1,13 @@
 import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
-import BlogRequestContainerComp from '../components/blog-request/BlogRequestContainerComp';
+import BlogRequest from '../components/blog-request/BlogRequest';
 
-export default function BlogRequest() {
+export default function BlogRequestPage() {
     return (
         <>
             <CommonHeader />
             <main className="main">
-                <BlogRequestContainerComp />
+                <BlogRequest />
             </main>
             <CommonFooter />
         </>

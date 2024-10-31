@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { setCookie } from '../../utils/CookieUtil';
 import LoginForm from './LoginForm';
 import RequestUtil from '../../utils/RequestUtil';
-import { ADMIN_BLOG_REQUEST_ADDRESS } from '../../utils/PageAddressUtil';
+import { ADMIN_BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 
 export default function Login() {
@@ -20,7 +20,7 @@ export default function Login() {
         } else {
             setCookie("sessionId", resp.result);
 
-            redirectTo(ADMIN_BLOG_REQUEST_ADDRESS, 3);
+            redirectTo(ADMIN_BLOG_REQUESTS_ADDRESS, 3);
         }
     };
 

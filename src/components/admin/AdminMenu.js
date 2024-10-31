@@ -22,8 +22,10 @@ const logout = () => {
 export default function AdminMenu() {
     return (
         <div className="requests-header" style={marginStyle}>
+            <h4 style={redStyle}><a href="/admin/blog-requests">博客审核 - 管理页面</a></h4>
             <h4 style={redStyle}><a href="/admin/blog-requests/add">提交博客 - 管理页面</a></h4>
             <h4 style={redStyle}><a href="/admin/recommended-posts">推荐文章管理 - 管理页面</a></h4>
+            <h4 style={redStyle}><a href="/admin/recommended-posts/add">推荐文章 - 管理页面</a></h4>
             <div style={flexStyle}>
                 <p>olzhy</p>
                 <p><button onClick={() => logout()}> 退出登录</button></p>

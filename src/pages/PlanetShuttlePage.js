@@ -59,7 +59,7 @@ export default function PlanetShuttlePage() {
 
         setShuttleInfo(respBody);
 
-        redirectTo(getGoAddress(respBody.link), 3);
+        redirectTo(getGoAddress(respBody.blogAddress), 3);
     };
 
     useEffect(() => {

@@ -3,7 +3,7 @@ const noticeStyle = { marginTop: '18px', fontSize: '12px' };
 const noticeFontStyle = { color: '#cb2e58' };
 const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
 
-export default function BlogRequestAddForm({ formData, errorMessage, handleChange, handleSubmit, isAdminPage }) {
+export default function BlogRequestAddForm({ formData, error, handleChange, handleSubmit, isAdminPage }) {
     return (
         <>
             {
@@ -19,7 +19,7 @@ export default function BlogRequestAddForm({ formData, errorMessage, handleChang
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>博客名称 *</p>
-                                {errorMessage.name ? <p style={errorStyle}>{errorMessage.name}</p> : ''}
+                                {error.code == 'blog_request_name_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} name="name" placeholder="您的博客名称" id="name" value={formData.name} onChange={handleChange} />
@@ -28,7 +28,10 @@ export default function BlogRequestAddForm({ formData, errorMessage, handleChang
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>RSS 地址 *</p>
-                                {errorMessage.rssAddress ? <p style={errorStyle}>{errorMessage.rssAddress}</p> : ''}
+                                {(error.code == 'blog_request_rss_address_invalid'
+                                    || error.code == 'blog_request_rss_address_black_list'
+                                    || error.code == 'blog_request_rss_address_exists')
+                                    ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} name="rssAddress" placeholder="用于抓取文章" id="rssAddress" value={formData.rssAddress} onChange={handleChange} />
@@ -37,7 +40,7 @@ export default function BlogRequestAddForm({ formData, errorMessage, handleChang
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>博主邮箱 *</p>
-                                {errorMessage.adminEmail ? <p style={errorStyle}>{errorMessage.adminEmail}</p> : ''}
+                                {error.code == 'blog_request_admin_email_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} name="adminEmail" placeholder="用于展示 Gravatar 头像，以及获取通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
@@ -46,7 +49,7 @@ export default function BlogRequestAddForm({ formData, errorMessage, handleChang
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>博客描述 *</p>
-                                {errorMessage.description ? <p style={errorStyle}>{errorMessage.description}</p> : ''}
+                                {error.code == 'blog_request_description_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <textarea style={inputFontSizeStyle} name="description" placeholder="描述一下您的博客，建议 100 字以内" id="description" value={formData.description} onChange={handleChange}></textarea>

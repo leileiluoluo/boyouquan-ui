@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import AdminRecommendedPosts from './pages/admin/AdminRecommendedPosts';
 import AdminRecommendPost from './pages/admin/AdminRecommendPost';
-import AdminBlogRequestAdd from './pages/admin/AdminBlogRequestAdd';
 import HomePage from './pages/HomePage';
 import ReleaseNotesPage from './pages/ReleaseNotesPage';
 import ReleaseNotePage from './pages/ReleaseNotePage';
@@ -22,6 +20,8 @@ import BlogRequestAddPage from './pages/BlogRequestAddPage';
 import LoginPage from './pages/admin/LoginPage';
 import AdminBlogRequestsPage from './pages/admin/AdminBlogRequestsPage';
 import AdminBlogRequestPage from './pages/admin/AdminBlogRequestPage';
+import AdminBlogRequestAddPage from './pages/admin/AdminBlogRequestAddPage';
+import AdminRecommendedPostsPage from './pages/admin/AdminRecommendedPostsPage';
 
 export default function App() {
   return (
@@ -42,8 +42,8 @@ export default function App() {
         <Route path='/admin/login' element={<LoginPage />} />
         <Route path='/admin/blog-requests' element={<AdminBlogRequestsPage />} />
         <Route path='/admin/blog-requests/:id' element={<AdminBlogRequestPage />} />
-        <Route path='/admin/blog-requests/add' element={<AdminBlogRequestAdd />} />
-        <Route path='/admin/recommended-posts' element={<AdminRecommendedPosts />} />
+        <Route path='/admin/blog-requests/add' element={<AdminBlogRequestAddPage />} />
+        <Route path='/admin/recommended-posts' element={<AdminRecommendedPostsPage />} />
         <Route path='/admin/recommended-posts/add' element={<AdminRecommendPost />} />
         <Route path='/sharing' element={<AbstractPage isSharingPage='true' />} />
         <Route path='/abstract' element={<AbstractPage />} />

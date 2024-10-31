@@ -1,5 +1,6 @@
 export const ADMIN_LOGIN_ADDRESS = '/admin/login';
 export const ADMIN_BLOG_REQUESTS_ADDRESS = '/admin/blog-requests';
+export const ADMIN_RECOMMENDED_POSTS_ADDRESS = '/admin/recommended-posts';
 
 export function getGoAddress(originalLink) {
     return '/go?from=website&link=' + encodeURIComponent(originalLink);

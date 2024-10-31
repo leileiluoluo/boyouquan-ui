@@ -1,25 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import RequestUtil from '../../utils/RequestUtil';
+
+const summaryStyle = {
+    color: '#cb2e58', margin: '0 2px 0 2px'
+}
 
 export default function FooterStatistic() {
-    const summaryStyle = {
-        color: '#cb2e58', margin: '0 2px 0 2px'
-    }
-
     const [statistic, setStatistic] = useState({});
     const [loaded, setLoaded] = useState(false);
 
     const fetchData = async () => {
-        try {
-            const response = await fetch(`https://www.boyouquan.com/api/statistic`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const resp = await response.json();
-            setStatistic(resp);
-            setLoaded(true);
-        } catch (error) {
-            console.error(error);
-        }
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/statistic`);
+        setStatistic(resp);
+        setLoaded(true);
     };
 
     useEffect(() => {

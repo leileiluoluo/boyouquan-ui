@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import getURLParameter from '../../utils/CommonUtil';
 import RequestUtil from '../../utils/RequestUtil';
 import BlogRequestsTable from './BlogRequestsTable';
 import Pagination from '../pagination/Pagination';
+import { getURLParameter } from '../../utils/CommonUtil';
 
 export default function BlogRequests() {
     const [pageNo, setPageNo] = useState(1);

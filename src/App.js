@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/admin/Login';
 import AdminBlogRequests from './pages/admin/AdminBlogRequests';
 import AdminBlogRequest from './pages/admin/AdminBlogRequest';
 import AdminRecommendedPosts from './pages/admin/AdminRecommendedPosts';
@@ -22,6 +21,7 @@ import BlogPage from './pages/BlogPage';
 import BlogRequestsPage from './pages/BlogRequestsPage';
 import BlogRequestPage from './pages/BlogRequestPage';
 import BlogRequestAddPage from './pages/BlogRequestAddPage';
+import LoginPage from './pages/admin/LoginPage';
 
 export default function App() {
   return (
@@ -39,7 +39,7 @@ export default function App() {
         <Route path='/blog-requests' element={<BlogRequestsPage />} />
         <Route path='/blog-requests/add' element={<BlogRequestAddPage />} />
         <Route path='/blog-requests/:id' element={<BlogRequestPage />} />
-        <Route path='/admin/login' element={<Login />} />
+        <Route path='/admin/login' element={<LoginPage />} />
         <Route path='/admin/blog-requests' element={<AdminBlogRequests />} />
         <Route path='/admin/blog-requests/:id' element={<AdminBlogRequest />} />
         <Route path='/admin/blog-requests/add' element={<AdminBlogRequestAdd />} />

@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import getURLParameter from '../../utils/CommonUtil';
 import formatDateStr from '../../utils/DateUtil';
 import { Helmet } from 'react-helmet';
+import { getURLParameter } from '../../utils/CommonUtil';
 
 export default function SharingComp() {
     const [loaded, setLoaded] = useState(false);

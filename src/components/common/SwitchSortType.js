@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getURLParameter from '../../utils/CommonUtil';
+import { getURLParameter } from '../../utils/CommonUtil';
 
 export default function SwitchSortType({ types }) {
     const [activeType, setActiveType] = useState('xxx');

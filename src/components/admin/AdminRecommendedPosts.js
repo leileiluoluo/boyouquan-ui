@@ -3,7 +3,7 @@ import { getCookie } from '../../utils/CookieUtil';
 import AdminMenu from './AdminMenu';
 import AdminRecommendedPostsTable from './recommended-posts/AdminRecommendedPostsTable';
 import Pagination from '../pagination/Pagination';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import AdminMenuHeader from './AdminMenuHeader';
@@ -15,7 +15,7 @@ export default function AdminRecommendedPosts() {
     const [posts, setPosts] = useState([]);
 
     const fetchData = async (pageNo) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts?sort=recommended&page=${pageNo}`);
+        const resp = await RequestUtil.get(`/api/posts?sort=recommended&page=${pageNo}`);
 
         if (resp.status != 200) {
             redirectTo(ADMIN_LOGIN_ADDRESS);

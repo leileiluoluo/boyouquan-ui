@@ -18,7 +18,7 @@ jobs:
       - name: Install
         run: npm install
       - name: Build
-        run: npm run build
+        run: NODE_ENV=production npm run build
   deploy:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
       - name: Install
         run: npm install
       - name: Build
-        run: npm run build
+        run: NODE_ENV=production npm run build
       - name: Zip
         run: zip -r dist.zip ./dist
       - name: Copy file via ssh key

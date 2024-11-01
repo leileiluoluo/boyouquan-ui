@@ -2,7 +2,7 @@ import { useState } from "react";
 import { redirectTo } from "../../../utils/CommonUtil";
 import { getCookie } from "../../../utils/CookieUtil";
 import { ADMIN_RECOMMENDED_POSTS_ADDRESS } from "../../../utils/PageAddressUtil";
-import RequestUtil from "../../../utils/RequestUtil";
+import RequestUtil from "../../../utils/APIRequestUtil";
 
 const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
 
@@ -18,7 +18,7 @@ export default function AdminRecommendedPostAdd() {
     const recommend = async (e) => {
         e.preventDefault();
 
-        const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/recommended-posts', JSON.stringify(formData), {
+        const resp = await RequestUtil.post('/api/admin/recommended-posts', JSON.stringify(formData), {
             'Content-Type': 'application/json',
             'username': getCookie('username'),
             'sessionId': getCookie('sessionId')

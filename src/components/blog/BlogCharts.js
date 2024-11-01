@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Chart } from 'frappe-charts';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function BlogCharts({ domain }) {
     const fetchData = async (domain) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/charts?domainName=${domain}`);
+        const resp = await RequestUtil.get(`/api/blogs/charts?domainName=${domain}`);
 
         const respBody = await resp.json();
 

@@ -4,7 +4,7 @@ import { getCookie } from '../../utils/CookieUtil';
 import Meta from '../common/Meta';
 import AdminMenuHeader from './AdminMenuHeader';
 import AdminBlogRequestTable from './AdminBlogRequestTable';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenu from './AdminMenu';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import { redirectTo } from '../../utils/CommonUtil';
@@ -23,7 +23,7 @@ export default function AdminBlogRequest() {
     const { id } = useParams();
 
     const fetchData = async (id) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests/${id}`);
+        const resp = await RequestUtil.get(`/api/blog-requests/${id}`);
 
         const respBody = await resp.json();
 

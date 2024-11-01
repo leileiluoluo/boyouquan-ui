@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import RequestUtil from '../utils/RequestUtil';
+import RequestUtil from '../utils/APIRequestUtil';
 import Meta from '../components/common/Meta';
 import { getGoAddress } from '../utils/PageAddressUtil';
 import { redirectTo } from '../utils/CommonUtil';
@@ -51,7 +51,7 @@ export default function PlanetShuttlePage() {
     });
 
     const fetchData = async (referrer) => {
-        const resp = await RequestUtil.get('https://www.boyouquan.com/api/planet-shuttle', {
+        const resp = await RequestUtil.get('/api/planet-shuttle', {
             'From': referrer
         });
 

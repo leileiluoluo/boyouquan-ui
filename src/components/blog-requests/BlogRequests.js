@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import BlogRequestsTable from './BlogRequestsTable';
 import Pagination from '../pagination/Pagination';
 import { getURLParameter } from '../../utils/CommonUtil';
@@ -11,7 +11,7 @@ export default function BlogRequests() {
     const [blogRequests, setBlogRequests] = useState([]);
 
     const fetchData = async (keyword, pageNo) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests?keyword=${keyword}&page=${pageNo}`);
+        const resp = await RequestUtil.get(`/api/blog-requests?keyword=${keyword}&page=${pageNo}`);
 
         const respBody = await resp.json();
         setPageSize(respBody.pageSize);

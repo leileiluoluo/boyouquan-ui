@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 const summaryStyle = {
     color: '#cb2e58', margin: '0 2px 0 2px'
@@ -10,7 +10,7 @@ export default function FooterStatistic() {
     const [loaded, setLoaded] = useState(false);
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/statistics`);
+        const resp = await RequestUtil.get(`/api/statistics`);
 
         const respBody = await resp.json();
         setStatistic(respBody);

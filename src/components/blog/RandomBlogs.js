@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function RandomBlogs({ domain }) {
     const [blogs, setBlogs] = useState([]);
 
     const fetchData = async (domain) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/random-blogs?domainName=${domain}`);
+        const resp = await RequestUtil.get(`/api/blogs/random-blogs?domainName=${domain}`);
 
         const respBody = await resp.json();
         setBlogs(respBody);

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Meta from '../components/common/Meta';
-import RequestUtil from '../utils/RequestUtil';
+import RequestUtil from '../utils/APIRequestUtil';
 import { getURLParameter, redirectTo } from '../utils/CommonUtil';
 
 const meta = {
@@ -15,7 +15,7 @@ export default function GoPage() {
 
     const fetchData = async (link, from) => {
         const linkEncoded = encodeURIComponent(link);
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/go?from=${from}&link=${linkEncoded}`);
+        const resp = await RequestUtil.get(`/api/go?from=${from}&link=${linkEncoded}`);
 
         const respBody = await resp.json();
         redirectTo(respBody.link);

@@ -1,6 +1,6 @@
 import { Fragment, Suspense, useEffect, useState, lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import Meta from '../common/Meta';
 import BlogDetailMain from './BlogDetailMain';
 import BlogDetailSummary from './BlogDetailSummary';
@@ -37,7 +37,7 @@ export default function BlogDetail() {
     const domain = getDomain();
 
     const fetchData = async (domain) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs?domainName=${domain}`);
+        const resp = await RequestUtil.get(`/api/blogs?domainName=${domain}`);
 
         if (resp.status != 200) {
             redirectTo(NOT_FOUND_ADDRESS);

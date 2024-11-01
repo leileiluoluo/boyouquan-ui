@@ -8,7 +8,7 @@ const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
 
 export default function AdminRecommendedPostAdd() {
     const [formData, setFormData] = useState({});
-    const [errorMessage, setErrorMessage] = useState('');
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,15 +18,16 @@ export default function AdminRecommendedPostAdd() {
     const recommend = async (e) => {
         e.preventDefault();
 
-        const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/recommended-posts/add', JSON.stringify(formData), {
-            'sessionId': getCookie('sessionId'),
-            'Content-Type': 'application/json'
+        const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/recommended-posts', JSON.stringify(formData), {
+            'Content-Type': 'application/json',
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId')
         });
 
         const respBody = await resp.json();
 
-        if (respBody.status == 'error') {
-            setErrorMessage(respBody.message);
+        if (resp.status != 201) {
+            setError(respBody);
         } else {
             redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS);
         }
@@ -39,7 +40,7 @@ export default function AdminRecommendedPostAdd() {
                     <div className="key-value-entry">
                         <div className="label">
                             <p>文章链接 *</p>
-                            {errorMessage ? <p style={errorStyle}>{errorMessage}</p> : ''}
+                            {error ? <p style={errorStyle}>{error.message}</p> : ''}
                         </div>
                         <div className="field">
                             <input name="link" id="link" onChange={handleChange} />

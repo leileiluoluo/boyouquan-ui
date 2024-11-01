@@ -14,19 +14,16 @@ export default function AdminRecommendedPosts() {
     const [total, setTotal] = useState(0);
     const [posts, setPosts] = useState([]);
 
-    const fetchData = async (page) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/admin/recommended-posts?page=${page}`, {
-            'sessionId': getCookie('sessionId')
-        });
+    const fetchData = async (pageNo) => {
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts?sort=recommended&page=${pageNo}`);
 
-        const respBody = await resp.json();
-
-        if (respBody.status == 'error') {
+        if (resp.status != 200) {
             redirectTo(ADMIN_LOGIN_ADDRESS);
         } else {
-            setPageSize(respBody.result.pageSize);
-            setTotal(respBody.result.total);
-            setPosts(respBody.result.results);
+            const respBody = await resp.json();
+            setPageSize(respBody.pageSize);
+            setTotal(respBody.total);
+            setPosts(respBody.results);
         }
     };
 

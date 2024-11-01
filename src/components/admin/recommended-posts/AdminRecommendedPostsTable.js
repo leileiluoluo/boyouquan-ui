@@ -9,6 +9,7 @@ const greenStyle = { color: 'green' };
 const unpin = (link) => {
     RequestUtil.patch('https://www.boyouquan.com/api/admin/recommended-posts/unpin', JSON.stringify({ link: link }), {
         'Content-Type': 'application/json',
+        'username': getCookie('username'),
         'sessionId': getCookie('sessionId')
     });
 
@@ -18,6 +19,7 @@ const unpin = (link) => {
 const pin = (link) => {
     RequestUtil.patch('https://www.boyouquan.com/api/admin/recommended-posts/pin', JSON.stringify({ link: link }), {
         'Content-Type': 'application/json',
+        'username': getCookie('username'),
         'sessionId': getCookie('sessionId')
     });
 

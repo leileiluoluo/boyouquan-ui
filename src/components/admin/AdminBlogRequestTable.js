@@ -24,9 +24,10 @@ export default function AdminBlogRequestTable({ blogRequest }) {
     const approve = (e) => {
         e.preventDefault();
 
-        const url = `https://www.boyouquan.com/api/admin/blog-requests/approve/${id}`;
+        const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}/approve`;
         RequestUtil.patch(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
+            'username': getCookie('username'),
             'sessionId': getCookie('sessionId')
         });
 
@@ -36,9 +37,10 @@ export default function AdminBlogRequestTable({ blogRequest }) {
     const reject = (e) => {
         e.preventDefault();
 
-        const url = `https://www.boyouquan.com/api/admin/blog-requests/reject/${id}`;
+        const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}/reject`;
         RequestUtil.patch(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
+            'username': getCookie('username'),
             'sessionId': getCookie('sessionId')
         });
 
@@ -51,6 +53,7 @@ export default function AdminBlogRequestTable({ blogRequest }) {
         const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}/uncollected`;
         RequestUtil.patch(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
+            'username': getCookie('username'),
             'sessionId': getCookie('sessionId')
         });
 
@@ -63,6 +66,7 @@ export default function AdminBlogRequestTable({ blogRequest }) {
         const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}`;
         RequestUtil.delete(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
+            'username': getCookie('username'),
             'sessionId': getCookie('sessionId')
         });
 

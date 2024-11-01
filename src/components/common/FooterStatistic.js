@@ -10,7 +10,7 @@ export default function FooterStatistic() {
     const [loaded, setLoaded] = useState(false);
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/statistic`);
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/statistics`);
 
         const respBody = await resp.json();
         setStatistic(respBody);

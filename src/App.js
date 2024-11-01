@@ -55,6 +55,7 @@ export default function App() {
         <Route path='/similar-sites' element={<SimilarSitesPage />} />
         <Route path='/release-notes' element={<ReleaseNotesPage />} />
         <Route path='/release-notes/:version' element={<ReleaseNotePage />} />
+        <Route path="/404-not-found" element={<NotFoundPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

@@ -6,7 +6,8 @@ import AbstractFooter from './AbstractFooter';
 import AbstractGo from './AbstractGo';
 import AbstractDescription from './AbstractDescription';
 import Meta from '../common/Meta';
-import { getURLParameter } from '../../utils/CommonUtil';
+import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
+import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 
 const getMeta = (isSharingPage, title, description) => {
     if (isSharingPage) {
@@ -35,8 +36,13 @@ export default function Abstract({ isSharingPage }) {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts/by-link?link=${linkEncoded}`);
 
         const respBody = await resp.json();
-        setPostInfo(respBody);
-        setLoaded(true);
+        if (resp.status != 200) {
+            redirectTo(NOT_FOUND_ADDRESS);
+        } else {
+            setPostInfo(respBody);
+            setLoaded(true);
+        }
+
     };
 
     useEffect(() => {

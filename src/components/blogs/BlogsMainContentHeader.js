@@ -8,7 +8,7 @@ export default function BlogsMainContentHeader() {
     const [statistic, setStatistic] = useState({});
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get('https://www.boyouquan.com/api/statistic');
+        const resp = await RequestUtil.get('https://www.boyouquan.com/api/statistics');
 
         const respBody = await resp.json();
         setStatistic(respBody);

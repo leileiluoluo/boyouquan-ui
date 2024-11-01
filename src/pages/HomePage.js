@@ -2,13 +2,13 @@ import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 import SearchBox from '../components/common/SearchBox';
 import SwitchSortType from '../components/common/SwitchSortType';
-import HomeMainContentHeaderComp from '../components/home/HomeMainContentHeaderComp';
 import PostCardList from '../components/post-card/PostCardList';
 import Meta from '../components/common/Meta';
 import { Suspense, lazy } from 'react';
 import { getURLParameter } from '../utils/CommonUtil';
 
-const HomeLatestNewsComp = lazy(() => import('../components/home/HomeLatestNewsComp'));
+const HomePopularBlogsHeader = lazy(() => import('../components/home/HomePopularBlogsHeader'));
+const HomeLatestNews = lazy(() => import('../components/home/HomeLatestNews'));
 
 const switchTypes = [
     { name: '推荐', href: '/home', default: true },
@@ -37,9 +37,9 @@ export default function HomePage() {
             <Meta />
             <CommonHeader />
             <main className="main">
-                <HomeMainContentHeaderComp />
                 <Suspense>
-                    <HomeLatestNewsComp />
+                    <HomePopularBlogsHeader />
+                    <HomeLatestNews />
                 </Suspense>
                 <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
                 <SwitchSortType types={switchTypes} />

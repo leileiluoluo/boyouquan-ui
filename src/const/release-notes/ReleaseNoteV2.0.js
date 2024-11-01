@@ -7,28 +7,16 @@ const META_V2_0 = {
 const RELEASE_INFO_V2_0 = {
     title: 'v2.0 版本说明',
     content: <>
-        <p>博友圈于 2024 年 11 月 1 日发布了 v2.0 版本！该版本是一个大的变更，其将之前集前后端为一体的应用程序进行了前后端分离。</p>
+        <p>博友圈于 2024 年 11 月 1 日发布了 v2.0 版本！该版本虽未在用户界面或功能上进行大的调整，但在技术架构上却作了一次非常大的变更，其将博友圈这个之前集前后端为一体的应用程序进行了前后端分离。</p>
 
-        <h3>功能说明</h3>
-        <p>上一个版本，星球穿梭只是一个可以跳转到随机博客的简单页面。而本次则对星球穿梭进行了全链路的优化，将数据与行为完整的连接了起来。下面对具体的优化细节进行说明。</p>
+        <h3>变更说明</h3>
+        <p>「<a href="https://github.com/leileiluoluo/boyouquan-api/releases/tag/v1.10">v1 版本的博友圈项目</a>」是一个集前后端为一体的应用程序，其是一个 Maven 管理的 Java 工程，使用了 Spring Boot + Thymeleaf + MyBatis 框架。</p>
 
-        <p>1）当博友在其博客的任一页面添加了博友圈「<a href="/planet-shuttle">星球穿梭链接</a>」时，其即开启了星球穿梭功能。</p>
-        <p><img border="1" src="/assets/images/sites/release_notes/v1.10/from-blog.png" /></p>
+        <p>而本次的v2 版本（前端：<a href="https://github.com/leileiluoluo/boyouquan-ui/releases/tag/v2.0">boyouquan-ui</a>，后端：<a href="https://github.com/leileiluoluo/boyouquan-api/releases/tag/v2.0">boyouquan-api</a>）则将博友圈单体项目进行了前后端分离。前端使用了 React 框架；后端依然使用 Spring Boot + MyBatis 框架，但去除了 Thymeleaf 渲染页面的部分，使得后端变为了一个纯净的 REST API 提供者。</p>
 
-        <p>2）当访问者点击星球穿梭链接时，即会跳转到博友圈星球穿梭页面。该页面会自动检测来源博客，并显示其博客名、助力值（助力次数）与博客的博友圈链接。</p>
-        <p><img border="1" src="/assets/images/sites/release_notes/v1.10/planet-shuttle.png" /></p>
-
-        <p>3）5 秒后，星球穿梭页面即会自动跳转到一个随机博客。跳转到的博客链接会添加原始的来源博客地址（如：?from=https://leileiluoluo.com），方便对发起穿梭的博客进行推广！</p>
-        <p><img border="1" src="/assets/images/sites/release_notes/v1.10/to-blog.png" /></p>
-
-        <p>4）此外，在博客详情页面还会展示穿梭发起者的详细助力数据。</p>
-        <p><img border="1" src="/assets/images/sites/release_notes/v1.10/blog-detail.png" /></p>
-
-        <p>所以，本次的优化即对星球穿梭功能进行了全链路的数据整合，相信会较之前的版本提升了用户体验。</p>
-
-        <p><strong>想马上体验一下？</strong>那就快戳示例博客：<a href="https://leileiluoluo.com">leileiluoluo.com</a>，然后拉至网站底部，点击「博友圈 · 星球穿梭」试试吧！</p>
+        <p>关于博友圈项目 v2 版本的前后端架构、内部设计，及启动设置等相关介绍，请参阅站长的「<a href="https://leileiluoluo.com/posts/boyouquan-v2-introduction.html">这篇博客文章</a>」。</p>
     </>,
-    publishedAt: '2024年03月31日'
+    publishedAt: '2024年11月1日'
 }
 
 export { META_V2_0, RELEASE_INFO_V2_0 };

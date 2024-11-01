@@ -24,9 +24,8 @@ export default function AdminRecommendedPostAdd() {
             'sessionId': getCookie('sessionId')
         });
 
-        const respBody = await resp.json();
-
         if (resp.status != 201) {
+            const respBody = await resp.json();
             setError(respBody);
         } else {
             redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS);

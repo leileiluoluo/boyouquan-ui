@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react';
+import RequestUtil from '../../utils/RequestUtil';
 
-export default function HomeLatestNewsComp() {
+export default function HomeLatestNews() {
     const animationControlStyle = { '--s': '4' };
     const [display, setDisplay] = useState(false);
     const [items, setItems] = useState([]);
 
     const fetchData = async () => {
-        try {
-            const response = await fetch(`https://www.boyouquan.com/api/latest-news`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const resp = await response.json();
-            setItems(resp);
-            setDisplay(true);
-        } catch (error) {
-            console.error(error);
-        }
+        const resp = await RequestUtil.get('https://www.boyouquan.com/api/latest-news');
+        const respBody = await resp.json();
+        setItems(respBody);
+        setDisplay(true);
     };
 
     useEffect(() => {

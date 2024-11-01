@@ -1,19 +1,14 @@
 import { useEffect, useState } from 'react';
+import RequestUtil from '../../utils/RequestUtil';
+import { getBlogAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
 
-export default function HomeMainContentHeaderComp() {
-    const [items, setItems] = useState([]);
+export default function HomePopularBlogsHeader() {
+    const [blogs, seBlogs] = useState([]);
 
     const fetchData = async () => {
-        try {
-            const response = await fetch(`https://www.boyouquan.com/api/popular-blogs`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const resp = await response.json();
-            setItems(resp);
-        } catch (error) {
-            console.error(error);
-        }
+        const resp = await RequestUtil.get('https://www.boyouquan.com/api/popular-blogs');
+        const respBody = await resp.json();
+        seBlogs(respBody);
     };
 
     useEffect(() => {
@@ -33,11 +28,11 @@ export default function HomeMainContentHeaderComp() {
             </div>
             <div className="popular-bloggers">
                 {
-                    items.map(
-                        (item, index) => (
+                    blogs.map(
+                        (blog, index) => (
                             <div className="blogger-one" key={index}>
-                                <a href={`/blogs/${item.domainName}`}><img src={`https://www.boyouquan.com/${item.blogAdminLargeImageURL}`} /></a>
-                                <span className="tooltiptext">{item.name}</span>
+                                <a href={getBlogAddress(blog.domainName)}><img src={getGravatarImageFullURL(blog.blogAdminLargeImageURL)} /></a>
+                                <span className="tooltiptext">{blog.name}</span>
                             </div>
                         )
                     )

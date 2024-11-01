@@ -4,6 +4,8 @@ import RequestUtil from '../../utils/RequestUtil';
 import Meta from '../common/Meta';
 import BlogDetailMain from './BlogDetailMain';
 import BlogDetailSummary from './BlogDetailSummary';
+import { redirectTo } from '../../utils/CommonUtil';
+import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 
 const BlogCharts = lazy(() => import('./BlogCharts'));
 const RandomBlogs = lazy(() => import('./RandomBlogs'));
@@ -37,6 +39,9 @@ export default function BlogDetail() {
     const fetchData = async (domain) => {
         const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs?domainName=${domain}`);
 
+        if (resp.status != 200) {
+            redirectTo(NOT_FOUND_ADDRESS);
+        }
         const respBody = await resp.json();
         setBlogDetail(respBody);
         setLoaded(true);

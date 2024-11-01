@@ -14,11 +14,16 @@ import { META_V1_3, RELEASE_INFO_V1_3 } from '../const/release-notes/ReleaseNote
 import { META_V1_2, RELEASE_INFO_V1_2 } from '../const/release-notes/ReleaseNoteV1.2';
 import { META_V1_1, RELEASE_INFO_V1_1 } from '../const/release-notes/ReleaseNoteV1.1';
 import { META_V1_0, RELEASE_INFO_V1_0 } from '../const/release-notes/ReleaseNoteV1.0';
+import { META_V2_0, RELEASE_INFO_V2_0 } from '../const/release-notes/ReleaseNoteV2.0';
 
 const getMetaAndVersionInfo = (version) => {
     let meta = null
     let releaseInfo = null
     switch (version) {
+        case 'v2.0':
+            meta = META_V2_0;
+            releaseInfo = RELEASE_INFO_V2_0;
+            break;
         case 'v1.10':
             meta = META_V1_10;
             releaseInfo = RELEASE_INFO_V1_10;

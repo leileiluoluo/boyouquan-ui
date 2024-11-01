@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import RequestUtil from '../../utils/APIRequestUtil';
 import Meta from '../common/Meta';
 import BlogRequestTable from './BlogRequestTable';
+import { redirectTo } from '../../utils/CommonUtil';
+import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 
 const getMeta = (name, description) => {
     return {
@@ -20,8 +22,12 @@ export default function BlogRequest() {
     const fetchData = async (id) => {
         const resp = await RequestUtil.get(`/api/blog-requests/${id}`);
 
-        const respBody = await resp.json();
-        setBlogRequest(respBody);
+        if (resp.status != 200) {
+            redirectTo(NOT_FOUND_ADDRESS);
+        } else {
+            const respBody = await resp.json();
+            setBlogRequest(respBody);
+        }
     };
 
     useEffect(() => {
@@ -34,9 +40,12 @@ export default function BlogRequest() {
             <BlogRequestTable
                 name={blogRequest.name}
                 description={blogRequest.description}
+                domainName={blogRequest.domainName}
+                address={blogRequest.address}
                 rssAddress={blogRequest.rssAddress}
                 adminEmail={blogRequest.adminEmail}
                 requestedAt={blogRequest.requestedAt}
+                approved={blogRequest.approved}
                 statusInfo={blogRequest.statusInfo} />
         </>
     )

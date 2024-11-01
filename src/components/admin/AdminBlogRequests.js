@@ -16,18 +16,20 @@ export default function AdminBlogRequests() {
     const [blogRequests, setBlogRequests] = useState([]);
 
     const fetchData = async (keyword, pageNo) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/admin/blog-requests?keyword=${keyword}&page=${pageNo}`, {
+        const permissionCheckResp = await RequestUtil.get(`https://www.boyouquan.com/api/admin/permission-check`, {
+            'username': getCookie('username'),
             'sessionId': getCookie('sessionId'),
         });
 
-        const respBody = await resp.json();
-
-        if (respBody.status == 'error') {
+        if (permissionCheckResp.status != 200) {
             redirectTo(ADMIN_LOGIN_ADDRESS);
         } else {
-            setPageSize(respBody.result.pageSize);
-            setTotal(respBody.result.total);
-            setBlogRequests(respBody.result.results);
+            const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests?keyword=${keyword}&page=${pageNo}&onlySelfSubmitted=false`);
+
+            const respBody = await resp.json();
+            setPageSize(respBody.pageSize);
+            setTotal(respBody.total);
+            setBlogRequests(respBody.results);
         }
     };
 

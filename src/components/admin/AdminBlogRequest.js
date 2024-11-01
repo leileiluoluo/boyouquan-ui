@@ -23,17 +23,11 @@ export default function AdminBlogRequest() {
     const { id } = useParams();
 
     const fetchData = async (id) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/admin/blog-requests/${id}`, {
-            'sessionId': getCookie('sessionId')
-        });
+        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests/${id}`);
 
         const respBody = await resp.json();
 
-        if (respBody.status == 'error') {
-            redirectTo(ADMIN_LOGIN_ADDRESS);
-        } else {
-            setBlogRequest(respBody.result);
-        }
+        setBlogRequest(respBody);
     };
 
     useEffect(() => {

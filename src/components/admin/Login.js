@@ -19,7 +19,8 @@ export default function Login() {
         if (resp.status != 200) {
             setError(respBody);
         } else {
-            setCookie("sessionId", respBody.sessionId);
+            setCookie('username', respBody.username);
+            setCookie('sessionId', respBody.sessionId);
 
             redirectTo(ADMIN_BLOG_REQUESTS_ADDRESS, 3);
         }

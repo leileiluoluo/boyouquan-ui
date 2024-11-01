@@ -14,6 +14,7 @@ export default function AdminBlogRequestAdd() {
     const postData = async (formData) => {
         const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/blog-requests', JSON.stringify(formData), {
             'Content-Type': 'application/json',
+            'username': getCookie('username'),
             'sessionId': getCookie('sessionId')
         });
 

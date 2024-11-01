@@ -19,7 +19,8 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>博客名称 *</p>
-                                {error.code == 'blog_request_name_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
+                                {(error.code == 'blog_request_name_invalid' || error.code == 'blog_submitted_with_same_ip')
+                                    ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} name="name" placeholder="您的博客名称" id="name" value={formData.name} onChange={handleChange} />

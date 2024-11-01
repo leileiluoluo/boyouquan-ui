@@ -35,7 +35,7 @@ export default function MonthlySelectedCard({ yearMonthStr, postInfos }) {
                                                 }
                                             </td>
                                             <td width="20%">
-                                                <p style={dateStyle}>{formatDateStr(postInfo.publishedAt)}</p>
+                                                <p style={dateStyle}>{formatDateStr(postInfo.publishedAt, true)}</p>
                                             </td>
                                         </tr>
                                     )

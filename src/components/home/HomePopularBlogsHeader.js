@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import { getBlogAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
 
 export default function HomePopularBlogsHeader() {
     const [blogs, seBlogs] = useState([]);
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get('https://www.boyouquan.com/api/popular-blogs');
+        const resp = await RequestUtil.get('/api/popular-blogs');
         const respBody = await resp.json();
         seBlogs(respBody);
     };

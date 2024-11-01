@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import BlogRequestAddForm from './BlogRequestAddForm';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 import { BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
 
@@ -9,7 +9,7 @@ export default function BlogRequestAdd() {
     const [error, setError] = useState({});
 
     const postData = async (formData) => {
-        const resp = await RequestUtil.post('https://www.boyouquan.com/api/blog-requests',
+        const resp = await RequestUtil.post('/api/blog-requests',
             JSON.stringify(formData),
             { 'Content-Type': 'application/json' }
         );

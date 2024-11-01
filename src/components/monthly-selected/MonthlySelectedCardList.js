@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import MonthlySelectedCard from './MonthlySelectedCard';
 import Pagination from '../pagination/Pagination';
 
@@ -10,7 +10,7 @@ export default function MonthlySelectedCardList() {
     const [items, setItems] = useState([]);
 
     const fetchData = async (pageNo) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/monthly-selected?page=${pageNo}`);
+        const resp = await RequestUtil.get(`/api/monthly-selected?page=${pageNo}`);
 
         const respBody = await resp.json();
         setPageSize(respBody.pageSize);

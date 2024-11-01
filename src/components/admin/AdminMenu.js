@@ -1,14 +1,14 @@
 import { redirectTo } from '../../utils/CommonUtil';
 import { getCookie, setCookie } from '../../utils/CookieUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 const flexStyle = { display: 'flex', fontSize: '14px' };
 const redStyle = { color: 'red' };
 const marginStyle = { marginBottom: '18px' };
 
 const sendLogout = async () => {
-    await RequestUtil.post('https://www.boyouquan.com/api/admin/logout', null, {
+    await RequestUtil.post('/api/admin/logout', null, {
         'username': getCookie('username'),
         'sessionId': getCookie('sessionId')
     });

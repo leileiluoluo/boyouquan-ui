@@ -6,7 +6,7 @@ import BlogRequestsTable from '../blog-requests/BlogRequestsTable';
 import AdminMenu from './AdminMenu';
 import Pagination from '../pagination/Pagination';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
 
 export default function AdminBlogRequests() {
@@ -16,7 +16,7 @@ export default function AdminBlogRequests() {
     const [blogRequests, setBlogRequests] = useState([]);
 
     const fetchData = async (keyword, pageNo) => {
-        const permissionCheckResp = await RequestUtil.get(`https://www.boyouquan.com/api/admin/permission-check`, {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
             'username': getCookie('username'),
             'sessionId': getCookie('sessionId'),
         });
@@ -24,7 +24,7 @@ export default function AdminBlogRequests() {
         if (permissionCheckResp.status != 200) {
             redirectTo(ADMIN_LOGIN_ADDRESS);
         } else {
-            const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests?keyword=${keyword}&page=${pageNo}&onlySelfSubmitted=false`);
+            const resp = await RequestUtil.get(`/api/blog-requests?keyword=${keyword}&page=${pageNo}&onlySelfSubmitted=false`);
 
             const respBody = await resp.json();
             setPageSize(respBody.pageSize);

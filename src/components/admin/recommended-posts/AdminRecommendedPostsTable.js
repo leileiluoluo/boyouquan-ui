@@ -1,13 +1,13 @@
 import { redirectTo } from '../../../utils/CommonUtil';
 import { getCookie } from '../../../utils/CookieUtil';
 import { ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../../utils/PageAddressUtil';
-import RequestUtil from '../../../utils/RequestUtil';
+import RequestUtil from '../../../utils/APIRequestUtil';
 
 const redStyle = { color: 'red' };
 const greenStyle = { color: 'green' };
 
 const unpin = (link) => {
-    RequestUtil.patch('https://www.boyouquan.com/api/admin/recommended-posts/unpin', JSON.stringify({ link: link }), {
+    RequestUtil.patch('/api/admin/recommended-posts/unpin', JSON.stringify({ link: link }), {
         'Content-Type': 'application/json',
         'username': getCookie('username'),
         'sessionId': getCookie('sessionId')
@@ -17,7 +17,7 @@ const unpin = (link) => {
 };
 
 const pin = (link) => {
-    RequestUtil.patch('https://www.boyouquan.com/api/admin/recommended-posts/pin', JSON.stringify({ link: link }), {
+    RequestUtil.patch('/api/admin/recommended-posts/pin', JSON.stringify({ link: link }), {
         'Content-Type': 'application/json',
         'username': getCookie('username'),
         'sessionId': getCookie('sessionId')

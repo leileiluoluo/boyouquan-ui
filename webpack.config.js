@@ -4,6 +4,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
+const dotenv = require('dotenv');
+const DotenvWebpack = require('dotenv-webpack');
+
+// 加载 .env 文件
+dotenv.config();
 
 module.exports = {
     entry: './src/index.js', // 入口文件
@@ -67,6 +72,12 @@ module.exports = {
         ],
     },
     plugins: [
+        new DotenvWebpack({
+            path: './.env.production', // 指定生产环境文件
+        }),
+        new webpack.DefinePlugin({
+            'process.env.BOYOUQUAN_API_ADDRESS': JSON.stringify(process.env.BOYOUQUAN_API_ADDRESS),
+        }),
         new webpack.ProvidePlugin({
             "React": "react",
         }),

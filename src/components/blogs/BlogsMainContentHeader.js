@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function BlogsMainContentHeader() {
     const blogCountStyle = { color: '#cb2e58' };
@@ -8,7 +8,7 @@ export default function BlogsMainContentHeader() {
     const [statistic, setStatistic] = useState({});
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get('https://www.boyouquan.com/api/statistics');
+        const resp = await RequestUtil.get('/api/statistics');
 
         const respBody = await resp.json();
         setStatistic(respBody);

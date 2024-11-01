@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import AbstractNotice from './AbstractNotice';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import AbstractTitle from './AbstractTitle';
 import AbstractFooter from './AbstractFooter';
 import AbstractGo from './AbstractGo';
@@ -33,7 +33,7 @@ export default function Abstract({ isSharingPage }) {
 
     const fetchData = async (link) => {
         const linkEncoded = encodeURIComponent(link);
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts/by-link?link=${linkEncoded}`);
+        const resp = await RequestUtil.get(`/api/posts/by-link?link=${linkEncoded}`);
 
         const respBody = await resp.json();
         if (resp.status != 200) {

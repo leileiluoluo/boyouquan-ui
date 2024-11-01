@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import formatDateStr from '../../utils/DateUtil';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 const postsTableStyle = { display: 'table', tableLayout: 'fixed' };
 const postTableClumn20Style = { width: '20%' };
@@ -12,7 +12,7 @@ export default function BlogPosts({ domain, blogStatusOk }) {
     const [posts, setPosts] = useState([]);
 
     const fetchData = async (domain) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blogs/posts?domainName=${domain}`);
+        const resp = await RequestUtil.get(`/api/blogs/posts?domainName=${domain}`);
 
         const respBody = await resp.json();
         setPosts(respBody);

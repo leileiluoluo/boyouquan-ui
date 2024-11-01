@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { redirectTo } from '../../utils/CommonUtil';
 import { ADMIN_BLOG_REQUESTS_ADDRESS, getBlogAddress } from '../../utils/PageAddressUtil';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import { getCookie } from '../../utils/CookieUtil';
 
 const style = { display: 'table', tableLayout: 'fixed' }
@@ -24,7 +24,7 @@ export default function AdminBlogRequestTable({ blogRequest }) {
     const approve = (e) => {
         e.preventDefault();
 
-        const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}/approve`;
+        const url = `/api/admin/blog-requests/${id}/approve`;
         RequestUtil.patch(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
             'username': getCookie('username'),
@@ -37,7 +37,7 @@ export default function AdminBlogRequestTable({ blogRequest }) {
     const reject = (e) => {
         e.preventDefault();
 
-        const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}/reject`;
+        const url = `/api/admin/blog-requests/${id}/reject`;
         RequestUtil.patch(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
             'username': getCookie('username'),
@@ -50,7 +50,7 @@ export default function AdminBlogRequestTable({ blogRequest }) {
     const uncollected = (e) => {
         e.preventDefault();
 
-        const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}/uncollected`;
+        const url = `/api/admin/blog-requests/${id}/uncollected`;
         RequestUtil.patch(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
             'username': getCookie('username'),
@@ -63,7 +63,7 @@ export default function AdminBlogRequestTable({ blogRequest }) {
     const deleteAllInfos = (e) => {
         e.preventDefault();
 
-        const url = `https://www.boyouquan.com/api/admin/blog-requests/${id}`;
+        const url = `/api/admin/blog-requests/${id}`;
         RequestUtil.delete(url, JSON.stringify(formData), {
             'Content-Type': 'application/json',
             'username': getCookie('username'),

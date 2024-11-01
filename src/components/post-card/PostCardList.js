@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function PostCardList({ sort, keyword, showPinned }) {
     const [pageNo, setPageNo] = useState(1);
@@ -11,7 +11,7 @@ export default function PostCardList({ sort, keyword, showPinned }) {
     const [posts, setPosts] = useState([]);
 
     const fetchData = async (sortType, keyword, pageNo) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/posts?sort=${sortType}&keyword=${keyword}&page=${pageNo}`);
+        const resp = await RequestUtil.get(`/api/posts?sort=${sortType}&keyword=${keyword}&page=${pageNo}`);
 
         const respBody = await resp.json();
         setPageSize(respBody.pageSize);

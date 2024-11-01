@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import Meta from '../common/Meta';
 import BlogRequestTable from './BlogRequestTable';
 
@@ -18,7 +18,7 @@ export default function BlogRequest() {
     const { id } = useParams();
 
     const fetchData = async (id) => {
-        const resp = await RequestUtil.get(`https://www.boyouquan.com/api/blog-requests/${id}`);
+        const resp = await RequestUtil.get(`/api/blog-requests/${id}`);
 
         const respBody = await resp.json();
         setBlogRequest(respBody);

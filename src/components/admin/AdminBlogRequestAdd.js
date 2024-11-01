@@ -3,7 +3,7 @@ import BlogRequestAddForm from '../blog-request/BlogRequestAddForm';
 import { getCookie } from '../../utils/CookieUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 import { ADMIN_BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
 import AdminMenu from './AdminMenu';
 
@@ -12,7 +12,7 @@ export default function AdminBlogRequestAdd() {
     const [error, setError] = useState({});
 
     const postData = async (formData) => {
-        const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/blog-requests', JSON.stringify(formData), {
+        const resp = await RequestUtil.post('/api/admin/blog-requests', JSON.stringify(formData), {
             'Content-Type': 'application/json',
             'username': getCookie('username'),
             'sessionId': getCookie('sessionId')

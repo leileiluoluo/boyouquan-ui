@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { setCookie } from '../../utils/CookieUtil';
 import LoginForm from './LoginForm';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 import { ADMIN_BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 
@@ -10,7 +10,7 @@ export default function Login() {
     const [error, setError] = useState({});
 
     const postData = async (formData) => {
-        const resp = await RequestUtil.post('https://www.boyouquan.com/api/admin/login',
+        const resp = await RequestUtil.post('/api/admin/login',
             JSON.stringify(formData),
             { 'Content-Type': 'application/json' }
         );

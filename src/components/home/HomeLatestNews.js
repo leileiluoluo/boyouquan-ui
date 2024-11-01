@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import RequestUtil from '../../utils/RequestUtil';
+import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function HomeLatestNews() {
     const animationControlStyle = { '--s': '4' };
@@ -7,7 +7,7 @@ export default function HomeLatestNews() {
     const [items, setItems] = useState([]);
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get('https://www.boyouquan.com/api/latest-news');
+        const resp = await RequestUtil.get('/api/latest-news');
         const respBody = await resp.json();
         setItems(respBody);
         setDisplay(true);

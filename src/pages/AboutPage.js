@@ -84,10 +84,11 @@ const content = <>
     </ul>
 
     <h3 id="open-source">代码开源</h3>
-    <p>本站主要使用 Java 语言编写，使用了 Spring Boot + Thymeleaf + MyBatis 技术，源码已在 GitHub 开源，欢迎编码爱好者添加关注！您也可以完全自由的使用该开源代码搭建另一个「博友圈」，要求仅有一条，就是在您的网站底部标注一句话「本站使用博友圈（www.boyouquan.com）开源程序创建」。</p>
-    <p>此外，您若想了解博友圈的技术架构，请参阅站长的「<a href="https://leileiluoluo.com/posts/boyouquan-introduction.html">这篇博客文章</a>」。</p>
+    <p>博友圈是一个前后端分离的 Web 项目，前端使用 React 编写，后端使用 Java 编写。源码已在 GitHub 开源，欢迎编码爱好者添加关注！您也可以完全自由的使用该开源代码搭建另一个「博友圈」，要求仅有一条，就是在您的网站底部标注一句话「本站使用博友圈（www.boyouquan.com）开源程序创建」。</p>
+    <p>此外，您若想了解博友圈的技术架构，请参阅站长的「<a href="https://leileiluoluo.com/posts/boyouquan-v2-introduction.html">这篇博客文章</a>」。</p>
     <ul>
-        <li>GitHub 地址：<a href="https://github.com/leileiluoluo/boyouquan">github.com/leileiluoluo/boyouquan</a></li>
+        <li>前端源码：<a href="https://github.com/leileiluoluo/boyouquan-ui">github.com/leileiluoluo/boyouquan-ui</a></li>
+        <li>后端源码：<a href="https://github.com/leileiluoluo/boyouquan-api">github.com/leileiluoluo/boyouquan-api</a></li>
     </ul>
 
     <h3 id="contact-admin">联系站长</h3>

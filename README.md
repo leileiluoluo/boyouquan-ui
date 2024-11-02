@@ -48,10 +48,47 @@ npm start
 
 登录成功后，在博客审核页面（[http://localhost:3000/admin/blog-requests](http://localhost:3000/admin/blog-requests)）即可以看到您刚刚在公共页面提交的测试博客。
 
-![管理员登录页面](./images/readme/blog-requests.png)
+![管理后台博客审核页面](./images/readme/blog-requests.png)
 
 点击博客名称进入博客详情页面，点击「审批通过」。
 
-![管理员登录页面](./images/readme/blog-request.png)
+![管理后台博客详情页面](./images/readme/blog-request.png)
 
 再次回到公共页面，进入博客广场（[http://localhost:3000/blogs](http://localhost:3000/blogs)），即可以看到您提交的测试博客已公开显示。
+
+## 前后端部署
+
+在部署前端时会使用 webpack 工具将 React 原始项目构建为纯静态文件（JS、HTML 和 CSS），然后放到主机对应的目录下。
+
+后端启动后是一个通用的 Java 程序。
+
+所以，使用 Nginx 将前后端同时进行反向代理即可对外提供服务，其部署架构如下图所示。
+
+![部署架构](./images/readme/boyouquan-deployment-architecture.svg)
+
+nginx 配置如下：
+
+```text
+server {
+    listen 443 ssl;
+    server_name www.boyouquan.com;
+
+    location / {
+        root /usr/share/nginx/html/boyouquan-ui;
+        try_files $uri /index.html;
+    }
+
+    location ~ ^/(api|gravatar|feed\.xml) {
+        proxy_pass http://localhost:8080;
+    }
+
+    location /websocket {
+        proxy_pass http://localhost:8080/websocket;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+}
+```
+
+即把以 `/api`、`/gravatar`、`/feed.xml` 和 `/websocket` 开头的请求打到后端服务，其它请求则打到前端。至此，博友圈前后端即可以以同一个域名来对外提供服务了。

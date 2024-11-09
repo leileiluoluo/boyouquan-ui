@@ -2,15 +2,20 @@ import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function HomeLatestNews() {
-    const animationControlStyle = { '--s': '4' };
+    let animationControlStyle = { '--s': 4 };
     const [display, setDisplay] = useState(false);
     const [items, setItems] = useState([]);
 
     const fetchData = async () => {
         const resp = await RequestUtil.get('/api/latest-news');
         const respBody = await resp.json();
-        setItems(respBody);
-        setDisplay(true);
+        if (resp.status == 200 && respBody.length > 0) {
+            const first = respBody[0];
+            const allItems = respBody.push(first);
+            animationControlStyle = { '--s': respBody.length }
+            setItems(allItems);
+            setDisplay(true);
+        }
     };
 
     useEffect(() => {

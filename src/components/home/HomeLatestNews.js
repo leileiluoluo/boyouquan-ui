@@ -11,9 +11,9 @@ export default function HomeLatestNews() {
         const respBody = await resp.json();
         if (resp.status == 200 && respBody.length > 0) {
             const first = respBody[0];
-            const allItems = respBody.push(first);
-            animationControlStyle = { '--s': respBody.length }
-            setItems(allItems);
+            respBody.push(first);
+            animationControlStyle = { '--s': respBody.length - 1 }
+            setItems(respBody);
             setDisplay(true);
         }
     };

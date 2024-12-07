@@ -186,6 +186,18 @@ const content = <>
                     <p><a href="/assets/images/sites/sponsor/cost_details/2024/10/domain_name_renewal.png">花费证明</a></p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/inkcodes.com">InkCodes</a></td>
+                <td>2024/12/07</td>
+                <td>39.00 元</td>
+                <td>祝博友圈红红火火</td>
+                <td>待使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：56.89 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

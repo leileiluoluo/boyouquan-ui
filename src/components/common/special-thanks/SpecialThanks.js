@@ -59,6 +59,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">InkCodes</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/www.feinews.com"><img src="https://www.boyouquan.com/gravatar/cbe0035dc6110d0987da91301910fff0?size=80" /></a>
+                        <span className="tooltiptext">飞牛士</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

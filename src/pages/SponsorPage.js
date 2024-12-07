@@ -190,7 +190,7 @@ const content = <>
                 <td><a href="/blogs/inkcodes.com">InkCodes</a></td>
                 <td>2024/12/07</td>
                 <td>39.00 元</td>
-                <td>祝博友圈红红火火</td>
+                <td>祝博友圈红红火火！</td>
                 <td>待使用</td>
                 <td>--</td>
                 <td>--</td>

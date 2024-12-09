@@ -8,7 +8,7 @@ export default function SiteFooter() {
                 <span style={spanStyle}><a href="/sponsor">赞助本站</a></span>|
                 <span style={spanStyle}><a href="/release-notes">发布历史</a></span>|
                 <span style={spanStyle}><a href="/about">关于本站</a></span>|
-                <span style={spanStyle}><a href="/thanks">感谢名单</a></span>|
+                <span style={spanStyle}><a href="/annual-reports">年度报告</a></span>|
                 <span style={spanStyle}><a href="/similar-sites">同类网站</a></span>
             </div>
             <span style={footerTextStyle}>本站使用「<a href="https://github.com/leileiluoluo/boyouquan-ui">博友圈开源程序</a>」创建，使用「<a href="https://curl.qcloud.com/okTsvSrj">腾讯云</a>」提供服务！</span>

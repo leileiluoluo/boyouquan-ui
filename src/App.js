@@ -22,6 +22,8 @@ import AdminBlogRequestPage from './pages/admin/AdminBlogRequestPage';
 import AdminBlogRequestAddPage from './pages/admin/AdminBlogRequestAddPage';
 import AdminRecommendedPostsPage from './pages/admin/AdminRecommendedPostsPage';
 import AdminRecommendPostPage from './pages/admin/AdminRecommendPostPage';
+import AnnualReportsPage from './pages/AnnualReportsPage';
+import AnnualReportPage from './pages/AnnualReportPage';
 
 export default function App() {
   return (
@@ -55,6 +57,8 @@ export default function App() {
         <Route path='/similar-sites' element={<SimilarSitesPage />} />
         <Route path='/release-notes' element={<ReleaseNotesPage />} />
         <Route path='/release-notes/:version' element={<ReleaseNotePage />} />
+        <Route path='/annual-reports' element={<AnnualReportsPage />} />
+        <Route path='/annual-reports/:year' element={<AnnualReportPage />} />
         <Route path="/404-not-found" element={<NotFoundPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

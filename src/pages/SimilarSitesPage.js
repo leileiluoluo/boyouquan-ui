@@ -26,6 +26,7 @@ const content = <>
         <li><a href="https://github.com/timqian/chinese-independent-blogs">中文独立博客列表</a> · 一个精心筛选的中文博客列表（使用 GitHub 仓库定期更新）</li>
         <li><a href="https://zhblogs.ohyee.cc/">中文博客导航</a> · 尝试链接几乎所有的中文博客</li>
         <li><a href="https://www.zdzn.net/page/blog.html">博客集</a> · 优秀博客收录站</li>
+        <li><a href="https://www.blogsclub.org/">BlogsClub</a> · 博客俱乐部</li>
     </ul>
 </>;
 

@@ -13,11 +13,11 @@ const REPORT_INFO_2024 = {
 
         <p>2024 全年，博友圈共收录了 <strong>392</strong> 个博客，其中 <strong>203</strong> 个为自行提交，<strong>189</strong> 个为后台收录。</p>
         <p>2024 全年，大家共发布了 <strong>15909</strong> 篇文章，其中 <strong>1180</strong> 篇被加入到了首页推荐，<strong>61</strong> 篇被置顶过。发布文章最多的博客为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共发布了 <strong>316</strong> 篇文章。</p>
-        <p>2024 全年，博友圈共给大家带去了 <strong>537971</strong> 个独立 IP 访问，这些 IP 来自于全国各地，按省份分布如下（颜色愈深访问愈多）：</p>
+        <p>2024 全年，博友圈共给大家带去了 <strong>537971</strong> 个独立 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：</p>
 
         <img src="/assets/images/sites/annual_reports/2024/access-map.png" />
 
-        访问量最高的五个省份或直辖市为：
+        可以看到，访问量最高的五个省份或直辖市为：
         <ul>
             <li>江苏</li>
             <li>广东</li>

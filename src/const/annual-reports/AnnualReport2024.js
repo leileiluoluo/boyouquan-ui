@@ -29,7 +29,7 @@ const REPORT_INFO_2024 = {
         <p>2024 全年，获得访问量最高的博客为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共获得了 <strong>6877</strong> 个独立 IP 访问。获得访问量最高的文章为「<a href="https://www.boyouquan.com/sharing?link=https%3A%2F%2Fwww.xiangshitan.com%2Fpost%2F773.html">空空如也</a>」，共获得 <strong>869</strong> 个独立 IP 访问。</p>
         <p>2024 全年，共有 <strong>63</strong> 个博客加入了「<a href="https://www.boyouquan.com/planet-shuttle">星球穿梭</a>」助力计划，其中给大家带去流量最多的博客是「<a href="https://www.boyouquan.com/blogs/xyzbz.cn">网友小宋</a>」，带去了 <strong>708</strong> 个独立 IP 访问。</p>
 
-        <p>2024 全年，博友圈共收到 <strong>495.80</strong> 元的热心赞助！我深受感动！感受到大家对于中文博客圈的那份鼓励与热爱。这些赞助不仅使得博友圈网站在 2024 全年得以平稳运行，更超出预期的让网站能够运行到 2026 年！</p>
+        <p>2024 全年，博友圈共收到 <strong>495.80</strong> 元的热心赞助！我们深受感动！感受到大家对于中文博客圈的那份鼓励与热爱。这些赞助不仅使得博友圈网站在 2024 全年得以平稳运行，更超出预期的让网站能够运行到 2026 年！</p>
     </>,
     publishedAt: '2024年12月12日'
 }

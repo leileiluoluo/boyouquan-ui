@@ -31,6 +31,18 @@ const REPORT_INFO_2024 = {
         <p>2024 全年，共有 <strong>63</strong> 个博友加入了「<a href="https://www.boyouquan.com/planet-shuttle">星球穿梭</a>」助力计划，其中给大家带去流量最多的博友是「<a href="https://www.boyouquan.com/blogs/xyzbz.cn">网友小宋</a>」，带去了 <strong>708</strong> 个独立 IP 访问。</p>
 
         <p>2024 全年，博友圈共收到 <strong>495.80</strong> 元的热心赞助！我们深受感动！感受到大家对于中文博客圈的那份鼓励与热爱。这些赞助不仅使得博友圈网站在 2024 全年得以平稳运行，更超出预期的让网站能够运行到 2026 年！</p>
+
+        <h3>2 年度文章</h3>
+
+        根据访问量、转发量、月度推荐等多个维度的综合分析，2024 年度博友圈十佳文章为：
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fncnccn.cn%2Fji-di-qi-ji-da-xi-bei-pian-yong-xiang-ji-ji-lu-xin-jiang-a-le-tai-zhi-lu%2F">《极地奇迹 · 大西北篇》- 用相机记录新疆阿勒泰之旅</a></li>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fmacin.org%2F2024%2F03%2F25%2Fbei-chun-tian-fang-zhu%2F">被春天放逐的游子</a></li>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fjimmysong.io%2Fblog%2Fshanxi-trip%2F">地上文物看山西：宝藏文物大省不该被埋没</a></li>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fblog.si-on.top%2F2024%2FSecondLap%2F">跑好人生第二圈</a></li>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fchamphoon.xyz%2Flog%2Fchengdu%2F">蜀都行纪</a></li>
+        </ul>
     </>,
     publishedAt: '2024年12月13日'
 }

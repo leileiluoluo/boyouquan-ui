@@ -43,6 +43,17 @@ const REPORT_INFO_2024 = {
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fblog.si-on.top%2F2024%2FSecondLap%2F">跑好人生第二圈</a></li>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fchamphoon.xyz%2Flog%2Fchengdu%2F">蜀都行纪</a></li>
         </ul>
+
+        <h3>3 年度博客</h3>
+
+        根据文章质量、访问量等综合考量，2024 年度博友圈十佳博客为：
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/blogs/synyan.cn">旅行漫记</a></li>
+            <p><i>正如「旅行漫记」博客的名字一样，该博主不仅是一位旅行和摄影爱好者，还是一位文笔极佳的旅行记录者。该博主的文章起名非常有讲究，标题均为七个字，且表达清晰，恰如其分。该博主近一年的文章不仅有寺庙、古镇、博物馆，还有新桥、小路、民俗坊。作者不仅善于用相机记录山川、建筑等大气象，还喜欢抓拍一些人物、细节等小景象。通读作者的一篇文章，您感觉仿佛自己就在故事里、画面中。一影一茶读世界，一人一心品人生！</i></p>
+
+            <li><a href="https://www.boyouquan.com/blogs/sliun.com">理论派</a></li>
+        </ul>
     </>,
     publishedAt: '2024年12月13日'
 }

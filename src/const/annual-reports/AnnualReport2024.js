@@ -77,6 +77,10 @@ const REPORT_INFO_2024 = {
         </ul>
 
         <p><i>「该博主喜欢写一些随想、附一些随拍。文章乍一看尽是日常、平淡无奇，但稍加细品却篇篇有禅意，句句印人心。重山飞渡不惊奇，清泉流水才难求，禅茶一味道日常，事事物物可养心！」</i></p>
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/blogs/kqh.me"><strong>赫赫文王</strong></a></li>
+        </ul>
     </>,
     publishedAt: '2024年12月13日'
 }

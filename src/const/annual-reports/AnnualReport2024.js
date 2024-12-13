@@ -81,6 +81,10 @@ const REPORT_INFO_2024 = {
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/kqh.me"><strong>赫赫文王</strong></a></li>
         </ul>
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/blogs/www.jiangyu.org"><strong>天一生水</strong></a></li>
+        </ul>
     </>,
     publishedAt: '2024年12月13日'
 }

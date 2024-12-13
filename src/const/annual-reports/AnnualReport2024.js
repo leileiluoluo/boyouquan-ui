@@ -58,7 +58,7 @@ const REPORT_INFO_2024 = {
 
         <h3>3 年度博客</h3>
 
-        根据文章质量、访问量等综合评估，博友圈甄选的 2024 年度十佳博客为：
+        根据文章质量、访问量等多个维度综合评估，博友圈甄选的 2024 年度十佳博客为：
 
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/synyan.cn"><strong>旅行漫记</strong></a></li>

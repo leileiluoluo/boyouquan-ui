@@ -34,25 +34,37 @@ const REPORT_INFO_2024 = {
 
         <h3>2 年度文章</h3>
 
-        根据访问量、转发量、月度推荐等多个维度的综合分析，2024 年度博友圈十佳文章为：
+        根据访问量、转发量、月度推荐等多个维度的综合分析，博友圈甄选的 2024 年度十佳文章为：
 
         <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fncnccn.cn%2Fji-di-qi-ji-da-xi-bei-pian-yong-xiang-ji-ji-lu-xin-jiang-a-le-tai-zhi-lu%2F">《极地奇迹 · 大西北篇》- 用相机记录新疆阿勒泰之旅</a></li>
+        </ul>
+
+        <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fmacin.org%2F2024%2F03%2F25%2Fbei-chun-tian-fang-zhu%2F">被春天放逐的游子</a></li>
+        </ul>
+
+        <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fjimmysong.io%2Fblog%2Fshanxi-trip%2F">地上文物看山西：宝藏文物大省不该被埋没</a></li>
+        </ul>
+
+        <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fblog.si-on.top%2F2024%2FSecondLap%2F">跑好人生第二圈</a></li>
+        </ul>
+
+        <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fchamphoon.xyz%2Flog%2Fchengdu%2F">蜀都行纪</a></li>
         </ul>
 
         <h3>3 年度博客</h3>
 
-        根据文章质量、访问量等综合考量，2024 年度博友圈十佳博客为：
+        根据文章质量、访问量等综合评估，博友圈甄选的 2024 年度十佳博客为：
 
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/synyan.cn"><strong>旅行漫记</strong></a></li>
         </ul>
 
-        <p><i>「正如博客的名字一样，该博主不仅是一位旅行和摄影爱好者，还是一位文笔极佳的旅行记录者。该博主的文章起名非常有讲究，标题均为七个字，且表达清晰，恰如其分。该博主近一年的文章不仅有寺庙、古镇、博物馆，还有新桥、小路、民俗坊。作者不仅善于用相机记录山川、建筑等大气象，还喜欢抓拍一些人物、细节等小景象。通读作者的一篇文章，您感觉仿佛自己就在故事里、画面中。一影一茶读世界，一人一心品人生！」</i></p>
+        <p><i>「正如博客的名字一样，该博主不仅是一位旅行和摄影爱好者，还是一位文笔极佳的旅行记录者。该博主的文章起名非常有讲究，标题均为七个字，且表达清晰，恰如其分。该博主近一年的文章不仅有寺庙、古镇、博物馆，还有新桥、小路、民俗坊。作者不仅善于用相机记录山川、建筑等大气象，还喜欢抓拍一些人物、细节等小景象。通读作者的一篇文章，您会感觉仿佛自己就在故事里、画面中。一影一茶读世界，一人一心品人生！」</i></p>
 
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/sliun.com"><strong>理论派</strong></a></li>

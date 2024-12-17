@@ -210,6 +210,18 @@ const content = <>
                     <p>当前总额：156.88 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="https://boke.lu/">博客录</a></td>
+                <td>2024/12/17</td>
+                <td>100.00 元</td>
+                <td>博客录前来支持，加油！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：256.88 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

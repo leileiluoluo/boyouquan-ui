@@ -34,7 +34,7 @@ const REPORT_INFO_2024 = {
 
         <h3>2 年度文章</h3>
 
-        根据访问量、转发量、月度推荐等多个维度的综合分析，博友圈甄选的 2024 年度十佳文章为：
+        根据访问量、转发量、月度推荐等多个维度的综合分析，博友圈甄选的 2024 年度文章为：
 
         <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fncnccn.cn%2Fji-di-qi-ji-da-xi-bei-pian-yong-xiang-ji-ji-lu-xin-jiang-a-le-tai-zhi-lu%2F">《极地奇迹 · 大西北篇》- 用相机记录新疆阿勒泰之旅</a></li>
@@ -58,7 +58,7 @@ const REPORT_INFO_2024 = {
 
         <h3>3 年度博客</h3>
 
-        根据文章质量、访问量等多个维度综合评估，博友圈甄选的 2024 年度十佳博客为：
+        根据文章质量、访问量等多个维度综合评估，博友圈甄选的 2024 年度博客为：
 
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/synyan.cn"><strong>旅行漫记</strong></a></li>
@@ -84,6 +84,10 @@ const REPORT_INFO_2024 = {
 
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/www.jiangyu.org"><strong>天一生水</strong></a></li>
+        </ul>
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/blogs/macin.org"><strong>Macin's Blog</strong></a></li>
         </ul>
     </>,
     publishedAt: '2024年12月13日'

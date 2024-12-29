@@ -234,6 +234,18 @@ const content = <>
                     <p>当前总额：356.87 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/blog.closex.org/cn">CloseX</a></td>
+                <td>2024/12/29</td>
+                <td>9.99 元</td>
+                <td>CloseX 祝博友圈长长久久！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：366.86 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

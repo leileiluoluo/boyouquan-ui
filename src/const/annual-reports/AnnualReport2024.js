@@ -11,9 +11,9 @@ const REPORT_INFO_2024 = {
 
         <h3>1 年度数字</h3>
 
-        <p>2024 全年，博友圈共收录了 <strong>392</strong> 个博客，其中 <strong>203</strong> 个为自行提交，<strong>189</strong> 个为后台收录。</p>
-        <p>2024 全年，大家共发布了 <strong>15909</strong> 篇文章，其中 <strong>1180</strong> 篇被加入到了首页推荐，<strong>61</strong> 篇被置顶过。发布文章最多的博友为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共发布了 <strong>316</strong> 篇文章。</p>
-        <p>2024 全年，博友圈共给大家带去了 <strong>537971</strong> 个独立 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：</p>
+        <p>2024 全年，博友圈共收录了 <strong>402</strong> 个博客，其中 <strong>212</strong> 个为自行提交，<strong>190</strong> 个为后台收录。</p>
+        <p>2024 全年，大家共发布了 <strong>16677</strong> 篇文章，其中 <strong>1249</strong> 篇被加入到了首页推荐，<strong>69</strong> 篇被置顶过。发布文章最多的博友为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共发布了 <strong>364</strong> 篇文章。</p>
+        <p>2024 全年，博友圈共给大家带去了 <strong>541358</strong> 个独立 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：</p>
 
         <img src="/assets/images/sites/annual_reports/2024/access-map.png" />
 
@@ -26,9 +26,9 @@ const REPORT_INFO_2024 = {
             <li>安徽</li>
         </ul>
 
-        <p>2024 全年，获得访问量最高的博客为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共获得了 <strong>6877</strong> 个独立 IP 访问。</p>
-        <p>2024 全年，获得访问量最高的文章为「<a href="https://www.boyouquan.com/sharing?link=https%3A%2F%2Fwww.xiangshitan.com%2Fpost%2F773.html">空空如也</a>」，共获得了 <strong>869</strong> 个独立 IP 访问。</p>
-        <p>2024 全年，共有 <strong>63</strong> 个博友加入了「<a href="https://www.boyouquan.com/planet-shuttle">星球穿梭</a>」助力计划，其中给大家带去流量最多的博友是「<a href="https://www.boyouquan.com/blogs/xyzbz.cn">网友小宋</a>」，带去了 <strong>708</strong> 个独立 IP 访问。</p>
+        <p>2024 全年，获得访问量最高的博客为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共获得了 <strong>6915</strong> 个独立 IP 访问。</p>
+        <p>2024 全年，获得访问量最高的文章为「<a href="https://www.boyouquan.com/sharing?link=https%3A%2F%2Fwww.xiangshitan.com%2Fpost%2F773.html">空空如也</a>」，共获得了 <strong>874</strong> 个独立 IP 访问。</p>
+        <p>2024 全年，共有 <strong>64</strong> 个博友加入了「<a href="https://www.boyouquan.com/planet-shuttle">星球穿梭</a>」助力计划，其中给大家带去流量最多的博友是「<a href="https://www.boyouquan.com/blogs/xyzbz.cn">网友小宋</a>」，带去了 <strong>708</strong> 个独立 IP 访问。</p>
 
         <p>2024 全年，博友圈共收到 <strong>705.78</strong> 元的热心赞助！我深受感动！深深感受到大家对于博友圈的那份鼓励与热爱。得益于这些赞助，以及恰逢云提供商的新用户推广券，博友圈网站现在的续费就可以让其一直运行到 2026 年！这是我在设立赞助页面前未预料到的。再次感谢您的慷慨解囊！博友圈必将不忘初心，尽力做的更好！</p>
 
@@ -96,7 +96,7 @@ const REPORT_INFO_2024 = {
 
         <p><i>「该博主的文章多为旅行日记，其脚步遍布国内外。风景优美、叙事清婉。当你看着博主分享的一个个名不见经传的小镇和一则则妙趣横生的故事时，你定会像亲自经历了那些小桥流水与风土人情一样，得到一阵阵舒展。」</i></p>
     </>,
-    publishedAt: '2024年12月13日'
+    publishedAt: '2024年12月30日'
 }
 
 export { META_2024, REPORT_INFO_2024 };

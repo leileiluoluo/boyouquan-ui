@@ -45,7 +45,7 @@ const REPORT_INFO_2024 = {
         </ul>
 
         <ul>
-            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fwww.jiangyu.org%2Fyuan-lin%2F">景德镇之行</a></li>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fwww.skyue.com%2F24112805.html">景德镇之行</a></li>
         </ul>
 
         <ul>

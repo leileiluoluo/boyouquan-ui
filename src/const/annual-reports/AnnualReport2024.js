@@ -82,13 +82,19 @@ const REPORT_INFO_2024 = {
             <li><a href="https://www.boyouquan.com/blogs/kqh.me"><strong>赫赫文王</strong></a></li>
         </ul>
 
+        <p><i>「该博主对古代天文、地理有非常深入的研究，博客风格也偏古风。博主的文章包含考究、旅行等多个方面，行文流畅、有内容有深度，值得拜读。」</i></p>
+
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/www.jiangyu.org"><strong>天一生水</strong></a></li>
         </ul>
 
+        <p><i>「该博主的文章多聚焦在古代文物、园林、建筑、名人的品鉴与探讨上。阅读该博主的文章，就像参考一个作品展，作者会将其相关的故事与历史沿革梳理的清清楚楚，读后定会惊叹作者的知识储备之深厚。」</i></p>
+
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/macin.org"><strong>Macin's Blog</strong></a></li>
         </ul>
+
+        <p><i>「该博主的文章多为旅行日记，其脚步遍布国内外。风景优美、叙事清婉。当你看着博主分享的一个个名不见经传的小镇和一则则妙趣横生的故事时，你定会像亲自经历了那些小桥流水与风土人情一样，得到一阵阵舒展。」</i></p>
     </>,
     publishedAt: '2024年12月13日'
 }

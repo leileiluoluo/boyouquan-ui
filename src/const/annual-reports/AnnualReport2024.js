@@ -37,6 +37,10 @@ const REPORT_INFO_2024 = {
         根据访问量、转发量、月度推荐等多个维度的综合分析，博友圈甄选的 2024 年度文章为：
 
         <ul>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fwww.xiangshitan.com%2Fpost%2F3372.html">行路，当下的力量</a></li>
+        </ul>
+
+        <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fncnccn.cn%2Fji-di-qi-ji-da-xi-bei-pian-yong-xiang-ji-ji-lu-xin-jiang-a-le-tai-zhi-lu%2F">《极地奇迹 · 大西北篇》- 用相机记录新疆阿勒泰之旅</a></li>
         </ul>
 

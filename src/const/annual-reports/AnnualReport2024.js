@@ -37,6 +37,18 @@ const REPORT_INFO_2024 = {
         根据访问量、转发量、月度推荐等多个维度的综合分析，博友圈甄选的 2024 年度文章为：
 
         <ul>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fihaihe.cn%2F2713.htm">天池，掉落人间的碧玉</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fwww.jiangyu.org%2Fyuan-lin%2F">岭南园林及中国古代园林</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fwww.jiangyu.org%2Fyuan-lin%2F">景德镇之行</a></li>
+        </ul>
+
+        <ul>
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fwww.xiangshitan.com%2Fpost%2F3372.html">行路，当下的力量</a></li>
         </ul>
 
@@ -45,7 +57,7 @@ const REPORT_INFO_2024 = {
         </ul>
 
         <ul>
-            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fmacin.org%2F2024%2F03%2F25%2Fbei-chun-tian-fang-zhu%2F">被春天放逐的游子</a></li>
+            <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fmacin.org%2F2024%2F10%2F14%2Fbian-cheng%2F">边城：是茶峒，还是洪安？</a></li>
         </ul>
 
         <ul>
@@ -65,16 +77,10 @@ const REPORT_INFO_2024 = {
         根据文章质量、访问量等多个维度综合评估，博友圈甄选的 2024 年度博客为：
 
         <ul>
-            <li><a href="https://www.boyouquan.com/blogs/synyan.cn"><strong>旅行漫记</strong></a></li>
+            <li><a href="https://www.boyouquan.com/blogs/macin.org"><strong>Macin's Blog</strong></a></li>
         </ul>
 
-        <p><i>「正如博客的名字一样，该博主不仅是一位旅行和摄影爱好者，还是一位文笔极佳的旅行记录者。该博主的文章起名非常有讲究，标题均为七个字，且表达清晰，恰如其分。该博主近一年的文章不仅有寺庙、古镇、博物馆，还有新桥、小路、民俗坊。作者不仅善于用相机记录山川、建筑等大气象，还喜欢抓拍一些人物、细节等小景象。通读作者的一篇文章，您会感觉仿佛自己就在故事里、画面中。一影一茶读世界，一人一心品人生！」</i></p>
-
-        <ul>
-            <li><a href="https://www.boyouquan.com/blogs/sliun.com"><strong>理论派</strong></a></li>
-        </ul>
-
-        <p><i>「个人感觉理论派的文章属于很有深度、很严肃的类型，该博主也是博友圈里非常难得的洞见型、思考型作者。从文章内容来看，该博主对于法律、历史、文化等有非常深入的研究，每篇文章涉及的知识面非常广，古今中外的典籍信手拈来。尽管博主的知识储备非常深厚，但不是为了求新求异而写文章，而是举实例、说来由，拜读几篇该博主的文章，您会从中感受到博主有一种用事实说话的严谨性，也有一种忧国忧民的大气魄。」</i></p>
+        <p><i>「该博主的文章多为旅行日记，其脚步遍布国内外。风景优美、叙事清婉。当你看着博主分享的一个个名不见经传的小镇和一则则妙趣横生的故事时，你定会像亲自经历了那些小桥流水与风土人情一样，得到一阵阵舒展。」</i></p>
 
         <ul>
             <li><a href="https://www.boyouquan.com/blogs/www.xiangshitan.com"><strong>响石潭</strong></a></li>
@@ -95,10 +101,16 @@ const REPORT_INFO_2024 = {
         <p><i>「该博主的文章多聚焦在古代文物、园林、建筑、名人的品鉴与探讨上。阅读该博主的文章，就像参考一个作品展，作者会将其相关的故事与历史沿革梳理的清清楚楚，读后定会惊叹作者的知识储备之深厚。」</i></p>
 
         <ul>
-            <li><a href="https://www.boyouquan.com/blogs/macin.org"><strong>Macin's Blog</strong></a></li>
+            <li><a href="https://www.boyouquan.com/blogs/synyan.cn"><strong>旅行漫记</strong></a></li>
         </ul>
 
-        <p><i>「该博主的文章多为旅行日记，其脚步遍布国内外。风景优美、叙事清婉。当你看着博主分享的一个个名不见经传的小镇和一则则妙趣横生的故事时，你定会像亲自经历了那些小桥流水与风土人情一样，得到一阵阵舒展。」</i></p>
+        <p><i>「正如博客的名字一样，该博主不仅是一位旅行和摄影爱好者，还是一位文笔极佳的旅行记录者。该博主的文章起名非常有讲究，标题均为七个字，且表达清晰，恰如其分。该博主近一年的文章不仅有寺庙、古镇、博物馆，还有新桥、小路、民俗坊。作者不仅善于用相机记录山川、建筑等大气象，还喜欢抓拍一些人物、细节等小景象。通读作者的一篇文章，您会感觉仿佛自己就在故事里、画面中。一影一茶读世界，一人一心品人生！」</i></p>
+
+        <ul>
+            <li><a href="https://www.boyouquan.com/blogs/sliun.com"><strong>理论派</strong></a></li>
+        </ul>
+
+        <p><i>「个人感觉理论派的文章属于很有深度、很严肃的类型，该博主也是博友圈里非常难得的洞见型、思考型作者。从文章内容来看，该博主对于法律、历史、文化等有非常深入的研究，每篇文章涉及的知识面非常广，古今中外的典籍信手拈来。尽管博主的知识储备非常深厚，但不是为了求新求异而写文章，而是举实例、说来由，拜读几篇该博主的文章，您会从中感受到博主有一种用事实说话的严谨性，也有一种忧国忧民的大气魄。」</i></p>
 
         <br />
 

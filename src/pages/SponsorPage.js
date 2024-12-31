@@ -246,6 +246,30 @@ const content = <>
                     <p>当前总额：366.86 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/blog.mcenahle.com">梅之夏</a></td>
+                <td>2024/12/30</td>
+                <td>10.00 元</td>
+                <td>梅之夏为博友圈加油！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：376.86 元</p>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/blogs/synyan.cn">旅行漫记</a></td>
+                <td>2024/12/30</td>
+                <td>69.00 元</td>
+                <td>祝博友圈越办越好！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：445.86 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

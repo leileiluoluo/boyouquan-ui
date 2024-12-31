@@ -15,7 +15,7 @@ export default function SiteFooter() {
             <br />
             <span style={footerTextStyle}><a href="https://beian.miit.gov.cn/">辽ICP备2022012085号-2</a></span>
             <br />
-            <span style={footerTextStyle}>Copyright © 2023-2024 <a href="https://www.boyouquan.com/home">博友圈</a></span>
+            <span style={footerTextStyle}>Copyright © 2023-2025 <a href="https://www.boyouquan.com/home">博友圈</a></span>
         </footer>
     )
 }

@@ -468,6 +468,14 @@ div#searchbox {
     font-weight: normal !important;
 }
 
+.hotsearch {
+    font-size: 14px;
+}
+
+.hotsearch a {
+    text-decoration: underline;
+}
+
 .post-single {
     position: relative;
     margin-bottom: var(--gap);

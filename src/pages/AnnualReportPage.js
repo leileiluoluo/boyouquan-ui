@@ -5,6 +5,8 @@ import Meta from '../components/common/Meta';
 import Article from '../components/article/Article';
 
 import { META_2024, REPORT_INFO_2024 } from '../const/annual-reports/AnnualReport2024';
+import { scrollToHash } from '../utils/ScrollUtil';
+import { useEffect } from 'react';
 
 const getMetaAndYearInfo = (year) => {
     let meta = null
@@ -26,6 +28,10 @@ export default function AnnualReportPage() {
     if (meta === null || reportInfo === null) {
         return <Navigate to='/annual-reports' />
     }
+
+    useEffect(() => {
+        scrollToHash();
+    });
 
     return (
         <>

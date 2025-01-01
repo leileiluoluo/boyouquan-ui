@@ -72,7 +72,7 @@ const REPORT_INFO_2024 = {
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fchamphoon.xyz%2Flog%2Fchengdu%2F">蜀都行纪</a></li>
         </ul>
 
-        <h3>3 年度博客</h3>
+        <h3 id="annual-blogs">3 年度博客</h3>
 
         根据文章质量、访问量等多个维度综合评估，博友圈甄选的 2024 年度博客为：
 

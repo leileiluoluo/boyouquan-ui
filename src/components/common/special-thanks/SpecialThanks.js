@@ -83,6 +83,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">一间生活 ｜ 旅拍摄影</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/suiyan.cc"><img src="https://www.boyouquan.com/gravatar/897defecd8ecc9ad844d86f615b967d2?size=80" /></a>
+                        <span className="tooltiptext">碎言</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

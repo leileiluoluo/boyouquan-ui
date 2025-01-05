@@ -282,6 +282,18 @@ const content = <>
                     <p>当前总额：512.52 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/suiyan.cc">碎言</a></td>
+                <td>2025/01/05</td>
+                <td>8.88 元</td>
+                <td>博友圈长长久久！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：521.40 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

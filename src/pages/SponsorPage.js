@@ -303,7 +303,7 @@ const content = <>
                 <td>--</td>
                 <td>--</td>
                 <td>
-                    <p>当前总额：521.40 元</p>
+                    <p>当前总额：588.06 元</p>
                 </td>
             </tr>
         </tbody>

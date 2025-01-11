@@ -283,6 +283,18 @@ const content = <>
                 </td>
             </tr>
             <tr>
+                <td><a href="/blogs/ncnccn.cn">一间生活 ｜ 旅拍摄影</a></td>
+                <td>2025/01/04</td>
+                <td>66.66 元</td>
+                <td>新年快乐，一点支持。为了那些「小而美」的坚持！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：579.18 元</p>
+                </td>
+            </tr>
+            <tr>
                 <td><a href="/blogs/suiyan.cc">碎言</a></td>
                 <td>2025/01/05</td>
                 <td>8.88 元</td>

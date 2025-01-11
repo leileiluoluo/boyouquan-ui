@@ -283,7 +283,7 @@ const content = <>
                 </td>
             </tr>
             <tr>
-                <td><a href="/blogs/ncnccn.cn">一间生活 ｜ 旅拍摄影</a></td>
+                <td><a href="/blogs/ncnccn.cn">老白博客</a></td>
                 <td>2025/01/04</td>
                 <td>66.66 元</td>
                 <td>新年快乐，一点支持。为了那些「小而美」的坚持！</td>

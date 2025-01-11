@@ -83,8 +83,8 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">一间生活 ｜ 旅拍摄影</span>
                     </div>
                     <div className="blogger-one">
-                        <a href="/blogs/ncnccn.cn"><img src="https://www.boyouquan.com/gravatar/e67e62fad713f6d508aeee0a20701531?size=80" /></a>
-                        <span className="tooltiptext">一间生活 ｜ 旅拍摄影</span>
+                        <a href="/blogs/www.xcbtmw.com"><img src="https://www.boyouquan.com/gravatar/e67e62fad713f6d508aeee0a20701531?size=80" /></a>
+                        <span className="tooltiptext">老白博客</span>
                     </div>
                     <div className="blogger-one">
                         <a href="/blogs/suiyan.cc"><img src="https://www.boyouquan.com/gravatar/897defecd8ecc9ad844d86f615b967d2?size=80" /></a>

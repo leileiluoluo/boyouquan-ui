@@ -307,7 +307,7 @@ const content = <>
                 </td>
             </tr>
             <tr>
-                <td><a href="/blogs/wiki.eryajf.net">碎言</a></td>
+                <td><a href="/blogs/wiki.eryajf.net">二丫讲梵</a></td>
                 <td>2025/01/16</td>
                 <td>69.00 元</td>
                 <td>祝博友圈越来越强大，凝聚更多博友，让更多优质博客被更多人看到！</td>

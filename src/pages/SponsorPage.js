@@ -306,6 +306,18 @@ const content = <>
                     <p>当前总额：588.06 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/wiki.eryajf.net">碎言</a></td>
+                <td>2025/01/16</td>
+                <td>69.00 元</td>
+                <td>祝博友圈越来越强大，凝聚更多博友，让更多优质博客被更多人看到！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：657.06 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

@@ -91,6 +91,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">碎言</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/wiki.eryajf.net"><img src="https://www.boyouquan.com/gravatar/f03fce826d26f62b84533c148e3ea372?size=80" /></a>
+                        <span className="tooltiptext">二丫讲梵</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

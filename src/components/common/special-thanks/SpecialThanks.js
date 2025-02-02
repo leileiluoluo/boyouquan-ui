@@ -95,6 +95,14 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">二丫讲梵</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/aloner.ink"><img src="https://www.boyouquan.com/gravatar/af1874b7856255302fc3df5102a6ce6d?size=80" /></a>
+                        <span className="tooltiptext">如约而至</span>
+                    </div>
+                    <div className="blogger-one">
+                        <a href="/blogs/uuanqin.top"><img src="https://www.boyouquan.com/gravatar/8c8c66638b65075ca3432ffe11f8b9bd?size=80" /></a>
+                        <span className="tooltiptext">半方池水半方田</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

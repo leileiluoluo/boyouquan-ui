@@ -318,6 +318,30 @@ const content = <>
                     <p>当前总额：657.06 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/aloner.ink">如约而至</a></td>
+                <td>2025/01/29</td>
+                <td>18.88 元</td>
+                <td>新年快乐！希望我们的博客大家庭越走越远！</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：675.94 元</p>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/blogs/uuanqin.top">半方池水半方田</a></td>
+                <td>2025/01/30</td>
+                <td>8.88 元</td>
+                <td>内容很优质，祝新的一年里越办越好～</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：684.82 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

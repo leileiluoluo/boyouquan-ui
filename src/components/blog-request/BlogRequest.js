@@ -46,7 +46,9 @@ export default function BlogRequest() {
                 adminEmail={blogRequest.adminEmail}
                 requestedAt={blogRequest.requestedAt}
                 approved={blogRequest.approved}
-                statusInfo={blogRequest.statusInfo} />
+                status={blogRequest.status}
+                statusInfo={blogRequest.statusInfo}
+                reason={blogRequest.reason} />
         </>
     )
 }

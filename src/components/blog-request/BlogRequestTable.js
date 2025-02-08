@@ -1,4 +1,4 @@
-import { getBlogAddress } from "../../utils/PageAddressUtil";
+import { getBlogAddress } from '../../utils/PageAddressUtil';
 
 const style = { display: 'table', tableLayout: 'fixed' }
 

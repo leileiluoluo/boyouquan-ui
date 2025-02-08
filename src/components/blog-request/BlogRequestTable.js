@@ -1,8 +1,8 @@
-import { getBlogAddress } from "../../utils/PageAddressUtil";
+import { getBlogAddress } from '../../utils/PageAddressUtil';
 
 const style = { display: 'table', tableLayout: 'fixed' }
 
-export default function BlogRequestTable({ name, description, domainName, address, rssAddress, adminEmail, requestedAt, approved, statusInfo }) {
+export default function BlogRequestTable({ name, description, domainName, address, rssAddress, adminEmail, requestedAt, approved, status, statusInfo, reason }) {
     const title = `博客「${name}」审核详情`;
 
     const blogAddress = approved ? getBlogAddress(domainName) : address;
@@ -64,6 +64,16 @@ export default function BlogRequestTable({ name, description, domainName, addres
                                     <p><a href={blogAddress}>{statusInfo}</a></p>
                                 </td>
                             </tr>
+                            {
+                                'rejected' === status ? <tr>
+                                    <td width="20%">
+                                        <span>失败原因</span>
+                                    </td>
+                                    <td width="80%">
+                                        <p>{reason}</p>
+                                    </td>
+                                </tr> : ''
+                            }
                         </tbody>
                     </table>
                 </div>

@@ -146,7 +146,7 @@ export default function AdminBlogRequestTable({ blogRequest }) {
                         </tr>
                         <tr>
                             <td width="20%">
-                                <span>审核信息</span>
+                                <span>失败原因</span>
                             </td>
                             <td width="80%">
                                 <p>{blogRequest.reason}</p>

@@ -335,11 +335,13 @@ const content = <>
                 <td>2025/01/30</td>
                 <td>8.88 元</td>
                 <td>内容很优质，祝新的一年里越办越好～</td>
-                <td>已计入总额，待后续使用</td>
-                <td>--</td>
-                <td>--</td>
+                <td>已完成</td>
+                <td>2025/02/15</td>
+                <td>域名续费</td>
                 <td>
-                    <p>当前总额：684.82 元</p>
+                    <p>当前总额：684.82 元，本次花费：84.58 元，本次结余：600.24 元</p>
+                    <p>腾讯云域名续费一年，由 2028/06/28 续费至 2029/06/28</p>
+                    <p><a href="/assets/images/sites/sponsor/cost_details/2025/02/domain_name_renewal.png">花费证明</a></p>
                 </td>
             </tr>
         </tbody>

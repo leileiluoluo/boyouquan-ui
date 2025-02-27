@@ -103,6 +103,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">半方池水半方田</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/xyzbz.cn"><img src="https://www.boyouquan.com/gravatar/120340d1df519f4e28613fe5d404b286?size=80" /></a>
+                        <span className="tooltiptext">网友小宋</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

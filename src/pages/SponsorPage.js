@@ -345,6 +345,18 @@ const content = <>
                     <p><a href="/assets/images/sites/sponsor/cost_details/2025/02/domain_name_renewal_2.png">花费证明 2</a></p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/xyzbz.cn">网友小宋</a></td>
+                <td>2025/02/27</td>
+                <td>39.00 元</td>
+                <td>支持站长，让服务器多运行一会～</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：554.66 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

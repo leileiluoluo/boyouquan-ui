@@ -54,7 +54,7 @@ export default function BlogDetailMain({ name, domainName, address, description,
             </header>
             <footer className="footer-info">
                 {'' === domainNameRegisteredDateStr ? <div className="resvered"></div> : <div className="domain-info">
-                    <img src="/assets/images/sites/blog_detail/location-icon.png" />
+                    <img src="/assets/images/sites/blog_detail/domain-info-icon.png" />
                     <p>博客站龄：{domainNameRegisteredDateStr}</p>
                     <span className="tooltiptext">{`该博客域名注册于：${domainNameRegisteredAtStdStr}`}</span>
                 </div>

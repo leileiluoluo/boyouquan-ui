@@ -1,4 +1,4 @@
-import formatDateStr from '../../utils/DateUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 import { getBlogAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
 
 export default function AbstractFooter({ blogName, blogDomainName, blogAdminMediumImageURL, publishedAt, linkAccessCount }) {

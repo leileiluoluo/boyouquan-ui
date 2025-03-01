@@ -697,7 +697,30 @@ div#searchbox {
     justify-content: space-between;
 }
 
-.blog-detail-main .footer-info .location-info {
+.blog-detail-main .footer-info .domain-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 12px;
+    color: var(--secondary);
+}
+
+.blog-detail-main .footer-info .domain-info:hover .tooltiptext {
+    visibility: visible;
+}
+
+.blog-detail-main .footer-info .domain-info img {
+    user-select: none;
+    margin-right: 2px;
+    width: 14px;
+    display: block;
+}
+
+.blog-detail-main .footer-info .domain-info p {
+    user-select: none;
+}
+
+.blog-detail-main .footer-info .domain-info {
     display: flex;
     align-items: center;
     justify-content: flex-end;

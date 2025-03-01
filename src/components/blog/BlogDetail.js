@@ -66,6 +66,7 @@ export default function BlogDetail() {
                         submittedInfoTip={blogDetail.submittedInfoTip}
                         statusUnOkInfo={blogDetail.statusUnOkInfo}
                         blogAdminLargeImageURL={blogDetail.blogAdminLargeImageURL}
+                        domainNameRegistered={blogDetail.domainNameRegistered}
                         blogServerLocation={blogDetail.blogServerLocation} />
                     <BlogDetailSummary
                         postCount={blogDetail.postCount}

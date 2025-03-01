@@ -1,4 +1,4 @@
-import formatDateStr from '../../utils/DateUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 
 const marginRightStyle = { marginRight: '6px', color: 'var(--secondary)' };

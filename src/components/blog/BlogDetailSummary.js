@@ -1,4 +1,4 @@
-import formatDateStr from '../../utils/DateUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 
 const blogStatisticsStyle = { fontSize: '16px', color: 'var(--secondary)' };
 

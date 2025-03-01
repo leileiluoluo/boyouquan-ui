@@ -720,7 +720,7 @@ div#searchbox {
     user-select: none;
 }
 
-.blog-detail-main .footer-info .domain-info {
+.blog-detail-main .footer-info .location-info {
     display: flex;
     align-items: center;
     justify-content: flex-end;

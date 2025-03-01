@@ -52,11 +52,11 @@ export default function BlogDetailMain({ name, domainName, address, description,
                 </div>
             </header>
             <footer className="footer-info">
-                {'' !== domainNameRegisteredDateStr ? <div className="domain-info">
+                {'' === domainNameRegisteredDateStr ? <div className="resvered"></div> : <div className="domain-info">
                     <img src="/assets/images/sites/blog_detail/location-icon.png" />
                     <p>站龄：{domainNameRegisteredDateStr}</p>
                     <span className="tooltiptext">{`该博客域名注册于：${domainNameRegisteredDateStr}`}</span>
-                </div> : ''
+                </div>
                 }
                 <div className="location-info">
                     <img src="/assets/images/sites/blog_detail/location-icon.png" />

@@ -1,4 +1,4 @@
-import formatDateStr from '../../utils/DateUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress } from '../../utils/PageAddressUtil';
 
 const tableStyle = { display: 'table', tableLayout: 'fixed' };

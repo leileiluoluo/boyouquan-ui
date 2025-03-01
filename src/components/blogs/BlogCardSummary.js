@@ -1,4 +1,4 @@
-import formatDateStr from '../../utils/DateUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 
 const highlightStyle = { color: '#cb2e58' };
 

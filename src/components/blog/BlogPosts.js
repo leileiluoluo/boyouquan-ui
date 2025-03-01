@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import formatDateStr from '../../utils/DateUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 
 const postsTableStyle = { display: 'table', tableLayout: 'fixed' };

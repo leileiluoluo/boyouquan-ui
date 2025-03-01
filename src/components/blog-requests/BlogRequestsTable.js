@@ -1,4 +1,4 @@
-import formatDateStr from '../../utils/DateUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 import { getAdminBlogRequestAddress, getBlogRequestAddress } from '../../utils/PageAddressUtil';
 
 export default function BlogRequestsTable({ requests, adminPage }) {

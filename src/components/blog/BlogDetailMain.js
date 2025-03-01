@@ -1,11 +1,13 @@
-import { getGoAddress, getGravatarImageFullURL } from "../../utils/PageAddressUtil";
+import { getGoAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
+import { formatDomainNameRegistrationDateStr } from '../../utils/DateUtil';
 
 const blogStatusOkStyle = { backgroundColor: '#0dcb0d' };
 const blogStatusBadStyle = { backgroundColor: 'red' };
 
-export default function BlogDetailMain({ name, domainName, address, description, statusOk, submittedInfo, submittedInfoTip, statusUnOkInfo, blogAdminLargeImageURL, blogServerLocation }) {
+export default function BlogDetailMain({ name, domainName, address, description, statusOk, submittedInfo, submittedInfoTip, statusUnOkInfo, blogAdminLargeImageURL, domainNameRegistered, blogServerLocation }) {
     const blogGoAddress = getGoAddress(address);
     const gravatarURL = getGravatarImageFullURL(blogAdminLargeImageURL);
+    const domainNameRegisteredDateStr = null !== domainNameRegistered ? formatDomainNameRegistrationDateStr(domainNameRegistered) : '';
 
     return (
         <div className="blog-detail-main">
@@ -50,7 +52,12 @@ export default function BlogDetailMain({ name, domainName, address, description,
                 </div>
             </header>
             <footer className="footer-info">
-                <div className="reserved"></div>
+                {'' !== domainNameRegisteredDateStr ? <div className="domain-info">
+                    <img src="/assets/images/sites/blog_detail/location-icon.png" />
+                    <p>'站龄：' + {domainNameRegisteredDateStr}</p>
+                    <span className="tooltiptext">{`该博客域名注册于：${domainNameRegisteredDateStr}`}</span>
+                </div> : ''
+                }
                 <div className="location-info">
                     <img src="/assets/images/sites/blog_detail/location-icon.png" />
                     <p>{blogServerLocation}</p>

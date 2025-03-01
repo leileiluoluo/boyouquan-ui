@@ -1,9 +1,9 @@
 const moment = require('moment');
 
-export default function formatDateStr(dateStr, useUnifiedFarmat) {
+export function formatDateStr(dateStr, useUnifiedFarmat) {
     useUnifiedFarmat = useUnifiedFarmat || false;
 
-    const date = moment(dateStr, 'YYYY-MM-DD HH:mm:ss')
+    const date = moment(dateStr, 'YYYY-MM-DD HH:mm:ss');
     if (useUnifiedFarmat) {
         return date.format('YYYY/MM/DD');
     }
@@ -29,4 +29,27 @@ export default function formatDateStr(dateStr, useUnifiedFarmat) {
         return days + '天前';
     }
     return date.format('YYYY/MM/DD');
+}
+
+export function formatDomainNameRegistrationDateStr(dateStr) {
+    const date = moment(dateStr, 'YYYY-MM-DD HH:mm:ss');
+
+    const past = date.unix();
+
+    const oneDay = 24 * 60 * 60;
+    const oneMonth = 30 * oneDay;
+    const oneYear = 365 * oneDay;
+
+    const now = moment().unix();
+    const timeDiff = now - past;
+    if (timeDiff < oneDay) {
+        return '1天';
+    } else if (timeDiff < oneMonth) {
+        return '1个月';
+    } else if (timeDiff < oneYear) {
+        return '1年';
+    }
+
+    const years = timeDiff / oneYear | 0;
+    return years + '年';
 }

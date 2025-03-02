@@ -18,7 +18,7 @@ export default function BlogCard({ blog, posts, publishedAtHighlight, accessCoun
                 postCount={blog.postCount}
                 accessCount={blog.accessCount}
                 collectedAt={blog.collectedAt}
-                domainRegisteredAt={blog.domainRegisteredAt}
+                domainRegisteredAt={blog.domainNameRegisteredAt}
                 latestPublishedAt={blog.latestPublishedAt}
                 publishedAtHighlight={publishedAtHighlight}
                 accessCountHighlight={accessCountHighlight}

@@ -16,7 +16,7 @@ const meta = {
 const switchTypes = [
     { name: '最近收录', href: '/blogs', default: true },
     { name: '最多浏览', href: '/blogs?sort=access_count', default: false },
-    { name: '最早建站', href: '/blogs?sort=create_time', default: false }
+    { name: '最长博龄', href: '/blogs?sort=create_time', default: false }
 ];
 
 export default function BlogsPage() {

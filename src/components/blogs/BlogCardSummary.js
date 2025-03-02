@@ -2,9 +2,10 @@ import { formatDateStr } from '../../utils/DateUtil';
 
 const highlightStyle = { color: '#cb2e58' };
 
-export default function BlogCardSummary({ postCount, accessCount, collectedAt, latestPublishedAt, publishedAtHighlight, accessCountHighlight }) {
+export default function BlogCardSummary({ postCount, accessCount, collectedAt, domainRegisteredAt, latestPublishedAt, publishedAtHighlight, accessCountHighlight, createTimeHighlight }) {
     const latestPublishedAtFormatted = formatDateStr(latestPublishedAt);
     const collectedAtFormatted = formatDateStr(collectedAt);
+    const domainRegisteredAtFormatted = formatDateStr(domainRegisteredAt, true);
 
     return (
         <div className="summary">
@@ -34,10 +35,14 @@ export default function BlogCardSummary({ postCount, accessCount, collectedAt, l
             </div>
             <div className="flex-item">
                 <div className="title">
-                    <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>收录时间</p>
+                    {createTimeHighlight ? <p style={highlightStyle}>收录时间</p> :
+                        <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>收录时间</p>
+                    }
                 </div>
                 <div className="count">
-                    <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>{collectedAtFormatted}</p>
+                    {createTimeHighlight ? <p style={highlightStyle}>{domainRegisteredAtFormatted}</p> :
+                        <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>{collectedAtFormatted}</p>
+                    }
                 </div>
             </div>
         </div>

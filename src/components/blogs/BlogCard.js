@@ -4,7 +4,7 @@ import BlogCardHeader from './BlogCardHeader';
 import BlogCardLatestPosts from './BlogCardLatestPosts';
 import BlogCardSummary from './BlogCardSummary';
 
-export default function BlogCard({ blog, posts, publishedAtHighlight, accessCountHighlight }) {
+export default function BlogCard({ blog, posts, publishedAtHighlight, accessCountHighlight, createTimeHighlight }) {
     return (
         <article className="blog-entry">
             <BlogCardHeader
@@ -18,9 +18,11 @@ export default function BlogCard({ blog, posts, publishedAtHighlight, accessCoun
                 postCount={blog.postCount}
                 accessCount={blog.accessCount}
                 collectedAt={blog.collectedAt}
+                domainRegisteredAt={blog.domainRegisteredAt}
                 latestPublishedAt={blog.latestPublishedAt}
                 publishedAtHighlight={publishedAtHighlight}
-                accessCountHighlight={accessCountHighlight} />
+                accessCountHighlight={accessCountHighlight}
+                createTimeHighlight={createTimeHighlight} />
             <BlogCardLatestPosts statusOk={blog.statusOk} posts={posts} />
             <BlogCardFooter
                 statusOk={blog.statusOk}

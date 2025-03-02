@@ -7,20 +7,24 @@ import { getURLParameter } from '../../utils/CommonUtil';
 const getSortAndKeywordAndHighligts = () => {
     let sort = getURLParameter('sort') || 'collect_time';
     let keyword = getURLParameter('keyword') || '';
+
     let publishedAtHighlight = false;
     let accessCountHighlight = false;
+    let createTimeHighlight = false;
 
     if ('collect_time' === sort) {
         publishedAtHighlight = true;
-    } else {
+    } else if ('access_count' === sort) {
         accessCountHighlight = true;
+    } else {
+        createTimeHighlight = true;
     }
 
-    return { sort, keyword, publishedAtHighlight, accessCountHighlight };
+    return { sort, keyword, publishedAtHighlight, accessCountHighlight, createTimeHighlight };
 }
 
 export default function BlogCardList() {
-    const { sort, keyword, publishedAtHighlight, accessCountHighlight } = getSortAndKeywordAndHighligts();
+    const { sort, keyword, publishedAtHighlight, accessCountHighlight, createTimeHighlight } = getSortAndKeywordAndHighligts();
 
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
@@ -57,7 +61,8 @@ export default function BlogCardList() {
                                 blog={blog}
                                 posts={blog.posts}
                                 publishedAtHighlight={publishedAtHighlight}
-                                accessCountHighlight={accessCountHighlight} />
+                                accessCountHighlight={accessCountHighlight}
+                                createTimeHighlight={createTimeHighlight} />
                         ))
                 }
             </div>

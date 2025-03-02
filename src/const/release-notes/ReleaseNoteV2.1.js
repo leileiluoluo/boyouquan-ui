@@ -17,8 +17,8 @@ const RELEASE_INFO_V2_1 = {
         <p><img border="1" src="/assets/images/sites/release_notes/v2.1/blog-detail.png" /></p>
 
         <h3>2 代码标签</h3>
-        <p><a href="https://github.com/leileiluoluo/boyouquan-ui/releases/tag/v2.1">boyouquan-ui</a></p>
-        <p><a href="https://github.com/leileiluoluo/boyouquan-api/releases/tag/v2.1">boyouquan-api</a></p>
+        <p>博友圈前端：<a href="https://github.com/leileiluoluo/boyouquan-ui/releases/tag/v2.1">boyouquan-ui</a></p>
+        <p>博友圈后端：<a href="https://github.com/leileiluoluo/boyouquan-api/releases/tag/v2.1">boyouquan-api</a></p>
     </>,
     publishedAt: '2025年3月2日'
 }

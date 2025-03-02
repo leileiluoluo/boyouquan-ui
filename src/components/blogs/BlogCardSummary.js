@@ -35,7 +35,7 @@ export default function BlogCardSummary({ postCount, accessCount, collectedAt, d
             </div>
             <div className="flex-item">
                 <div className="title">
-                    {createTimeHighlight ? <p style={highlightStyle}>收录时间</p> :
+                    {createTimeHighlight ? <p style={highlightStyle}>建博时间</p> :
                         <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>收录时间</p>
                     }
                 </div>

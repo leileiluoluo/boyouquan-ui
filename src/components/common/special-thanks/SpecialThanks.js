@@ -107,6 +107,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">网友小宋</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/blog.shi.wiki"><img src="https://www.boyouquan.com/gravatar/a31418644107dea957ea55762a836865?size=80" /></a>
+                        <span className="tooltiptext">承世的博客</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

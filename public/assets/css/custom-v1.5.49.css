@@ -690,7 +690,7 @@ div#searchbox {
 }
 
 .blog-detail-main .footer-info {
-    margin-top: 8px;
+    margin-top: 12px;
     display: flex;
     align-items: flex-end;
     flex-direction: row;

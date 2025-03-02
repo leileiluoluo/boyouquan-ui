@@ -47,9 +47,9 @@ export function formatDomainNameRegistrationDateStr(dateStr) {
     } else if (timeDiff < oneMonth) {
         return '1个月';
     } else if (timeDiff < oneYear) {
-        return '1年';
+        return '1岁';
     }
 
     const years = timeDiff / oneYear | 0;
-    return years + '年';
+    return years + '岁';
 }

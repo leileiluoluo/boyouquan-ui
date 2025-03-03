@@ -65,9 +65,9 @@ export default function BlogRequestTable({ name, description, domainName, addres
                                 </td>
                             </tr>
                             {
-                                'rejected' === status ? <tr>
+                                'rejected' === status || 'uncollected' == status ? <tr>
                                     <td width="20%">
-                                        <span>失败原因</span>
+                                        <span>驳回原因</span>
                                     </td>
                                     <td width="80%">
                                         <p>{reason}</p>

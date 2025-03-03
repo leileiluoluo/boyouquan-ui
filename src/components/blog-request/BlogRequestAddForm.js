@@ -44,7 +44,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                                 {error.code == 'blog_request_admin_email_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
-                                <input style={inputFontSizeStyle} name="adminEmail" placeholder="用于展示 Gravatar 头像，以及获取通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
+                                <input style={inputFontSizeStyle} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
                             </div>
                         </div>
                         <div className="key-value-entry">

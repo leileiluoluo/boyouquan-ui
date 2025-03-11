@@ -111,6 +111,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">承世的博客</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/vind.art"><img src="https://www.boyouquan.com/gravatar/e5b4ce43154a5e73e24d164a94403611?size=80" /></a>
+                        <span className="tooltiptext">Vind Art</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

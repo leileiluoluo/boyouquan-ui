@@ -369,6 +369,18 @@ const content = <>
                     <p>当前总额：583.66 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/vind.art">Vind Art</a></td>
+                <td>2025/03/11</td>
+                <td>9.00 元</td>
+                <td>互相扶持，共同成长吧～</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：592.66 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

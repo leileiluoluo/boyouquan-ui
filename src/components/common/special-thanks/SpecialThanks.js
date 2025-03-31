@@ -115,6 +115,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">Vind Art</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/blog.yzlog.top"><img src="/assets/images/sites/special_thanks/blog.yzlog.top.png" /></a>
+                        <span className="tooltiptext">云志博客</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

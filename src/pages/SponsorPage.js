@@ -381,6 +381,18 @@ const content = <>
                     <p>当前总额：592.66 元</p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/blog.yzlog.top">云志博客</a></td>
+                <td>2025/03/31</td>
+                <td>99.99 元</td>
+                <td>云志博客祝博友圈越来越好，长长久久，感谢提供的平台。</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：692.65 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

@@ -19,7 +19,7 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">博客录</span>
                     </div>
                     <div className="blogger-one">
-                        <a href="/blogs/blog.cuger.cn"><img src="https://www.boyouquan.com/gravatar/9aec3e60000157099f4adc30474af4ff?size=80" /></a>
+                        <a href="/blogs/blog.cuger.cn"><img src="/assets/images/sites/special_thanks/blog.cuger.cn.webp" /></a>
                         <span className="tooltiptext">遐说</span>
                     </div>
                     <div className="blogger-one">

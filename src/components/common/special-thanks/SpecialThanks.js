@@ -23,11 +23,11 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">遐说</span>
                     </div>
                     <div className="blogger-one">
-                        <a href="/blogs/www.evan.xin"><img src="https://www.boyouquan.com/gravatar/8a5658b6a48eb08b963c1821007bfe0c?size=80" /></a>
+                        <a href="/blogs/www.evan.xin"><img src="/assets/images/sites/special_thanks/www.evan.xin.png" /></a>
                         <span className="tooltiptext">Evan's Space</span>
                     </div>
                     <div className="blogger-one">
-                        <a href="/blogs/blog.goodboyboy.top"><img src="https://www.boyouquan.com/gravatar/9da9d1d515d273d4794015f2321f6e04?size=80" /></a>
+                        <a href="/blogs/blog.goodboyboy.top"><img src="/assets/images/sites/special_thanks/blog.goodboyboy.top.png" /></a>
                         <span className="tooltiptext">GoodBoyboy's Blog</span>
                     </div>
                     <div className="blogger-one">

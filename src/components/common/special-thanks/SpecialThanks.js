@@ -51,8 +51,8 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">懋和道人</span>
                     </div>
                     <div className="blogger-one">
-                        <a href="/blogs/www.dolingou.com"><img src="/assets/images/sites/special_thanks/pinaland.cn.png" /></a>
-                        <span className="tooltiptext">Dolingou</span>
+                        <a href="/blogs/deeprouter.org"><img src="/assets/images/sites/special_thanks/deeprouter.org.webp" /></a>
+                        <span className="tooltiptext">Deep Router</span>
                     </div>
                     <div className="blogger-one">
                         <a href="/blogs/inkcodes.com"><img src="/assets/images/sites/special_thanks/inkcodes.com.jpeg" /></a>

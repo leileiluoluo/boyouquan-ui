@@ -58,15 +58,28 @@ npm start
 
 ## 前后端部署
 
-在部署前端时会使用 webpack 工具将 React 原始项目构建为纯静态文件（JS、HTML 和 CSS），然后放到主机对应的目录下。
+在部署前端时，首先将 `.env.production` 中的 `BOYOUQUAN_API_ADDRESS` 变量值替换为您自己的。
 
-后端启动后是一个通用的 Java 程序。
+```text
+BOYOUQUAN_API_ADDRESS=https://www.you-domain.com
+```
 
-所以，使用 Nginx 将前后端同时进行反向代理即可对外提供服务，其部署架构如下图所示。
+然后，使用如下命令将该 React 工程打包为纯静态文件（JS、HTML 和 CSS）。
+
+```shell
+NODE_ENV=production
+npm run build
+```
+
+接下来，将静态文件的所属文件夹 `dist` 进行压缩，然后上传到您的主机对应的目录下并解压（如：`/usr/share/nginx/html/boyouquan-ui/dist`）。
+
+前端完事后，参考 [后端程序的编译和运行命令](https://github.com/leileiluoluo/boyouquan-api?tab=readme-ov-file#%E7%BC%96%E8%AF%91%E4%B8%8E%E8%BF%90%E8%A1%8C) 将后端程序也在同一台主机上进行启动。
+
+最后，使用 Nginx 将前后端同时进行反向代理即可对外提供服务，部署架构如下图所示。
 
 ![部署架构](./images/readme/boyouquan-deployment-architecture.svg)
 
-nginx 配置如下：
+Nginx 关键配置如下（完整配置，请参考 [./conf/nginx/boyouquan.conf](./conf/nginx/boyouquan.conf)）：
 
 ```text
 server {
@@ -74,7 +87,7 @@ server {
     server_name www.boyouquan.com;
 
     location / {
-        root /usr/share/nginx/html/boyouquan-ui;
+        root /usr/share/nginx/html/boyouquan-ui/dist;
         try_files $uri /index.html;
     }
 
@@ -91,4 +104,4 @@ server {
 }
 ```
 
-即把以 `/api`、`/gravatar`、`/feed.xml` 和 `/websocket` 开头的请求打到后端服务，其它请求则打到前端。至此，博友圈前后端即可以以同一个域名来对外提供服务了。
+上述 Nginx 配置将根路径 `/` 指向了前端静态文件所在目录 `/usr/share/nginx/html/boyouquan-ui/dist`，然后将以 `/api`、`/gravatar`、`/feed.xml` 和 `/websocket` 等开头的请求打到后端服务。至此，博友圈前后端即可以以同一个域名来对外提供服务了。

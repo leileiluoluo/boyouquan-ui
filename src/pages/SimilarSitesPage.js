@@ -28,6 +28,7 @@ const content = <>
         <li><a href="https://www.zdzn.net/page/blog.html">博客集</a> · 优秀博客收录站</li>
         <li><a href="https://www.blogsclub.org/">BlogsClub</a> · 博客俱乐部</li>
         <li><a href="https://www.findblog.net/">FindBlog</a> · 发现有趣的独立博客</li>
+        <li><a href="https://blogtalk.org/">博客说</a> · 个人博客站点聚合</li>
     </ul>
 </>;
 

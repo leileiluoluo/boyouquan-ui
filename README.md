@@ -104,4 +104,4 @@ server {
 }
 ```
 
-上述 Nginx 配置将根路径 `/` 指向了前端静态文件所在目录 `/usr/share/nginx/html/boyouquan-ui/dist`，然后将以 `/api`、`/gravatar`、`/feed.xml` 和 `/websocket` 等开头的请求打到后端服务。至此，博友圈前后端即可以以同一个域名来对外提供服务了。
+上述 Nginx 配置将根路径 `/` 指向了前端静态文件所在目录 `/usr/share/nginx/html/boyouquan-ui/dist`，然后将以 `/api`、`/gravatar`、`/feed.xml` 和 `/websocket` 等开头的请求打到后端服务。至此，博友圈前后端即可以同一个域名来对外提供服务了。

@@ -24,6 +24,7 @@ import AdminRecommendedPostsPage from './pages/admin/AdminRecommendedPostsPage';
 import AdminRecommendPostPage from './pages/admin/AdminRecommendPostPage';
 import AnnualReportsPage from './pages/AnnualReportsPage';
 import AnnualReportPage from './pages/AnnualReportPage';
+import BlogRequestEmailValidationPage from './pages/BlogRequestEmailValidationPage';
 
 export default function App() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
         <Route path='/blogs/:domain/:sub/:subsub' element={<BlogPage />} />
         <Route path='/blog-requests' element={<BlogRequestsPage />} />
         <Route path='/blog-requests/add' element={<BlogRequestAddPage />} />
+        <Route path='/blog-requests/add/email-validation' element={<BlogRequestEmailValidationPage />} />
         <Route path='/blog-requests/:id' element={<BlogRequestPage />} />
         <Route path='/admin/login' element={<LoginPage />} />
         <Route path='/admin/blog-requests' element={<AdminBlogRequestsPage />} />

@@ -927,6 +927,21 @@ tr:nth-child(even) {
     margin-bottom: 6px;
 }
 
+.blog-requests .requests-form-container .key-value-entry .get-email-validation-code button {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--theme);
+    line-height: 30px;
+    background: var(--primary);
+    border-radius: 16px;
+    padding: 0 16px;
+}
+
+.blog-requests .requests-form-container .key-value-entry .get-email-validation-code button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 .blog-requests .requests-form-container .key-value-entry .field {
     font-size: 16px;
     color: var(--secondary);

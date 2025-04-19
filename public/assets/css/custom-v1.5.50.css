@@ -965,6 +965,10 @@ tr:nth-child(even) {
     color: var(--content);
 }
 
+.blog-requests .requests-form-container .key-value-entry input:disabled{
+    cursor: not-allowed;
+}
+
 .blog-requests .requests-form-container .key-value-entry textarea {
     width: 100%;
     height: 100px;

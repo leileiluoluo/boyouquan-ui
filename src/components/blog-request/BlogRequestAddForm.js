@@ -18,6 +18,15 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                     <div className="requests-form-container">
                         <div className="key-value-entry">
                             <div className="label">
+                                <p>博主邮箱 *</p>
+                                {error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
+                            </div>
+                            <div className="field">
+                                <input style={inputFontSizeStyle} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} disabled />
+                            </div>
+                        </div>
+                        <div className="key-value-entry">
+                            <div className="label">
                                 <p>博客名称 *</p>
                                 {(error.code == 'blog_request_name_invalid' || error.code == 'blog_submitted_with_same_ip')
                                     ? <p style={errorStyle}>{error.message}</p> : ''}
@@ -36,15 +45,6 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} name="rssAddress" placeholder="用于抓取文章" id="rssAddress" value={formData.rssAddress} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div className="key-value-entry">
-                            <div className="label">
-                                <p>博主邮箱 *</p>
-                                {error.code == 'blog_request_admin_email_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
-                            </div>
-                            <div className="field">
-                                <input style={inputFontSizeStyle} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
                             </div>
                         </div>
                         <div className="key-value-entry">

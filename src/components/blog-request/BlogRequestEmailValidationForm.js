@@ -35,7 +35,7 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                         <div className="key-value-entry" ref={emailValidationCodeInputRef} style={{ display: "none" }}>
                             <div className="label">
                                 <p>验证码 *</p>
-                                {error.code == 'blog_request_email_verification_code_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
+                                {error.code == 'blog_request_email_validation_code_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input type="number" style={inputFontSizeStyle} name="emailVerificationCode" placeholder="上述邮箱收到的 6 位验证码" id="emailVerificationCode" value={formData.emailVerificationCode} onChange={handleChange} />

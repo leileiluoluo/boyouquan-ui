@@ -31,12 +31,12 @@ export default function BlogRequestEmailValidation() {
     const emailValidationButtonRef = useRef(null);
 
     const sendEmailVerificationCode = async (formData) => {
-        const resp = await RequestUtil.post('/api/blog-requests/verification-code',
+        const resp = await RequestUtil.post('/api/blog-requests/validation-code',
             JSON.stringify(formData),
             { 'Content-Type': 'application/json' }
         );
 
-        if (resp.status != 200) {
+        if (resp.status != 201) {
             const respBody = await resp.json();
             setError(respBody);
         }
@@ -61,7 +61,7 @@ export default function BlogRequestEmailValidation() {
         setFormData({
             ...formData,
             [name]: name === 'emailVerificationCode'
-                ? Number(value.replace(/[^0-9]/g, '').slice(0, 6))
+                ? value.replace(/[^0-9]/g, '').slice(0, 6)
                 : value
         });
     };

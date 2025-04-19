@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { isEmailValid } from '../../utils/EmailUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { redirectTo } from '../../utils/CommonUtil';
-import { BLOG_REQUEST_ADD_ADDRESS } from '../../utils/PageAddressUtil';
+import { BLOG_REQUEST_ADD_ADDRESS, BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
 import BlogRequestEmailValidationForm from './BlogRequestEmailValidationForm';
 
 function startCountdown(button, countdownInterval, countdown) {
@@ -30,7 +30,19 @@ export default function BlogRequestEmailValidation() {
     const emailValidationCodeInputRef = useRef(null);
     const emailValidationButtonRef = useRef(null);
 
-    const postData = async (formData) => {
+    const sendEmailVerificationCode = async (formData) => {
+        const resp = await RequestUtil.post('/api/blog-requests/verification-code',
+            JSON.stringify(formData),
+            { 'Content-Type': 'application/json' }
+        );
+
+        if (resp.status != 200) {
+            const respBody = await resp.json();
+            setError(respBody);
+        }
+    };
+
+    const verifiyEmailAndCode = async (formData) => {
         const resp = await RequestUtil.post('/api/blog-requests/email-validation',
             JSON.stringify(formData),
             { 'Content-Type': 'application/json' }
@@ -40,10 +52,7 @@ export default function BlogRequestEmailValidation() {
             const respBody = await resp.json();
             setError(respBody);
         } else {
-            const adminEmail = formData['adminEmail'];
-            const emailVerificationCode = formData['emailVerificationCode'];
-            const blogAddAddress = BLOG_REQUEST_ADD_ADDRESS + `?adminEmail=${adminEmail}&emailVerificationCode=${emailVerificationCode}`;
-            redirectTo(blogAddAddress, 3);
+            redirectTo(BLOG_REQUEST_ADD_ADDRESS, 3);
         }
     };
 
@@ -67,6 +76,9 @@ export default function BlogRequestEmailValidation() {
 
         setError({ code: '', message: '' });
 
+        // send request
+        sendEmailVerificationCode(formData);
+
         // display
         sendCodeInputRef.current.disabled = true;
         let countdownInterval;
@@ -83,7 +95,7 @@ export default function BlogRequestEmailValidation() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        postData(formData);
+        verifiyEmailAndCode(formData);
     };
 
     return (

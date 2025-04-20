@@ -52,7 +52,10 @@ export default function BlogRequestEmailValidation() {
             const respBody = await resp.json();
             setError(respBody);
         } else {
-            redirectTo(BLOG_REQUEST_ADD_ADDRESS, 3);
+            const adminEmail = formData['adminEmail'];
+            const emailVerificationCode = formData['emailVerificationCode'];
+            const address = BLOG_REQUEST_ADD_ADDRESS + `adminEmail=${adminEmail}&emailVerificationCode=${emailVerificationCode}`;
+            redirectTo(address);
         }
     };
 

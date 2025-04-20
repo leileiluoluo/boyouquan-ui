@@ -19,7 +19,7 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                         <div className="key-value-entry">
                             <div className="label">
                                 <p>博主邮箱 *</p>
-                                {error.code == 'blog_request_admin_email_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
+                                {error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? <p style={errorStyle}>{error.message}</p> : ''}
                             </div>
                             <div className="field">
                                 <input style={inputFontSizeStyle} ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />

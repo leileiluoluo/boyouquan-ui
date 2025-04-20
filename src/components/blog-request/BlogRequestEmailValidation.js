@@ -54,7 +54,7 @@ export default function BlogRequestEmailValidation() {
         } else {
             const adminEmail = formData['adminEmail'];
             const emailVerificationCode = formData['emailVerificationCode'];
-            const address = BLOG_REQUEST_ADD_ADDRESS + `adminEmail=${adminEmail}&emailVerificationCode=${emailVerificationCode}`;
+            const address = BLOG_REQUEST_ADD_ADDRESS + `?adminEmail=${adminEmail}&emailVerificationCode=${emailVerificationCode}`;
             redirectTo(address);
         }
     };

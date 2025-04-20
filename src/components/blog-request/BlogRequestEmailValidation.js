@@ -39,6 +39,17 @@ export default function BlogRequestEmailValidation() {
         if (resp.status != 201) {
             const respBody = await resp.json();
             setError(respBody);
+        } else {
+            // display
+            sendCodeInputRef.current.disabled = true;
+            let countdownInterval;
+            let countdown = 120;
+
+            adminEmailInputRef.current.disabled = true;
+            emailValidationCodeInputRef.current.style.display = 'block';
+            emailValidationButtonRef.current.style.display = 'block';
+
+            startCountdown(sendCodeInputRef.current, countdownInterval, countdown);
         }
     };
 
@@ -81,17 +92,6 @@ export default function BlogRequestEmailValidation() {
 
         // send request
         sendEmailVerificationCode(formData);
-
-        // display
-        sendCodeInputRef.current.disabled = true;
-        let countdownInterval;
-        let countdown = 120;
-
-        adminEmailInputRef.current.disabled = true;
-        emailValidationCodeInputRef.current.style.display = 'block';
-        emailValidationButtonRef.current.style.display = 'block';
-
-        startCountdown(sendCodeInputRef.current, countdownInterval, countdown);
     };
 
 

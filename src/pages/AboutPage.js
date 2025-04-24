@@ -26,6 +26,7 @@ const content = <>
         <li>原创要求：原创文章数占总文章数比例不少于 80%；</li>
         <li>站龄要求：建站已有一年或以上；</li>
         <li>RSS 要求：拥有可以访问的 RSS 地址（如：<a href="https://www.boyouquan.com/feed.xml">https://www.boyouquan.com/feed.xml</a>）；</li>
+        <li>性能要求：在中国大陆地区拥有良好的访问性能；</li>
         <li>个人承诺：十年不停更，十年不闭站！</li>
     </ul>
     <p>确认满足如上要求并承诺十年不闭站后，可以通过点击导航栏「<a href="https://www.boyouquan.com/blog-requests/add">提交博客</a>」按钮来填写申请表单，提交后一般在 24 小时内会得到审核，审核通过或未通过都会收到邮件提醒。</p>

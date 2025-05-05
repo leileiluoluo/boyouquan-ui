@@ -395,6 +395,18 @@ const content = <>
                     <p><a href="/assets/images/sites/sponsor/cost_details/2025/04/domain_name_renewal.png">花费证明</a></p>
                 </td>
             </tr>
+            <tr>
+                <td><a href="/blogs/blog.1edg.cn">小林先森</a></td>
+                <td>2025/05/05</td>
+                <td>9.00 元</td>
+                <td>祝博友圈兴旺，情谊长存，也祝各位博友身体健康～</td>
+                <td>已计入总额，待后续使用</td>
+                <td>--</td>
+                <td>--</td>
+                <td>
+                    <p>当前总额：617.07 元</p>
+                </td>
+            </tr>
         </tbody>
     </table>
 

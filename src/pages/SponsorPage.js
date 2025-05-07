@@ -1,7 +1,7 @@
-import CommonHeader from "../components/common/CommonHeader";
-import CommonFooter from "../components/common/CommonFooter";
-import Meta from "../components/common/Meta";
-import Article from "../components/article/Article";
+import CommonHeader from '../components/common/CommonHeader';
+import CommonFooter from '../components/common/CommonFooter';
+import Meta from '../components/common/Meta';
+import Article from '../components/article/Article';
 
 const meta = {
     title: "赞助本站 - 博友圈 · 博客人的朋友圈！",

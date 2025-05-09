@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Box, Flex, Text } from '@radix-ui/themes';
 import RequestUtil from '../../utils/APIRequestUtil';
-
-const summaryStyle = {
-    color: '#cb2e58', margin: '0 2px 0 2px'
-}
 
 export default function FooterStatistic() {
     const [statistic, setStatistic] = useState({});
@@ -27,20 +24,10 @@ export default function FooterStatistic() {
     }, []);
 
     return (
-        <>
-            {loaded ?
-                <div className="footer-summary">
-                    <div className="flex-item">
-                        <p>收录博客</p><a style={summaryStyle}>{statistic.totalBlogs}</a><p>个</p>
-                    </div>
-                    <div className="flex-item">
-                        <p>收录文章</p><a style={summaryStyle}>{statistic.totalPosts}</a><p>篇</p>
-                    </div>
-                    <div className="flex-item">
-                        <p>浏览文章</p><a style={summaryStyle}>{statistic.totalAccesses}</a><p>次</p>
-                    </div>
-                </div> : ''
-            }
-        </>
+        <Flex gap="2" justify="center">
+            <Text>收录博客 {statistic.totalBlogs} 个</Text>
+            <Text>收录文章 {statistic.totalPosts} 篇</Text>
+            <Text>浏览文章 {statistic.totalAccesses} 次</Text>
+        </Flex>
     )
 }

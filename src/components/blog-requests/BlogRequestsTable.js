@@ -1,39 +1,35 @@
+import { Box, Table, Link } from '@radix-ui/themes';
+
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAdminBlogRequestAddress, getBlogRequestAddress } from '../../utils/PageAddressUtil';
 
 export default function BlogRequestsTable({ requests, adminPage }) {
     return (
-        <div className="blog-requests">
-            <div className="requests-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <td width="30%"><span>博客名称</span></td>
-                            <td width="20%"><span>博主邮箱</span></td>
-                            <td width="20%"><span>提交时间</span></td>
-                            { adminPage ? <td width="20%"><span>自行提交</span></td> : ''}
-                            <td width="10%"><span>审核状态</span></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            requests.map((request, index) => (
-                                <tr key={index}>
-                                    <td width="30%">
-                                        <p><a href={adminPage ? getAdminBlogRequestAddress(request.id) : getBlogRequestAddress(request.id)}>{request.name}</a></p>
-                                    </td>
-                                    <td width="20%"><p>{request.adminEmail}</p></td>
-                                    <td width="20%"><p>{formatDateStr(request.requestedAt, true)}</p></td>
-                                    { adminPage ? <td width="20%">{request.selfSubmitted ? '是' : '否'}</td> : ''}
-                                    <td width="10%">
-                                        <p>{request.statusInfo}</p>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <Box id="blog-requests">
+            <Table.Root variant="surface">
+                <Table.Header>
+                    <Table.Row>
+                        <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>博主邮箱</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>提交时间</Table.ColumnHeaderCell>
+                        {adminPage ? <Table.ColumnHeaderCell>自行提交</Table.ColumnHeaderCell> : ''}
+                        <Table.ColumnHeaderCell>审核状态</Table.ColumnHeaderCell>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {
+                        requests.map((request, index) => (
+                            <Table.Row>
+                                <Table.RowHeaderCell><Link href={adminPage ? getAdminBlogRequestAddress(request.id) : getBlogRequestAddress(request.id)}>{request.name}</Link></Table.RowHeaderCell>
+                                <Table.Cell>{request.adminEmail}</Table.Cell>
+                                <Table.Cell>{formatDateStr(request.requestedAt, true)}</Table.Cell>
+                                {adminPage ? <Table.Cell>{request.selfSubmitted ? '是' : '否'}</Table.Cell> : ''}
+                                <Table.Cell>{request.statusInfo}</Table.Cell>
+                            </Table.Row>
+                        ))
+                    }
+                </Table.Body>
+            </Table.Root>
+        </Box>
     )
 }

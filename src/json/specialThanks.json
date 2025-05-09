@@ -1,0 +1,32 @@
+[
+    {
+        "name": "博客录",
+        "link": "https://boke.lu/",
+        "avatar": "assets/images/sites/special_thanks/bokelu.png"
+    },
+    {
+        "name": "遐说",
+        "link": "/blogs/blog.cuger.cn",
+        "avatar": "/assets/images/sites/special_thanks/blog.cuger.cn.webp"
+    },
+    {
+        "name": "Evan's Space",
+        "link": "/blogs/www.evan.xin",
+        "avatar": "/assets/images/sites/special_thanks/www.evan.xin.png"
+    },
+    {
+        "name": "GoodBoyboy's Blog",
+        "link": "/blogs/blog.goodboyboy.top",
+        "avatar": "/assets/images/sites/special_thanks/blog.goodboyboy.top.png"
+    },
+    {
+        "name": "晴空树",
+        "link": "/blogs/pinaland.cn",
+        "avatar": "/assets/images/sites/special_thanks/pinaland.cn.jpeg"
+    },
+    {
+        "name": "响石潭",
+        "link": "/blogs/www.xiangshitan.com",
+        "avatar": "/assets/images/sites/special_thanks/www.xiangshitan.com.jpeg"
+    }
+]

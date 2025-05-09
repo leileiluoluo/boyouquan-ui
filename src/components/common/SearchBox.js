@@ -1,31 +1,51 @@
-import { useEffect } from "react"
+import { useEffect, useState } from 'react';
+import { TextField, IconButton } from '@radix-ui/themes';
+import { MagnifyingGlassIcon, Cross2Icon } from '@radix-ui/react-icons';
+import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBox({ placeholder, gotoPage, sortType }) {
-    useEffect(() => {
-        document.onkeydown = function () {
-            var evt = window.event || arguments[0];
-            if (evt && evt.keyCode == 13) {
-                var input = document.getElementById('searchInput').value;
-                if (sortType != null) {
-                    window.location = gotoPage + '?sort=' + sortType + '&keyword=' + encodeURIComponent(input);
-                } else {
-                    window.location = gotoPage + '?keyword=' + encodeURIComponent(input);
-                }
-            }
-        }
+    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
 
-        var query = window.location.href.split('?');
-        if (query.length > 1) {
-            var urlStr = query[1];
-            var params = new URLSearchParams(urlStr);
-            var keyword = params.get('keyword');
-            document.getElementById('searchInput').value = keyword;
+    const handleSearch = (e) => {
+        if (e.key === 'Enter' && searchTerm.trim()) {
+            const keyword = searchTerm.trim();
+
+            let goTo = (null != sortType)
+                ? `${gotoPage}?sort=${sortType}&keyword=${encodeURIComponent(keyword)}`
+                : `${gotoPage}?keyword=${encodeURIComponent(keyword)}`;
+
+            redirectTo(goTo);
+        }
+    };
+
+    const clearSearch = () => {
+        setSearchTerm('');
+        navigate(window.location.pathname, { replace: true });
+    };
+
+    useEffect(() => {
+        const keyword = getURLParameter('keyword');
+        if (null !== keyword) {
+            setSearchTerm(keyword);
         }
     });
 
     return (
-        <div id="searchbox">
-            <input id="searchInput" autoFocus="" placeholder={placeholder} aria-label="search" type="search" autoComplete="off" />
-        </div>
+        <TextField.Root
+            placeholder={placeholder}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleSearch}>
+            <TextField.Slot>
+                <MagnifyingGlassIcon />
+            </TextField.Slot>
+            <TextField.Slot>
+                <IconButton size="1" variant="ghost" onClick={clearSearch}>
+                    <Cross2Icon />
+                </IconButton>
+            </TextField.Slot>
+        </TextField.Root>
     )
 }

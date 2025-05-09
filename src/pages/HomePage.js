@@ -39,7 +39,7 @@ export default function HomePage() {
             <main className="main">
                 <Suspense>
                     <HomePopularBlogsHeader />
-                    <HomeLatestNews />
+                    {/* <HomeLatestNews /> */}
                 </Suspense>
                 <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
                 <SwitchSortType types={switchTypes} />

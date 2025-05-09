@@ -28,7 +28,7 @@ export default function PostCardList({ sort, keyword, showPinned }) {
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
         clearHash();
-        document.getElementsByClassName('switch-sort-type')[0].scrollIntoView();
+        document.getElementById('switch-sort-type').scrollIntoView();
     }
 
     return (

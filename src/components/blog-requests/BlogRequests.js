@@ -28,7 +28,7 @@ export default function BlogRequests() {
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
 
-        document.getElementsByClassName('blog-requests')[0].scrollIntoView();
+        document.getElementById('blog-requests').scrollIntoView();
     }
 
     return (

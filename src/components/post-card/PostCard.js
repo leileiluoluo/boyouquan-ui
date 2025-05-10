@@ -1,8 +1,7 @@
-import { Box, Card, Flex, Avatar, Text } from '@radix-ui/themes';
+import { Box, Card, Flex, Avatar, Text, Link } from '@radix-ui/themes';
 import { ExternalLinkIcon } from '@radix-ui/react-icons';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
-import { Link } from 'react-router-dom';
 
 export default function PostCard({
     showPinned,
@@ -68,50 +67,65 @@ export default function PostCard({
         //     </footer>
         // </article>
 
-        <Card>
-            <Flex>
-                <Link href={blogStatusOk ? linkURL : abstractURL}>{title}</Link>
-            </Flex>
-            <Box>
-                <Text as="div" size="2" color="gray" style={{
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                }}>
-                    {description}
-                </Text>
-            </Box>
-            <Flex gap="1">
-                <Avatar
-                    size="1"
-                    src={gravatarURL}
-                    radius="full"
-                />
+        <Card style={{
+            border: showPinned && pinned ? '1px solid var(--red-9)' : '',
+          }}>
+            <Flex direction="column" gap="1">
                 <Box>
-                    <Link href={blogURL}>{blogName}</Link>
+                    <Flex>
+                        <Link size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL}>{title}</Link>
+                    </Flex>
                 </Box>
                 <Box>
-                    <Text> · </Text>
-                </Box>
-                <Box>
-                    <Text>
-                        {publishedAtFormatted}
+                    <Text as="div" size="2" color="gray" style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}>
+                        {description}
                     </Text>
                 </Box>
                 <Box>
-                    <Text> · </Text>
-                </Box>
-                <Box>
-                    <Text>
-                        {linkAccessCount} 次浏览
-                    </Text>
-                </Box>
-                <Box>
-                    <Text> · </Text>
-                </Box>
-                <Box>
-                    <Link href={sharingURL} asChild><a style={{ display: 'inline-flex' }}><ExternalLinkIcon /></a></Link>
+                    <Flex gap="1" align="center">
+                        <Box>
+                            <Link href={blogURL}>
+                                <Avatar
+                                    style={{ width: 20, height: 20 }}
+                                    src={gravatarURL}
+
+                                    radius="full"
+                                />
+                            </Link>
+                        </Box>
+                        <Box>
+                            <Link size="2" href={blogURL}>{blogName}</Link>
+                        </Box>
+                        <Box>
+                            <Text> · </Text>
+                        </Box>
+                        <Box>
+                            <Text size="2">
+                                {publishedAtFormatted}
+                            </Text>
+                        </Box>
+                        <Box>
+                            <Text> · </Text>
+                        </Box>
+                        <Box>
+                            <Text size="2">
+                                {linkAccessCount} 次浏览
+                            </Text>
+                        </Box>
+                        <Box>
+                            <Text> · </Text>
+                        </Box>
+                        <Box>
+                            <Flex align="center">
+                                <Link size="2" href={sharingURL} asChild><a style={{ display: 'inline-flex' }}><ExternalLinkIcon /></a></Link>
+                            </Flex>
+                        </Box>
+                    </Flex>
                 </Box>
             </Flex>
         </Card>

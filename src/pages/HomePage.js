@@ -6,6 +6,7 @@ import PostCardList from '../components/post-card/PostCardList';
 import Meta from '../components/common/Meta';
 import { Suspense, lazy } from 'react';
 import { getURLParameter } from '../utils/CommonUtil';
+import { Box, Container, Flex } from '@radix-ui/themes';
 
 const HomePopularBlogsHeader = lazy(() => import('../components/home/HomePopularBlogsHeader'));
 const HomeLatestNews = lazy(() => import('../components/home/HomeLatestNews'));
@@ -37,13 +38,19 @@ export default function HomePage() {
             <Meta />
             <CommonHeader />
             <main className="main">
-                <Suspense>
-                    <HomePopularBlogsHeader />
-                    {/* <HomeLatestNews /> */}
-                </Suspense>
-                <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
-                <SwitchSortType types={switchTypes} />
-                <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
+                <Box>
+                    <Container size="2">
+                        <Flex direction="column" gap="4">
+                            <Suspense>
+                                <HomePopularBlogsHeader />
+                                {/* <HomeLatestNews /> */}
+                            </Suspense>
+                            <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
+                            <SwitchSortType types={switchTypes} />
+                            <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
+                        </Flex>
+                    </Container>
+                </Box>
             </main>
             <CommonFooter />
         </>

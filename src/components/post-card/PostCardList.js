@@ -3,6 +3,7 @@ import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
+import { Box, Flex } from '@radix-ui/themes';
 
 export default function PostCardList({ sort, keyword, showPinned }) {
     const [pageNo, setPageNo] = useState(1);
@@ -32,30 +33,39 @@ export default function PostCardList({ sort, keyword, showPinned }) {
     }
 
     return (
-        <>
-            {posts.map(
-                (post, index) => (
-                    <PostCard
-                        key={index}
-                        showPinned={showPinned}
-                        pinned={post.pinned}
-                        blogDomainName={post.blogDomainName}
-                        blogName={post.blogName}
-                        blogStatusOk={post.blogStatusOk}
-                        blogAdminMediumImageURL={post.blogAdminMediumImageURL}
-                        link={post.link}
-                        title={post.title}
-                        description={post.description}
-                        publishedAt={post.publishedAt}
-                        linkAccessCount={post.linkAccessCount} />
-                )
-            )}
+        <Box>
+            <Flex direction="column" gap="3">
+                <Box>
+                    <Flex direction="column" gap="2">
+                        {posts.map(
+                            (post, index) => (
+                                <PostCard
+                                    key={index}
+                                    showPinned={showPinned}
+                                    pinned={post.pinned}
+                                    blogDomainName={post.blogDomainName}
+                                    blogName={post.blogName}
+                                    blogStatusOk={post.blogStatusOk}
+                                    blogAdminMediumImageURL={post.blogAdminMediumImageURL}
+                                    link={post.link}
+                                    title={post.title}
+                                    description={post.description}
+                                    publishedAt={post.publishedAt}
+                                    linkAccessCount={post.linkAccessCount} />
+                            )
+                        )}
+                    </Flex>
+                </Box>
 
-            <Pagination
-                pageNo={pageNo}
-                pageSize={pageSize}
-                total={total}
-                setCurrectPage={setCurrectPage} />
-        </>
+                <Box>
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+
+                </Box>
+            </Flex>
+        </Box >
     )
 }

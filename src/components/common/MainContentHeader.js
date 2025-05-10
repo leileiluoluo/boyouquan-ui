@@ -1,15 +1,11 @@
+import { Box, Text } from "@radix-ui/themes";
+
 export default function MainContentHeader( {content} ) {
     return (
-        <article className="first-entry home-info">
-            <div className="entry-content">
-                <p></p>
-                <ul>
-                    <li>
-                        <strong>{content}</strong>
-                    </li>
-                </ul>
-                <p></p>
-            </div>
-        </article>
+        <Box>
+            <Text size="2" color="gray">
+            {content}
+            </Text>
+        </Box>
     )
 }

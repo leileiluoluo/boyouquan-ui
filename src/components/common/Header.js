@@ -22,7 +22,7 @@ export default function Header() {
                             }}>博友圈</Text>
                         </Box>
                         <Box>
-                            <TabNav.Root size="2">
+                            <TabNav.Root size="3">
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
                                 <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
                                 <TabNav.Link href="/blogs" active={pathname === "/blogs"}>博客广场</TabNav.Link>

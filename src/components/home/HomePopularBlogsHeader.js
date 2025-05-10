@@ -43,24 +43,27 @@ export default function HomePopularBlogsHeader() {
 
 
 
-        <Flex gap="2">
+        <Flex gap="4"
+            wrap="wrap"
+            align="center"
+            justify="center">
             {
-                blogs.map(
+                blogs.slice(0, 14).map(
                     (blog, index) => (
                         <Box key={index}>
                             <Tooltip content={blog.name}>
-                        <Link href={getBlogAddress(blog.domainName)}>
-                            <Avatar
-                                radius="full"
-                                src={getGravatarImageFullURL(blog.blogAdminLargeImageURL)}
-                            />
-                        </Link>
-                        </Tooltip>
+                                <Link href={getBlogAddress(blog.domainName)}>
+                                    <Avatar
+                                        size="2"
+                                        radius="full"
+                                        src={getGravatarImageFullURL(blog.blogAdminLargeImageURL)}
+                                    />
+                                </Link>
+                            </Tooltip>
                         </Box>
                     )
                 )
             }
-            
         </Flex>
     )
 }

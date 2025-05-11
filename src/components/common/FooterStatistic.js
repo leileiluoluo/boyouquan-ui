@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Flex, Text } from '@radix-ui/themes';
+import { Strong, Flex, Text } from '@radix-ui/themes';
 import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function FooterStatistic() {
@@ -25,9 +25,9 @@ export default function FooterStatistic() {
 
     return (
         <Flex gap="2" justify="center">
-            <Text>收录博客 {statistic.totalBlogs} 个</Text>
-            <Text>收录文章 {statistic.totalPosts} 篇</Text>
-            <Text>浏览文章 {statistic.totalAccesses} 次</Text>
+            <Text size="2">收录博客 <Strong>{statistic.totalBlogs}</Strong> 个</Text>
+            <Text size="2">收录文章 <Strong>{statistic.totalPosts}</Strong> 篇</Text>
+            <Text size="2">浏览文章 <Strong>{statistic.totalAccesses}</Strong> 次</Text>
         </Flex>
     )
 }

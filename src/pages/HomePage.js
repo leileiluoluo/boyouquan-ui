@@ -9,7 +9,7 @@ import { getURLParameter } from '../utils/CommonUtil';
 import { Box, Container, Flex } from '@radix-ui/themes';
 import MainContentHeader from '../components/common/MainContentHeader';
 
-const HomePopularBlogsHeader = lazy(() => import('../components/home/HomePopularBlogsHeader'));
+import HomePopularBlogsHeader from '../components/home/HomePopularBlogsHeader';
 const HomeLatestNews = lazy(() => import('../components/home/HomeLatestNews'));
 
 const switchTypes = [
@@ -43,10 +43,8 @@ export default function HomePage() {
                     <Container size="2">
                         <Flex direction="column" gap="4">
                             <MainContentHeader content='您有多久没有读过一篇长文了？那些记忆中有趣的博客还在更新吗？博友圈是博客人的专属朋友圈，连接还在写博的博友，让那属于文字的时代延续光辉！' />
-                            <Suspense>
-                                <HomePopularBlogsHeader />
-                                {/* <HomeLatestNews /> */}
-                            </Suspense>
+                            <HomePopularBlogsHeader />
+                            {/* <HomeLatestNews /> */}
                             <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
                             <SwitchSortType types={switchTypes} />
                             <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />

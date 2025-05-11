@@ -17,8 +17,8 @@ const headStyle = `
     }
 
     body {
-    background: radial-gradient(#000, #111), #000;
-    min-height: 100vh;
+    background: radial-gradient(#000, #111), #000 !important;
+    min-height: 100vh !important;
     }
 
     canvas {

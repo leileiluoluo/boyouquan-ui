@@ -19,7 +19,7 @@ export default function BlogRequestsTable({ requests, adminPage }) {
                 <Table.Body>
                     {
                         requests.map((request, index) => (
-                            <Table.Row>
+                            <Table.Row key={index}>
                                 <Table.RowHeaderCell><Link href={adminPage ? getAdminBlogRequestAddress(request.id) : getBlogRequestAddress(request.id)}>{request.name}</Link></Table.RowHeaderCell>
                                 <Table.Cell>{request.adminEmail}</Table.Cell>
                                 <Table.Cell>{formatDateStr(request.requestedAt, true)}</Table.Cell>

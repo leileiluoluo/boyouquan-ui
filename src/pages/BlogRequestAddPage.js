@@ -3,6 +3,7 @@ import CommonFooter from '../components/common/CommonFooter';
 import BlogRequestAddMainContentHeader from '../components/blog-request/BlogRequestAddMainContentHeader';
 import Meta from '../components/common/Meta';
 import BlogRequestAdd from '../components/blog-request/BlogRequestAdd';
+import { Box, Container, Flex } from '@radix-ui/themes';
 
 const meta = {
     title: '提交博客 - 博友圈 · 博客人的朋友圈！',
@@ -16,8 +17,15 @@ export default function BlogRequestAddPage() {
             <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
-                <BlogRequestAddMainContentHeader />
-                <BlogRequestAdd />
+
+                <Box>
+                    <Container size="2">
+                        <Flex direction="column" gap="4">
+                            <BlogRequestAddMainContentHeader />
+                            <BlogRequestAdd />
+                        </Flex>
+                    </Container>
+                </Box>
             </main>
             <CommonFooter />
         </>

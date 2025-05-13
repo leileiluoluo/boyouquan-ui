@@ -6,6 +6,7 @@ import SwitchSortType from '../components/common/SwitchSortType';
 import Meta from '../components/common/Meta';
 import BlogCardList from '../components/blogs/BlogCardList';
 import HotSearch from '../components/common/HotSearch';
+import { Box, Container, Flex } from '@radix-ui/themes';
 
 const meta = {
     title: '博客广场 - 博友圈 · 博客人的朋友圈！',
@@ -25,11 +26,17 @@ export default function BlogsPage() {
             <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
-                <BlogsMainContentHeader />
-                <SearchBox placeholder='搜索博客 ↵' gotoPage='/blogs' />
-                <HotSearch />
-                <SwitchSortType types={switchTypes} />
-                <BlogCardList />
+                <Box>
+                    <Container size="2">
+                        <Flex direction="column" gap="4">
+                            <BlogsMainContentHeader />
+                            <SearchBox placeholder='搜索博客 ↵' gotoPage='/blogs' />
+                            <HotSearch />
+                            <SwitchSortType types={switchTypes} />
+                            <BlogCardList />
+                        </Flex>
+                    </Container>
+                </Box>
             </main>
             <CommonFooter />
         </>

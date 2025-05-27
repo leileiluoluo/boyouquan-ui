@@ -1,9 +1,6 @@
-import { Box, Container, Flex, Link, TabNav, Text } from "@radix-ui/themes";
+import { Box, Container, Flex, Link, TabNav, Text } from '@radix-ui/themes';
 
 export default function SiteFooter() {
-    const footerStyle = { marginBottom: '14px' };
-    const footerTextStyle = { fontSize: '12px' };
-    const spanStyle = { margin: '6px 6px' };
     return (
         <footer className="footer">
             <Box>

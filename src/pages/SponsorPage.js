@@ -554,7 +554,7 @@ const content = (
                 </tr>
                 <tr>
                     <td>
-                        <a href="/blogs/www.kulafan.com">Keyle's Blog</a>
+                        <a href="/blogs/vrast.cn">Keyle's Blog</a>
                     </td>
                     <td>2025/06/05</td>
                     <td>29.00 元</td>

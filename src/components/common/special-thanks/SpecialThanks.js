@@ -131,6 +131,10 @@ export default function SpecialThanks() {
                         <span className="tooltiptext">库拉饭的博客</span>
                     </div>
                     <div className="blogger-one">
+                        <a href="/blogs/vrast.cn"><img src="/assets/images/sites/special_thanks/www.kulafan.com.jpeg" /></a>
+                        <span className="tooltiptext">Keyle's Blog</span>
+                    </div>
+                    <div className="blogger-one">
                         <a href="/sponsor"><img src="/assets/images/sites/special_thanks/plus.svg" /></a>
                         <span className="tooltiptext">我也要赞助</span>
                     </div>

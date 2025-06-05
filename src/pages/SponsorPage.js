@@ -552,6 +552,20 @@ const content = (
                         <p>当前总额：570.49 元</p>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <a href="/blogs/www.kulafan.com">Keyle's Blog</a>
+                    </td>
+                    <td>2025/06/05</td>
+                    <td>29.00 元</td>
+                    <td>支持站长，让服务器多运行一会～</td>
+                    <td>已计入总额，待后续使用</td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>
+                        <p>当前总额：599.49 元</p>
+                    </td>
+                </tr>
             </tbody>
         </table>
 

@@ -574,11 +574,11 @@ const content = (
                 </tr>
                 <tr>
                     <td>
-                        <a href="/blogs/vrast.cn">Keyle's Blog</a>
+                        匿名
                     </td>
                     <td>2025/06/27</td>
                     <td>9.00 元</td>
-                    <td>支持站长，让服务器多运行一会～</td>
+                    <td>加油💪💪💪💪💪💪</td>
                     <td>已计入总额，待后续使用</td>
                     <td>--</td>
                     <td>--</td>

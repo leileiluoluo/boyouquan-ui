@@ -58,7 +58,7 @@ export default function BlogCardList() {
                     {
                         blogs.map(
                             (blog, index) => (
-                                <Box>
+                                <Box key={index}>
                                     <BlogCard
                                         key={index}
                                         blog={blog}
@@ -71,7 +71,8 @@ export default function BlogCardList() {
                     }
                 </Grid>
             </Flex>
-            <Box>
+
+            <Box mt="3">
                 <Pagination
                     pageNo={pageNo}
                     pageSize={pageSize}

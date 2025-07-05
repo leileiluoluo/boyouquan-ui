@@ -1,19 +1,39 @@
-const statusOkBackgroundColorStyle = { backgroundColor: '#0dcb0d' };
-const statusBadBackgroundColorStyle = { backgroundColor: 'red' };
+import { Box, Flex, Text, Tooltip } from '@radix-ui/themes';
 
 export default function BlogCardFooter({ statusOk, submittedInfo, submittedInfoTip }) {
+    const backgroundColor = statusOk ? 'rgb(13, 203, 13)' : 'red';
     return (
-        <footer className="bottom-info">
-            <div className="status-info">
-                <div style={statusOk ? statusOkBackgroundColorStyle : statusBadBackgroundColorStyle} className="status-icon"></div>
-                <p>{statusOk ? '运行良好' : '无法访问'}</p>
-                <span className="tooltiptext">{statusOk ? '该博客运行状态良好' : '该博客目前无法访问'}</span>
-            </div>
-            <div className="submitted-info">
-                <img src="/assets/images/sites/blog_detail/info-icon.png" />
-                <p>{submittedInfo}</p>
-                <span className="tooltiptext">{submittedInfoTip}</span>
-            </div>
-        </footer>
+        <Box>
+            <Flex justify="between">
+                <Box>
+                    <Tooltip content={statusOk ? '该博客运行状态良好' : '该博客目前无法访问'}>
+                        <Flex align="center">
+                            <Box style={{
+                                display: 'inline-block',
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                backgroundColor: backgroundColor
+                            }}></Box>
+                            <Text size="1" ml="1" color="gray" style={{ userSelect: 'none' }}>{statusOk ? '运行良好' : '无法访问'}</Text>
+                        </Flex>
+                    </Tooltip>
+                </Box>
+                <Box>
+                    <Tooltip content={submittedInfoTip}>
+                        <Flex align="center">
+                            <Box>
+                                <img style={{
+                                    userSelect: 'none',
+                                    width: '14px',
+                                    display: 'block'
+                                }} src="/assets/images/sites/blog_detail/info-icon.png" />
+                            </Box>
+                            <Text size="1" ml="1" color="gray" style={{ userSelect: 'none' }}>{submittedInfo}</Text>
+                        </Flex>
+                    </Tooltip>
+                </Box>
+            </Flex>
+        </Box>
     )
 }

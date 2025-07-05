@@ -107,7 +107,6 @@ export default function PostCardList({ sort, keyword, showPinned }) {
                         pageSize={pageSize}
                         total={total}
                         setCurrectPage={setCurrectPage} />
-
                 </Box>
             </Flex>
         </Box >

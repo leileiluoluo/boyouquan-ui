@@ -10,29 +10,29 @@ export default function BlogCardSummary({ postCount, accessCount, collectedAt, d
 
     return (
         <Box>
-            <Flex gap="2">
+            <Flex gap="2" justify="between">
                 <Box>
                     <Flex direction="column">
-                        <Text size="2">文章收录</Text>
+                        <Text size="2" color="gray">文章收录</Text>
                         <Text size="2">{postCount}</Text>
                     </Flex>
                 </Box>
                 <Box>
                     <Flex direction="column">
-                        <Text size="2">文章浏览</Text>
+                        <Text size="2" color="gray">文章浏览</Text>
                         <Text size="2">{accessCount}</Text>
                     </Flex>
                 </Box>
                 <Box>
                     <Flex direction="column">
-                        <Text size="2">最近更新</Text>
+                        <Text size="2" color="gray">最近更新</Text>
                         <Text size="2">{latestPublishedAtFormatted}</Text>
                     </Flex>
                 </Box>
 
                 <Box>
                     <Flex direction="column">
-                        <Text size="2">{createTimeHighlight ? '建博时间' :
+                        <Text size="2" color="gray">{createTimeHighlight ? '建博时间' :
                             '收录时间'
                         }</Text>
                         <Text size="2">{createTimeHighlight ? domainRegisteredAtFormatted  :

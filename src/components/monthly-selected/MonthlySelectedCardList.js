@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import MonthlySelectedCard from './MonthlySelectedCard';
 import Pagination from '../pagination/Pagination';
+import { Box } from '@radix-ui/themes';
 
 export default function MonthlySelectedCardList() {
     const [pageNo, setPageNo] = useState(1);
@@ -30,7 +31,7 @@ export default function MonthlySelectedCardList() {
 
     return (
         <>
-            <div className="monthly-selected-container">
+            <Box>
                 {
                     items.map(
                         (item, index) => (
@@ -40,7 +41,7 @@ export default function MonthlySelectedCardList() {
                                 postInfos={item.postInfos} />
                         ))
                 }
-            </div>
+            </Box>
             <Pagination
                 pageNo={pageNo}
                 pageSize={pageSize}

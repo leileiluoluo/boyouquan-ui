@@ -12,16 +12,15 @@ export default function BlogCardHeader({ name, domainName, address, blogAdminLar
                 <Box>
                     <Link href={blogAddress}>
                         <Avatar
-                            style={{ width: 30, height: 30 }}
+                            style={{ width: '36px', height: '36px' }}
                             src={gravatarURL}
-
                             radius="full"
                         />
                     </Link>
                 </Box>
                 <Box>
                     <Flex direction="column">
-                        <Link size="2" href={blogAddress}>{name}</Link>
+                        <Link size="3" weight="bold" href={blogAddress}>{name}</Link>
                         <Flex gap="1" align="center">
                             <Link size="1" href={blogGoURL}>{domainName}</Link>
                             <Box size="1">

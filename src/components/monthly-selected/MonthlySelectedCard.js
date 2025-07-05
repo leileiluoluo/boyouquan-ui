@@ -1,4 +1,4 @@
-import { Flex, Box, Heading, Table, Link } from '@radix-ui/themes';
+import { Flex, Box, Text, Table, Link } from '@radix-ui/themes';
 
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress } from '../../utils/PageAddressUtil';
@@ -7,7 +7,7 @@ export default function MonthlySelectedCard({ yearMonthStr, postInfos }) {
     return (
         <Flex direction="column" gap="2">
             <Box>
-                <Heading as="h4">{yearMonthStr}</Heading>
+                <Text size="4">{yearMonthStr}</Text>
             </Box>
             <Box>
                 <Table.Root variant="surface">

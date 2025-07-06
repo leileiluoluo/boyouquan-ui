@@ -3,6 +3,7 @@ import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
 import BlogCard from './BlogCard';
 import { getURLParameter } from '../../utils/CommonUtil';
+import { Box, Grid, DecorativeBox, Flex } from '@radix-ui/themes';
 
 const getSortAndKeywordAndHighligts = () => {
     let sort = getURLParameter('sort') || 'collect_time';
@@ -47,30 +48,37 @@ export default function BlogCardList() {
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
 
-        document.getElementsByClassName('switch-sort-type')[0].scrollIntoView();
+        document.getElementById('switch-sort-type').scrollIntoView();
     }
 
     return (
-        <>
-            <div className="blog-container">
-                {
-                    blogs.map(
-                        (blog, index) => (
-                            <BlogCard
-                                key={index}
-                                blog={blog}
-                                posts={blog.posts}
-                                publishedAtHighlight={publishedAtHighlight}
-                                accessCountHighlight={accessCountHighlight}
-                                createTimeHighlight={createTimeHighlight} />
-                        ))
-                }
-            </div>
-            <Pagination
-                pageNo={pageNo}
-                pageSize={pageSize}
-                total={total}
-                setCurrectPage={setCurrectPage} />
-        </>
+        <Box className='blogs-container'>
+            <Flex direction="column">
+                <Grid columns="2" gap="3">
+                    {
+                        blogs.map(
+                            (blog, index) => (
+                                <Box key={index}>
+                                    <BlogCard
+                                        key={index}
+                                        blog={blog}
+                                        posts={blog.posts}
+                                        publishedAtHighlight={publishedAtHighlight}
+                                        accessCountHighlight={accessCountHighlight}
+                                        createTimeHighlight={createTimeHighlight} />
+                                </Box>
+                            ))
+                    }
+                </Grid>
+            </Flex>
+
+            <Box mt="3">
+                <Pagination
+                    pageNo={pageNo}
+                    pageSize={pageSize}
+                    total={total}
+                    setCurrectPage={setCurrectPage} />
+            </Box>
+        </Box>
     )
 }

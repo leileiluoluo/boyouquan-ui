@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Chart } from 'frappe-charts';
 import RequestUtil from '../../utils/APIRequestUtil';
+import { Card, Flex, Text } from '@radix-ui/themes';
 
 export default function BlogCharts({ domain }) {
     const fetchData = async (domain) => {
@@ -36,14 +37,14 @@ export default function BlogCharts({ domain }) {
     }, [domain]);
 
     return (
-        <div className="blog-detail-charts">
-            <div className="charts-title">
-                <h4>数据统计</h4>
-            </div>
-            <div id='access-charts'></div>
-            <div id='publish-charts'></div>
-            <div id='initiated-charts'></div>
-        </div>
+        <Card>
+            <Flex direction="column">
+                <Text size="2" color="gray">收录文章</Text>
+                <div id='access-charts'></div>
+                <div id='publish-charts'></div>
+                <div id='initiated-charts'></div>
+            </Flex>
+        </Card>
     )
 }
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { formatDateStr } from '../../utils/DateUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
+import { Card, Flex, Text } from '@radix-ui/themes';
+import { Link } from 'react-router-dom';
 
 const postsTableStyle = { display: 'table', tableLayout: 'fixed' };
 const postTableClumn20Style = { width: '20%' };
@@ -27,39 +29,30 @@ export default function BlogPosts({ domain, blogStatusOk }) {
     }, [domain]);
 
     return (
-        <div className="blog-detail-articles">
-            <div className="articles-title">
-                <h4>收录文章</h4>
-            </div>
-            <div className="articles-container">
-                <table style={postsTableStyle}>
-                    <tbody>
-                        {
-                            posts.map(
-                                (post, index) => (
-                                    <tr key={index}>
-                                        <td style={postTableClumn20Style}>
-                                            <p style={textStyle}>{formatDateStr(post.publishedAt, true)}</p>
-                                        </td>
-
-                                        <td style={postTableClumn80Style}>
-                                            {
-                                                blogStatusOk ? <a href={`/go?from=website&link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
-                                                    : <a href={`/abstract?link=${encodeURIComponent(post.link)}`} target="_blank">{post.title}</a>
-                                            }
-                                        </td>
-                                    </tr>
-                                )
+        <Card>
+            <Flex direction="column">
+                <Text size="2" color="gray">收录文章</Text>
+                <Flex direction="column">
+                    {
+                        posts.map(
+                            (post, index) => (
+                                <Flex gap="2" key={index}>
+                                    <Text size="2">{formatDateStr(post.publishedAt, true)}</Text>
+                                    <Text size="2" style={{
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 1,
+                                        WebkitBoxOrient: 'vertical',
+                                        overflow: 'hidden'
+                                    }}>
+                                        {blogStatusOk ? <Link href={`/go?from=website&link=${encodeURIComponent(post.link)}`}>{post.title}</Link>
+                                            : <Link href={`/abstract?link=${encodeURIComponent(post.link)}`}>{post.title}</Link>}
+                                    </Text>
+                                </Flex>
                             )
-                        }
-                    </tbody>
-                </table>
-            </div>
-            {
-                showPostsLimit ? <div className="articles-footer">
-                    <p>* 仅显示最新100篇文章</p>
-                </div> : ''
-            }
-        </div>
+                        )
+                    }
+                </Flex>
+            </Flex>
+        </Card>
     )
 }

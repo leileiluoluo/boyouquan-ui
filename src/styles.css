@@ -1,0 +1,5 @@
+/* global.css */
+a,
+.radix-link {
+    text-decoration: none !important;
+}

@@ -1,3 +1,4 @@
+import { Box, Flex, Text } from '@radix-ui/themes';
 import { formatDateStr } from '../../utils/DateUtil';
 
 const highlightStyle = { color: '#cb2e58' };
@@ -8,43 +9,38 @@ export default function BlogCardSummary({ postCount, accessCount, collectedAt, d
     const domainRegisteredAtFormatted = formatDateStr(domainRegisteredAt, true);
 
     return (
-        <div className="summary">
-            <div className="flex-item">
-                <div className="title">
-                    <p>文章收录</p>
-                </div>
-                <div className="count">
-                    <p>{postCount}</p>
-                </div>
-            </div>
-            <div className="flex-item">
-                <div className="title">
-                    <p style={accessCountHighlight ? highlightStyle : { color: 'inherit' }}>文章浏览</p>
-                </div>
-                <div className="count">
-                    <p style={accessCountHighlight ? highlightStyle : { color: 'inherit' }}>{accessCount}</p>
-                </div>
-            </div>
-            <div className="flex-item">
-                <div className="title">
-                    <p>最近更新</p>
-                </div>
-                <div className="count">
-                    <p>{latestPublishedAtFormatted}</p>
-                </div>
-            </div>
-            <div className="flex-item">
-                <div className="title">
-                    {createTimeHighlight ? <p style={highlightStyle}>建博时间</p> :
-                        <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>收录时间</p>
-                    }
-                </div>
-                <div className="count">
-                    {createTimeHighlight ? <p style={highlightStyle}>{domainRegisteredAtFormatted}</p> :
-                        <p style={publishedAtHighlight ? highlightStyle : { color: 'inherit' }}>{collectedAtFormatted}</p>
-                    }
-                </div>
-            </div>
-        </div>
+        <Box>
+            <Flex gap="2" justify="between">
+                <Box>
+                    <Flex direction="column">
+                        <Text size="2" color="gray">文章收录</Text>
+                        <Text size="2">{postCount}</Text>
+                    </Flex>
+                </Box>
+                <Box>
+                    <Flex direction="column">
+                        <Text size="2" color="gray">文章浏览</Text>
+                        <Text size="2">{accessCount}</Text>
+                    </Flex>
+                </Box>
+                <Box>
+                    <Flex direction="column">
+                        <Text size="2" color="gray">最近更新</Text>
+                        <Text size="2">{latestPublishedAtFormatted}</Text>
+                    </Flex>
+                </Box>
+
+                <Box>
+                    <Flex direction="column">
+                        <Text size="2" color="gray">{createTimeHighlight ? '建博时间' :
+                            '收录时间'
+                        }</Text>
+                        <Text size="2">{createTimeHighlight ? domainRegisteredAtFormatted  :
+                            collectedAtFormatted 
+                        }</Text>
+                    </Flex>
+                </Box>
+            </Flex>
+        </Box>
     )
 }

@@ -1,3 +1,6 @@
+import { Form } from '@radix-ui/react-form';
+import { Box, Flex, TextField } from '@radix-ui/themes';
+
 const inputFontSizeStyle = { fontSize: '14px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
 const noticeFontStyle = { color: '#cb2e58' };
@@ -14,7 +17,13 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                 </header>
             }
             <div className="blog-requests">
-                <form>
+                <Form>
+                    <Flex direction="column" gap="4">
+                        <Box maxWidth="200px">
+                            <TextField.Root placeholder="博主邮箱">
+                            </TextField.Root>
+                        </Box>
+                    </Flex>
                     <div className="requests-form-container">
                         <div className="key-value-entry">
                             <div className="label">
@@ -52,7 +61,7 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                             </div>
                         }
                     </div>
-                </form>
+                </Form>
             </div>
         </>
     )

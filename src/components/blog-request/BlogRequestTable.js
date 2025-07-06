@@ -1,3 +1,4 @@
+import { Flex, Box, Heading, Table, Link, Strong } from '@radix-ui/themes';
 import { getBlogAddress } from '../../utils/PageAddressUtil';
 
 const style = { display: 'table', tableLayout: 'fixed' }
@@ -8,76 +9,46 @@ export default function BlogRequestTable({ name, description, domainName, addres
     const blogAddress = approved ? getBlogAddress(domainName) : address;
 
     return (
-        <>
-            <header className="post-header">
-                <h3 className="post-title">{title}</h3>
-            </header>
-            <div className="blog-requests">
-                <div className="requests-container">
-                    <table style={style}>
-                        <tbody>
-                            <tr>
-                                <td width="20%">
-                                    <span>博客名称</span>
-                                </td>
-                                <td width="80%">
-                                    <p><a href={blogAddress}>{name}</a></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%">
-                                    <span>博客描述</span>
-                                </td>
-                                <td width="80%">
-                                    <p>{description}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%">
-                                    <span>RSS 地址</span>
-                                </td>
-                                <td width="80%">
-                                    <p><a href={rssAddress}>{rssAddress}</a></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%">
-                                    <span>博主邮箱</span>
-                                </td>
-                                <td width="80%">
-                                    <p>{adminEmail}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%">
-                                    <span>提交时间</span>
-                                </td>
-                                <td width="80%">
-                                    <p>{requestedAt}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="20%">
-                                    <span>审核状态</span>
-                                </td>
-                                <td width="80%">
-                                    <p><a href={blogAddress}>{statusInfo}</a></p>
-                                </td>
-                            </tr>
-                            {
-                                'rejected' === status || 'uncollected' == status ? <tr>
-                                    <td width="20%">
-                                        <span>驳回原因</span>
-                                    </td>
-                                    <td width="80%">
-                                        <p>{reason}</p>
-                                    </td>
-                                </tr> : ''
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </>
+        <Flex direction="column" gap="2">
+            <Box>
+                <Heading as="h4">{title}</Heading>
+            </Box>
+            <Box>
+                <Table.Root variant="surface">
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.RowHeaderCell><Strong>博客名称</Strong></Table.RowHeaderCell>
+                            <Table.Cell>{name}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell><Strong>博客描述</Strong></Table.RowHeaderCell>
+                            <Table.Cell>{description}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell><Strong>RSS 地址</Strong></Table.RowHeaderCell>
+                            <Table.Cell><Link href={rssAddress}>{rssAddress}</Link></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell><Strong>博主邮箱</Strong></Table.RowHeaderCell>
+                            <Table.Cell>{adminEmail}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell><Strong>提交时间</Strong></Table.RowHeaderCell>
+                            <Table.Cell>{requestedAt}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.RowHeaderCell><Strong>审核状态</Strong></Table.RowHeaderCell>
+                            <Table.Cell><Link href={blogAddress}>{statusInfo}</Link></Table.Cell>
+                        </Table.Row>
+                        {
+                            'rejected' === status || 'uncollected' == status ? <Table.Row>
+                                <Table.RowHeaderCell><Strong>驳回原因</Strong></Table.RowHeaderCell>
+                                <Table.Cell>{reason}</Table.Cell>
+                            </Table.Row> : ''
+                        }
+                    </Table.Body>
+                </Table.Root>
+            </Box>
+        </Flex>
     )
 }

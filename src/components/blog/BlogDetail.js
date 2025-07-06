@@ -76,7 +76,7 @@ export default function BlogDetail() {
                     <Suspense>
                         <BlogCharts domain={domain} />
                         <BlogPosts domain={domain} blogStatusOk={blogDetail.statusOk} />
-                        <RandomBlogs domain={domain} />
+                        {/* <RandomBlogs domain={domain} /> */}
                     </Suspense>
                 </Fragment> : ''
             }

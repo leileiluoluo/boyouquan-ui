@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Flex, TabNav } from '@radix-ui/themes';
 import { getURLParameter } from '../../utils/CommonUtil';
 
 export default function SwitchSortType({ types }) {
@@ -10,20 +11,18 @@ export default function SwitchSortType({ types }) {
     }, []);
 
     return (
-        <div className="switch-sort-type">
-            <ul className="menu">
+        <Flex id="switch-sort-type">
+            <TabNav.Root>
                 {
                     types.map(
                         (item, index) => (
-                            <li key={index}>
-                                <a href={item.href} title={item.name} className={item.href.endsWith(activeType) ? 'active' : (null == activeType && item.default ? 'active' : '')}>
-                                    <span>{item.name}</span>
-                                </a>
-                            </li>
+                            <TabNav.Link key={index} href={item.href} active={item.href.endsWith(activeType) ? true : (null == activeType && item.default)}>
+                                {item.name}
+                            </TabNav.Link>
                         )
                     )
                 }
-            </ul>
-        </div>
+            </TabNav.Root>
+        </Flex>
     )
 }

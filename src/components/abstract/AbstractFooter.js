@@ -1,5 +1,6 @@
 import { formatDateStr } from '../../utils/DateUtil';
 import { getBlogAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
+import PostCardFooter from '../post-card/PostCardFooter';
 
 export default function AbstractFooter({ blogName, blogDomainName, blogAdminMediumImageURL, publishedAt, linkAccessCount }) {
     const blogAddress = getBlogAddress(blogDomainName);
@@ -7,21 +8,12 @@ export default function AbstractFooter({ blogName, blogDomainName, blogAdminMedi
     const publishedAtFormatted = formatDateStr(publishedAt);
 
     return (
-        <footer className="entry-footer">
-            <div className="flex-item">
-                <a href={blogAddress}>
-                    <img src={gravatarImageFullURL} />
-                </a>
-            </div>
-            <div className="flex-item">
-                <a href={blogAddress}>{blogName}</a>
-            </div>
-            <div className="flex-item">
-                · <span>{publishedAtFormatted}</span>
-            </div>
-            <div className="flex-item">
-                · <span>{linkAccessCount}</span>次浏览
-            </div>
-        </footer>
+        <PostCardFooter
+            blogURL={blogAddress}
+            gravatarURL={gravatarImageFullURL}
+            blogName={blogName}
+            publishedAtFormatted={publishedAtFormatted}
+            linkAccessCount={linkAccessCount}
+            sharingURL='' />
     )
 }

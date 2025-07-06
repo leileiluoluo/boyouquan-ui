@@ -57,8 +57,6 @@ const content = (
             </Strong>
         </Text>
 
-
-
         <div style={{
             position: 'relative',
             width: '100%',

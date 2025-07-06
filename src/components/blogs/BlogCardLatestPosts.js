@@ -29,38 +29,6 @@ export default function BlogCardLatestPosts({ statusOk, posts }) {
                         )
                     }
                 </Flex>
-                {/* <Box>
-                    <Table.Root style={{
-                        '--table-background': 'transparent',
-                        '--table-border': 'none',
-                        '--table-cell-padding': '0',
-                        '--table-row-box-shadow': 'none',
-                        '--table-row-border': 'none',
-                    }}>
-                        <Table.Body style={{ overflowX: 'auto' }}>
-                            {
-                                posts.map(
-                                    (post, index) => (
-                                        <Table.Row key={index} style={{ borderBottom: 'none' }}>
-                                            <Table.RowHeaderCell><Text size="2">{formatDateStr(post.publishedAt, true)}</Text></Table.RowHeaderCell>
-                                            <Table.Cell>
-                                                <Text style={{
-                                                    display: '-webkit-box',
-                                                    WebkitLineClamp: 1,
-                                                    WebkitBoxOrient: 'vertical',
-                                                    overflow: 'hidden'
-                                                }}>
-                                                    {statusOk ? <Link href={getGoAddress(post.link)}>{post.title}</Link>
-                                                        : <Link href={getAbstractAddress(post.link)}>{post.title}</Link>}
-                                                </Text>
-                                            </Table.Cell>
-                                        </Table.Row>
-                                    )
-                                )
-                            }
-                        </Table.Body>
-                    </Table.Root>
-                </Box> */}
             </Flex>
         </Box>
     )

@@ -8,6 +8,7 @@ import AbstractDescription from './AbstractDescription';
 import Meta from '../common/Meta';
 import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
 import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
+import { Card } from '@radix-ui/themes';
 
 const getMeta = (isSharingPage, title, description) => {
     if (isSharingPage) {
@@ -54,7 +55,7 @@ export default function Abstract({ isSharingPage }) {
             {loaded ?
                 <Fragment>
                     <Meta meta={getMeta(isSharingPage, postInfo.title, postInfo.description)} />
-                    <article className={isSharingPage ? 'share post-entry' : 'abstract post-entry'}>
+                    <Card>
                         {
                             isSharingPage || postInfo.blogStatusOk ? '' : <AbstractNotice />
                         }
@@ -67,7 +68,7 @@ export default function Abstract({ isSharingPage }) {
                             blogAdminMediumImageURL={postInfo.blogAdminMediumImageURL}
                             publishedAt={postInfo.publishedAt}
                             linkAccessCount={postInfo.linkAccessCount} />
-                    </article>
+                    </Card>
                 </Fragment> : ''
             }
         </>

@@ -543,6 +543,68 @@ const content = (
                             </Text>
                         </Table.Cell>
                     </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <Link href="/blogs/zhoutian.com">周天记</Link>
+                        </Table.Cell>
+                        <Table.Cell>2025/05/26</Table.Cell>
+                        <Table.Cell>9.00 元</Table.Cell>
+                        <Table.Cell>支持站长，让服务器多运行一会～</Table.Cell>
+                        <Table.Cell>已计入总额，待后续使用</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>
+                            <Text>当前总额：541.49 元</Text>
+                        </Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <Link href="/blogs/www.kulafan.com">库拉饭的博客</Link>
+                        </Table.Cell>
+                        <Table.Cell>2025/05/28</Table.Cell>
+                        <Table.Cell>29.00 元</Table.Cell>
+                        <Table.Cell>支持站长，让服务器多运行一会～</Table.Cell>
+                        <Table.Cell>已计入总额，待后续使用</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>
+                            <Text>当前总额：570.49 元</Text>
+                        </Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <Link href="/blogs/vrast.cn">Keyle's Blog</Link>
+                        </Table.Cell>
+                        <Table.Cell>2025/06/05</Table.Cell>
+                        <Table.Cell>29.00 元</Table.Cell>
+                        <Table.Cell>支持站长，让服务器多运行一会～</Table.Cell>
+                        <Table.Cell>已完成</Table.Cell>
+                        <Table.Cell>2025/06/10</Table.Cell>
+                        <Table.Cell>域名续费</Table.Cell>
+                        <Table.Cell>
+                            <Text>当前总额：599.49 元，本次花费：84.58 元，本次结余：514.91 元</Text>
+                            <Text>腾讯云域名续费一年，由 2032/06/28 续费至 2033/06/28</Text>
+                            <Text>
+                                <Link href="/assets/images/sites/sponsor/cost_details/2025/06/domain_name_renewal.png">
+                                    花费证明
+                                </Link>
+                            </Text>
+                        </Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <Text>匿名</Text>
+                        </Table.Cell>
+                        <Table.Cell>2025/06/27</Table.Cell>
+                        <Table.Cell>9.00 元</Table.Cell>
+                        <Table.Cell>加油💪💪💪💪💪💪</Table.Cell>
+                        <Table.Cell>已计入总额，待后续使用</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>
+                            <Text>当前总额：523.91 元</Text>
+                        </Table.Cell>
+                    </Table.Row>
                 </Table.Body>
             </Table.Root>
         </div>

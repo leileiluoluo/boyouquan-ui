@@ -138,5 +138,10 @@
         "name": "周天记",
         "link": "/blogs/zhoutian.com",
         "avatar": "/assets/images/sites/special_thanks/zhoutian.com.jpeg"
+    },
+    {
+        "name": "库拉饭的博客",
+        "link": "blogs/www.kulafan.com",
+        "avatar": "/assets/images/sites/special_thanks/www.kulafan.com.jpeg"
     }
 ]

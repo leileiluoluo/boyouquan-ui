@@ -3,3 +3,7 @@ a,
 .radix-link {
     text-decoration: none !important;
 }
+
+[data-has-background="true"] {
+  background: none !important;
+}

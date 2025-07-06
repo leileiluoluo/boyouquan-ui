@@ -11,9 +11,10 @@ export default function BlogDetailMain({ name, domainName, address, description,
 
     return (
         <Card style={{
-            backgroundImage: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)'
+            backgroundImage: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
+            padding: 'var(--space-4)'
         }}>
-            <Flex gap="2" direction="column">
+            <Flex gap="1" direction="column">
                 <BlogCardFooter
                     statusOk={statusOk}
                     submittedInfo={submittedInfo}
@@ -40,12 +41,12 @@ export default function BlogDetailMain({ name, domainName, address, description,
                             </svg>
                         </Box>
                     </Flex>
-                    <Box style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
-                        <Text size="2">{description}</Text>
+                    <Box style={{ backgroundColor: 'rgb(255, 255, 255)', padding: '10px', borderRadius: 'calc(0.4rem)' }}>
+                        <Text size="2" color="gray">{description}</Text>
                     </Box>
                 </Flex>
 
-                <Flex justify="between">
+                <Flex justify="between" mt="2">
                     <Box>
                         <Tooltip content={`该博客域名注册于：${domainNameRegisteredAtStdStr}`}>
                             <Flex align="center">

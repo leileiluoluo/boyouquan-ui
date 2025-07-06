@@ -6,7 +6,7 @@ export default function BlogCardDescription({ description }) {
             style={{
                 backgroundColor: 'rgb(245, 245, 245)'
             }}>
-            <Text size="1"
+            <Text size="2"
                 style={{
                     display: '-webkit-box',
                     WebkitLineClamp: 1,

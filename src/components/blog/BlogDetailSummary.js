@@ -8,7 +8,7 @@ export default function BlogDetailSummary({ postCount, accessCount, latestPublis
     const collectedAtFormatted = formatDateStr(collectedAt);
 
     return (
-        <Card>
+        <Card style={{ padding: 'var(--space-4)' }}>
             <Flex gap="1" justify="between">
                 <Box>
                     <Flex direction="column">

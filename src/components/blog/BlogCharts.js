@@ -37,9 +37,9 @@ export default function BlogCharts({ domain }) {
     }, [domain]);
 
     return (
-        <Card>
-            <Flex direction="column">
-                <Text size="2" color="gray">收录文章</Text>
+        <Card style={{ padding: 'var(--space-4)' }}>
+            <Flex direction="column" gap="1">
+                <Text size="2" color="gray">数据统计</Text>
                 <div id='access-charts'></div>
                 <div id='publish-charts'></div>
                 <div id='initiated-charts'></div>

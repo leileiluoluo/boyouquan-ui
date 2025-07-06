@@ -7,7 +7,7 @@ import BlogCardSummary from './BlogCardSummary';
 
 export default function BlogCard({ blog, posts, publishedAtHighlight, accessCountHighlight, createTimeHighlight }) {
     return (
-        <Card>
+        <Card style={{ padding: 'var(--space-4)' }}>
             <Flex direction="column" gap="1">
                 <BlogCardHeader
                     name={blog.name}

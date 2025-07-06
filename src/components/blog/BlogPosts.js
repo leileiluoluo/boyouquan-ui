@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { formatDateStr } from '../../utils/DateUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Text } from '@radix-ui/themes';
-import { Link } from 'react-router-dom';
+import { Card, Flex, Text, Link } from '@radix-ui/themes';
+import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 
-const postsTableStyle = { display: 'table', tableLayout: 'fixed' };
-const postTableClumn20Style = { width: '20%' };
-const postTableClumn80Style = { width: '80%' };
-const textStyle = { marginRight: '6px' };
+function getLink(blogStatusOk, link) {
+    return blogStatusOk ? `/go?from=website&link=${encodeURIComponent(link)}` : `/abstract?link=${encodeURIComponent(link)}`;
+}
 
 export default function BlogPosts({ domain, blogStatusOk }) {
     const [showPostsLimit, setShowPostsLimit] = useState(false);
@@ -29,8 +28,8 @@ export default function BlogPosts({ domain, blogStatusOk }) {
     }, [domain]);
 
     return (
-        <Card>
-            <Flex direction="column">
+        <Card style={{ padding: 'var(--space-4)' }}>
+            <Flex direction="column" gap="1">
                 <Text size="2" color="gray">收录文章</Text>
                 <Flex direction="column">
                     {
@@ -44,8 +43,8 @@ export default function BlogPosts({ domain, blogStatusOk }) {
                                         WebkitBoxOrient: 'vertical',
                                         overflow: 'hidden'
                                     }}>
-                                        {blogStatusOk ? <Link href={`/go?from=website&link=${encodeURIComponent(post.link)}`}>{post.title}</Link>
-                                            : <Link href={`/abstract?link=${encodeURIComponent(post.link)}`}>{post.title}</Link>}
+                                        {blogStatusOk ? <Link href={getGoAddress(post.link)}>{post.title}</Link>
+                                            : <Link href={getAbstractAddress(post.link)}>{post.title}</Link>}
                                     </Text>
                                 </Flex>
                             )

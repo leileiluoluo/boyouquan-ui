@@ -52,7 +52,6 @@ export default function PostCard({
                                 <Avatar
                                     style={{ width: 20, height: 20 }}
                                     src={gravatarURL}
-
                                     radius="full"
                                 />
                             </Link>
@@ -64,7 +63,7 @@ export default function PostCard({
                             <Text> · </Text>
                         </Box>
                         <Box>
-                            <Text size="2">
+                            <Text size="2" color="gray">
                                 {publishedAtFormatted}
                             </Text>
                         </Box>
@@ -72,7 +71,7 @@ export default function PostCard({
                             <Text> · </Text>
                         </Box>
                         <Box>
-                            <Text size="2">
+                            <Text size="2" color="gray">
                                 {linkAccessCount} 次浏览
                             </Text>
                         </Box>
@@ -81,7 +80,7 @@ export default function PostCard({
                         </Box>
                         <Box>
                             <Flex align="center">
-                                <Link size="2" href={sharingURL} asChild><a style={{ display: 'inline-flex' }}><ExternalLinkIcon /></a></Link>
+                                <Link size="2" color="gray" href={sharingURL} asChild><a style={{ display: 'inline-flex' }}><ExternalLinkIcon /></a></Link>
                             </Flex>
                         </Box>
                     </Flex>

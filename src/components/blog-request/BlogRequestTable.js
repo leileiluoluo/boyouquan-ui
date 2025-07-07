@@ -1,4 +1,4 @@
-import { Flex, Box, Heading, Table, Link, Strong } from '@radix-ui/themes';
+import { Flex, Box, Text, Table, Link, Strong } from '@radix-ui/themes';
 import { getBlogAddress } from '../../utils/PageAddressUtil';
 
 const style = { display: 'table', tableLayout: 'fixed' }
@@ -11,7 +11,7 @@ export default function BlogRequestTable({ name, description, domainName, addres
     return (
         <Flex direction="column" gap="2">
             <Box>
-                <Heading as="h4">{title}</Heading>
+                <Text size="3" weight="bold">{title}</Text>
             </Box>
             <Box>
                 <Table.Root variant="surface">

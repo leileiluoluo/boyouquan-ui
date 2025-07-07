@@ -9,7 +9,7 @@ const REPORT_INFO_2024 = {
     content: <>
         <p>时光荏苒，岁月如梭，转眼间，已步入岁末。回首过去的 2024 年，博友圈感恩有您！</p>
 
-        <h3>1 年度数字</h3>
+        <h4>1 年度数字</h4>
 
         <p>2024 全年，博友圈共收录了 <strong>402</strong> 个博客，其中 <strong>212</strong> 个为自行提交，<strong>190</strong> 个为后台收录。</p>
         <p>2024 全年，大家共发布了 <strong>16677</strong> 篇文章，其中 <strong>1249</strong> 篇被加入到了首页推荐，<strong>69</strong> 篇被置顶过。发布文章最多的博友为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共发布了 <strong>364</strong> 篇文章。</p>
@@ -32,7 +32,7 @@ const REPORT_INFO_2024 = {
 
         <p>2024 全年，博友圈共收到 <strong>784.78</strong> 元的热心赞助！我深受感动！深深感受到大家对于博友圈的那份鼓励与热爱。得益于这些赞助，以及恰逢云提供商的新用户推广券，博友圈网站现在的续费就可以让其一直运行到 2026 年！这是我在设立赞助页面前未预料到的。再次感谢您的慷慨解囊！博友圈必将不忘初心，尽力做的更好！</p>
 
-        <h3>2 年度文章</h3>
+        <h4>2 年度文章</h4>
 
         根据访问量、转发量、月度推荐等多个维度的综合分析，博友圈甄选的 2024 年度文章为：
 
@@ -72,7 +72,7 @@ const REPORT_INFO_2024 = {
             <li><a href="https://www.boyouquan.com/go?from=website&link=https%3A%2F%2Fchamphoon.xyz%2Flog%2Fchengdu%2F">蜀都行纪</a></li>
         </ul>
 
-        <h3 id="annual-blogs">3 年度博客</h3>
+        <h4 id="annual-blogs">3 年度博客</h4>
 
         根据文章质量、访问量等多个维度综合评估，博友圈甄选的 2024 年度博客为：
 

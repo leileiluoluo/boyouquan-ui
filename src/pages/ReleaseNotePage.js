@@ -17,6 +17,7 @@ import { META_V1_0, RELEASE_INFO_V1_0 } from '../const/release-notes/ReleaseNote
 import { META_V2_0, RELEASE_INFO_V2_0 } from '../const/release-notes/ReleaseNoteV2.0';
 import { META_V2_1, RELEASE_INFO_V2_1 } from '../const/release-notes/ReleaseNoteV2.1';
 import { META_V2_2, RELEASE_INFO_V2_2 } from '../const/release-notes/ReleaseNoteV2.2';
+import { Box, Container } from '@radix-ui/themes';
 
 const getMetaAndVersionInfo = (version) => {
     let meta = null
@@ -96,10 +97,14 @@ export default function ReleaseNotePage() {
             <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
-                <Article
-                    title={releaseInfo.title}
-                    content={releaseInfo.content}
-                    publishedAt={releaseInfo.publishedAt} />
+                <Box>
+                    <Container size="2">
+                        <Article
+                            title={releaseInfo.title}
+                            content={releaseInfo.content}
+                            publishedAt={releaseInfo.publishedAt} />
+                    </Container>
+                </Box>
             </main>
             <CommonFooter />
         </>

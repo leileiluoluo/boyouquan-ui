@@ -1,21 +1,21 @@
-import { Box, Flex, Heading } from "@radix-ui/themes";
+import { Box, Card, Flex, Heading, Text } from '@radix-ui/themes';
 
 export default function Article({ title, content, publishedAt }) {
     return (
-        <Box>
+        <Card>
             <Flex direction="column" gap="4">
                 <Box className="post-header">
-                    <Heading as="h4">{title}</Heading>
-                    {
-                        publishedAt ? <div className="post-publish-date">
-                            <p>{publishedAt}</p>
-                        </div> : ''
-                    }
+                    <Heading size="4">{title}</Heading>
+                    <Box mt="1">{
+                        publishedAt ? <Text color="gray" size="2">
+                            {publishedAt}
+                        </Text> : ''
+                    }</Box>
                 </Box>
                 <Box>
                     {content}
                 </Box>
             </Flex>
-        </Box>
+        </Card>
     )
 }

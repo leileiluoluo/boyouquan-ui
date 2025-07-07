@@ -29,7 +29,7 @@ export default function BlogCardFooter({ statusOk, submittedInfo, submittedInfoT
                                     display: 'block'
                                 }} src="/assets/images/sites/blog_detail/info-icon.png" />
                             </Box>
-                            <Text size="1" ml="1" color="gray" style={{ userSelect: 'none' }}>{submittedInfo}</Text>
+                            <Text size="1" color="gray" style={{ userSelect: 'none', marginLeft: '2px' }}>{submittedInfo}</Text>
                         </Flex>
                     </Tooltip>
                 </Box>

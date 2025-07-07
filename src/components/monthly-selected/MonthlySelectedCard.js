@@ -22,14 +22,20 @@ export default function MonthlySelectedCard({ yearMonthStr, postInfos }) {
                         {
                             postInfos.map(
                                 (postInfo, index) => (
-
-                                    <Table.Row>
+                                    <Table.Row key={index}>
                                         <Table.RowHeaderCell><Link href={getBlogAddress(postInfo.blogDomainName)}>{postInfo.blogName}</Link></Table.RowHeaderCell>
                                         <Table.Cell>
-                                            {postInfo.blogStatusOk ?
-                                                <Link href={getGoAddress(postInfo.link)}>{postInfo.title}</Link>
-                                                : <Link href={getAbstractAddress(postInfo.link)}>{postInfo.title}</Link>
-                                            }
+                                            <Text style={{
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 1,
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden'
+                                            }}>
+                                                {postInfo.blogStatusOk ?
+                                                    <Link href={getGoAddress(postInfo.link)}>{postInfo.title}</Link>
+                                                    : <Link href={getAbstractAddress(postInfo.link)}>{postInfo.title}</Link>
+                                                }
+                                            </Text>
                                         </Table.Cell>
                                         <Table.Cell>{formatDateStr(postInfo.publishedAt, true)}</Table.Cell>
                                     </Table.Row>

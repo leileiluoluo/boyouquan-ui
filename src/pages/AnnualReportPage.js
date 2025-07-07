@@ -7,6 +7,7 @@ import Article from '../components/article/Article';
 import { META_2024, REPORT_INFO_2024 } from '../const/annual-reports/AnnualReport2024';
 import { scrollToHash } from '../utils/ScrollUtil';
 import { useEffect } from 'react';
+import { Box, Container } from '@radix-ui/themes';
 
 const getMetaAndYearInfo = (year) => {
     let meta = null
@@ -38,10 +39,14 @@ export default function AnnualReportPage() {
             <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
-                <Article
-                    title={reportInfo.title}
-                    content={reportInfo.content}
-                    publishedAt={reportInfo.publishedAt} />
+                <Box>
+                    <Container size="2">
+                        <Article
+                            title={reportInfo.title}
+                            content={reportInfo.content}
+                            publishedAt={reportInfo.publishedAt} />
+                    </Container>
+                </Box>
             </main>
             <CommonFooter />
         </>

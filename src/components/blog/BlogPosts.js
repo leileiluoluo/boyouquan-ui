@@ -35,7 +35,7 @@ export default function BlogPosts({ domain, blogStatusOk }) {
                     {
                         posts.map(
                             (post, index) => (
-                                <Flex gap="2" key={index}>
+                                <Flex gap="2" key={index} style={{ backgroundColor: index % 2 == 1 ? 'rgb(245, 245, 245)' : 'none' }}>
                                     <Text size="2">{formatDateStr(post.publishedAt, true)}</Text>
                                     <Text size="2" style={{
                                         display: '-webkit-box',

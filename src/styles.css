@@ -7,3 +7,7 @@ a,
 [data-has-background="true"] {
   background: none !important;
 }
+
+img {
+    border-color: darkgray;
+}

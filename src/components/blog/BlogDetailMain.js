@@ -41,7 +41,7 @@ export default function BlogDetailMain({ name, domainName, address, description,
                             </svg>
                         </Box>
                     </Flex>
-                    <Box style={{ backgroundColor: 'rgb(255, 255, 255)', padding: '10px', borderRadius: 'calc(0.4rem)' }}>
+                    <Box style={{ backgroundColor: 'rgb(255, 255, 255)', padding: '4px', borderRadius: 'calc(0.4rem)' }}>
                         <Text size="2" color="gray">{description}</Text>
                     </Box>
                 </Flex>

@@ -2,7 +2,7 @@ import { Box, Text } from "@radix-ui/themes";
 
 export default function BlogCardDescription({ description }) {
     return (
-        <Box p="2" radius="large" mt="1" mb="1"
+        <Box p="1" radius="large" mt="1" mb="1"
             style={{
                 backgroundColor: 'rgb(245, 245, 245)'
             }}>

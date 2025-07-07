@@ -1,4 +1,4 @@
-import { Box, Table, Link } from '@radix-ui/themes';
+import { Box, Table, Link, Text } from '@radix-ui/themes';
 
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAdminBlogRequestAddress, getBlogRequestAddress } from '../../utils/PageAddressUtil';
@@ -20,7 +20,16 @@ export default function BlogRequestsTable({ requests, adminPage }) {
                     {
                         requests.map((request, index) => (
                             <Table.Row key={index}>
-                                <Table.RowHeaderCell><Link href={adminPage ? getAdminBlogRequestAddress(request.id) : getBlogRequestAddress(request.id)}>{request.name}</Link></Table.RowHeaderCell>
+                                <Table.RowHeaderCell>
+                                    <Text style={{
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 1,
+                                        WebkitBoxOrient: 'vertical',
+                                        overflow: 'hidden'
+                                    }}>
+                                        <Link href={adminPage ? getAdminBlogRequestAddress(request.id) : getBlogRequestAddress(request.id)}>{request.name}</Link>
+                                    </Text>
+                                </Table.RowHeaderCell>
                                 <Table.Cell>{request.adminEmail}</Table.Cell>
                                 <Table.Cell>{formatDateStr(request.requestedAt, true)}</Table.Cell>
                                 {adminPage ? <Table.Cell>{request.selfSubmitted ? '是' : '否'}</Table.Cell> : ''}

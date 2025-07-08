@@ -603,6 +603,20 @@ const content = (
                             <Text>当前总额：523.91 元</Text>
                         </Table.Cell>
                     </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <Link href="/blogs/blog.lichenghao.cn/article">故事的程序猿</Link>
+                        </Table.Cell>
+                        <Table.Cell>2025/07/08</Table.Cell>
+                        <Table.Cell>9.00 元</Table.Cell>
+                        <Table.Cell>祝博友圈越来越好</Table.Cell>
+                        <Table.Cell>已计入总额，待后续使用</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>
+                            <Text>当前总额：532.91 元</Text>
+                        </Table.Cell>
+                    </Table.Row>
                 </Table.Body>
             </Table.Root>
         </div>

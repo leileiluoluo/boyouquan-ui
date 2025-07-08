@@ -141,7 +141,12 @@
     },
     {
         "name": "库拉饭的博客",
-        "link": "blogs/www.kulafan.com",
+        "link": "/blogs/www.kulafan.com",
         "avatar": "/assets/images/sites/special_thanks/www.kulafan.com.jpeg"
+    },
+    {
+        "name": "故事的程序猿",
+        "link": "/blogs/blog.lichenghao.cn/article",
+        "avatar": "/assets/images/sites/special_thanks/blog.lichenghao.cn.jpeg"
     }
 ]

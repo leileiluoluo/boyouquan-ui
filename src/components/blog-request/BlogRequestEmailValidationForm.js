@@ -10,37 +10,12 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
     return (
         <>
             {
-                isAdminPage ? '' : <header className="post-header">
-                    <Heading size="4" weight="bold">
-                        验证邮箱
-                    </Heading>
-                </header>
+                isAdminPage ? '' : <Heading size="4" weight="bold">
+                    验证邮箱
+                </Heading>
             }
             <Card>
                 <Form>
-                    {/* <Flex direction="column" gap="2">
-                        <Flex gap="2" align="center">
-                            <Box><Text>博主邮箱 *</Text></Box>
-                            <Box><Text size="1">{error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? <p style={errorStyle}>{error.message}</p> : ''}</Text></Box>
-                        </Flex>
-                        <Box maxWidth="200px">
-                            <TextField.Root ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange}>
-                            </TextField.Root>
-                        </Box>
-
-                        <Button style={{ width: '100px' }} ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</Button>
-
-                        <Box ref={emailValidationCodeInputRef} style={{ display: "none" }}>
-                            <Flex gap="2" align="center">
-                            <Box><Text>验证码 *</Text></Box>
-                            <Box><Text size="1">{error.code == 'blog_request_email_validation_code_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}</Text></Box>
-                        </Flex>
-                        <Box maxWidth="200px">
-                            <TextField.Root ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange}>
-                            </TextField.Root>
-                        </Box>
-                        </Box>
-                    </Flex> */}
                     <div className="requests-form-container">
                         <div className="key-value-entry">
                             <div className="label">

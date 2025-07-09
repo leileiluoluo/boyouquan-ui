@@ -1,5 +1,5 @@
 import { Form } from '@radix-ui/react-form';
-import { Card, Box, Button, Flex, Text, TextField, Heading } from '@radix-ui/themes';
+import { Card, Box, Button, Flex, Text, TextField, Heading, Link } from '@radix-ui/themes';
 
 const inputFontSizeStyle = { fontSize: '14px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
@@ -16,43 +16,41 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
             }
             <Card>
                 <Form>
-                    <div className="requests-form-container">
-                        <div className="key-value-entry">
-                            <div className="label">
-                                <p>博主邮箱 *</p>
-                                {error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? <p style={errorStyle}>{error.message}</p> : ''}
-                            </div>
-                            <div className="field">
-                                <input style={inputFontSizeStyle} ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
-                            </div>
-                        </div>
+                    <Flex direction="column" gap="2">
+                        <Box>
+                            <Flex gap="2" align="center">
+                                <Text>博主邮箱 *</Text>
+                                <Text size="2" color="red">{error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? error.message : ''}</Text>
+                            </Flex>
 
-                        <div className="key-value-entry">
-                            <div className="get-email-validation-code">
-                                <button type="button" ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</button>
-                            </div>
-                        </div>
+                            <TextField.Root mt="2" style={inputFontSizeStyle} ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
+                        </Box>
 
-                        <div className="key-value-entry" ref={emailValidationCodeInputRef} style={{ display: "none" }}>
-                            <div className="label">
-                                <p>验证码 *</p>
-                                {error.code == 'blog_request_email_validation_code_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
-                            </div>
-                            <div className="field">
-                                <input type="number" style={inputFontSizeStyle} name="emailVerificationCode" placeholder="上述邮箱收到的 6 位验证码" id="emailVerificationCode" value={formData.emailVerificationCode} onChange={handleChange} />
-                            </div>
-                        </div>
+                        <Box mt="2">
+                            <Button type="button" ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</Button>
+                        </Box>
 
-                        <div className="key-value-entry" ref={emailValidationButtonRef} style={{ display: "none" }}>
-                            <input type="submit" onClick={handleSubmit} value="验证" />
-                        </div>
+                        <Box mt="2" ref={emailValidationCodeInputRef} style={{ display: "none" }}>
+                            <Flex gap="2" align="center">
+                                <Text>验证码 *</Text>
+                                <Text size="2" color="red">{error.code == 'blog_request_email_validation_code_invalid' ? error.message : ''}</Text>
+                            </Flex>
 
-                        {
-                            isAdminPage ? '' : <div style={noticeStyle}>
-                                <p><a style={noticeFontStyle} href="mailto:contact@boyouquan.com?subject=提交博客时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">收不到验证码？我要联系站长！</a></p>
-                            </div>
-                        }
-                    </div>
+                            <TextField.Root mt="2" type="number" style={inputFontSizeStyle} name="emailVerificationCode" placeholder="上述邮箱收到的 6 位验证码" id="emailVerificationCode" value={formData.emailVerificationCode} onChange={handleChange} />
+                        </Box>
+
+                        <Box mt="2" ref={emailValidationButtonRef} style={{ display: "none" }}>
+                            <Button type="submit" onClick={handleSubmit}>验证</Button>
+                        </Box>
+
+                        <Box mt="2">
+                            {
+                                isAdminPage ? '' : <Text style={noticeStyle}>
+                                    <Link href="mailto:contact@boyouquan.com?subject=验证邮箱时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">收不到验证码？我要联系站长！</Link>
+                                </Text>
+                            }
+                        </Box>
+                    </Flex>
                 </Form>
             </Card>
         </>

@@ -80,11 +80,13 @@ export default function BlogRequestEmailValidation() {
         });
     };
 
-    const handleValidationButtonClick = () => {
+    const handleValidationButtonClick = (e) => {
+        e.preventDefault();
+
         const adminEmail = formData['adminEmail'];
         if (!isEmailValid(adminEmail)) {
-            const e = { code: 'blog_request_admin_email_invalid', message: '请输入正确的邮箱' }
-            setError(e);
+            const error = { code: 'blog_request_admin_email_invalid', message: '请输入正确的邮箱' }
+            setError(error);
             return;
         }
 

@@ -1,10 +1,8 @@
 import { Form } from '@radix-ui/react-form';
 import { Card, Box, Button, Flex, Text, TextField, Heading, Link } from '@radix-ui/themes';
 
-const inputFontSizeStyle = { fontSize: '14px' };
+const inputFontSizeStyle = { fontSize: '12px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
-const noticeFontStyle = { color: '#cb2e58' };
-const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
 
 export default function BlogRequestEmailValidationForm({ formData, error, adminEmailInputRef, sendCodeInputRef, emailValidationCodeInputRef, emailValidationButtonRef, handleChange, handleValidationButtonClick, handleSubmit, isAdminPage }) {
     return (
@@ -19,7 +17,7 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                     <Flex direction="column" gap="2">
                         <Box>
                             <Flex gap="2" align="center">
-                                <Text>博主邮箱 *</Text>
+                                <Text size="2">博主邮箱 *</Text>
                                 <Text size="2" color="red">{error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? error.message : ''}</Text>
                             </Flex>
 
@@ -27,12 +25,12 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                         </Box>
 
                         <Box mt="2">
-                            <Button type="button" ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</Button>
+                            <Button style={{ fontSize: '12px' }} type="button" ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</Button>
                         </Box>
 
                         <Box mt="2" ref={emailValidationCodeInputRef} style={{ display: "none" }}>
                             <Flex gap="2" align="center">
-                                <Text>验证码 *</Text>
+                                <Text size="2">验证码 *</Text>
                                 <Text size="2" color="red">{error.code == 'blog_request_email_validation_code_invalid' ? error.message : ''}</Text>
                             </Flex>
 
@@ -40,12 +38,12 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                         </Box>
 
                         <Box mt="2" ref={emailValidationButtonRef} style={{ display: "none" }}>
-                            <Button type="submit" onClick={handleSubmit}>验证</Button>
+                            <Button style={{ fontSize: '12px' }} type="submit" onClick={handleSubmit}>验证</Button>
                         </Box>
 
                         <Box mt="2">
                             {
-                                isAdminPage ? '' : <Text style={noticeStyle}>
+                                isAdminPage ? '' : <Text size="2" style={noticeStyle}>
                                     <Link href="mailto:contact@boyouquan.com?subject=验证邮箱时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">收不到验证码？我要联系站长！</Link>
                                 </Text>
                             }

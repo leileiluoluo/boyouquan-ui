@@ -23,10 +23,10 @@ export function formatDateStr(dateStr, useUnifiedFarmat) {
         return '半小时前';
     } else if (timeDiff < oneDay) {
         const hours = timeDiff / oneHour | 0;
-        return hours + '小时前';
+        return hours + ' 小时前';
     } else if (timeDiff < tenDay) {
         const days = timeDiff / oneDay | 0;
-        return days + '天前';
+        return days + ' 天前';
     }
     return date.format('YYYY/MM/DD');
 }

@@ -1,5 +1,5 @@
 import { Form } from '@radix-ui/react-form';
-import { Card, Box, Button, Flex, Text, TextField } from '@radix-ui/themes';
+import { Card, Box, Button, Flex, Text, TextField, Heading } from '@radix-ui/themes';
 
 const inputFontSizeStyle = { fontSize: '14px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
@@ -11,9 +11,9 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
         <>
             {
                 isAdminPage ? '' : <header className="post-header">
-                    <h3 className="post-title">
+                    <Heading size="4" weight="bold">
                         验证邮箱
-                    </h3>
+                    </Heading>
                 </header>
             }
             <Card>

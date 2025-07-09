@@ -6,9 +6,9 @@ export default function Pagination({ pageNo, pageSize, total, setCurrectPage }) 
 
     return (
         <Flex justify="between">
-            <Button onClick={() => setCurrectPage(pageNo - 1)} disabled={!hasPre}>« 上一页</Button>
+            <Button style={{ fontSize: '12px' }} onClick={() => setCurrectPage(pageNo - 1)} disabled={!hasPre}>« 上一页</Button>
 
-            <Button onClick={() => setCurrectPage(pageNo + 1)} disabled={!hasNext}>下一页 »</Button>
+            <Button style={{ fontSize: '12px' }} onClick={() => setCurrectPage(pageNo + 1)} disabled={!hasNext}>下一页 »</Button>
         </Flex>
     )
 }

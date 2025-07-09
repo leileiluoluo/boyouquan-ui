@@ -44,7 +44,7 @@ export default function PostCardList({ sort, keyword, showPinned }) {
                                 <Card>
                                     <Flex direction="column" gap="1">
                                         <Box>
-                                            <Skeleton width="240px" height="20px" />
+                                            <Skeleton width="240px" height="18px" />
                                         </Box>
                                         <Box>
                                             <Skeleton width="100%" height="48px" />

@@ -1,5 +1,5 @@
 import { Form } from '@radix-ui/react-form';
-import { Box, Button, Flex, Text, TextField } from '@radix-ui/themes';
+import { Card, Box, Button, Flex, Text, TextField } from '@radix-ui/themes';
 
 const inputFontSizeStyle = { fontSize: '14px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
@@ -16,9 +16,9 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                     </h3>
                 </header>
             }
-            <div className="blog-requests">
+            <Card>
                 <Form>
-                    <Flex direction="column" gap="2">
+                    {/* <Flex direction="column" gap="2">
                         <Flex gap="2" align="center">
                             <Box><Text>博主邮箱 *</Text></Box>
                             <Box><Text size="1">{error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? <p style={errorStyle}>{error.message}</p> : ''}</Text></Box>
@@ -40,9 +40,9 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                             </TextField.Root>
                         </Box>
                         </Box>
-                    </Flex>
+                    </Flex> */}
                     <div className="requests-form-container">
-                        {/* <div className="key-value-entry">
+                        <div className="key-value-entry">
                             <div className="label">
                                 <p>博主邮箱 *</p>
                                 {error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? <p style={errorStyle}>{error.message}</p> : ''}
@@ -50,13 +50,13 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                             <div className="field">
                                 <input style={inputFontSizeStyle} ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
                             </div>
-                        </div> */}
+                        </div>
 
-                        {/* <div className="key-value-entry">
+                        <div className="key-value-entry">
                             <div className="get-email-validation-code">
                                 <button type="button" ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</button>
                             </div>
-                        </div> */}
+                        </div>
 
                         <div className="key-value-entry" ref={emailValidationCodeInputRef} style={{ display: "none" }}>
                             <div className="label">
@@ -79,7 +79,7 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                         }
                     </div>
                 </Form>
-            </div>
+            </Card>
         </>
     )
 }

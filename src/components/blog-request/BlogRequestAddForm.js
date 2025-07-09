@@ -2,19 +2,19 @@ const inputFontSizeStyle = { fontSize: '14px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
 const noticeFontStyle = { color: '#cb2e58' };
 const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
+import { Card, Box, Button, Flex, Text, TextField, Heading } from '@radix-ui/themes';
+import { Form } from '@radix-ui/react-form';
 
 export default function BlogRequestAddForm({ formData, error, handleChange, handleSubmit, isAdminPage }) {
     return (
         <>
             {
-                isAdminPage ? '' : <header className="post-header">
-                    <h3 className="post-title">
+                isAdminPage ? '' : <Heading size="4" weight="bold">
                         提交博客
-                    </h3>
-                </header>
+                    </Heading>
             }
-            <div className="blog-requests">
-                <form onSubmit={handleSubmit}>
+            <Card>
+                <Form onSubmit={handleSubmit}>
                     <div className="requests-form-container">
                         <div className="key-value-entry">
                             <div className="label">
@@ -70,8 +70,8 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                             </div>
                         }
                     </div>
-                </form>
-            </div>
+                </Form>
+            </Card>
         </>
     )
 }

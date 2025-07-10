@@ -10,4 +10,7 @@ a,
 
 img {
     border-color: darkgray;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }

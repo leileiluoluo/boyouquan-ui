@@ -32,7 +32,7 @@ export default function PostCard({
                 <Box>
                     <Flex gap="1">
                         <img src="/assets/images/sites/pinned/pinned.svg" style={{ display: showPinned && pinned ? 'block' : 'none' }} />
-                        <Link size="2" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
+                        <Link size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
                             display: '-webkit-box',
                             WebkitLineClamp: 1,
                             WebkitBoxOrient: 'vertical',

@@ -54,7 +54,7 @@ export default function BlogCardList() {
     return (
         <Box className='blogs-container'>
             <Flex direction="column">
-                <Grid columns="2" gap="3">
+                <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
                     {
                         blogs.map(
                             (blog, index) => (

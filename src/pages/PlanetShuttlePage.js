@@ -23,7 +23,8 @@ const headStyle = `
     }
 
     canvas {
-    position: fixed;
+    margin-top: -800px !important;
+    // position: fixed;
     height: 100vh;
     width: 100vw;
     pointer-events: none; /* 让 canvas 不阻止鼠标事件 */
@@ -60,7 +61,7 @@ export default function PlanetShuttlePage() {
 
         setShuttleInfo(respBody);
 
-        redirectTo(getGoAddress(respBody.blogAddress), 3);
+        redirectTo(getGoAddress(respBody.blogAddress), 300);
     };
 
     useEffect(() => {

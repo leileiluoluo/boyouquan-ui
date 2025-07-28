@@ -34,7 +34,7 @@ export default function AdminRecommendedPosts() {
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
 
-        document.getElementsByClassName('blog-requests')[0].scrollIntoView();
+        document.getElementById('recommended-posts').scrollIntoView();
     }
 
     return (

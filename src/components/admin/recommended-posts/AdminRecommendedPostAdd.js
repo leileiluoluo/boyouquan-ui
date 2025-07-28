@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { Form } from '@radix-ui/react-form';
+import { Card, Box, Button, Flex, Text, TextField } from '@radix-ui/themes';
+
 import { redirectTo } from '../../../utils/CommonUtil';
 import { getCookie } from '../../../utils/CookieUtil';
 import { ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../../utils/PageAddressUtil';
 import RequestUtil from '../../../utils/APIRequestUtil';
-
-const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
 
 export default function AdminRecommendedPostAdd() {
     const [formData, setFormData] = useState({});
@@ -33,23 +34,23 @@ export default function AdminRecommendedPostAdd() {
     }
 
     return (
-        <div className="blog-requests">
-            <form onSubmit={recommend}>
-                <div className="requests-form-container">
-                    <div className="key-value-entry">
-                        <div className="label">
-                            <p>文章链接 *</p>
-                            {error ? <p style={errorStyle}>{error.message}</p> : ''}
-                        </div>
-                        <div className="field">
-                            <input name="link" id="link" onChange={handleChange} />
-                        </div>
-                    </div>
-                    <div className="key-value-entry">
-                        <input type="submit" value="提交" />
-                    </div>
-                </div>
-            </form>
-        </div>
+        <Card>
+            <Form>
+                <Flex direction="column" gap="2">
+                    <Box>
+                        <Flex gap="2" align="center">
+                            <Text size="2">文章链接 *</Text>
+                            <Text size="2" color="red">{error ? error.message : ''}</Text>
+                        </Flex>
+
+                        <TextField.Root mt="2" name="link" id="link" onChange={handleChange} />
+                    </Box>
+
+                    <Box mt="2">
+                        <Button style={{ fontSize: '12px' }} type="submit" onClick={recommend}>提交</Button>
+                    </Box>
+                </Flex>
+            </Form>
+        </Card>
     )
 }

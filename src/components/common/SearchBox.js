@@ -5,7 +5,8 @@ import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
 import { useNavigate } from 'react-router-dom';
 
 export default function SearchBox({ placeholder, gotoPage, sortType }) {
-    const [searchTerm, setSearchTerm] = useState('');
+    const keyword = getURLParameter('keyword');
+    const [searchTerm, setSearchTerm] = useState(null !== keyword ? keyword : '');
     const navigate = useNavigate();
 
     const handleSearch = (e) => {
@@ -24,13 +25,6 @@ export default function SearchBox({ placeholder, gotoPage, sortType }) {
         setSearchTerm('');
         navigate(window.location.pathname, { replace: true });
     };
-
-    useEffect(() => {
-        const keyword = getURLParameter('keyword');
-        if (null !== keyword) {
-            setSearchTerm(keyword);
-        }
-    });
 
     return (
         <TextField.Root

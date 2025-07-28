@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
+import { Link } from '@radix-ui/themes';
 
 export default function HomeLatestNews() {
     let animationControlStyle = { '--s': 4 };
@@ -25,11 +26,11 @@ export default function HomeLatestNews() {
     return (
         <>
             {
-                display ? <div className="latest-news">
-                    <div className="icon">
+                display ? <div class="latest-news">
+                    <div class="icon">
                         <img width="40px" height="40px" src="/assets/images/sites/latest_news/broadcast.png" />
                     </div>
-                    <div className="content">
+                    <div class="content">
                         <ul style={animationControlStyle}>
                             {
                                 items.map(

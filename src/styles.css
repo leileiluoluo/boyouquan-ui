@@ -1,7 +1,72 @@
 /* global.css */
+:root {
+  /* 轮播的条数，可以覆盖 */
+  --s: 6;
+  /* 单个条目的高度 */
+  --h: 36;
+  /* 单次动画的时长 */
+  --speed: 3s;
+}
+
+.latest-news {
+  height: calc(var(--h) * 1px);
+  line-height: calc(var(--h) * 1px);
+  border-radius: 6px;
+  border: 1px solid rgb(202, 201, 201);
+  overflow: hidden;
+  display: flex;
+}
+
+.latest-news .icon {
+  width: 30px;
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.latest-news .content {
+  font-size: 14px;
+  overflow: hidden;
+  margin-left: 4px;
+}
+
+.latest-news .content ul {
+  animation: move calc(var(--speed) * var(--s)) steps(var(--s)) infinite;
+  margin: 0;
+  padding: 0;
+}
+
+.latest-news .content ul li {
+  list-style: none;
+  white-space: nowrap;
+  cursor: pointer;
+  animation: liMove calc(var(--speed)) infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, calc(var(--s) * var(--h) * -1px));
+  }
+}
+
+@keyframes liMove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  80%,
+  100% {
+    transform: translate(0, calc(var(--h) * -1px));
+  }
+}
+
 a,
 .radix-link {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 [data-has-background="true"] {
@@ -9,8 +74,8 @@ a,
 }
 
 img {
-    border-color: darkgray;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
+  border-color: darkgray;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }

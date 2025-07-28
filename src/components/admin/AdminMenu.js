@@ -3,9 +3,9 @@ import { getCookie, setCookie } from '../../utils/CookieUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 
-const flexStyle = { display: 'flex', fontSize: '14px' };
-const redStyle = { color: 'red' };
-const marginStyle = { marginBottom: '18px' };
+import { Flex, Box, Text, Button, TabNav } from '@radix-ui/themes';
+import { ScrollArea } from '@radix-ui/react-scroll-area';
+import { useEffect, useState } from 'react';
 
 const sendLogout = async () => {
     await RequestUtil.post('/api/admin/logout', null, {
@@ -24,16 +24,28 @@ const logout = () => {
 }
 
 export default function AdminMenu() {
+    const [pathname, setPathname] = useState('');
+
+    useEffect(() => {
+        setPathname(window.location.pathname);
+    });
+
     return (
-        <div className="requests-header" style={marginStyle}>
-            <h4 style={redStyle}><a href="/admin/blog-requests">博客审核 - 管理页面</a></h4>
-            <h4 style={redStyle}><a href="/admin/blog-requests/add">提交博客 - 管理页面</a></h4>
-            <h4 style={redStyle}><a href="/admin/recommended-posts">推荐文章管理 - 管理页面</a></h4>
-            <h4 style={redStyle}><a href="/admin/recommended-posts/add">推荐文章 - 管理页面</a></h4>
-            <div style={flexStyle}>
-                <p>{getCookie('username')}</p> |
-                <p><button onClick={() => logout()}>退出登录</button></p>
-            </div>
-        </div>
+        <Box mb="2">
+            <Flex gap="1" direction="column">
+                <Box mt="2">
+                    <Text>{getCookie('username')}</Text> |
+                    <Button size="1" onClick={() => logout()}>退出登录</Button>
+                </Box>
+                <ScrollArea>
+                    <TabNav.Root size="3" color="crimson">
+                        <TabNav.Link href="/admin/blog-requests" active={pathname === "/admin/blog-requests"}>博客审核</TabNav.Link>
+                        <TabNav.Link href="/admin/blog-requests/add" active={pathname === "/admin/blog-requests/add"}>提交博客</TabNav.Link>
+                        <TabNav.Link href="/admin/recommended-posts" active={pathname === "/admin/recommended-posts"}>推荐文章管理</TabNav.Link>
+                        <TabNav.Link href="/admin/recommended-posts/add" active={pathname === "/admin/recommended-posts/add"}>推荐文章</TabNav.Link>
+                    </TabNav.Root>
+                </ScrollArea>
+            </Flex>
+        </Box>
     )
 }

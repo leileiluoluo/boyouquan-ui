@@ -8,6 +8,7 @@ import Pagination from '../pagination/Pagination';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
+import { Box } from '@radix-ui/themes';
 
 export default function AdminBlogRequests() {
     const [pageNo, setPageNo] = useState(1);
@@ -42,20 +43,26 @@ export default function AdminBlogRequests() {
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
 
-        document.getElementsByClassName('blog-requests')[0].scrollIntoView();
+        document.getElementById('blog-requests').scrollIntoView();
     }
 
     return (
         <>
             <AdminMenuHeader title='博客审核 - 管理页面' />
             <AdminMenu />
-            <SearchBox placeholder='搜索已提交的博客 ↵' gotoPage='/admin/blog-requests' />
-            <BlogRequestsTable adminPage='true' requests={blogRequests} />
-            <Pagination
-                pageNo={pageNo}
-                pageSize={pageSize}
-                total={total}
-                setCurrectPage={setCurrectPage} />
+            <Box mt="2">
+                <SearchBox placeholder='搜索已提交的博客 ↵' gotoPage='/admin/blog-requests' />
+            </Box>
+            <Box mt="2">
+                <BlogRequestsTable adminPage='true' requests={blogRequests} />
+            </Box>
+            <Box mt="2">
+                <Pagination
+                    pageNo={pageNo}
+                    pageSize={pageSize}
+                    total={total}
+                    setCurrectPage={setCurrectPage} />
+            </Box>
         </>
     )
 }

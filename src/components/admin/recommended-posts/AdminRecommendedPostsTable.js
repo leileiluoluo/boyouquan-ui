@@ -1,10 +1,11 @@
+import { Box, Table, Link, Text, Button } from '@radix-ui/themes';
+
 import { redirectTo } from '../../../utils/CommonUtil';
 import { getCookie } from '../../../utils/CookieUtil';
+import { formatDateStr } from '../../../utils/DateUtil';
+import { getBlogAddress } from '../../../utils/PageAddressUtil';
 import { ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../../utils/PageAddressUtil';
 import RequestUtil from '../../../utils/APIRequestUtil';
-
-const redStyle = { color: 'red' };
-const greenStyle = { color: 'green' };
 
 const unpin = (link) => {
     RequestUtil.patch('/api/admin/recommended-posts/unpin', JSON.stringify({ link: link }), {
@@ -28,40 +29,43 @@ const pin = (link) => {
 
 export default function AdminRecommendedPostsTable({ posts }) {
     return (
-        <div className="blog-requests">
-            <div className="requests-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <td><span>文章标题</span></td>
-                            <td><span>博客名称</span></td>
-                            <td><span>发布时间</span></td>
-                            <td><span>操作</span></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            posts.map(
-                                (post, index) => (
-                                    <tr key={index}>
-                                        <td><a href={`/go?from=website&link=${post.link}`}>{post.title}</a></td>
-                                        <td><a href="/blogs/www.xiangshitan.com">{post.blogName}</a></td>
-                                        <td>
-                                            <p>{post.publishedAt}</p>
-                                        </td>
-                                        <td>
-                                            {
-                                                post.pinned ? <button style={redStyle} onClick={() => unpin(post.link)}>取消置顶</button>
-                                                    : <button style={greenStyle} onClick={() => pin(post.link)}>置顶</button>
-                                            }
-                                        </td>
-                                    </tr>
-                                )
-                            )
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <Box id="recommended-posts">
+            <Table.Root variant="surface">
+                <Table.Header>
+                    <Table.Row>
+                        <Table.ColumnHeaderCell>文章标题</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>发布时间</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>操作</Table.ColumnHeaderCell>
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {
+                        posts.map((post, index) => (
+                            <Table.Row key={index}>
+                                <Table.RowHeaderCell>
+                                    <Text style={{
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 1,
+                                        WebkitBoxOrient: 'vertical',
+                                        overflow: 'hidden'
+                                    }}>
+                                        <Link href={post.link}>{post.title}</Link>
+                                    </Text>
+                                </Table.RowHeaderCell>
+                                <Table.Cell><Link href={getBlogAddress(post.blogDomainName)}>{post.blogName}</Link></Table.Cell>
+                                <Table.Cell>{formatDateStr(post.publishedAt, true)}</Table.Cell>
+                                <Table.Cell>
+                                    {
+                                        post.pinned ? <Button size="1" color="crimson" onClick={() => unpin(post.link)}>取消置顶</Button>
+                                            : <Button size="1" color="cyan" onClick={() => pin(post.link)}>置顶</Button>
+                                    }
+                                </Table.Cell>
+                            </Table.Row>
+                        ))
+                    }
+                </Table.Body>
+            </Table.Root>
+        </Box>
     )
 }

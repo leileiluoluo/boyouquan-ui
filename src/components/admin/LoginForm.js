@@ -1,42 +1,41 @@
+import { Form } from '@radix-ui/react-form';
+import { Card, Box, Button, Flex, Text, TextField, Heading } from '@radix-ui/themes';
+
 const inputFontSizeStyle = { fontSize: '14px' };
-const errorStyle = { marginLeft: '20px', color: '#cb2e58', fontSize: '14px' };
 
 export default function LoginForm({ formData, error, handleChange, handleSubmit }) {
     return (
         <>
-            <header className="post-header">
-                <h3 className="post-title">
-                    管理员登录
-                </h3>
-            </header>
-            <div className="login-form">
-                <form onSubmit={handleSubmit}>
-                    <div className="login-form-container">
-                        <div className="key-value-entry">
-                            <div className="label">
-                                <p>账号 *</p>
-                                {(error.code == 'login_username_invalid' || error.code == 'login_username_password_invalid') 
-                                ? <p style={errorStyle}>{error.message}</p> : ''}
-                            </div>
-                            <div className="field">
-                                <input style={inputFontSizeStyle} name="username" placeholder="账号" id="username" value={formData.username} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div className="key-value-entry">
-                            <div className="label">
-                                <p>密码 *</p>
-                                {error.code == 'login_password_invalid' ? <p style={errorStyle}>{error.message}</p> : ''}
-                            </div>
-                            <div className="field">
-                                <input style={inputFontSizeStyle} type="password" name="password" placeholder="密码" id="password" value={formData.password} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div className="key-value-entry">
-                            <input type="submit" value="登录" />
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <Heading size="4" weight="bold">
+                管理员登录
+            </Heading>
+            <Card>
+                <Form>
+                    <Flex direction="column" gap="2">
+                        <Box>
+                            <Flex gap="2" align="center">
+                                <Text size="2">账号 *</Text>
+                                <Text size="2" color="red">{error.code == 'login_username_invalid' || error.code == 'login_username_password_invalid' ? error.message : ''}</Text>
+                            </Flex>
+
+                            <TextField.Root mt="2" style={inputFontSizeStyle} name="username" id="username" value={formData.username} onChange={handleChange} />
+                        </Box>
+
+                        <Box>
+                            <Flex gap="2" align="center">
+                                <Text size="2">密码 *</Text>
+                                <Text size="2" color="red">{error.code == 'login_password_invalid' ? error.message : ''}</Text>
+                            </Flex>
+
+                            <TextField.Root mt="2" style={inputFontSizeStyle} type="password" name="password" placeholder="密码" id="password" value={formData.password} onChange={handleChange} />
+                        </Box>
+
+                        <Box mt="2">
+                            <Button style={{ fontSize: '12px' }} type="submit" onClick={handleSubmit}>登录</Button>
+                        </Box>
+                    </Flex>
+                </Form>
+            </Card>
         </>
     )
 }

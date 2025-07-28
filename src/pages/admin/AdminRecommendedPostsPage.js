@@ -2,6 +2,7 @@ import CommonHeader from '../../components/common/CommonHeader';
 import CommonFooter from '../../components/common/CommonFooter';
 import AdminRecommendedPosts from '../../components/admin/AdminRecommendedPosts';
 import Meta from '../../components/common/Meta';
+import { Box, Container } from '@radix-ui/themes';
 
 const meta = {
     title: '推荐文章管理 - 管理页面 - 博友圈 · 博客人的朋友圈！',
@@ -15,7 +16,11 @@ export default function AdminRecommendedPostsPage() {
             <Meta meta={meta} />
             <CommonHeader />
             <main className="main">
-                <AdminRecommendedPosts />
+                <Box>
+                    <Container size="2">
+                        <AdminRecommendedPosts />
+                    </Container>
+                </Box>
             </main>
             <CommonFooter />
         </>

@@ -79,8 +79,11 @@ a,
   background: none !important;
 }
 
-img {
-  border-color: darkgray;
+p img {
+  display: block;
+  margin: 0 auto;
+  border-color: var(--gray-5);
+  border-radius: 4px;
   max-width: 100%;
   height: auto;
   object-fit: contain;

@@ -25,7 +25,12 @@ export default function PostCardFooter({ blogURL, gravatarURL, blogName, publish
                 <Text> · </Text>
             </Box>
             <Box>
-                <Text size="2" color="gray">
+                <Text size="2" color="gray" style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}>
                     {publishedAtFormatted}
                 </Text>
             </Box>

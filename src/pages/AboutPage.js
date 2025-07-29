@@ -73,9 +73,6 @@ const content = <>
     <pre><code>Mozilla/5.0 (compatible; Boyouquanspider/1.0; +https://www.boyouquan.com/about#data-spider)</code></pre>
     <p>若您不经意在服务器日志中发现了许多带有这些请求头的请求，请放心予以放行！</p>
 
-    <h4 id="site-theme">网站主题</h4>
-    <p>博友圈在开源的「<a href="https://github.com/adityatelange/hugo-PaperMod">Hugo PaperMod</a>」主题之上作了大量的修改，从而构建了适用于本站的前端样式。在此感谢该主题的作者，并且特此声明：该主题的原始版权归 Hugo PaperMod 所有。</p>
-
     <h4 id="subscribe-feed">文章订阅</h4>
     <p>除了使用浏览器访问本站外，有一些朋友可能仍保留着使用订阅软件来阅读文章的习惯，本站特为这些用户开发了文章 RSS 订阅服务，订阅地址如下。</p>
     <ul>

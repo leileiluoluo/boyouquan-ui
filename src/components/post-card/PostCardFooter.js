@@ -14,7 +14,12 @@ export default function PostCardFooter({ blogURL, gravatarURL, blogName, publish
                 </Link>
             </Box>
             <Box>
-                <Link size="2" href={blogURL}>{blogName}</Link>
+                <Link size="2" href={blogURL} style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}>{blogName}</Link>
             </Box>
             <Box>
                 <Text> · </Text>
@@ -28,7 +33,12 @@ export default function PostCardFooter({ blogURL, gravatarURL, blogName, publish
                 <Text> · </Text>
             </Box>
             <Box>
-                <Text size="2" color="gray">
+                <Text size="2" color="gray" style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}>
                     {linkAccessCount} 次浏览
                 </Text>
             </Box>

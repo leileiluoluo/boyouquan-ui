@@ -1,7 +1,7 @@
 import { Avatar, Box, Flex, Link } from '@radix-ui/themes';
 import { getBlogAddress, getGoAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
 
-export default function BlogCardHeader({ name, domainName, address, blogAdminLargeImageURL }) {
+export default function BlogCardHeader({ name, domainName, address, blogAdminLargeImageURL, nameSize }) {
     const blogAddress = getBlogAddress(domainName);
     const gravatarURL = getGravatarImageFullURL(blogAdminLargeImageURL);
     const blogGoURL = getGoAddress(address);
@@ -20,7 +20,7 @@ export default function BlogCardHeader({ name, domainName, address, blogAdminLar
                 </Box>
                 <Box>
                     <Flex direction="column">
-                        <Link size="3" weight="bold" href={blogAddress}>{name}</Link>
+                        <Link size={nameSize} weight="bold" href={blogAddress}>{name}</Link>
                         <Flex gap="1" align="center">
                             <Link size="1" href={blogGoURL}>{domainName}</Link>
                             <Box size="1">

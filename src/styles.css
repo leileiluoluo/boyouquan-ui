@@ -9,6 +9,7 @@
 }
 
 .latest-news {
+  margin-top: 4px;
   height: calc(var(--h) * 1px);
   line-height: calc(var(--h) * 1px);
   border-radius: 6px;
@@ -41,6 +42,11 @@
   white-space: nowrap;
   cursor: pointer;
   animation: liMove calc(var(--speed)) infinite;
+}
+
+.latest-news .content ul li a {
+  color: var(--accent-a11);
+  font-weight: 500;
 }
 
 @keyframes move {

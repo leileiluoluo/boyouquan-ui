@@ -14,6 +14,7 @@ export default function BlogCard({ blog, posts, publishedAtHighlight, accessCoun
                     domainName={blog.domainName}
                     address={blog.address}
                     blogAdminLargeImageURL={blog.blogAdminLargeImageURL}
+                    nameSize="3"
                 />
                 <BlogCardDescription description={blog.description} />
                 <BlogCardSummary

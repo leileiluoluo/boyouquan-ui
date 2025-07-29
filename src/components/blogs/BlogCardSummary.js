@@ -20,7 +20,7 @@ export default function BlogCardSummary({ postCount, accessCount, collectedAt, d
                 <Box>
                     <Flex direction="column">
                         <Text size="2" color="gray">文章浏览</Text>
-                        <Text size="2">{accessCount}</Text>
+                        <Text size="2" color={accessCountHighlight ? "crimson" : ""}>{accessCount}</Text>
                     </Flex>
                 </Box>
                 <Box>
@@ -35,8 +35,8 @@ export default function BlogCardSummary({ postCount, accessCount, collectedAt, d
                         <Text size="2" color="gray">{createTimeHighlight ? '建博时间' :
                             '收录时间'
                         }</Text>
-                        <Text size="2">{createTimeHighlight ? domainRegisteredAtFormatted  :
-                            collectedAtFormatted 
+                        <Text size="2" color={publishedAtHighlight || createTimeHighlight ? "crimson" : ""}>{createTimeHighlight ? domainRegisteredAtFormatted :
+                            collectedAtFormatted
                         }</Text>
                     </Flex>
                 </Box>

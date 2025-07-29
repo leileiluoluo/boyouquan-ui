@@ -15,7 +15,7 @@ const REPORT_INFO_2024 = {
         <p>2024 全年，大家共发布了 <strong>16677</strong> 篇文章，其中 <strong>1249</strong> 篇被加入到了首页推荐，<strong>69</strong> 篇被置顶过。发布文章最多的博友为「<a href="https://www.boyouquan.com/blogs/rushihu.com">如是乎 · 生活百味随笔</a>」，共发布了 <strong>364</strong> 篇文章。</p>
         <p>2024 全年，博友圈共给大家带去了 <strong>541358</strong> 个独立 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：</p>
 
-        <img src="/assets/images/sites/annual_reports/2024/access-map.png" />
+        <p><img align="center" width="480px" border="1"src="/assets/images/sites/annual_reports/2024/access-map.png" /></p>
 
         可以看到，发起访问最高的五个省份或直辖市为：
         <ul>

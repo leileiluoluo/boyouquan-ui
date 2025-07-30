@@ -15,7 +15,7 @@ module.exports = {
         publicPath: '/', // 资源的公共路径
         clean: true, // 清理旧的文件
     },
-    mode: 'production', // 生产模式
+    mode: 'development', // 开发模式
     devtool: 'source-map', // 生成 source map
     devServer: {
         static: {

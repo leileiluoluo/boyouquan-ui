@@ -26,12 +26,12 @@ export default function MonthlySelectedCardList() {
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
 
-        document.getElementsByClassName('monthly-selected-container')[0].scrollIntoView();
+        document.getElementById('monthly-selected-container').scrollIntoView();
     }
 
     return (
         <>
-            <Box>
+            <Box id="monthly-selected-container">
                 {
                     items.map(
                         (item, index) => (

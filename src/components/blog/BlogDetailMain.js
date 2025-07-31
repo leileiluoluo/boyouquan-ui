@@ -18,7 +18,8 @@ export default function BlogDetailMain({ name, domainName, address, description,
     return (
         <Box id="blog-detail-domain" style={{
             // backgroundImage: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
-            padding: 'var(--space-4)'
+            padding: 'var(--space-4)',
+            borderRadius: '6px'
         }}>
             <Flex gap="1" direction="column">
                 <BlogCardFooter

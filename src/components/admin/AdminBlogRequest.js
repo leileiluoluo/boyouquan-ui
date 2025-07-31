@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCookie } from '../../utils/CookieUtil';
 import Meta from '../common/Meta';
 import AdminMenuHeader from './AdminMenuHeader';
 import AdminBlogRequestTable from './AdminBlogRequestTable';
 import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenu from './AdminMenu';
-import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
-import { redirectTo } from '../../utils/CommonUtil';
 
 const getMeta = (name, description) => {
     return {

@@ -16,7 +16,7 @@ export default function BlogDetailMain({ name, domainName, address, description,
     }, []);
 
     return (
-        <Card id="blog-detail-domain" style={{
+        <Box id="blog-detail-domain" style={{
             // backgroundImage: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
             padding: 'var(--space-4)'
         }}>
@@ -79,6 +79,6 @@ export default function BlogDetailMain({ name, domainName, address, description,
                     </Box>
                 </Flex>
             </Flex>
-        </Card>
+        </Box>
     )
 }

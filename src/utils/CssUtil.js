@@ -36,7 +36,7 @@ export function setBackgroundFromAvatar(elementId, avatarUrl) {
         b = Math.floor(b / count);
 
         // 设置背景颜色
-        document.getElementById(elementId).style.background = `linear-gradient(var(--gray-4), rgb(${r}, ${g}, ${b}))`;
+        document.getElementById(elementId).style.background = `linear-gradient(to bottom right, var(--gray-4), rgb(${r}, ${g}, ${b}))`;
 
         // 或者设置文字颜色确保可读性
         const brightness = (r * 299 + g * 587 + b * 114) / 1000;

@@ -29,7 +29,7 @@ export function getBlogRequestAddress(id) {
 }
 
 export function getGravatarImageFullURL(imageURL) {
-    return `https://www.boyouquan.com${imageURL}`;
+    return imageURL;
 }
 
 export function getAdminBlogRequestAddress(id) {

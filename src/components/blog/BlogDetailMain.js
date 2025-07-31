@@ -2,6 +2,8 @@ import { getGoAddress, getGravatarImageFullURL } from '../../utils/PageAddressUt
 import { formatDateStr, formatDomainNameRegistrationDateStr } from '../../utils/DateUtil';
 import { Card, Box, Flex, Link, Avatar, Text, Tooltip } from '@radix-ui/themes';
 import BlogCardFooter from '../blogs/BlogCardFooter';
+import { useEffect } from 'react';
+import { setBackgroundFromAvatar } from '../../utils/CssUtil';
 
 export default function BlogDetailMain({ name, domainName, address, description, statusOk, submittedInfo, submittedInfoTip, statusUnOkInfo, blogAdminLargeImageURL, domainNameRegisteredAt, blogServerLocation }) {
     const blogGoAddress = getGoAddress(address);
@@ -9,9 +11,13 @@ export default function BlogDetailMain({ name, domainName, address, description,
     const domainNameRegisteredAtStdStr = formatDateStr(domainNameRegisteredAt, true);
     const domainNameRegisteredDateStr = null !== domainNameRegisteredAt ? formatDomainNameRegistrationDateStr(domainNameRegisteredAt) : '';
 
+    useEffect(() => {
+        setBackgroundFromAvatar('blog-detail-domain', gravatarURL);
+    }, []);
+
     return (
-        <Card style={{
-            backgroundImage: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
+        <Card id="blog-detail-domain" style={{
+            // backgroundImage: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
             padding: 'var(--space-4)'
         }}>
             <Flex gap="1" direction="column">

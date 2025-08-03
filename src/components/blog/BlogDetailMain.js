@@ -1,6 +1,6 @@
 import { getGoAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
 import { formatDateStr, formatDomainNameRegistrationDateStr } from '../../utils/DateUtil';
-import { Card, Box, Flex, Link, Avatar, Text, Tooltip } from '@radix-ui/themes';
+import { Box, Flex, Link, Avatar, Text, Tooltip } from '@radix-ui/themes';
 import BlogCardFooter from '../blogs/BlogCardFooter';
 import { useEffect } from 'react';
 import { setBackgroundFromAvatar } from '../../utils/CssUtil';
@@ -17,7 +17,7 @@ export default function BlogDetailMain({ name, domainName, address, description,
 
     return (
         <Box id="blog-detail-domain" style={{
-            // backgroundImage: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
+            background: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
             padding: 'var(--space-4)',
             borderRadius: '6px'
         }}>

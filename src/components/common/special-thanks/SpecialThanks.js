@@ -11,7 +11,7 @@ const thanksStyle = {
 
 export default function SpecialThanks() {
     return (
-        <Box>
+        <Box id="special-thanks">
             <Card>
                 <Flex direction="column" gap="2">
                     <Box align="center">

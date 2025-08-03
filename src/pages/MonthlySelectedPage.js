@@ -4,6 +4,7 @@ import CommonFooter from '../components/common/CommonFooter';
 import Meta from '../components/common/Meta';
 import MonthlySelectedCardList from '../components/monthly-selected/MonthlySelectedCardList';
 import { Box, Container, Flex } from '@radix-ui/themes';
+import Subscription from '../components/monthly-selected/Subscription';
 
 const meta = {
     title: '每月精选 - 博友圈 · 博客人的朋友圈！',
@@ -21,6 +22,7 @@ export default function MonthlySelectedPage() {
                     <Container size="2">
                         <Flex direction="column" gap="4">
                             <MainContentHeader content='首页文章更新的太快？几天不刷就感觉错过了什么？快来每月精选看看过去几个月的精选文章吧！' />
+                            <Subscription />
                             <MonthlySelectedCardList />
                         </Flex>
                     </Container>

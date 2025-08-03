@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { isEmailValid } from '../../utils/EmailUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { redirectTo } from '../../utils/CommonUtil';
-import { BLOG_REQUEST_ADD_ADDRESS, BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
+import { BLOG_REQUEST_ADD_ADDRESS } from '../../utils/PageAddressUtil';
 import BlogRequestEmailValidationForm from './BlogRequestEmailValidationForm';
 
 function startCountdown(button, countdownInterval, countdown) {

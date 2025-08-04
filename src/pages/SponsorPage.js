@@ -53,7 +53,7 @@ const content = (
 
         <Text as="p" mb="2" mt="6">
             <Strong id="sponsor-list">
-                赞助名单（同步在全站底部的「<a href="/home">感谢赞助</a>」模块显示）：
+                赞助名单（同步在全站底部的「<a href="/home#special-thanks">感谢赞助</a>」模块显示）：
             </Strong>
         </Text>
 

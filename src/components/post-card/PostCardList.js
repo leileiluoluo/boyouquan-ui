@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
+import { clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
@@ -24,8 +24,6 @@ export default function PostCardList({ sort, keyword, showPinned }) {
 
     useEffect(() => {
         fetchData(sort, keyword, pageNo);
-
-        scrollToHash();
     }, [sort, keyword, pageNo]);
 
     const setCurrectPage = (pageNo) => {

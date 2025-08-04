@@ -15,7 +15,7 @@ export default function SpecialThanks() {
             <Card>
                 <Flex direction="column" gap="2">
                     <Box align="center">
-                        <Link size="2" href="/sponsor">感谢赞助</Link>
+                        <Link size="2" weight="bold" href="/sponsor">感谢赞助</Link>
                     </Box>
                     <Box>
                         <Flex gap="4"

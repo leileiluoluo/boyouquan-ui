@@ -52,6 +52,7 @@ export default function Subscription() {
         }
 
         submitSubscription(email.trim());
+        setEmail('');
     }
 
     return <>
@@ -64,7 +65,7 @@ export default function Subscription() {
                     <GlobalDialog
                         title={'' != error.code ? '错误提示' : '提示'}
                         titleColor={'' != error.code ? 'crimson' : ''}
-                        message={'' != error.code ? error.message : '您已成功订阅「每月精选」，您会在每个月底自动收到精选文章邮件！'}
+                        message={'' != error.code ? error.message : `您的邮箱 ${email} 已成功订阅「每月精选」，您会在每个月底自动收到精选文章邮件！刚刚已将上个月的精选文章发到了您的邮箱，请注意查看！`}
                         closeButtonName={'' != error.code ? '返回' : '关闭窗口'}
                         dialogOpen={dialogOpen}
                         setDialogOpen={setDialogOpen}

@@ -8,7 +8,6 @@ import { lazy, Suspense, useEffect } from 'react';
 import { getURLParameter } from '../utils/CommonUtil';
 import { Box, Container, Flex } from '@radix-ui/themes';
 import MainContentHeader from '../components/common/MainContentHeader';
-import { scrollToHash } from '../utils/ScrollUtil';
 const HomeLatestNews = lazy(() => import('../components/home/HomeLatestNews'));
 const HomePopularBlogsHeader = lazy(() => import('../components/home/HomePopularBlogsHeader'));
 
@@ -33,10 +32,6 @@ const getSortAndKeywordAndShowPinned = () => {
 
 export default function HomePage() {
     const { sort, keyword, showPinned } = getSortAndKeywordAndShowPinned();
-
-    useEffect(() => {
-        scrollToHash();
-    });
 
     return (
         <>

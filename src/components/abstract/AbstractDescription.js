@@ -2,8 +2,8 @@ import { Box, Text } from "@radix-ui/themes";
 
 export default function AbstractDescription({ description }) {
     return (
-        <Box mt="2" p="1" style={{ backgroundColor: 'rgb(245, 245, 245)' }}>
-            <Text size="2" style={{
+        <Box>
+            <Text size="2" color="gray" style={{
                 display: '-webkit-box',
                 WebkitLineClamp: 6,
                 WebkitBoxOrient: 'vertical',

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { clearHash } from '../../utils/ScrollUtil';
+import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
@@ -20,6 +20,8 @@ export default function PostCardList({ sort, keyword, showPinned }) {
         setPageSize(respBody.pageSize);
         setTotal(respBody.total);
         setPosts(respBody.results);
+
+        scrollToHash();
     };
 
     useEffect(() => {

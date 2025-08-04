@@ -8,7 +8,7 @@ import AbstractDescription from './AbstractDescription';
 import Meta from '../common/Meta';
 import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
 import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
-import { Card } from '@radix-ui/themes';
+import { Card, Flex } from '@radix-ui/themes';
 
 const getMeta = (isSharingPage, title, description) => {
     if (isSharingPage) {
@@ -56,18 +56,20 @@ export default function Abstract({ isSharingPage }) {
                 <Fragment>
                     <Meta meta={getMeta(isSharingPage, postInfo.title, postInfo.description)} />
                     <Card>
-                        {
-                            isSharingPage || postInfo.blogStatusOk ? '' : <AbstractNotice />
-                        }
-                        <AbstractTitle isSharingPage={isSharingPage} title={postInfo.title} link={postInfo.link} />
-                        <AbstractDescription description={postInfo.description} />
-                        <AbstractGo link={postInfo.link} />
-                        <AbstractFooter
-                            blogName={postInfo.blogName}
-                            blogDomainName={postInfo.blogDomainName}
-                            blogAdminMediumImageURL={postInfo.blogAdminMediumImageURL}
-                            publishedAt={postInfo.publishedAt}
-                            linkAccessCount={postInfo.linkAccessCount} />
+                        <Flex direction="column" gap="1">
+                            {
+                                isSharingPage || postInfo.blogStatusOk ? '' : <AbstractNotice />
+                            }
+                            <AbstractTitle isSharingPage={isSharingPage} title={postInfo.title} link={postInfo.link} />
+                            <AbstractDescription description={postInfo.description} />
+                            <AbstractGo link={postInfo.link} />
+                            <AbstractFooter
+                                blogName={postInfo.blogName}
+                                blogDomainName={postInfo.blogDomainName}
+                                blogAdminMediumImageURL={postInfo.blogAdminMediumImageURL}
+                                publishedAt={postInfo.publishedAt}
+                                linkAccessCount={postInfo.linkAccessCount} />
+                        </Flex>
                     </Card>
                 </Fragment> : ''
             }

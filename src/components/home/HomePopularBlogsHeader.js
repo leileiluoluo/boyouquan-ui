@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Skeleton, Flex, Box, Tooltip, Link, Avatar } from '@radix-ui/themes';
+import { Skeleton, Flex } from '@radix-ui/themes';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { getBlogAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
 import PopularBlog from './PopularBlog';
 
 export default function HomePopularBlogsHeader() {

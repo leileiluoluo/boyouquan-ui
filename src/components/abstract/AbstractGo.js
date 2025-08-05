@@ -5,7 +5,7 @@ export default function AbstractGo({ link }) {
     const gotoLink = getGoAddress(link);
     return (
         <Box>
-            <Link href={gotoLink} size="2">
+            <Link href={gotoLink} size="2" weight="bold">
                 [阅读原文]
             </Link>
         </Box>

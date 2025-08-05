@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Strong, Flex, Text, Separator, Skeleton } from '@radix-ui/themes';
+import { Strong, Flex, Text, Separator, Skeleton, ScrollArea, Box } from '@radix-ui/themes';
 import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function FooterStatistic() {
@@ -26,13 +26,17 @@ export default function FooterStatistic() {
     return (
         <>
             {
-                loaded ? <Flex gap="2" justify="center" align="center">
-                    <Text size="2">收录博客 <Strong>{statistic.totalBlogs}</Strong> 个</Text>
-                    <Separator orientation="vertical" />
-                    <Text size="2">收录文章 <Strong>{statistic.totalPosts}</Strong> 篇</Text>
-                    <Separator orientation="vertical" />
-                    <Text size="2">浏览文章 <Strong>{statistic.totalAccesses}</Strong> 次</Text>
-                </Flex> : <Flex gap="2" justify="center">
+                loaded ? <Box align="center">
+                    <ScrollArea scrollbars="horizontal">
+                        <Flex gap="2" justify="center" align="center">
+                            <Text size="2">收录博客 <Strong>{statistic.totalBlogs}</Strong> 个</Text>
+                            <Separator orientation="vertical" />
+                            <Text size="2">收录文章 <Strong>{statistic.totalPosts}</Strong> 篇</Text>
+                            <Separator orientation="vertical" />
+                            <Text size="2">浏览文章 <Strong>{statistic.totalAccesses}</Strong> 次</Text>
+                        </Flex>
+                    </ScrollArea>
+                </Box> : <Flex gap="2" justify="center">
                     <Text><Skeleton>收录博客</Skeleton></Text>
                     <Separator orientation="vertical" />
                     <Text><Skeleton>收录文章</Skeleton></Text>

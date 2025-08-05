@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Link, TabNav, Text } from '@radix-ui/themes';
+import { Box, Container, Flex, Link, ScrollArea, TabNav, Text } from '@radix-ui/themes';
 
 export default function SiteFooter() {
     return (
@@ -6,14 +6,20 @@ export default function SiteFooter() {
             <Box>
                 <Container size="2">
                     <Flex direction="column" justify="center" align="center">
-                        <Box>
-                            <TabNav.Root>
-                                <TabNav.Link href="/sponsor">赞助本站</TabNav.Link>
-                                <TabNav.Link href="/release-notes">发布历史</TabNav.Link>
-                                <TabNav.Link href="/about">关于本站</TabNav.Link>
-                                <TabNav.Link href="/annual-reports">年度报告</TabNav.Link>
-                                <TabNav.Link href="/similar-sites">同类网站</TabNav.Link>
-                            </TabNav.Root>
+                        <Box width="80%">
+                            <Box>
+                                <ScrollArea scrollbars="horizontal">
+                                    <Box>
+                                        <TabNav.Root>
+                                            <TabNav.Link href="/sponsor">赞助本站</TabNav.Link>
+                                            <TabNav.Link href="/release-notes">发布历史</TabNav.Link>
+                                            <TabNav.Link href="/about">关于本站</TabNav.Link>
+                                            <TabNav.Link href="/annual-reports">年度报告</TabNav.Link>
+                                            <TabNav.Link href="/similar-sites">同类网站</TabNav.Link>
+                                        </TabNav.Root>
+                                    </Box>
+                                </ScrollArea>
+                            </Box>
                         </Box>
                         <Box>
                             <Text size="1">

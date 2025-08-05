@@ -1,14 +1,6 @@
 import { Box, Flex, Card, Link, Tooltip, Avatar } from '@radix-ui/themes';
 import specialThanks from '../../../json/specialThanks.json';
 
-const thanksStyle = {
-    paddingTop: '8px',
-    paddingBottom: '4px',
-    borderBottom: '2px solid #cb2e58',
-    width: '80px',
-    margin: '0 auto'
-}
-
 export default function SpecialThanks() {
     return (
         <Box id="special-thanks">

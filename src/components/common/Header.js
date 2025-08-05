@@ -29,7 +29,7 @@ export default function Header() {
                             <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
                                 <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
-                                <TabNav.Link href="/blogs" active={pathname === "/blogs"}>博客广场</TabNav.Link>
+                                <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
                                 <TabNav.Link asChild>
                                     <a href="/planet-shuttle" target="_blank" rel="noopener noreferrer">
                                         星球穿梭

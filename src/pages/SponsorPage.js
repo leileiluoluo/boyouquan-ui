@@ -489,7 +489,7 @@ const content = (
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell>
-                            <Link href="/blogs/vind.art">Vind Art</Link>
+                            <Link href="/blogs/vindlog.com">Vind Log</Link>
                         </Table.Cell>
                         <Table.Cell>2025/03/11</Table.Cell>
                         <Table.Cell>9.00 元</Table.Cell>

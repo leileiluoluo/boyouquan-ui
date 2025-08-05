@@ -1,9 +1,9 @@
 import { Box, Flex, Card, Link, Tooltip, Avatar } from '@radix-ui/themes';
 import specialThanks from '../../../json/specialThanks.json';
 
-export default function SpecialThanks() {
+export default function SpecialThanks({ isHome }) {
     return (
-        <Box id="special-thanks">
+        <Box id="special-thanks" display={isHome ? "block" : "none"}>
             <Card>
                 <Flex direction="column" gap="2">
                     <Box align="center">

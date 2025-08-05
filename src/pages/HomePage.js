@@ -52,10 +52,10 @@ export default function HomePage() {
                             <SwitchSortType types={switchTypes} />
                             <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
                         </Flex>
-                        <CommonFooter />
+                        <CommonFooter isHome="true" />
                     </Container>
                 </Box>
-            </main> 
+            </main>
         </>
     )
 }

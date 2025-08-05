@@ -5,8 +5,8 @@ export default function SiteFooter() {
         <Box mt="4">
             <Container size="2">
                 <Box>
-                    <ScrollArea scrollbars="horizontal">
-                        <Flex gap="4" justify="center" align="center">
+                    <ScrollArea size="1" scrollbars="horizontal">
+                        <Flex gap="2" justify="center" align="center">
                             <Link size="2" weight="bold" href="/sponsor">赞助本站</Link>
                             <Separator orientation="vertical" />
                             <Link size="2" weight="bold" href="/release-notes">发布历史</Link>
@@ -21,7 +21,7 @@ export default function SiteFooter() {
                 </Box>
                 <Box align="center">
                     <Container size="1">
-                        <Separator size="4" my="1" /> 
+                        <Separator size="4" my="2" />
                     </Container>
                 </Box>
                 <Flex direction="column" justify="center" align="center">

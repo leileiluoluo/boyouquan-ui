@@ -31,7 +31,7 @@ const content = (
         <Text as="p" mb="2">
             <Strong>
                 赞赏时，如果您是本站收录的博主，请备注一下博客名称，以便我们将您的信息链接到下面的「
-                <a href="#sponsor-list">赞助名单</a>」与全站底部的「
+                <a href="#sponsor-list">赞助名单</a>」与首页底部的「
                 <a href="/home#special-thanks">感谢赞助</a>」模块！
             </Strong>
         </Text>
@@ -53,7 +53,7 @@ const content = (
 
         <Text as="p" mb="2" mt="6">
             <Strong id="sponsor-list">
-                赞助名单（同步在全站底部的「<a href="/home#special-thanks">感谢赞助</a>」模块显示）：
+                赞助名单（同步在首页底部的「<a href="/home#special-thanks">感谢赞助</a>」模块显示）：
             </Strong>
         </Text>
 

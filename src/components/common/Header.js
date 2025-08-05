@@ -26,7 +26,7 @@ export default function Header() {
                     </Box>
                     <Box width="60%">
                         <ScrollArea type="always" scrollbars="horizontal">
-                            <TabNav.Root size="3">
+                            <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
                                 <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
                                 <TabNav.Link href="/blogs" active={pathname === "/blogs"}>博客广场</TabNav.Link>

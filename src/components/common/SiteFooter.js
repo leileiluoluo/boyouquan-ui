@@ -6,16 +6,16 @@ export default function SiteFooter() {
             <Container size="2">
                 <Box>
                     <ScrollArea scrollbars="horizontal">
-                        <Flex gap="2" justify="center" align="center">
-                            <Link size="2" href="/sponsor">赞助本站</Link>
+                        <Flex gap="4" justify="center" align="center">
+                            <Link size="2" weight="bold" href="/sponsor">赞助本站</Link>
                             <Separator orientation="vertical" />
-                            <Link size="2" href="/release-notes">发布历史</Link>
+                            <Link size="2" weight="bold" href="/release-notes">发布历史</Link>
                             <Separator orientation="vertical" />
-                            <Link size="2" href="/about">关于本站</Link>
+                            <Link size="2" weight="bold" href="/about">关于本站</Link>
                             <Separator orientation="vertical" />
-                            <Link size="2" href="/annual-reports">年度报告</Link>
+                            <Link size="2" weight="bold" href="/annual-reports">年度报告</Link>
                             <Separator orientation="vertical" />
-                            <Link size="2" href="/similar-sites">同类网站</Link>
+                            <Link size="2" weight="bold" href="/similar-sites">同类网站</Link>
                         </Flex>
                     </ScrollArea>
                 </Box>

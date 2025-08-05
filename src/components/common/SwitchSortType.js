@@ -12,7 +12,7 @@ export default function SwitchSortType({ types }) {
 
     return (
         <Flex id="switch-sort-type">
-            <TabNav.Root>
+            <TabNav.Root style={{ fontWeight: 'bold' }}>
                 {
                     types.map(
                         (item, index) => (

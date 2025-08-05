@@ -21,7 +21,7 @@ export default function BlogRequestsTable({ requests, adminPage }) {
                         requests.map((request, index) => (
                             <Table.Row key={index}>
                                 <Table.RowHeaderCell>
-                                    <Text style={{
+                                    <Text weight="bold" style={{
                                         display: '-webkit-box',
                                         WebkitLineClamp: 1,
                                         WebkitBoxOrient: 'vertical',

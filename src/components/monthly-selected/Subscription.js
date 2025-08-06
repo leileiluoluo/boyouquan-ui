@@ -31,6 +31,8 @@ export default function Subscription() {
         if (resp.status != 201) {
             const respBody = await resp.json();
             setError(respBody);
+        } else {
+            setError({ code: '', message: '' });
         }
 
         setDialogOpen(true);
@@ -50,6 +52,8 @@ export default function Subscription() {
             setDialogOpen(true);
             return;
         }
+
+        alert(email);
 
         submitSubscription(email.trim());
         setEmail('');

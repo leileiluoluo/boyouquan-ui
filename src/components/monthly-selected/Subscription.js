@@ -53,10 +53,7 @@ export default function Subscription() {
             return;
         }
 
-        alert(email);
-
         submitSubscription(email.trim());
-        setEmail('');
     }
 
     return <>

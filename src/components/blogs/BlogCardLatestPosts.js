@@ -14,7 +14,7 @@ export default function BlogCardLatestPosts({ statusOk, posts }) {
                         posts.map(
                             (post, index) => (
                                 <Flex gap="2" key={index}>
-                                    <Text size="2">{formatDateStr(post.publishedAt, true)}</Text>
+                                    <Text size="2" color="gray">{formatDateStr(post.publishedAt, true)}</Text>
                                     <Text size="2" style={{
                                         display: '-webkit-box',
                                         WebkitLineClamp: 1,

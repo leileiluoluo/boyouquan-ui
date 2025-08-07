@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { getCookie } from '../../utils/CookieUtil';
 import AdminMenu from './AdminMenu';
 import AdminRecommendedPostsTable from './recommended-posts/AdminRecommendedPostsTable';
 import Pagination from '../pagination/Pagination';
@@ -7,6 +6,7 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import AdminMenuHeader from './AdminMenuHeader';
+import { Box } from '@radix-ui/themes';
 
 export default function AdminRecommendedPosts() {
     const [pageNo, setPageNo] = useState(1);
@@ -42,11 +42,13 @@ export default function AdminRecommendedPosts() {
             <AdminMenuHeader title='推荐文章管理 - 管理页面' />
             <AdminMenu />
             <AdminRecommendedPostsTable posts={posts} />
-            <Pagination
-                pageNo={pageNo}
-                pageSize={pageSize}
-                total={total}
-                setCurrectPage={setCurrectPage} />
+            <Box mt="2">
+                <Pagination
+                    pageNo={pageNo}
+                    pageSize={pageSize}
+                    total={total}
+                    setCurrectPage={setCurrectPage} />
+            </Box>
         </>
     )
 }

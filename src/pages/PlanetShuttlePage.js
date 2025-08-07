@@ -5,6 +5,7 @@ import Meta from '../components/common/Meta';
 import { getGoAddress } from '../utils/PageAddressUtil';
 import { redirectTo } from '../utils/CommonUtil';
 import { Box } from '@radix-ui/themes';
+import { getDaysTillNow } from '../utils/DateUtil';
 
 const meta = {
     title: '星球穿梭 - 博友圈 · 博客人的朋友圈！',
@@ -52,6 +53,8 @@ export default function PlanetShuttlePage() {
         'fromBlog': { 'blogName': '', 'blogAddress': '' },
     });
 
+    const [fromBlogJoinDays, setFromBlogJoinDays] = useState(0);
+
     const fetchData = async (referrer) => {
         const resp = await RequestUtil.get('/api/planet-shuttle', {
             'From': referrer
@@ -60,6 +63,10 @@ export default function PlanetShuttlePage() {
         const respBody = await resp.json();
 
         setShuttleInfo(respBody);
+        if (null !== respBody.fromBlog) {
+            const days = getDaysTillNow(respBody.fromBlog.collectedAt);
+            setFromBlogJoinDays(days);
+        }
 
         redirectTo(getGoAddress(respBody.blogAddress), 3);
     };
@@ -86,7 +93,7 @@ export default function PlanetShuttlePage() {
                 </Box>
                 <Box style={fontSizeLargeStyle}>
                     {
-                        (null != shuttleInfo.fromBlog) ? <><p style={marginOneStyle}>总助力值为 {shuttleInfo.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${shuttleInfo.fromBlog.domainName}`} style={animationStyle}>{shuttleInfo.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p></>
+                        (null !== shuttleInfo.fromBlog) ? <><p style={marginOneStyle}>加入博友圈 {fromBlogJoinDays} 天、总助力值为 {shuttleInfo.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${shuttleInfo.fromBlog.domainName}`} style={animationStyle}>{shuttleInfo.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p></>
                             : <p>您即将穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p>
                     }
                 </Box>

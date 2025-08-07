@@ -53,3 +53,16 @@ export function formatDomainNameRegistrationDateStr(dateStr) {
     const years = timeDiff / oneYear | 0;
     return years + '岁';
 }
+
+export function getDaysTillNow(dateStr) {
+    const date = moment(dateStr, 'YYYY-MM-DD HH:mm:ss');
+
+    const past = date.unix();
+
+    const oneDay = 24 * 60 * 60;
+
+    const now = moment().unix();
+    const timeDiff = now - past;
+
+    return timeDiff / oneDay | 0;
+}

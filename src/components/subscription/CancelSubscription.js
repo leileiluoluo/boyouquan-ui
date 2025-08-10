@@ -55,11 +55,10 @@ export default function CancelSubscription() {
         const respBody = await resp.json();
         if (resp.status != 204) {
             setError(respBody);
-            setDialogOpen(true);
         } else {
             setError({ code: '', message: '' });
-            setDialogOpen(true);
         }
+        setDialogOpen(true);
     };
 
     const handleChange = (value) => {

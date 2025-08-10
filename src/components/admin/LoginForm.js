@@ -9,7 +9,7 @@ export default function LoginForm({ formData, error, handleChange, handleSubmit 
             <Heading size="4" weight="bold">
                 管理员登录
             </Heading>
-            <Card>
+            <Card mt="4">
                 <Form>
                     <Flex direction="column" gap="2">
                         <Box>

@@ -8,6 +8,7 @@ import GlobalCheckbox from '../common/checkbox/GlobalCheckbox';
 
 export default function CancelSubscription() {
     const email = getURLParameter('email') || '';
+    const token = getURLParameter('token') || '';
 
     const [idOptions, setIdOptions] = useState([]);
     const [options, setOptions] = useState([]);
@@ -38,9 +39,10 @@ export default function CancelSubscription() {
         }
     };
 
-    const submit = async (email, types) => {
+    const submit = async (email, token, types) => {
         const formData = {
             'email': email,
+            'token': token,
             'types': types
         }
 
@@ -70,12 +72,18 @@ export default function CancelSubscription() {
             return;
         }
 
-        submit(email, idOptions);
+        submit(email, token, idOptions);
     };
 
     useEffect(() => {
         if ('' === email) {
             setError({ code: 'email_not_provided', message: '未提供邮箱，无法取消订阅' });
+            setDialogOpen(true);
+            return;
+        }
+
+        if ('' === token) {
+            setError({ code: 'token_not_provided', message: '未提供令牌，无法取消订阅' });
             setDialogOpen(true);
             return;
         }

@@ -9,7 +9,6 @@ import GlobalCheckbox from '../common/checkbox/GlobalCheckbox';
 export default function CancelSubscription() {
     const email = getURLParameter('email') || '';
 
-    const [loaded, setLoaded] = useState([]);
     const [idOptions, setIdOptions] = useState([]);
     const [options, setOptions] = useState([]);
     const [error, setError] = useState({ code: '', message: '' });
@@ -17,9 +16,6 @@ export default function CancelSubscription() {
 
     const fetchData = async (email) => {
         const resp = await RequestUtil.get(`/api/subscriptions/${email}`);
-
-        const respBody = await resp.json();
-        setLoaded(true);
 
         if (resp.status != 200) {
             const respBody = await resp.json();
@@ -52,8 +48,8 @@ export default function CancelSubscription() {
             'Content-Type': 'application/json',
         });
 
-        const respBody = await resp.json();
         if (resp.status != 204) {
+            const respBody = await resp.json();
             setError(respBody);
         } else {
             setError({ code: '', message: '' });
@@ -88,49 +84,47 @@ export default function CancelSubscription() {
     }, [email]);
 
     return (
-        <>
-            {loaded ? <Flex direction="column" gap="2">
-                <Box>
-                    <Heading size="4" weight="bold">取消订阅</Heading>
-                </Box>
-                <Box minHeight="300px">
-                    <Card>
-                        <Form>
-                            <Flex gap="2" direction="column">
-                                <GlobalDialog
-                                    title={'' != error.code ? '错误提示' : '提示'}
-                                    titleColor={'' != error.code ? 'crimson' : ''}
-                                    message={'' != error.code ? error.message : `取消成功！您的邮箱 ${email} 将不再收到对应频道的任何邮件！`}
-                                    closeButtonName={'' != error.code ? '返回' : '关闭窗口'}
-                                    dialogOpen={dialogOpen}
-                                    setDialogOpen={setDialogOpen}
-                                />
+        <Flex direction="column" gap="2">
+            <Box>
+                <Heading size="4" weight="bold">取消订阅</Heading>
+            </Box>
+            <Box minHeight="300px">
+                <Card>
+                    <Form>
+                        <Flex gap="2" direction="column">
+                            <GlobalDialog
+                                title={'' != error.code ? '错误提示' : '提示'}
+                                titleColor={'' != error.code ? 'crimson' : ''}
+                                message={'' != error.code ? error.message : `取消成功！您的邮箱 ${email} 将不再收到对应频道的任何邮件！`}
+                                closeButtonName={'' != error.code ? '返回' : '关闭窗口'}
+                                dialogOpen={dialogOpen}
+                                setDialogOpen={setDialogOpen}
+                            />
 
-                                <Box>
-                                    <Text size="2">您的邮箱：</Text>
-                                    <TextField.Root mt="2" style={{ fontSize: '12px' }} value={email} readOnly />
-                                </Box>
+                            <Box>
+                                <Text size="2">您的邮箱：</Text>
+                                <TextField.Root mt="2" style={{ fontSize: '12px' }} value={email} readOnly />
+                            </Box>
 
-                                <Box>
-                                    <Text size="2">您订阅的所有频道：</Text>
-                                    <Card mt="2">
-                                        <GlobalCheckbox
-                                            options={options}
-                                            defaultIdOptions={options.map(item => item.id)}
-                                            handleChange={handleChange} />
-                                    </Card>
-                                </Box>
+                            <Box>
+                                <Text size="2">您订阅的所有频道：</Text>
+                                <Card mt="2">
+                                    <GlobalCheckbox
+                                        options={options}
+                                        defaultIdOptions={options.map(item => item.id)}
+                                        handleChange={handleChange} />
+                                </Card>
+                            </Box>
 
-                                <Text mt="2" size="2">请勾选需要取消的频道，然后点击提交！</Text>
+                            <Text mt="2" size="2">请勾选需要取消的频道，然后点击提交！</Text>
 
-                                <Box mt="2">
-                                    <Button style={{ fontSize: '12px' }} onClick={handleSubmit}>取消订阅</Button>
-                                </Box>
-                            </Flex>
-                        </Form>
-                    </Card>
-                </Box>
-            </Flex> : ''}
-        </>
+                            <Box mt="2">
+                                <Button style={{ fontSize: '12px' }} onClick={handleSubmit}>取消订阅</Button>
+                            </Box>
+                        </Flex>
+                    </Form>
+                </Card>
+            </Box>
+        </Flex>
     )
 }

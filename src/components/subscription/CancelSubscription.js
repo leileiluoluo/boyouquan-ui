@@ -57,8 +57,8 @@ export default function CancelSubscription() {
             setError(respBody);
             setDialogOpen(true);
         } else {
-            setDialogOpen(true);
             setError({ code: '', message: '' });
+            setDialogOpen(true);
         }
     };
 

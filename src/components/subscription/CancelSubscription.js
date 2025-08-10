@@ -17,8 +17,8 @@ export default function CancelSubscription() {
     const fetchData = async (email) => {
         const resp = await RequestUtil.get(`/api/subscriptions/${email}`);
 
+        const respBody = await resp.json();
         if (resp.status != 200) {
-            const respBody = await resp.json();
             setError(respBody);
             setDialogOpen(true);
         } else {

@@ -25,6 +25,7 @@ import AdminRecommendPostPage from './pages/admin/AdminRecommendPostPage';
 import AnnualReportsPage from './pages/AnnualReportsPage';
 import AnnualReportPage from './pages/AnnualReportPage';
 import BlogRequestEmailValidationPage from './pages/BlogRequestEmailValidationPage';
+import CancelSubscriptionPage from './pages/CancelSubscriptionPage';
 
 export default function App() {
   return (
@@ -53,6 +54,7 @@ export default function App() {
         <Route path='/abstract' element={<AbstractPage />} />
         <Route path='/planet-shuttle' element={<PlanetShuttlePage />} />
         <Route path='/go' element={<GoPage />} />
+        <Route path='/cancel-subscription' element={<CancelSubscriptionPage />} />
         <Route path='/sponsor' element={<SponsorPage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/thanks' element={<ThanksPage />} />

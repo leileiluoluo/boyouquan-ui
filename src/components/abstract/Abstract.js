@@ -43,7 +43,6 @@ export default function Abstract({ isSharingPage }) {
             setPostInfo(respBody);
             setLoaded(true);
         }
-
     };
 
     useEffect(() => {

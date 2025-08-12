@@ -25,7 +25,7 @@ export default function HomePopularBlogsHeader() {
                 align="center"
                 justify="center">
                 {Array.from({ length: 14 }).map((_, index) => (
-                    <Skeleton width="32px" height="32px" radius="full" />
+                    <Skeleton width="32px" height="32px" style={{ borderRadius: '50%' }} />
                 ))}
             </Flex>
         );

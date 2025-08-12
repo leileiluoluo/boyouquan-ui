@@ -3,7 +3,7 @@ import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
 import BlogCard from './BlogCard';
 import { getURLParameter } from '../../utils/CommonUtil';
-import { Box, Grid, DecorativeBox, Flex } from '@radix-ui/themes';
+import { Box, Grid, Flex, Card, Skeleton, Text } from '@radix-ui/themes';
 
 const getSortAndKeywordAndHighligts = () => {
     let sort = getURLParameter('sort') || 'collect_time';
@@ -31,11 +31,13 @@ export default function BlogCardList() {
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
     const [blogs, setBlogs] = useState([]);
+    const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async (sortType, keyword, pageNo) => {
         const resp = await RequestUtil.get(`/api/blogs?sort=${sortType}&keyword=${keyword}&page=${pageNo}`);
 
         const respBody = await resp.json();
+        setDataReady(true);
         setPageSize(respBody.pageSize);
         setTotal(respBody.total);
         setBlogs(respBody.results);
@@ -49,6 +51,123 @@ export default function BlogCardList() {
         setPageNo(pageNo);
 
         document.getElementById('switch-sort-type').scrollIntoView();
+    }
+
+    if (!dataReady) {
+        return (
+            <Box className='blogs-container'>
+                <Flex direction="column">
+                    <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
+                        {
+                            Array.from({ length: 10 }).map((_, index) => (
+                                <Box key={index}>
+                                    <Card style={{ padding: 'var(--space-4)' }}>
+                                        <Flex direction="column" gap="1">
+                                            <Box mt="2">
+                                                <Flex gap="2" align="center">
+                                                    <Box>
+                                                        <Skeleton width="36px" height="36px" style={{ borderRadius: '50%' }} />
+                                                    </Box>
+                                                    <Box>
+                                                        <Flex direction="column" gap="2">
+                                                            <Skeleton width="88px" height="16px" />
+                                                            <Flex gap="1" align="center">
+                                                                <Skeleton width="72px" height="12px" />
+                                                                <Skeleton width="12px" height="12px" />
+                                                            </Flex>
+                                                        </Flex>
+                                                    </Box>
+                                                </Flex>
+                                            </Box>
+                                            <Box p="1" radius="large" mt="2"
+                                                style={{
+                                                    backgroundColor: 'rgb(245, 245, 245)'
+                                                }}>
+                                                <Skeleton>
+                                                    <Text size="2">Lorem ipsum dolor sit amet</Text>
+                                                </Skeleton>
+                                            </Box>
+                                            <Box mt="2">
+                                                <Flex gap="2" justify="between">
+                                                    <Box>
+                                                        <Flex direction="column" gap="1">
+                                                            <Skeleton width="62px" height="14px" />
+                                                            <Skeleton width="62px" height="14px" />
+                                                        </Flex>
+                                                    </Box>
+                                                    <Box>
+                                                        <Flex direction="column" gap="1">
+                                                            <Skeleton width="62px" height="14px" />
+                                                            <Skeleton width="62px" height="14px" />
+                                                        </Flex>
+                                                    </Box>
+                                                    <Box>
+                                                        <Flex direction="column" gap="1">
+                                                            <Skeleton width="62px" height="14px" />
+                                                            <Skeleton width="62px" height="14px" />
+                                                        </Flex>
+                                                    </Box>
+
+                                                    <Box>
+                                                        <Flex direction="column" gap="1">
+                                                            <Skeleton width="62px" height="14px" />
+                                                            <Skeleton width="62px" height="14px" />
+                                                        </Flex>
+                                                    </Box>
+                                                </Flex>
+                                            </Box>
+                                            <Box mt="2">
+                                                <Flex direction="column" gap="1">
+                                                    <Skeleton width="62px" height="14px" />
+                                                    <Flex direction="column" gap="2">
+                                                        <Flex gap="2">
+                                                            <Skeleton width="20%" height="14px" />
+                                                            <Skeleton width="80%" height="14px" />
+                                                        </Flex>
+                                                        <Flex gap="2">
+                                                            <Skeleton width="20%" height="14px" />
+                                                            <Skeleton width="80%" height="14px" />
+                                                        </Flex>
+                                                        <Flex gap="2">
+                                                            <Skeleton width="20%" height="14px" />
+                                                            <Skeleton width="80%" height="14px" />
+                                                        </Flex>
+                                                    </Flex>
+                                                </Flex>
+                                            </Box>
+                                            <Box mt="2" mb="1">
+                                                <Flex justify="between">
+                                                    <Box>
+                                                        <Flex align="center" gap="1">
+                                                            <Skeleton width="12px" height="12px" style={{ borderRadius: '50%' }} />
+                                                            <Skeleton width="40px" height="12px" />
+                                                        </Flex>
+                                                    </Box>
+                                                    <Box>
+                                                        <Flex align="center" gap="1">
+                                                            <Skeleton width="12px" height="12px" style={{ borderRadius: '50%' }} />
+                                                            <Skeleton width="40px" height="12px" />
+                                                        </Flex>
+                                                    </Box>
+                                                </Flex>
+                                            </Box>
+                                        </Flex>
+                                    </Card>
+                                </Box>
+                            ))
+                        }
+                    </Grid>
+                </Flex>
+
+                <Box mt="3">
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+                </Box>
+            </Box>
+        );
     }
 
     return (

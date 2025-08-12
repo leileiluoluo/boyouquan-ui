@@ -38,7 +38,14 @@ export function setBackgroundFromAvatar(elementId, avatarUrl) {
         const lightColor = lightenColor([r, g, b], 1.3, 0.7);
 
         // 设置背景颜色
-        document.getElementById(elementId).style.background = `linear-gradient(to bottom right, var(--gray-4), rgb(${lightColor.join(',')}))`;
+        let backgroundColor = `linear-gradient(to bottom right, var(--gray-4), rgb(${lightColor.join(',')}))`;
+        const blackBackgroundColor = 'linear-gradient(to bottom right, var(--gray-4), var(--gray-10))';
+
+        // 或者设置文字颜色确保可读性
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        backgroundColor = brightness > 128 ? blackBackgroundColor : backgroundColor;
+
+        document.getElementById(elementId).style.background = backgroundColor;
     };
 
     img.onerror = function () {

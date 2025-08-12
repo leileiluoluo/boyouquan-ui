@@ -43,7 +43,7 @@ export function setBackgroundFromAvatar(elementId, avatarUrl) {
 
         // 或者设置文字颜色确保可读性
         const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-        backgroundColor = brightness > 128 ? blackBackgroundColor : backgroundColor;
+        backgroundColor = brightness > 128 ? backgroundColor : blackBackgroundColor;
 
         document.getElementById(elementId).style.background = backgroundColor;
     };

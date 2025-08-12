@@ -28,7 +28,7 @@ export default function BlogPosts({ domain, blogStatusOk }) {
             <Flex direction="column" gap="1">
                 <Text size="2" color="gray">收录文章</Text>
                 <Flex direction="column">
-                    <ScrollArea type="always" scrollbars="vertical" style={{ height: '320px' }}>
+                    <ScrollArea type="always" scrollbars="vertical" style={{ maxHeight: '320px' }}>
                         <Box>
                             {
                                 posts.map(

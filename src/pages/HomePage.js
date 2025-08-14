@@ -41,7 +41,7 @@ export default function HomePage() {
                 <Box>
                     <Container size="2">
                         <Flex direction="column" gap="4">
-                            <MainContentHeader content='博友圈是博客人的专属朋友圈。连接一个个散落各处的孤岛，让我们变成一片广袤无垠的新大陆！' />
+                            <MainContentHeader content='博友圈是博客人的专属朋友圈。连接一个个散落在各处的孤岛，让我们变成一片广袤无垠的新大陆！' />
                             <Suspense>
                                 <HomePopularBlogsHeader />
                             </Suspense>

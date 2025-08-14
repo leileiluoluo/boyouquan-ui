@@ -5,7 +5,7 @@ export default function Meta({ meta }) {
         meta = {
             title: '首页 - 博友圈 · 博客人的朋友圈！',
             keywords: '博客, 博友, 博客圈, 博友圈, 朋友圈, 收录, RSS, 聚合, 中文, 独立博客',
-            description: '博友圈是博客人的专属朋友圈。连接一个个散落各处的孤岛，让我们变成一片广袤无垠的新大陆！'
+            description: '博友圈是博客人的专属朋友圈。连接一个个散落在各处的孤岛，让我们变成一片广袤无垠的新大陆！'
         }
     }
     return (

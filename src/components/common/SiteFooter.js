@@ -23,7 +23,7 @@ export default function SiteFooter() {
 
                 <Separator size="4" my="2" />
 
-                <Box mb="2">
+                <Box mt="4">
                     <Flex gap="2" justify="center" align="center">
                         <DropdownMenu.Root>
                             <DropdownMenu.Trigger>
@@ -68,7 +68,7 @@ export default function SiteFooter() {
                         </Link>
                     </Flex>
                 </Box>
-                <Box mb="2">
+                <Box mt="4">
                     <Flex gap="2" direction="column" align="center">
                         <Text size="1">博友圈 · 博客人的专属朋友圈，让那属于文字的时代延续光辉！</Text>
                         <Link size="1" href="https://beian.miit.gov.cn/">辽ICP备2022012085号-2</Link>

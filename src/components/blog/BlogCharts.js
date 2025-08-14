@@ -27,7 +27,7 @@ export default function BlogCharts({ domain }) {
         let initiatedChart = null;
         if (respBody.showLatestInitiatedChart) {
             setHasInitiatedChart(true);
-            initiatedChart = newChart('#initiated-charts', '最近一年星球穿梭助力统计', '次助力', respBody.yearlyInitiatedDataLabels, respBody.yearlyInitiatedDataValues, '#4299f5');
+            initiatedChart = newChart('#initiated-charts', '最近一年星球穿梭助力统计', '次穿梭', respBody.yearlyInitiatedDataLabels, respBody.yearlyInitiatedDataValues, '#4299f5');
         }
 
         return () => {
@@ -66,7 +66,7 @@ export default function BlogCharts({ domain }) {
                     <Tabs.List size="1">
                         <Tabs.Trigger value="access-charts" >浏览统计</Tabs.Trigger>
                         <Tabs.Trigger value="publish-charts" style={{ display: hasPublishChart ? 'block' : 'none' }}>收录统计</Tabs.Trigger>
-                        <Tabs.Trigger value="initiated-charts" style={{ display: hasInitiatedChart ? 'block' : 'none' }}>助力统计</Tabs.Trigger>
+                        <Tabs.Trigger value="initiated-charts" style={{ display: hasInitiatedChart ? 'block' : 'none' }}>穿梭统计</Tabs.Trigger>
                     </Tabs.List>
                 </Tabs.Root>
                 <div id='access-charts' style={{ display: showAccessChart ? 'block' : 'none' }}></div>

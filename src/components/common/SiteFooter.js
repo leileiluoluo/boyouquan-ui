@@ -70,7 +70,7 @@ export default function SiteFooter() {
                 </Box>
                 <Box mt="4">
                     <Flex gap="2" direction="column" align="center">
-                        <Text size="1">连接一个个散落各处的孤岛，让我们变成一片广袤无垠的新大陆！</Text>
+                        <Text size="1">连接一个个散落在各处的孤岛，让我们变成一片广袤无垠的新大陆！</Text>
                         <Link size="1" href="https://beian.miit.gov.cn/">辽ICP备2022012085号-2</Link>
                         <Text size="1">Copyright © 2023-2025 <Link href="https://www.boyouquan.com/home">博友圈</Link></Text>
                     </Flex>

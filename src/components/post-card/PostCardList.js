@@ -41,7 +41,7 @@ export default function PostCardList({ sort, keyword, showPinned }) {
                     <Box>
                         <Flex direction="column" gap="2">
                             {Array.from({ length: 5 }).map((_, i) => (
-                                <Card>
+                                <Card key={i}>
                                     <Flex direction="column" gap="1">
                                         <Box>
                                             <Skeleton width="240px" height="20px" />

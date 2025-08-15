@@ -1,10 +1,10 @@
-import { Box, Text } from "@radix-ui/themes";
+import { Box, Text } from '@radix-ui/themes';
 
-export default function MainContentHeader( {content} ) {
+export default function MainContentHeader({ content }) {
     return (
         <Box>
-            <Text size="2" color="gray">
-            {content}
+            <Text size="2">
+                {content}
             </Text>
         </Box>
     )

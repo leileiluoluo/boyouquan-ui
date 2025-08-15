@@ -4,12 +4,11 @@ import SearchBox from '../components/common/SearchBox';
 import SwitchSortType from '../components/common/SwitchSortType';
 import PostCardList from '../components/post-card/PostCardList';
 import Meta from '../components/common/Meta';
-import { lazy, Suspense, useEffect } from 'react';
 import { getURLParameter } from '../utils/CommonUtil';
 import { Box, Container, Flex } from '@radix-ui/themes';
 import MainContentHeader from '../components/common/MainContentHeader';
-const HomeLatestNews = lazy(() => import('../components/home/HomeLatestNews'));
-const HomePopularBlogsHeader = lazy(() => import('../components/home/HomePopularBlogsHeader'));
+import HomePopularBlogsHeader from '../components/home/HomePopularBlogsHeader';
+import HomeLatestNews from '../components/home/HomeLatestNews';
 
 const switchTypes = [
     { name: '推荐', href: '/home', default: true },
@@ -37,17 +36,13 @@ export default function HomePage() {
         <>
             <Meta />
             <CommonHeader />
-            <main className="main">
+            <main>
                 <Box>
                     <Container size="2">
                         <Flex direction="column" gap="4">
-                            <MainContentHeader content='博友圈是博客人的专属朋友圈。连接一个个散落在各处的孤岛，让我们变成一片广袤无垠的新大陆！' />
-                            <Suspense>
-                                <HomePopularBlogsHeader />
-                            </Suspense>
-                            <Suspense>
-                                <HomeLatestNews />
-                            </Suspense>
+                            <MainContentHeader content='博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！' />
+                            <HomePopularBlogsHeader />
+                            <HomeLatestNews />
                             <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
                             <SwitchSortType types={switchTypes} />
                             <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />

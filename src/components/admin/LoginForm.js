@@ -6,7 +6,7 @@ const inputFontSizeStyle = { fontSize: '14px' };
 export default function LoginForm({ formData, error, handleChange, handleSubmit }) {
     return (
         <>
-            <Heading size="4" weight="bold">
+            <Heading size="3" weight="bold">
                 管理员登录
             </Heading>
             <Card mt="4">

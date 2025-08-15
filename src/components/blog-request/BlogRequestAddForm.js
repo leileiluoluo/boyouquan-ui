@@ -8,7 +8,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
     return (
         <>
             {
-                isAdminPage ? '' : <Heading size="4" weight="bold">
+                isAdminPage ? '' : <Heading size="3" weight="bold">
                     提交博客
                 </Heading>
             }
@@ -23,8 +23,8 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
 
                             <Box mt="2">
                                 {
-                                    isAdminPage ? <TextField.Root style={{ fontSize: '12px' }} style={inputFontSizeStyle} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
-                                        : <TextField.Root style={{ fontSize: '12px' }} style={inputFontSizeStyle} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} disabled />
+                                    isAdminPage ? <TextField.Root style={{ fontSize: '12px' }} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
+                                        : <TextField.Root style={{ fontSize: '12px' }} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} disabled />
                                 }
                             </Box>
                         </Box>

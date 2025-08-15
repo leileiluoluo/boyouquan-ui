@@ -4,7 +4,7 @@ export default function Article({ title, content, publishedAt }) {
     return (
         <Flex direction="column" gap="2">
             <Box className="post-header">
-                <Heading size="4">{title}</Heading>
+                <Heading size="3">{title}</Heading>
                 <Box mt="1">{
                     publishedAt ? <Text color="gray" size="2">
                         {publishedAt}

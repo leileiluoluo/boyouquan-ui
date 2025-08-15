@@ -94,7 +94,7 @@ export default function CancelSubscription() {
     return (
         <Flex direction="column" gap="2">
             <Box>
-                <Heading size="4" weight="bold">取消订阅</Heading>
+                <Heading size="3" weight="bold">取消订阅</Heading>
             </Box>
             <Box minHeight="300px">
                 <Card>

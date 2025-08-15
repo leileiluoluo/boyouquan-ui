@@ -7,7 +7,7 @@ export default function MonthlySelectedCard({ yearMonthStr, postInfos }) {
     return (
         <Flex direction="column" gap="2">
             <Box>
-                <Heading size="4" weight="bold">{yearMonthStr}</Heading>
+                <Heading size="3" weight="bold">{yearMonthStr}</Heading>
             </Box>
             <Box>
                 <Table.Root variant="surface">

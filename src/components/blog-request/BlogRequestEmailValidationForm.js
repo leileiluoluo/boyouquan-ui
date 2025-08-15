@@ -8,7 +8,7 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
     return (
         <>
             {
-                isAdminPage ? '' : <Heading size="4" weight="bold">
+                isAdminPage ? '' : <Heading size="3" weight="bold">
                     验证邮箱
                 </Heading>
             }

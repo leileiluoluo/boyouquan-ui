@@ -1,9 +1,7 @@
-import { Flex, Box, Text, Table, Link, Strong } from '@radix-ui/themes';
+import { Flex, Box, Text, Card, DataList, Link } from '@radix-ui/themes';
 import { getBlogAddress } from '../../utils/PageAddressUtil';
 
-const style = { display: 'table', tableLayout: 'fixed' }
-
-export default function BlogRequestTable({ name, description, domainName, address, rssAddress, adminEmail, requestedAt, approved, status, statusInfo, reason }) {
+export default function BlogRequestTable({ name, description, domainName, address, rssAddress, adminEmail, requestedAt, updatedAt, approved, status, statusInfo, reason }) {
     const title = `博客「${name}」审核详情`;
 
     const blogAddress = approved ? getBlogAddress(domainName) : address;
@@ -14,40 +12,44 @@ export default function BlogRequestTable({ name, description, domainName, addres
                 <Text size="3" weight="bold">{title}</Text>
             </Box>
             <Box>
-                <Table.Root variant="surface">
-                    <Table.Body>
-                        <Table.Row>
-                            <Table.RowHeaderCell><Strong>博客名称</Strong></Table.RowHeaderCell>
-                            <Table.Cell>{name}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.RowHeaderCell><Strong>博客描述</Strong></Table.RowHeaderCell>
-                            <Table.Cell>{description}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.RowHeaderCell><Strong>RSS 地址</Strong></Table.RowHeaderCell>
-                            <Table.Cell><Link href={rssAddress}>{rssAddress}</Link></Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.RowHeaderCell><Strong>博主邮箱</Strong></Table.RowHeaderCell>
-                            <Table.Cell>{adminEmail}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.RowHeaderCell><Strong>提交时间</Strong></Table.RowHeaderCell>
-                            <Table.Cell>{requestedAt}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.RowHeaderCell><Strong>审核状态</Strong></Table.RowHeaderCell>
-                            <Table.Cell><Link href={blogAddress}>{statusInfo}</Link></Table.Cell>
-                        </Table.Row>
+                <Card>
+                    <DataList.Root>
+                        <DataList.Item>
+                            <DataList.Label minWidth="80px">博客名称</DataList.Label>
+                            <DataList.Value>{name}</DataList.Value>
+                        </DataList.Item>
+                        <DataList.Item>
+                            <DataList.Label minWidth="80px">博客描述</DataList.Label>
+                            <DataList.Value>
+                                {description}
+                            </DataList.Value>
+                        </DataList.Item>
+                        <DataList.Item>
+                            <DataList.Label minWidth="80px">RSS 地址</DataList.Label>
+                            <DataList.Value>
+                                <Link target="_blank" href={rssAddress}>{rssAddress}</Link>
+                            </DataList.Value>
+                        </DataList.Item>
+                        <DataList.Item>
+                            <DataList.Label minWidth="80px">博主邮箱</DataList.Label>
+                            <DataList.Value>{adminEmail}</DataList.Value>
+                        </DataList.Item>
+                        <DataList.Item>
+                            <DataList.Label minWidth="80px">提交时间</DataList.Label>
+                            <DataList.Value>{requestedAt}</DataList.Value>
+                        </DataList.Item>
+                        <DataList.Item>
+                            <DataList.Label minWidth="80px">审核状态</DataList.Label>
+                            <DataList.Value><Link href={blogAddress}>{statusInfo}</Link></DataList.Value>
+                        </DataList.Item>
                         {
-                            'rejected' === status || 'uncollected' == status ? <Table.Row>
-                                <Table.RowHeaderCell><Strong>驳回原因</Strong></Table.RowHeaderCell>
-                                <Table.Cell>{reason}</Table.Cell>
-                            </Table.Row> : ''
+                            'rejected' === status || 'uncollected' == status ? <DataList.Item>
+                                <DataList.Label minWidth="80px">驳回原因</DataList.Label>
+                                <DataList.Value>{reason}</DataList.Value>
+                            </DataList.Item> : ''
                         }
-                    </Table.Body>
-                </Table.Root>
+                    </DataList.Root>
+                </Card>
             </Box>
         </Flex>
     )

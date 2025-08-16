@@ -43,6 +43,7 @@ const planetStyle = { fontFamily: '-apple-system,BlinkMacSystemFont,segoe ui,Rob
 const fontStyle = { fontSize: '20px', textDecoration: 'none', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundImage: 'linear-gradient(to right, #d3a497, #d55b5b, #9877f1)' };
 const marginStyle = { marginTop: '28px' };
 const fontSizeLargeStyle = { fontSize: '16px' };
+const blogDescriptionStyle = { fontSize: '14px', color: 'gray', marginTop: '20px', maxWidth: '460px' };
 const fontSizeStyle = { fontSize: '12px' };
 const animationStyle = { color: 'white', textDecoration: 'auto', animation: 'typing 0.7s infinite' };
 const colorWhiteStyle = { color: 'white' };
@@ -95,6 +96,11 @@ export default function PlanetShuttlePage() {
                     {
                         (null !== shuttleInfo.fromBlog) ? <><p style={marginOneStyle}>加入博友圈 {fromBlogJoinDays} 天、总助力值为 {shuttleInfo.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${shuttleInfo.fromBlog.domainName}`} style={animationStyle}>{shuttleInfo.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p></>
                             : <p>您即将穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p>
+                    }
+                </Box>
+                <Box style={blogDescriptionStyle}>
+                    {
+                        <p>“ {shuttleInfo.blogDescription} ”</p>
                     }
                 </Box>
                 <Box style={marginStyle}>

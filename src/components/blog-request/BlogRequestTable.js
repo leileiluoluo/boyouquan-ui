@@ -43,7 +43,13 @@ export default function BlogRequestTable({ name, description, domainName, addres
                             <DataList.Value><Link href={blogAddress}>{statusInfo}</Link></DataList.Value>
                         </DataList.Item>
                         {
-                            'rejected' === status || 'uncollected' == status ? <DataList.Item>
+                            'approved' === status || 'rejected' === status || 'uncollected' === status ? <DataList.Item>
+                                <DataList.Label minWidth="80px">审核时间</DataList.Label>
+                                <DataList.Value>{updatedAt}</DataList.Value>
+                            </DataList.Item> : ''
+                        }
+                        {
+                            'rejected' === status || 'uncollected' === status ? <DataList.Item>
                                 <DataList.Label minWidth="80px">驳回原因</DataList.Label>
                                 <DataList.Value>{reason}</DataList.Value>
                             </DataList.Item> : ''

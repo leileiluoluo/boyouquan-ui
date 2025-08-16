@@ -45,6 +45,7 @@ export default function BlogRequest() {
                 rssAddress={blogRequest.rssAddress}
                 adminEmail={blogRequest.adminEmail}
                 requestedAt={blogRequest.requestedAt}
+                updatedAt={blogRequest.updatedAt}
                 approved={blogRequest.approved}
                 status={blogRequest.status}
                 statusInfo={blogRequest.statusInfo}

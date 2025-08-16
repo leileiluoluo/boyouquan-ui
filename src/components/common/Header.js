@@ -36,7 +36,7 @@ export default function Header() {
                                     </a>
                                 </TabNav.Link>
                                 <TabNav.Link href="/blog-requests/add" active={pathname.startsWith("/blog-requests/add")}>提交博客</TabNav.Link>
-                                <TabNav.Link href="/blog-requests" active={pathname === "/blog-requests"}>审核结果</TabNav.Link>
+                                <TabNav.Link href="/blog-requests" active={!pathname.startsWith("/blog-requests/add") && pathname.startsWith("/blog-requests")}>审核结果</TabNav.Link>
                             </TabNav.Root>
                         </ScrollArea>
                     </Box>

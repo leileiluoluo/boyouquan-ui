@@ -37,35 +37,6 @@ export default function BlogRequests() {
     if (!dataReady) {
         return (
             <>
-                {/* <Box id="monthly-selected-container">
-                    <Flex direction="column" gap="2">
-                        <Box>
-                            <Skeleton><Text>2025/08</Text></Skeleton>
-                        </Box>
-                        <Box>
-                            <Table.Root variant="surface">
-                                <Table.Header>
-                                    <Table.Row>
-                                        <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
-                                        <Table.ColumnHeaderCell>文章标题</Table.ColumnHeaderCell>
-                                        <Table.ColumnHeaderCell>发布时间</Table.ColumnHeaderCell>
-                                    </Table.Row>
-                                </Table.Header>
-                                <Table.Body>
-                                    {
-                                        Array.from({ length: 10 }).map((_, index) => (
-                                            <Table.Row key={index}>
-                                                <Table.RowHeaderCell><Skeleton width="100px" height="14px" /></Table.RowHeaderCell>
-                                                <Table.Cell><Skeleton width="220px" height="14px" /></Table.Cell>
-                                                <Table.Cell><Skeleton width="80px" height="14px" /></Table.Cell>
-                                            </Table.Row>
-                                        ))
-                                    }
-                                </Table.Body>
-                            </Table.Root>
-                        </Box>
-                    </Flex>
-                </Box> */}
                 <Box id="blog-requests">
                     <Table.Root variant="surface">
                         <Table.Header>
@@ -81,12 +52,12 @@ export default function BlogRequests() {
                                 Array.from({ length: 10 }).map((_, index) => (
                                     <Table.Row key={index}>
                                         <Table.RowHeaderCell>
-                                            <Skeleton width="100px" height="14px" />
+                                            <Skeleton maxWidth="100%" height="14px" />
                                         </Table.RowHeaderCell>
-                                        <Table.Cell><Skeleton width="120px" height="14px" /></Table.Cell>
-                                        <Table.Cell><Skeleton width="100px" height="14px" /></Table.Cell>
+                                        <Table.Cell><Skeleton maxWidth="100%"  height="14px" /></Table.Cell>
+                                        <Table.Cell><Skeleton maxWidth="80%"  height="14px" /></Table.Cell>
                                         <Table.Cell>
-                                            <Skeleton width="40px" height="14px" />
+                                            <Skeleton maxWidth="40%"  height="14px" />
                                         </Table.Cell>
                                     </Table.Row>
                                 ))

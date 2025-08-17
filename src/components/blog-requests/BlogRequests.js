@@ -3,17 +3,20 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import BlogRequestsTable from './BlogRequestsTable';
 import Pagination from '../pagination/Pagination';
 import { getURLParameter } from '../../utils/CommonUtil';
+import { Box, Skeleton, Table } from '@radix-ui/themes';
 
 export default function BlogRequests() {
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
     const [blogRequests, setBlogRequests] = useState([]);
+    const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async (keyword, pageNo) => {
         const resp = await RequestUtil.get(`/api/blog-requests?keyword=${keyword}&page=${pageNo}`);
 
         const respBody = await resp.json();
+        setDataReady(true);
         setPageSize(respBody.pageSize);
         setTotal(respBody.total);
         setBlogRequests(respBody.results);
@@ -29,6 +32,75 @@ export default function BlogRequests() {
         setPageNo(pageNo);
 
         document.getElementById('blog-requests').scrollIntoView();
+    }
+
+    if (!dataReady) {
+        return (
+            <>
+                {/* <Box id="monthly-selected-container">
+                    <Flex direction="column" gap="2">
+                        <Box>
+                            <Skeleton><Text>2025/08</Text></Skeleton>
+                        </Box>
+                        <Box>
+                            <Table.Root variant="surface">
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
+                                        <Table.ColumnHeaderCell>文章标题</Table.ColumnHeaderCell>
+                                        <Table.ColumnHeaderCell>发布时间</Table.ColumnHeaderCell>
+                                    </Table.Row>
+                                </Table.Header>
+                                <Table.Body>
+                                    {
+                                        Array.from({ length: 10 }).map((_, index) => (
+                                            <Table.Row key={index}>
+                                                <Table.RowHeaderCell><Skeleton width="100px" height="14px" /></Table.RowHeaderCell>
+                                                <Table.Cell><Skeleton width="220px" height="14px" /></Table.Cell>
+                                                <Table.Cell><Skeleton width="80px" height="14px" /></Table.Cell>
+                                            </Table.Row>
+                                        ))
+                                    }
+                                </Table.Body>
+                            </Table.Root>
+                        </Box>
+                    </Flex>
+                </Box> */}
+                <Box id="blog-requests">
+                    <Table.Root variant="surface">
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
+                                <Table.ColumnHeaderCell>博主邮箱</Table.ColumnHeaderCell>
+                                <Table.ColumnHeaderCell>提交时间</Table.ColumnHeaderCell>
+                                <Table.ColumnHeaderCell>审核状态</Table.ColumnHeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                            {
+                                Array.from({ length: 10 }).map((_, index) => (
+                                    <Table.Row key={index}>
+                                        <Table.RowHeaderCell>
+                                            <Skeleton width="100px" height="14px" />
+                                        </Table.RowHeaderCell>
+                                        <Table.Cell><Skeleton width="120px" height="14px" /></Table.Cell>
+                                        <Table.Cell><Skeleton width="100px" height="14px" /></Table.Cell>
+                                        <Table.Cell>
+                                            <Skeleton width="40px" height="14px" />
+                                        </Table.Cell>
+                                    </Table.Row>
+                                ))
+                            }
+                        </Table.Body>
+                    </Table.Root>
+                </Box>
+                <Pagination
+                    pageNo={pageNo}
+                    pageSize={pageSize}
+                    total={total}
+                    setCurrectPage={setCurrectPage} />
+            </>
+        );
     }
 
     return (

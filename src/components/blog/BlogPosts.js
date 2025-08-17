@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Box, Text, Link, ScrollArea } from '@radix-ui/themes';
+import { Card, Flex, Box, Text, Link, ScrollArea, Separator } from '@radix-ui/themes';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 import { Timeline } from 'antd';
 
@@ -92,6 +92,13 @@ export default function BlogPosts({ domain, blogStatusOk }) {
                                 )
                             }
                         </Timeline>
+                        <Box align="center" mt="-5">
+                            <Flex align="center" justify="center" gap="2">
+                                <Separator size="3" orientation="horizontal" />
+                                <Text size="1" color="gray"> 以上就是收录的全部文章，没有更多了 </Text>
+                                <Separator size="3" orientation="horizontal" />
+                            </Flex>
+                        </Box>
                     </ScrollArea>
                 </Box>
             </Flex>

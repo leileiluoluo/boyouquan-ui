@@ -27,28 +27,36 @@ export default function BlogDetailMain({ name, domainName, address, description,
                     submittedInfo={submittedInfo}
                     submittedInfoTip={submittedInfoTip} />
 
-                <Flex gap="1" direction="column" align="center">
-                    <Link href={blogGoAddress}>
-                        <Avatar
-                            style={{ width: '60px', height: '60px' }}
-                            src={gravatarURL}
-                            radius="full"
-                        />
-                    </Link>
-                    <Link weight="bold" href={blogGoAddress}>
-                        {name}
-                    </Link>
-                    <Flex gap="1" align="center">
-                        <Link size="1" href={blogGoAddress}>{domainName}</Link>
-                        <Box size="1">
-                            <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
-                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                                <path d="M15 3h6v6"></path>
-                                <path d="M10 14L21 3"></path>
-                            </svg>
-                        </Box>
-                    </Flex>
-                    <Box style={{ backgroundColor: 'rgb(255, 255, 255)', padding: '4px', borderRadius: 'calc(0.4rem)' }}>
+                <Flex direction="column" align="center">
+                    <Box>
+                        <Link href={blogGoAddress}>
+                            <Avatar
+                                style={{ width: '60px', height: '60px' }}
+                                src={gravatarURL}
+                                radius="full"
+                            />
+                        </Link>
+                    </Box>
+                    <Box mt="2">
+                        <Link mt="1" weight="bold" href={blogGoAddress}>
+                            {name}
+                        </Link>
+                    </Box>
+                    <Box>
+                        <Flex gap="1" align="center">
+                            <Link size="1" href={blogGoAddress}>{domainName}</Link>
+                            <Box size="1">
+                                <Link mt="1" weight="bold" href={blogGoAddress}>
+                                    <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                                        <path d="M15 3h6v6"></path>
+                                        <path d="M10 14L21 3"></path>
+                                    </svg>
+                                </Link>
+                            </Box>
+                        </Flex>
+                    </Box>
+                    <Box style={{ marginTop: '8px', marginBottom: '2px', backgroundColor: 'rgb(255, 255, 255)', padding: '6px', borderRadius: 'calc(0.4rem)' }}>
                         <Text size="2" color="gray">{description}</Text>
                     </Box>
                 </Flex>

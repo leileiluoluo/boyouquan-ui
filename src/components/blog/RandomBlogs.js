@@ -20,7 +20,7 @@ export default function RandomBlogs({ domain }) {
 
     return (
         <Card style={{ padding: 'var(--space-4)' }}>
-            <Flex direction="column" gap="1">
+            <Flex direction="column" gap="2">
                 <Text size="2" color="gray">随机链接</Text>
                 <Flex direction="column">
                     <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">

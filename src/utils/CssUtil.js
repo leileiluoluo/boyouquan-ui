@@ -35,7 +35,7 @@ export function setBackgroundFromAvatar(elementId, avatarUrl) {
         g = Math.floor(g / count);
         b = Math.floor(b / count);
 
-        const lightColor = lightenColor([r, g, b], 1.3, 0.7);
+        const lightColor = lightenColor([r, g, b], 1.8, 0.2);
 
         // 设置背景颜色
         let backgroundColor = `linear-gradient(to bottom right, var(--gray-4), rgb(${lightColor.join(',')}))`;

@@ -34,9 +34,9 @@ export default function SiteFooter() {
                                 </IconButton>
                             </DropdownMenu.Trigger>
                             <DropdownMenu.Content>
-                                <Link size="1" href="https://www.boyouquan.com/feed.xml"><DropdownMenu.Item>推荐文章 RSS 订阅</DropdownMenu.Item></Link>
+                                <Link size="1" target="_blank" href="https://www.boyouquan.com/feed.xml"><DropdownMenu.Item>推荐文章 RSS 订阅</DropdownMenu.Item></Link>
                                 <DropdownMenu.Separator />
-                                <Link size="1" href="https://www.boyouquan.com/feed.xml?sort=latest"><DropdownMenu.Item>最新文章 RSS 订阅</DropdownMenu.Item></Link>
+                                <Link size="1" target="_blank" href="https://www.boyouquan.com/feed.xml?sort=latest"><DropdownMenu.Item>最新文章 RSS 订阅</DropdownMenu.Item></Link>
                             </DropdownMenu.Content>
                         </DropdownMenu.Root>
 
@@ -51,15 +51,15 @@ export default function SiteFooter() {
                                 </IconButton>
                             </DropdownMenu.Trigger>
                             <DropdownMenu.Content>
-                                <Link size="1" href="https://github.com/leileiluoluo/boyouquan-ui"><DropdownMenu.Item>前端代码 GitHub</DropdownMenu.Item></Link>
+                                <Link size="1" target="_blank" href="https://github.com/leileiluoluo/boyouquan-ui"><DropdownMenu.Item>前端代码 GitHub</DropdownMenu.Item></Link>
                                 <DropdownMenu.Separator />
-                                <Link size="1" href="https://github.com/leileiluoluo/boyouquan-api"><DropdownMenu.Item>后端代码 GitHub</DropdownMenu.Item></Link>
+                                <Link size="1" target="_blank" href="https://github.com/leileiluoluo/boyouquan-api"><DropdownMenu.Item>后端代码 GitHub</DropdownMenu.Item></Link>
                             </DropdownMenu.Content>
                         </DropdownMenu.Root>
 
                         <Separator orientation="vertical" />
 
-                        <Link href="https://curl.qcloud.com/okTsvSrj">
+                        <Link target="_blank" href="https://curl.qcloud.com/okTsvSrj">
                             <IconButton variant="soft">
                                 <Tooltip content="本站使用的云服务">
                                     <Cloud width="14" height="14" />

@@ -94,9 +94,9 @@ export default function BlogPosts({ domain, blogStatusOk }) {
                         </Timeline>
                         <Box align="center" mt="-5">
                             <Flex align="center" justify="center" gap="2">
-                                <Separator size="3" orientation="horizontal" />
+                                <Separator size="2" orientation="horizontal" />
                                 <Text size="1" color="gray"> 以上就是收录的全部文章，没有更多了 </Text>
-                                <Separator size="3" orientation="horizontal" />
+                                <Separator size="2" orientation="horizontal" />
                             </Flex>
                         </Box>
                     </ScrollArea>

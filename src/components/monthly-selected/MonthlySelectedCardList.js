@@ -52,9 +52,9 @@ export default function MonthlySelectedCardList() {
                                     {
                                         Array.from({ length: 10 }).map((_, index) => (
                                             <Table.Row key={index}>
-                                                <Table.RowHeaderCell><Skeleton width="100px" height="14px" /></Table.RowHeaderCell>
-                                                <Table.Cell><Skeleton width="220px" height="14px" /></Table.Cell>
-                                                <Table.Cell><Skeleton width="80px" height="14px" /></Table.Cell>
+                                                <Table.RowHeaderCell><Skeleton maxWidth="100px" height="14px" /></Table.RowHeaderCell>
+                                                <Table.Cell><Skeleton maxWidth="240px" height="14px" /></Table.Cell>
+                                                <Table.Cell><Skeleton maxWidth="80px" height="14px" /></Table.Cell>
                                             </Table.Row>
                                         ))
                                     }

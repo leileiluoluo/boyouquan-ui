@@ -1,7 +1,7 @@
-import { Flex, Box, Text, Card, DataList, Link } from '@radix-ui/themes';
+import { Flex, Box, Text, Card, DataList, Link, Badge } from '@radix-ui/themes';
 import { getBlogAddress } from '../../utils/PageAddressUtil';
 
-export default function BlogRequestTable({ name, description, domainName, address, rssAddress, adminEmail, requestedAt, updatedAt, approved, status, statusInfo, reason }) {
+export default function BlogRequestTable({ name, description, domainName, address, rssAddress, adminEmail, requestedAt, updatedAt, approved, failed, status, statusInfo, reason }) {
     const title = `博客「${name}」审核详情`;
 
     const blogAddress = approved ? getBlogAddress(domainName) : address;
@@ -40,7 +40,7 @@ export default function BlogRequestTable({ name, description, domainName, addres
                         </DataList.Item>
                         <DataList.Item>
                             <DataList.Label minWidth="80px">审核状态</DataList.Label>
-                            <DataList.Value><Link href={blogAddress}>{statusInfo}</Link></DataList.Value>
+                            <DataList.Value><Link href={blogAddress}><Badge size="2" color={approved ? "green" : (failed ? "crimson" : "orange")}>{statusInfo}</Badge></Link></DataList.Value>
                         </DataList.Item>
                         {
                             'approved' === status || 'rejected' === status || 'uncollected' === status ? <DataList.Item>

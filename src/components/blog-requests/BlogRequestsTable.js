@@ -1,4 +1,4 @@
-import { Box, Table, Link, Text } from '@radix-ui/themes';
+import { Box, Table, Link, Text, Badge } from '@radix-ui/themes';
 
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAdminBlogRequestAddress, getBlogRequestAddress } from '../../utils/PageAddressUtil';
@@ -33,7 +33,9 @@ export default function BlogRequestsTable({ requests, adminPage }) {
                                 <Table.Cell>{request.adminEmail}</Table.Cell>
                                 <Table.Cell>{formatDateStr(request.requestedAt, true)}</Table.Cell>
                                 {adminPage ? <Table.Cell>{request.selfSubmitted ? '是' : '否'}</Table.Cell> : ''}
-                                <Table.Cell>{request.statusInfo}</Table.Cell>
+                                <Table.Cell>
+                                    <Badge size="2" color={request.approved ? "green" : (request.failed ? "crimson" : "orange")}>{request.statusInfo}</Badge>
+                                </Table.Cell>
                             </Table.Row>
                         ))
                     }

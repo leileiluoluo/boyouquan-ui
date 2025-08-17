@@ -47,6 +47,7 @@ export default function BlogRequest() {
                 requestedAt={blogRequest.requestedAt}
                 updatedAt={blogRequest.updatedAt}
                 approved={blogRequest.approved}
+                failed={blogRequest.failed}
                 status={blogRequest.status}
                 statusInfo={blogRequest.statusInfo}
                 reason={blogRequest.reason} />

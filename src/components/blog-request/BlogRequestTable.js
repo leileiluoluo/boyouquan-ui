@@ -16,7 +16,7 @@ export default function BlogRequestTable({ name, description, domainName, addres
                     <DataList.Root>
                         <DataList.Item>
                             <DataList.Label minWidth="80px">博客名称</DataList.Label>
-                            <DataList.Value>{name}</DataList.Value>
+                            <DataList.Value><Link target="_blank" href={address}>{name}</Link></DataList.Value>
                         </DataList.Item>
                         <DataList.Item>
                             <DataList.Label minWidth="80px">博客描述</DataList.Label>

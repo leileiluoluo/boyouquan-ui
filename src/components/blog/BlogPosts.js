@@ -79,7 +79,7 @@ export default function BlogPosts({ domain, blogStatusOk }) {
                                                                     WebkitBoxOrient: 'vertical',
                                                                     overflow: 'hidden'
                                                                 }}>
-                                                                    {blogStatusOk ? <Link href={getGoAddress(post.link)}>{post.title}</Link>
+                                                                    {blogStatusOk ? <Link target="_blank" href={getGoAddress(post.link)}>{post.title}</Link>
                                                                         : <Link href={getAbstractAddress(post.link)}>{post.title}</Link>}
                                                                 </Text>
                                                             </Flex>

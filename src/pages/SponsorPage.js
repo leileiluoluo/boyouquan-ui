@@ -617,6 +617,20 @@ const content = (
                             <Text>当前总额：532.91 元</Text>
                         </Table.Cell>
                     </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <Link href="/blogs/www.yingyu5658.me">映屿</Link>
+                        </Table.Cell>
+                        <Table.Cell>2025/08/19</Table.Cell>
+                        <Table.Cell>20.00 元</Table.Cell>
+                        <Table.Cell>博友圈长长久久，越办越好，加油！</Table.Cell>
+                        <Table.Cell>已计入总额，待后续使用</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>
+                            <Text>当前总额：552.91 元</Text>
+                        </Table.Cell>
+                    </Table.Row>
                 </Table.Body>
             </Table.Root>
         </div>

@@ -22,7 +22,7 @@ export default function BlogCardHeader({ name, domainName, address, blogAdminLar
                     <Flex direction="column">
                         <Link size={nameSize} weight="bold" href={blogAddress}>{name}</Link>
                         <Flex gap="1" align="center">
-                            <Link size="1" href={blogGoURL}>{domainName}</Link>
+                            <Link target="_blank" size="1" href={blogGoURL}>{domainName}</Link>
                             <Box size="1">
                                 <Link size="1" href={blogGoURL}>
                                     <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">

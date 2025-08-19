@@ -32,7 +32,7 @@ export default function MonthlySelectedCard({ yearMonthStr, postInfos }) {
                                                 overflow: 'hidden'
                                             }}>
                                                 {postInfo.blogStatusOk ?
-                                                    <Link href={getGoAddress(postInfo.link)}>{postInfo.title}</Link>
+                                                    <Link target="_blank" href={getGoAddress(postInfo.link)}>{postInfo.title}</Link>
                                                     : <Link href={getAbstractAddress(postInfo.link)}>{postInfo.title}</Link>
                                                 }
                                             </Text>

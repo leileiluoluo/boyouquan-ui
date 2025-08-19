@@ -21,7 +21,7 @@ export default function BlogCardLatestPosts({ statusOk, posts }) {
                                         WebkitBoxOrient: 'vertical',
                                         overflow: 'hidden'
                                     }}>
-                                        {statusOk ? <Link href={getGoAddress(post.link)}>{post.title}</Link>
+                                        {statusOk ? <Link target="_blank" href={getGoAddress(post.link)}>{post.title}</Link>
                                             : <Link href={getAbstractAddress(post.link)}>{post.title}</Link>}
                                     </Text>
                                 </Flex>

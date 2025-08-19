@@ -1,4 +1,4 @@
-import { Box, Card, Flex, Avatar, Text, Link, Image } from '@radix-ui/themes';
+import { Box, Card, Flex, Text, Link } from '@radix-ui/themes';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
 import PostCardFooter from './PostCardFooter';
@@ -15,10 +15,6 @@ export default function PostCard({
     description,
     publishedAt,
     linkAccessCount }) {
-    const displayNoneStyle = { display: 'none' };
-
-    const className = showPinned && pinned ? 'post-entry pinned' : 'post-entry';
-
     const gravatarURL = getGravatarImageFullURL(blogAdminMediumImageURL);
     const blogURL = getBlogAddress(blogDomainName);
     const linkURL = getGoAddress(link);
@@ -32,7 +28,7 @@ export default function PostCard({
                 <Box>
                     <Flex gap="1">
                         <img src="/assets/images/sites/pinned/pinned.svg" style={{ display: showPinned && pinned ? 'block' : 'none' }} />
-                        <Link size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
+                        <Link target="_blank" size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
                             display: '-webkit-box',
                             WebkitLineClamp: 1,
                             WebkitBoxOrient: 'vertical',

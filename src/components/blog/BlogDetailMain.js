@@ -29,7 +29,7 @@ export default function BlogDetailMain({ name, domainName, address, description,
 
                 <Flex direction="column" align="center">
                     <Box>
-                        <Link href={blogGoAddress}>
+                        <Link target="_blank" href={blogGoAddress}>
                             <Avatar
                                 style={{ width: '60px', height: '60px' }}
                                 src={gravatarURL}
@@ -38,13 +38,13 @@ export default function BlogDetailMain({ name, domainName, address, description,
                         </Link>
                     </Box>
                     <Box mt="2">
-                        <Link mt="1" weight="bold" href={blogGoAddress}>
+                        <Link target="_blank" mt="1" weight="bold" href={blogGoAddress}>
                             {name}
                         </Link>
                     </Box>
                     <Box>
                         <Flex gap="1" align="center">
-                            <Link size="1" href={blogGoAddress}>{domainName}</Link>
+                            <Link target="_blank" size="1" href={blogGoAddress}>{domainName}</Link>
                             <Box size="1">
                                 <Link mt="1" weight="bold" href={blogGoAddress}>
                                     <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">

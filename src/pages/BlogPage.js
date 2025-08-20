@@ -4,7 +4,8 @@ import BlogDetail from '../components/blog/BlogDetail';
 import { Box, Container, Flex } from '@radix-ui/themes';
 import { redirectTo } from '../utils/CommonUtil';
 import RequestUtil from '../utils/APIRequestUtil';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const getDomain = () => {
     let { domain, sub, subsub } = useParams();
@@ -18,6 +19,8 @@ const getDomain = () => {
 }
 
 export default function BlogPage() {
+    const [loaded, setLoaded] = useState(false);
+
     const domain = getDomain();
 
     const hasNewDomain = async (domain) => {
@@ -29,6 +32,8 @@ export default function BlogPage() {
             redirectTo(`/blogs/${newDomainName}`);
             return;
         }
+
+        setLoaded(true);
     };
 
     useEffect(() => {
@@ -37,17 +42,19 @@ export default function BlogPage() {
 
     return (
         <>
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Flex direction="column" gap="4">
-                            <BlogDetail domain={domain} />
-                        </Flex>
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            {
+                loaded ? <><CommonHeader />
+                    <main className="main">
+                        <Box>
+                            <Container size="2">
+                                <Flex direction="column" gap="4">
+                                    <BlogDetail domain={domain} />
+                                </Flex>
+                            </Container>
+                        </Box>
+                    </main>
+                    <CommonFooter /></> : ''
+            }
         </>
     )
 }

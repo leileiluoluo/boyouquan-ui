@@ -1,5 +1,4 @@
 import { Fragment, Suspense, useEffect, useState, lazy } from 'react';
-import { useParams } from 'react-router-dom';
 import RequestUtil from '../../utils/APIRequestUtil';
 import Meta from '../common/Meta';
 import BlogDetailMain from './BlogDetailMain';

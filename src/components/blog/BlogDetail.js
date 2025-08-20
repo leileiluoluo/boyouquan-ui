@@ -12,17 +12,6 @@ const BlogCharts = lazy(() => import('./BlogCharts'));
 const RandomBlogs = lazy(() => import('./RandomBlogs'));
 const BlogPosts = lazy(() => import('./BlogPosts'));
 
-const getDomain = () => {
-    let { domain, sub, subsub } = useParams();
-    if (undefined !== sub) {
-        domain += '/' + sub;
-    }
-    if (undefined !== subsub) {
-        domain += '/' + subsub;
-    }
-    return domain;
-}
-
 const getMeta = (name, description) => {
     return {
         title: `${name} - 博友圈 · 博客人的朋友圈！`,
@@ -31,11 +20,9 @@ const getMeta = (name, description) => {
     }
 }
 
-export default function BlogDetail() {
+export default function BlogDetail({ domain }) {
     const [loaded, setLoaded] = useState(false);
     const [blogDetail, setBlogDetail] = useState({});
-
-    const domain = getDomain();
 
     const fetchData = async (domain) => {
         const resp = await RequestUtil.get(`/api/blogs?domainName=${domain}`);

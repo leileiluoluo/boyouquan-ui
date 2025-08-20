@@ -39,11 +39,11 @@ export function setBackgroundFromAvatar(elementId, avatarUrl) {
 
         // 设置背景颜色
         let backgroundColor = `linear-gradient(to bottom right, var(--gray-4), rgb(${lightColor.join(',')}))`;
-        const blackBackgroundColor = 'linear-gradient(to bottom right, var(--gray-4), var(--gray-10))';
+        const defaultBackgroundColor = 'linear-gradient(to bottom right, var(--gray-4), rgb(230,229,229))';
 
         // 或者设置文字颜色确保可读性
         const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-        backgroundColor = brightness > 128 ? backgroundColor : blackBackgroundColor;
+        backgroundColor = brightness > 128 ? backgroundColor : defaultBackgroundColor;
 
         document.getElementById(elementId).style.background = backgroundColor;
     };

@@ -30,7 +30,7 @@ const content = <>
         <li>性能要求：确保在中国大陆地区拥有良好的访问性能；</li>
         <li>个人承诺：十年不停更，十年不闭站！</li>
     </ul>
-    <p>确认满足如上要求并承诺十年不闭站后，可以通过点击导航栏「<a href="https://www.boyouquan.com/blog-requests/add">提交博客</a>」按钮来填写申请表单，提交后一般在 24 小时内会得到审核，审核通过或未通过都会收到邮件提醒。</p>
+    <p>确认满足如上要求并承诺十年不闭站后，可以通过点击导航栏「<a href="https://www.boyouquan.com/blog-requests/add/email-validation">提交博客</a>」按钮来填写申请表单，提交后一般在 24 小时内会得到审核，审核通过或未通过都会收到邮件提醒。</p>
 
     <h4 id="del-link">修改博客</h4>
     <p>若您因域名更换、站点重建等各种原因，想对已收录的博客信息进行修改，请使用能证明您是博客所有者的邮箱「<a href="mailto:contact@boyouquan.com?subject=博客信息修改&amp;body=博客地址：%0d%0a需要修改的信息：%0d%0a">给我们发送邮件</a>」，信息修改成功后会收到邮件通知！</p>

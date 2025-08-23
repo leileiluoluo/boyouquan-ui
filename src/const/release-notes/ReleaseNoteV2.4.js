@@ -30,7 +30,7 @@ const RELEASE_INFO_V2_4 = {
         <p>博友圈前端：<a href="https://github.com/leileiluoluo/boyouquan-ui/releases/tag/v2.4">boyouquan-ui</a></p>
         <p>博友圈后端：<a href="https://github.com/leileiluoluo/boyouquan-api/releases/tag/v2.4">boyouquan-api</a></p>
     </>,
-    publishedAt: '2025年7月29日'
+    publishedAt: '2025年8月23日'
 }
 
 export { META_V2_4, RELEASE_INFO_V2_4 };

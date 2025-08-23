@@ -61,7 +61,7 @@ export default function Subscription() {
             <Form>
                 <Flex gap="2" align="center" justify="between">
                     <Box width="100%">
-                        <TextField.Root style={{ fontSize: '12px' }} name="email" placeholder="输入邮箱并订阅，月底将自动收到当月精选文章" id="email" value={email} onChange={handleChange} />
+                        <TextField.Root style={{ fontSize: '12px' }} name="email" placeholder="输入邮箱并订阅，次月第一天将自动收到上月精选文章" id="email" value={email} onChange={handleChange} />
                     </Box>
                     <GlobalDialog
                         title={'' != error.code ? '错误提示' : '提示'}

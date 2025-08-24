@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Flex, Box, TabNav, Text, Container, Link } from '@radix-ui/themes';
+import { Flex, Box, TabNav, Container, Link } from '@radix-ui/themes';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
 export default function Header() {
@@ -14,15 +14,9 @@ export default function Header() {
             <Container size="3">
                 <Flex align="center" justify="between">
                     <Box width="40%">
-                        <Text size="6">
-                            <Link href="/"
-                                style={{
-                                    backgroundImage: "linear-gradient(to right, #14100f, #d55b5b, #4d14e6)",
-                                    WebkitBackgroundClip: "text",
-                                    backgroundClip: "text",
-                                    color: "transparent",
-                                }}>博友圈</Link>
-                        </Text>
+                        <Link href="/">
+                            <img width="84px" height="30px" src="/assets/images/sites/logo/logo.svg"></img>
+                        </Link>
                     </Box>
                     <Box width="60%">
                         <ScrollArea type="always" scrollbars="horizontal">

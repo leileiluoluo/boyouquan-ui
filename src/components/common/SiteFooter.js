@@ -69,6 +69,11 @@ export default function SiteFooter() {
                     </Flex>
                 </Box>
                 <Box mt="2">
+                    <Box align="center">
+                        <Link href="/planet-shuttle">
+                            <img width="60px" height="30px" src="/assets/images/sites/logo/planet-shuttle.svg"></img>
+                        </Link>
+                    </Box>
                     <Box mb="2" align="center">
                         <Text size="1">将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！</Text>
                     </Box>

@@ -44,25 +44,22 @@ const content = <>
         <li>网址：<a href="https://www.boyouquan.com/home">https://www.boyouquan.com/home</a></li>
         <li>描述：博客人的朋友圈，博客收录与文章 RSS 聚合网站。</li>
         <li>星球穿梭页：<a href="https://www.boyouquan.com/planet-shuttle">https://www.boyouquan.com/planet-shuttle</a></li>
-        <li>素材：各尺寸的亮色与暗色 Logo 如下，请按需自取！</li>
+        <li>素材：各尺寸 Logo 如下，请按需自取！</li>
     </ul>
 
     <Table.Root variant="surface">
         <Table.Body>
             <Table.Row>
-                <Table.RowHeaderCell>120px * 120px</Table.RowHeaderCell>
-                <Table.Cell><a href="/assets/images/sites/logo/logo-small.png"><img width="40px" src="/assets/images/sites/logo/logo-small.png" /></a></Table.Cell>
-                <Table.Cell><a href="/assets/images/sites/logo/logo-small-dark.png"><img width="40px" src="/assets/images/sites/logo/logo-small-dark.png" /></a></Table.Cell>
+                <Table.RowHeaderCell>40px * 40px</Table.RowHeaderCell>
+                <Table.Cell><a href="/assets/images/sites/logo/logo-small.svg"><img width="40px" src="/assets/images/sites/logo/logo-small.svg" /></a></Table.Cell>
             </Table.Row>
             <Table.Row>
-                <Table.RowHeaderCell>180px * 80px</Table.RowHeaderCell>
-                <Table.Cell><a href="/assets/images/sites/logo/logo-medium.png"><img width="90px" src="/assets/images/sites/logo/logo-medium.png" /></a></Table.Cell>
-                <Table.Cell><a href="/assets/images/sites/logo/logo-medium-dark.png"><img width="90px" src="/assets/images/sites/logo/logo-medium-dark.png" /></a></Table.Cell>
+                <Table.RowHeaderCell>84px * 30px</Table.RowHeaderCell>
+                <Table.Cell><a href="/assets/images/sites/logo/logo.svg"><img width="84px" src="/assets/images/sites/logo/logo.svg" /></a></Table.Cell>
             </Table.Row>
             <Table.Row>
-                <Table.RowHeaderCell>280px * 60px</Table.RowHeaderCell>
-                <Table.Cell><a href="/assets/images/sites/logo/planet-shuttle.png"><img width="140px" src="/assets/images/sites/logo/planet-shuttle.png" /></a></Table.Cell>
-                <Table.Cell><a href="/assets/images/sites/logo/planet-shuttle-dark.png"><img width="140px" src="/assets/images/sites/logo/planet-shuttle-dark.png" /></a></Table.Cell>
+                <Table.RowHeaderCell>60px * 30px</Table.RowHeaderCell>
+                <Table.Cell><a href="/assets/images/sites/logo/planet-shuttle.svg"><img width="60px" src="/assets/images/sites/logo/planet-shuttle.svg" /></a></Table.Cell>
             </Table.Row>
         </Table.Body>
     </Table.Root>

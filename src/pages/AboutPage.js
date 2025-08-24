@@ -4,7 +4,7 @@ import CommonFooter from '../components/common/CommonFooter';
 import Meta from '../components/common/Meta';
 import { scrollToHash } from '../utils/ScrollUtil';
 import Article from '../components/article/Article';
-import { Box, Container, Table } from '@radix-ui/themes';
+import { Box, Container, Link, Table } from '@radix-ui/themes';
 
 const meta = {
     title: '关于本站 - 博友圈 · 博客人的朋友圈！',
@@ -51,15 +51,15 @@ const content = <>
         <Table.Body>
             <Table.Row>
                 <Table.RowHeaderCell>40px * 40px</Table.RowHeaderCell>
-                <Table.Cell><a href="/assets/images/sites/logo/logo-small.svg"><img width="40px" src="/assets/images/sites/logo/logo-small.svg" /></a></Table.Cell>
+                <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/logo-small.svg"><img width="40px" src="/assets/images/sites/logo/logo-small.svg" /></Link></Table.Cell>
             </Table.Row>
             <Table.Row>
                 <Table.RowHeaderCell>84px * 30px</Table.RowHeaderCell>
-                <Table.Cell><a href="/assets/images/sites/logo/logo.svg"><img width="84px" src="/assets/images/sites/logo/logo.svg" /></a></Table.Cell>
+                <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/logo.svg"><img width="84px" src="/assets/images/sites/logo/logo.svg" /></Link></Table.Cell>
             </Table.Row>
             <Table.Row>
-                <Table.RowHeaderCell>60px * 30px</Table.RowHeaderCell>
-                <Table.Cell><a href="/assets/images/sites/logo/planet-shuttle.svg"><img width="60px" src="/assets/images/sites/logo/planet-shuttle.svg" /></a></Table.Cell>
+                <Table.RowHeaderCell>100px * 30px</Table.RowHeaderCell>
+                <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/planet-shuttle.svg"><img width="100px" src="/assets/images/sites/logo/planet-shuttle.svg" /></Link></Table.Cell>
             </Table.Row>
         </Table.Body>
     </Table.Root>

@@ -10,15 +10,15 @@ export default function Header() {
     });
 
     return (
-        <Box style={{ marginBottom: "20px" }}>
+        <Box style={{ marginBottom: "10px" }}>
             <Container size="3">
                 <Flex align="center" justify="between">
-                    <Box width="40%">
+                    <Box mt="1" align="center">
                         <Link href="/">
                             <img width="84px" height="30px" src="/assets/images/sites/logo/logo.svg"></img>
                         </Link>
                     </Box>
-                    <Box width="60%">
+                    <Box mt="-2">
                         <ScrollArea type="always" scrollbars="horizontal">
                             <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>

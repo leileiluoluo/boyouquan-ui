@@ -69,9 +69,9 @@ export default function SiteFooter() {
                     </Flex>
                 </Box>
                 <Box mt="2">
-                    <Box align="center">
-                        <Link href="/planet-shuttle">
-                            <img width="60px" height="30px" src="/assets/images/sites/logo/planet-shuttle.svg"></img>
+                    <Box align="center" mt="2">
+                        <Link href="/planet-shuttle" target="_blank">
+                            <img width="90px" height="28px" src="/assets/images/sites/logo/planet-shuttle.svg"></img>
                         </Link>
                     </Box>
                     <Box mb="2" align="center">

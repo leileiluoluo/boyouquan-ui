@@ -24,11 +24,6 @@ export default function Header() {
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
                                 <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
                                 <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
-                                <TabNav.Link asChild>
-                                    <a href="/planet-shuttle" target="_blank" rel="noopener noreferrer">
-                                        星球穿梭
-                                    </a>
-                                </TabNav.Link>
                                 <TabNav.Link href="/blog-requests/add/email-validation" active={pathname.startsWith("/blog-requests/add")}>提交博客</TabNav.Link>
                                 <TabNav.Link href="/blog-requests" active={!pathname.startsWith("/blog-requests/add") && pathname.startsWith("/blog-requests")}>审核结果</TabNav.Link>
                             </TabNav.Root>

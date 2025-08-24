@@ -4,7 +4,7 @@ import CommonFooter from '../components/common/CommonFooter';
 import Meta from '../components/common/Meta';
 import { scrollToHash } from '../utils/ScrollUtil';
 import Article from '../components/article/Article';
-import { Box, Container, Link, Table } from '@radix-ui/themes';
+import { Box, Container, Link, ScrollArea, Table, Text } from '@radix-ui/themes';
 
 const meta = {
     title: '关于本站 - 博友圈 · 博客人的朋友圈！',
@@ -67,7 +67,9 @@ const content = <>
     <h4 id="data-spider">数据采集</h4>
     <p>为了在本站聚合展示最新博文，本站会对已收录的博客定时进行数据采集，采集 URL 为博客的 RSS 地址，采集频率为 2 小时 1 次（一天 12 次），采集时间为每个双数正点（0 点、2 点、4 点，...，22 点），相信这样的频率不会对您的服务器造成多大的压力。</p>
     <p>标识请求来源为本站的 HTTP<code>User-Agent</code>信息如下：</p>
-    <pre><code>Mozilla/5.0 (compatible; Boyouquanspider/1.0; +https://www.boyouquan.com/about#data-spider)</code></pre>
+    <ScrollArea scrollbars="horizontal">
+        <Text size="2">Mozilla/5.0 (compatible; Boyouquanspider/1.0; +https://www.boyouquan.com/about#data-spider)</Text>
+    </ScrollArea>
     <p>若您不经意在服务器日志中发现了许多带有这些请求头的请求，请放心予以放行！</p>
 
     <h4 id="subscribe-feed">文章订阅</h4>

@@ -90,7 +90,7 @@ export default function PlanetShuttlePage() {
             </Helmet>
             <Box style={planetStyle}>
                 <Box style={textAliginStyle}>
-                    <a style={fontStyle} href="/home">博友圈</a>
+                    <a style={fontStyle} href="/home"><img width="90px" height="28px" src="/assets/images/sites/logo/planet-shuttle-dark.svg"></img></a>
                 </Box>
                 <Box style={fontSizeLargeStyle}>
                     {

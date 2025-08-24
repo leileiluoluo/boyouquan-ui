@@ -48,18 +48,28 @@ const content = <>
     </ul>
 
     <Table.Root variant="surface">
+        <Table.Header>
+            <Table.Row>
+                <Table.ColumnHeaderCell>尺寸</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>亮色背景时使用</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>暗色背景时使用</Table.ColumnHeaderCell>
+            </Table.Row>
+        </Table.Header>
         <Table.Body>
             <Table.Row>
                 <Table.RowHeaderCell>40px * 40px</Table.RowHeaderCell>
                 <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/logo-small.svg"><img width="40px" src="/assets/images/sites/logo/logo-small.svg" /></Link></Table.Cell>
+                <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/logo-small-dark.svg"><img width="40px" src="/assets/images/sites/logo/logo-small-dark.svg" /></Link></Table.Cell>
             </Table.Row>
             <Table.Row>
                 <Table.RowHeaderCell>84px * 30px</Table.RowHeaderCell>
                 <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/logo.svg"><img width="84px" src="/assets/images/sites/logo/logo.svg" /></Link></Table.Cell>
+                <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/logo-dark.svg"><img width="84px" src="/assets/images/sites/logo/logo-dark.svg" /></Link></Table.Cell>
             </Table.Row>
             <Table.Row>
                 <Table.RowHeaderCell>100px * 30px</Table.RowHeaderCell>
                 <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/planet-shuttle.svg"><img width="100px" src="/assets/images/sites/logo/planet-shuttle.svg" /></Link></Table.Cell>
+                <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/planet-shuttle-dark.svg"><img width="100px" src="/assets/images/sites/logo/planet-shuttle-dark.svg" /></Link></Table.Cell>
             </Table.Row>
         </Table.Body>
     </Table.Root>

@@ -71,7 +71,7 @@ export default function SiteFooter() {
                 <Box mt="2">
                     <Box align="center" mt="2">
                         <Link href="/planet-shuttle" target="_blank">
-                            <img width="90px" height="28px" src="/assets/images/sites/logo/planet-shuttle.svg"></img>
+                            <img height="24px" src="/assets/images/sites/logo/planet-shuttle.svg"></img>
                         </Link>
                     </Box>
                     <Box mb="2" align="center">

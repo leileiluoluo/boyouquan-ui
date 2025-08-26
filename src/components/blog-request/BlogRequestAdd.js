@@ -27,9 +27,12 @@ export default function BlogRequestAdd() {
             { 'Content-Type': 'application/json' }
         );
 
+        const promise = formData['promise'];
         if (resp.status != 201) {
             const respBody = await resp.json();
             setError(respBody);
+        } else if (undefined === promise || null === promise) {
+            setError({ code: 'promise_not_selected', message: '您未做出承诺' });
         } else {
             redirectTo(BLOG_REQUESTS_ADDRESS, 3);
         }
@@ -42,7 +45,6 @@ export default function BlogRequestAdd() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         postData(formData);
     };
 

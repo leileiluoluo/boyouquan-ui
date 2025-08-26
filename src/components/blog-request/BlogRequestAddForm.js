@@ -1,4 +1,4 @@
-import { Card, Box, Button, Flex, Text, TextField, Heading, TextArea, Link } from '@radix-ui/themes';
+import { Card, Box, Button, Flex, Text, TextField, Heading, TextArea, Link, Radio } from '@radix-ui/themes';
 import { Form } from '@radix-ui/react-form';
 
 const inputFontSizeStyle = { fontSize: '12px' };
@@ -58,8 +58,20 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                             </Flex>
 
                             <Box mt="2">
-                                <TextArea style={inputFontSizeStyle} name="description" placeholder="描述一下您的博客，建议 100 字以内" id="description" value={formData.description} onChange={handleChange} />
+                                <TextArea size="1" style={inputFontSizeStyle} name="description" placeholder="描述一下您的博客，建议 100 字以内" id="description" value={formData.description} onChange={handleChange} />
                             </Box>
+                        </Box>
+
+                        <Box mt="2">
+                            <Flex gap="2" align="center">
+                                <Flex asChild>
+                                    <Text as="label" size="2">
+                                        <Radio size="1" name="promise" value={formData.promise} onChange={handleChange} />
+                                        「我承诺十年不停更，十年不闭站」
+                                    </Text>
+                                </Flex>
+                                <Text size="2" color="red">{error.code == 'promise_not_selected' ? error.message : ''}</Text>
+                            </Flex>
                         </Box>
 
                         <Box mt="2">

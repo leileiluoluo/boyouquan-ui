@@ -42,7 +42,7 @@ const content = <>
     <ul>
         <li>站名：博友圈</li>
         <li>网址：<a href="https://www.boyouquan.com/home">https://www.boyouquan.com/home</a></li>
-        <li>描述：博客人的朋友圈，博客收录与文章 RSS 聚合网站。</li>
+        <li>描述：博客人的朋友圈，将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！</li>
         <li>星球穿梭页：<a href="https://www.boyouquan.com/planet-shuttle">https://www.boyouquan.com/planet-shuttle</a></li>
         <li>素材：各尺寸 Logo 如下，请按需自取！</li>
     </ul>

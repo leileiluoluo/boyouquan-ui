@@ -624,11 +624,20 @@ const content = (
                         <Table.Cell>2025/08/19</Table.Cell>
                         <Table.Cell>20.00 元</Table.Cell>
                         <Table.Cell>博友圈长长久久，越办越好，加油！</Table.Cell>
-                        <Table.Cell>已计入总额，待后续使用</Table.Cell>
-                        <Table.Cell>--</Table.Cell>
-                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>已完成</Table.Cell>
+                        <Table.Cell>2025/09/05</Table.Cell>
+                        <Table.Cell>域名续费</Table.Cell>
                         <Table.Cell>
-                            <Text>当前总额：552.91 元</Text>
+                            <Text>当前总额：552.91 元，本次花费：169.16 元，本次结余：383.75 元</Text>
+                            <Text>腾讯云域名续费两年，由 2033/06/28 续费至 2035/06/28</Text>
+                            <Text>
+                                <Link href="/assets/images/sites/sponsor/cost_details/2025/09/domain_name_renewal_1.png">
+                                    花费证明 1
+                                </Link>
+                                <Link href="/assets/images/sites/sponsor/cost_details/2025/09/domain_name_renewal_2.png">
+                                    花费证明 2
+                                </Link>
+                            </Text>
                         </Table.Cell>
                     </Table.Row>
                 </Table.Body>

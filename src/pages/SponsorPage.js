@@ -640,6 +640,20 @@ const content = (
                             </Text>
                         </Table.Cell>
                     </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <Link href="/blogs/www.edzbe.com">耳朵的主人</Link>
+                        </Table.Cell>
+                        <Table.Cell>2025/09/15</Table.Cell>
+                        <Table.Cell>100.00 元</Table.Cell>
+                        <Table.Cell>博友圈太赞了，我也来助助力！</Table.Cell>
+                        <Table.Cell>已计入总额，待后续使用</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>--</Table.Cell>
+                        <Table.Cell>
+                            <Text>当前总额：483.75 元</Text>
+                        </Table.Cell>
+                    </Table.Row>
                 </Table.Body>
             </Table.Root>
         </div>

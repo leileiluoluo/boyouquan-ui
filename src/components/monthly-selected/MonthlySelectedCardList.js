@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import MonthlySelectedCard from './MonthlySelectedCard';
 import Pagination from '../pagination/Pagination';
-import { Box, Flex, Skeleton, Table, Text } from '@radix-ui/themes';
+import { Box, Flex, Grid, Skeleton, Table, Text, Heading } from '@radix-ui/themes';
 
 export default function MonthlySelectedCardList() {
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
-    const [items, setItems] = useState([]);
+    const [item, setItem] = useState({});
     const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async (pageNo) => {
@@ -18,7 +18,7 @@ export default function MonthlySelectedCardList() {
         setDataReady(true);
         setPageSize(respBody.pageSize);
         setTotal(respBody.total);
-        setItems(respBody.results);
+        setItem(respBody.results[0]);
     };
 
     useEffect(() => {
@@ -75,15 +75,20 @@ export default function MonthlySelectedCardList() {
     return (
         <>
             <Box id="monthly-selected-container">
-                {
-                    items.map(
-                        (item, index) => (
-                            <MonthlySelectedCard
-                                key={index}
-                                yearMonthStr={item.yearMonthStr}
-                                postInfos={item.postInfos} />
-                        ))
-                }
+                <Box mb="2">
+                    <Heading size="3" weight="bold">{item.yearMonthStr}</Heading>
+                </Box>
+
+                <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
+                    {
+                        item.postInfos.map(
+                            (postInfo, index) => (
+                                <MonthlySelectedCard
+                                    key={index}
+                                    postInfo={postInfo} />
+                            ))
+                    }
+                </Grid>
             </Box>
             <Pagination
                 pageNo={pageNo}

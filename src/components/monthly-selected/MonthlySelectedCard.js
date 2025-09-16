@@ -1,50 +1,43 @@
-import { Flex, Box, Text, Table, Link, Heading } from '@radix-ui/themes';
+import { Flex, Card, Link } from '@radix-ui/themes';
+import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 
-import { formatDateStr } from '../../utils/DateUtil';
-import { getAbstractAddress, getBlogAddress, getGoAddress } from '../../utils/PageAddressUtil';
+import PostCard from '../post-card/PostCard';
+import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 
-export default function MonthlySelectedCard({ yearMonthStr, postInfos }) {
+export default function MonthlySelectedCard({ postInfo }) {
+    const linkURL = getGoAddress(postInfo.link);
+    const abstractURL = getAbstractAddress(postInfo.link);
+
     return (
-        <Flex direction="column" gap="2">
-            <Box>
-                <Heading size="3" weight="bold">{yearMonthStr}</Heading>
-            </Box>
-            <Box>
-                <Table.Root variant="surface">
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>文章标题</Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>发布时间</Table.ColumnHeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {
-                            postInfos.map(
-                                (postInfo, index) => (
-                                    <Table.Row key={index}>
-                                        <Table.RowHeaderCell><Link href={getBlogAddress(postInfo.blogDomainName)}>{postInfo.blogName}</Link></Table.RowHeaderCell>
-                                        <Table.Cell>
-                                            <Text style={{
-                                                display: '-webkit-box',
-                                                WebkitLineClamp: 1,
-                                                WebkitBoxOrient: 'vertical',
-                                                overflow: 'hidden'
-                                            }}>
-                                                {postInfo.blogStatusOk ?
-                                                    <Link target="_blank" href={getGoAddress(postInfo.link)}>{postInfo.title}</Link>
-                                                    : <Link href={getAbstractAddress(postInfo.link)}>{postInfo.title}</Link>
-                                                }
-                                            </Text>
-                                        </Table.Cell>
-                                        <Table.Cell>{formatDateStr(postInfo.publishedAt, true)}</Table.Cell>
-                                    </Table.Row>
-                                )
-                            )
-                        }
-                    </Table.Body>
-                </Table.Root>
-            </Box>
-        </Flex>
+        <Card style={{ padding: 'var(--space-4)' }}>
+            <Flex direction="column" gap="2">
+                {postInfo.hasImage ? <AspectRatio.Root
+                    ratio={16 / 9}
+                    style={{
+                        flexShrink: 0,
+                        backgroundColor: "#f3f3f3",
+                        borderRadius: "4px",
+                        overflow: "hidden",
+                    }}>
+                    <Link target="_blank" size="3" weight="bold" href={postInfo.blogStatusOk ? linkURL : abstractURL}>
+                        <img
+                            src={postInfo.imageURL}
+                            alt={postInfo.title}
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </Link>
+                </AspectRatio.Root> : ''}
+
+                <PostCard
+                    blogDomainName={postInfo.blogDomainName}
+                    blogName={postInfo.blogName}
+                    blogStatusOk={postInfo.blogStatusOk}
+                    blogAdminMediumImageURL={postInfo.blogAdminMediumImageURL}
+                    link={postInfo.link}
+                    title={postInfo.title}
+                    description={postInfo.description}
+                    publishedAt={postInfo.publishedAt}
+                    linkAccessCount={postInfo.linkAccessCount} />
+            </Flex>
+        </Card>
     )
 }

@@ -23,38 +23,36 @@ export default function PostCard({
     const publishedAtFormatted = formatDateStr(publishedAt);
 
     return (
-        <Card>
-            <Flex direction="column" gap="1">
-                <Box>
-                    <Flex gap="1">
-                        <img src="/assets/images/sites/pinned/pinned.svg" style={{ display: showPinned && pinned ? 'block' : 'none' }} />
-                        <Link target="_blank" size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
-                            display: '-webkit-box',
-                            WebkitLineClamp: 1,
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden'
-                        }}>{title}</Link>
-                    </Flex>
-                </Box>
-                <Box>
-                    <Text as="div" size="2" color="gray" style={{
+        <Flex direction="column" gap="1">
+            <Box>
+                <Flex gap="1">
+                    <img src="/assets/images/sites/pinned/pinned.svg" style={{ display: showPinned && pinned ? 'block' : 'none' }} />
+                    <Link target="_blank" size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
                         display: '-webkit-box',
-                        WebkitLineClamp: 2,
+                        WebkitLineClamp: 1,
                         WebkitBoxOrient: 'vertical',
                         overflow: 'hidden'
-                    }}>
-                        {description}
-                    </Text>
-                </Box>
+                    }}>{title}</Link>
+                </Flex>
+            </Box>
+            <Box>
+                <Text as="div" size="2" color="gray" style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}>
+                    {description}
+                </Text>
+            </Box>
 
-                <PostCardFooter
-                    blogURL={blogURL}
-                    gravatarURL={gravatarURL}
-                    blogName={blogName}
-                    publishedAtFormatted={publishedAtFormatted}
-                    linkAccessCount={linkAccessCount}
-                    sharingURL={sharingURL} />
-            </Flex>
-        </Card>
+            <PostCardFooter
+                blogURL={blogURL}
+                gravatarURL={gravatarURL}
+                blogName={blogName}
+                publishedAtFormatted={publishedAtFormatted}
+                linkAccessCount={linkAccessCount}
+                sharingURL={sharingURL} />
+        </Flex>
     )
 }

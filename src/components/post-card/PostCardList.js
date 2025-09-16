@@ -83,19 +83,21 @@ export default function PostCardList({ sort, keyword, showPinned }) {
                     <Flex direction="column" gap="2">
                         {posts.map(
                             (post, index) => (
-                                <PostCard
-                                    key={index}
-                                    showPinned={showPinned}
-                                    pinned={post.pinned}
-                                    blogDomainName={post.blogDomainName}
-                                    blogName={post.blogName}
-                                    blogStatusOk={post.blogStatusOk}
-                                    blogAdminMediumImageURL={post.blogAdminMediumImageURL}
-                                    link={post.link}
-                                    title={post.title}
-                                    description={post.description}
-                                    publishedAt={post.publishedAt}
-                                    linkAccessCount={post.linkAccessCount} />
+                                <Card>
+                                    <PostCard
+                                        key={index}
+                                        showPinned={showPinned}
+                                        pinned={post.pinned}
+                                        blogDomainName={post.blogDomainName}
+                                        blogName={post.blogName}
+                                        blogStatusOk={post.blogStatusOk}
+                                        blogAdminMediumImageURL={post.blogAdminMediumImageURL}
+                                        link={post.link}
+                                        title={post.title}
+                                        description={post.description}
+                                        publishedAt={post.publishedAt}
+                                        linkAccessCount={post.linkAccessCount} />
+                                </Card>
                             )
                         )}
                     </Flex>

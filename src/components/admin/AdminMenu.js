@@ -41,6 +41,7 @@ export default function AdminMenu() {
                     <TabNav.Root size="3" color="crimson">
                         <TabNav.Link href="/admin/blog-requests" active={pathname === "/admin/blog-requests"}>博客审核</TabNav.Link>
                         <TabNav.Link href="/admin/blog-requests/add" active={pathname === "/admin/blog-requests/add"}>提交博客</TabNav.Link>
+                        <TabNav.Link href="/admin/monthly-selected" active={pathname === "/admin/monthly-selected"}>每月精选</TabNav.Link>
                         <TabNav.Link href="/admin/recommended-posts" active={pathname === "/admin/recommended-posts"}>推荐文章管理</TabNav.Link>
                         <TabNav.Link href="/admin/recommended-posts/add" active={pathname === "/admin/recommended-posts/add"}>推荐文章</TabNav.Link>
                     </TabNav.Root>

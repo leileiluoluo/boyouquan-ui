@@ -27,6 +27,7 @@ import AnnualReportPage from './pages/AnnualReportPage';
 import BlogRequestEmailValidationPage from './pages/BlogRequestEmailValidationPage';
 import CancelSubscriptionPage from './pages/CancelSubscriptionPage';
 import AdminPostImageAddPage from './pages/admin/AdminPostImageAddPage';
+import AdminMonthlySelectedPage from './pages/admin/AdminMonthlySelectedPage';
 
 export default function App() {
   return (
@@ -49,6 +50,7 @@ export default function App() {
         <Route path='/admin/blog-requests' element={<AdminBlogRequestsPage />} />
         <Route path='/admin/blog-requests/:id' element={<AdminBlogRequestPage />} />
         <Route path='/admin/blog-requests/add' element={<AdminBlogRequestAddPage />} />
+        <Route path='/admin/monthly-selected' element={<AdminMonthlySelectedPage />} />
         <Route path='/admin/recommended-posts' element={<AdminRecommendedPostsPage />} />
         <Route path='/admin/recommended-posts/add' element={<AdminRecommendPostPage />} />
         <Route path='/admin/post-images/add' element={<AdminPostImageAddPage />} />

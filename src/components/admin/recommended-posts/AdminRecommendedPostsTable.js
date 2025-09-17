@@ -1,10 +1,10 @@
-import { Box, Table, Link, Text, Button } from '@radix-ui/themes';
+import { Box, Table, Link, Text, Button, Flex } from '@radix-ui/themes';
 
 import { redirectTo } from '../../../utils/CommonUtil';
 import { getCookie } from '../../../utils/CookieUtil';
 import { formatDateStr } from '../../../utils/DateUtil';
 import { getBlogAddress } from '../../../utils/PageAddressUtil';
-import { ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../../utils/PageAddressUtil';
+import { ADMIN_RECOMMENDED_POSTS_ADDRESS, ADMIN_POST_IMAGE_ADD_ADDRESS } from '../../../utils/PageAddressUtil';
 import RequestUtil from '../../../utils/APIRequestUtil';
 
 const unpin = (link) => {
@@ -25,6 +25,10 @@ const pin = (link) => {
     });
 
     redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS, 3);
+};
+
+const addPostImage = (link) => {
+    redirectTo(ADMIN_POST_IMAGE_ADD_ADDRESS + '?link=' + encodeURIComponent(link));
 };
 
 export default function AdminRecommendedPostsTable({ posts }) {
@@ -56,10 +60,18 @@ export default function AdminRecommendedPostsTable({ posts }) {
                                 <Table.Cell><Link href={getBlogAddress(post.blogDomainName)}>{post.blogName}</Link></Table.Cell>
                                 <Table.Cell>{formatDateStr(post.publishedAt, true)}</Table.Cell>
                                 <Table.Cell>
-                                    {
-                                        post.pinned ? <Button size="1" color="crimson" onClick={() => unpin(post.link)}>取消置顶</Button>
-                                            : <Button size="1" color="cyan" onClick={() => pin(post.link)}>置顶</Button>
-                                    }
+                                    <Flex gap="2">
+                                        <Box>
+                                            {
+                                                post.pinned ? <Button size="1" color="crimson" onClick={() => unpin(post.link)}>取消置顶</Button>
+                                                    : <Button size="1" color="cyan" onClick={() => pin(post.link)}>置顶</Button>
+                                            }
+                                        </Box>
+
+                                        <Box>
+                                            <Button size="1" color="amber" onClick={() => addPostImage(post.link)}>配图</Button>
+                                        </Box>
+                                    </Flex>
                                 </Table.Cell>
                             </Table.Row>
                         ))

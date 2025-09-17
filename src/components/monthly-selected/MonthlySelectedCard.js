@@ -9,7 +9,7 @@ export default function MonthlySelectedCard({ postInfo }) {
     const abstractURL = getAbstractAddress(postInfo.link);
 
     return (
-        <Card style={{ padding: 'var(--space-4)' }}>
+        <Card>
             <Flex direction="column" gap="2">
                 {postInfo.hasImage ? <AspectRatio.Root
                     ratio={16 / 9}

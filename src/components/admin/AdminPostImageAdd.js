@@ -12,7 +12,7 @@ export default function AdminPostImageAdd() {
 
     const [postInfo, setPostInfo] = useState({});
     const [postImages, setPostImages] = useState([]);
-    const [formData, setFormData] = useState({ link: encodeURIComponent(link) });
+    const [formData, setFormData] = useState({ link: link });
     const [error, setError] = useState({});
 
     const postData = async (formData) => {

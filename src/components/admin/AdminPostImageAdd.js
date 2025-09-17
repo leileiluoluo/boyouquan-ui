@@ -38,11 +38,18 @@ export default function AdminPostImageAdd() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const imageURL = formData['imageURL'];
+        let imageURL = formData['imageURL'];
+        const customImageURL = formData['customImageURL'];
+        if (undefined !== customImageURL) {
+            imageURL = customImageURL;
+        }
+
         if (undefined === imageURL) {
-            setError({ code: 'image_not_selected', message: '您未选择任何图片' });
+            setError({ code: 'image_not_selected', message: '您未选择任何图片，也未提供自定义图片地址！' });
             return;
         }
+
+        formData['imageURL'] = imageURL;
 
         postData(formData);
     };

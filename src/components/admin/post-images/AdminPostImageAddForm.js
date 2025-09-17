@@ -30,7 +30,6 @@ export default function AdminPostImageAddForm({ postInfo, postImages, formData, 
                         <Box>
                             <Flex gap="2" align="center">
                                 <Text size="2">可选图片 *</Text>
-                                <Text size="2" color="red">{error.code == 'blog_request_name_invalid' || error.code == 'blog_submitted_with_same_ip' ? error.message : ''}</Text>
                             </Flex>
 
                             <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
@@ -51,11 +50,21 @@ export default function AdminPostImageAddForm({ postInfo, postImages, formData, 
                                                         style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                                                 </AspectRatio.Root>
 
-                                                <Radio name="imageURL" value={imageURL} onChange={handleChange}/>
+                                                <Radio name="imageURL" value={imageURL} onChange={handleChange} />
                                             </Flex>
                                         ))
                                 }
                             </Grid>
+                        </Box>
+
+                        <Box>
+                            <Flex gap="2" align="center">
+                                <Text size="2">自定义图片地址 *</Text>
+                            </Flex>
+
+                            <Box mt="2">
+                                <TextField.Root style={inputFontSizeStyle} name="customImageURL" value={formData.customImageURL} onChange={handleChange} />
+                            </Box>
                         </Box>
 
                         <Box mt="2">

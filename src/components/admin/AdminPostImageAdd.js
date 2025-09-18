@@ -22,11 +22,11 @@ export default function AdminPostImageAdd() {
             'sessionId': getCookie('sessionId')
         });
 
-        if (resp.status != 201) {
+        if (resp.status != 204) {
             const respBody = await resp.json();
             setError(respBody);
         } else {
-            redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS, 3);
+            redirectTo(ADMIN_MONTHLY_SELECTED_ADDRESS, 1);
         }
     };
 

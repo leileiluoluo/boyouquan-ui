@@ -3,7 +3,6 @@ import { Form } from '@radix-ui/react-form';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 
 const inputFontSizeStyle = { fontSize: '12px' };
-const noticeStyle = { marginTop: '18px', fontSize: '12px' };
 
 export default function AdminPostImageAddForm({ postInfo, postImages, formData, error, handleChange, handleSubmit, isAdminPage }) {
     return (

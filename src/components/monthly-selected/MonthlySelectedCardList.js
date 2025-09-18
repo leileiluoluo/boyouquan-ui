@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import MonthlySelectedCard from './MonthlySelectedCard';
 import Pagination from '../pagination/Pagination';
-import { Box, Flex, Grid, Skeleton, Table, Text, Heading } from '@radix-ui/themes';
+import { Box, Flex, Skeleton, Table, Text, Heading } from '@radix-ui/themes';
+import '../../CollageLayout.css';
+
 
 export default function MonthlySelectedCardList() {
     const [pageNo, setPageNo] = useState(1);
@@ -79,7 +81,7 @@ export default function MonthlySelectedCardList() {
                     <Heading size="3" weight="bold">{item.yearMonthStr}</Heading>
                 </Box>
 
-                <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
+                <div className="grid-container">
                     {
                         item.postInfos.map(
                             (postInfo, index) => (
@@ -88,7 +90,7 @@ export default function MonthlySelectedCardList() {
                                     postInfo={postInfo} />
                             ))
                     }
-                </Grid>
+                </div>
             </Box>
             <Pagination
                 pageNo={pageNo}

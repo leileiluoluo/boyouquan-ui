@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getCookie } from '../../utils/CookieUtil';
 import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
-import { ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../utils/PageAddressUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
 import AdminMenu from './AdminMenu';
 import AdminPostImageAddForm from './post-images/AdminPostImageAddForm';
+import { ADMIN_MONTHLY_SELECTED_ADDRESS } from '../../utils/PageAddressUtil';
 
 export default function AdminPostImageAdd() {
     let link = getURLParameter('link') || '';

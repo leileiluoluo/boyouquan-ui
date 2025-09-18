@@ -5,12 +5,12 @@ import Pagination from '../pagination/Pagination';
 import { Box, Flex, Skeleton, Table, Text, Heading } from '@radix-ui/themes';
 import '../../CollageLayout.css';
 
-
 export default function MonthlySelectedCardList() {
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
-    const [item, setItem] = useState({});
+    const [yearMonthStr, setYearMonthStr] = useState();
+    const [postInfos, setPostInfos] = useState([]);
     const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async (pageNo) => {
@@ -20,7 +20,16 @@ export default function MonthlySelectedCardList() {
         setDataReady(true);
         setPageSize(respBody.pageSize);
         setTotal(respBody.total);
-        setItem(respBody.results[0]);
+        setYearMonthStr(respBody.results[0].yearMonthStr);
+        setPostInfos(respBody.results[0].postInfos);
+
+        respBody.results[0].postInfos.sort((a, b) => {
+            if (null !== a.imageURL && null === b.imageURL) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
     };
 
     useEffect(() => {
@@ -78,12 +87,12 @@ export default function MonthlySelectedCardList() {
         <>
             <Box id="monthly-selected-container">
                 <Box mb="2">
-                    <Heading size="3" weight="bold">{item.yearMonthStr}</Heading>
+                    <Heading size="3" weight="bold">{yearMonthStr}</Heading>
                 </Box>
 
                 <div className="grid-container">
                     {
-                        item.postInfos.map(
+                        postInfos.map(
                             (postInfo, index) => (
                                 <MonthlySelectedCard
                                     key={index}

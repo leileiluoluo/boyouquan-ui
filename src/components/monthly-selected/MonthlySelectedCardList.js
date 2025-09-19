@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import MonthlySelectedCard from './MonthlySelectedCard';
 import Pagination from '../pagination/Pagination';
-import { Box, Flex, Skeleton, Table, Text, Heading, Grid, Card, AspectRatio } from '@radix-ui/themes';
+import { Box, Flex, Skeleton, Text, Heading, Grid, Card } from '@radix-ui/themes';
 
 function countHasImageUsingFilter(items) {
     return items.filter(item => item.hasImage === true).length;

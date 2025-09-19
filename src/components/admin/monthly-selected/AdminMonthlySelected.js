@@ -80,7 +80,8 @@ export default function AdminMonthlySelected() {
                                         <Flex gap="2">
                                             <MonthlySelectedCard
                                                 key={index}
-                                                postInfo={postInfo} />
+                                                postInfo={postInfo}
+                                                showImage="true" />
 
                                             <Button size="1" color="amber" onClick={() => addPostImage(postInfo.link)}>配图</Button>
                                         </Flex>

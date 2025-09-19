@@ -5,7 +5,9 @@ import RequestUtil from '../../../utils/APIRequestUtil';
 import Pagination from '../../pagination/Pagination';
 import AdminMenu from '../AdminMenu';
 import { Box, Button, Flex, Heading, Grid } from '@radix-ui/themes';
-import { ADMIN_POST_IMAGE_ADD_ADDRESS } from '../../../utils/PageAddressUtil';
+import { ADMIN_LOGIN_ADDRESS, ADMIN_POST_IMAGE_ADD_ADDRESS } from '../../../utils/PageAddressUtil';
+import { getCookie } from '../../../utils/CookieUtil';
+import { redirectTo } from '../../../utils/CommonUtil';
 
 export default function AdminMonthlySelected() {
     const [pageNo, setPageNo] = useState(1);
@@ -14,7 +16,28 @@ export default function AdminMonthlySelected() {
     const [item, setItem] = useState({});
     const [dataReady, setDataReady] = useState(false);
 
+    const permissionCheck = async () => {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId'),
+        });
+
+        if (permissionCheckResp.status != 200) {
+            redirectTo(ADMIN_LOGIN_ADDRESS);
+        }
+    };
+
     const fetchData = async (pageNo) => {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId'),
+        });
+
+        if (permissionCheckResp.status != 200) {
+            redirectTo(ADMIN_LOGIN_ADDRESS);
+            return;
+        }
+
         const resp = await RequestUtil.get(`/api/monthly-selected?page=${pageNo}&includeCurrentMonth=true`);
 
         const respBody = await resp.json();
@@ -25,6 +48,7 @@ export default function AdminMonthlySelected() {
     };
 
     useEffect(() => {
+        permissionCheck();
         fetchData(pageNo);
     }, [pageNo]);
 

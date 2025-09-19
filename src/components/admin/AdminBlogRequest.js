@@ -5,6 +5,9 @@ import AdminMenuHeader from './AdminMenuHeader';
 import AdminBlogRequestTable from './AdminBlogRequestTable';
 import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenu from './AdminMenu';
+import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
+import { getCookie } from '../../utils/CookieUtil';
+import { redirectTo } from '../../utils/CommonUtil';
 
 const getMeta = (name, description) => {
     return {
@@ -19,6 +22,17 @@ export default function AdminBlogRequest() {
 
     const { id } = useParams();
 
+    const permissionCheck = async () => {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId'),
+        });
+
+        if (permissionCheckResp.status != 200) {
+            redirectTo(ADMIN_LOGIN_ADDRESS);
+        }
+    };
+
     const fetchData = async (id) => {
         const resp = await RequestUtil.get(`/api/blog-requests/${id}`);
 
@@ -28,6 +42,7 @@ export default function AdminBlogRequest() {
     };
 
     useEffect(() => {
+        permissionCheck();
         fetchData(id);
     }, [id]);
 

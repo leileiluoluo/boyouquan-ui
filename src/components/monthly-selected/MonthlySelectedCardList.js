@@ -5,10 +5,15 @@ import Pagination from '../pagination/Pagination';
 import { Box, Flex, Skeleton, Table, Text, Heading } from '@radix-ui/themes';
 import '../../CollageLayout.css';
 
+function countHasImageUsingFilter(items) {
+    return items.filter(item => item.hasImage === true).length;
+}
+
 export default function MonthlySelectedCardList() {
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
+    const [imageCount, setImageCount] = useState(0);
     const [yearMonthStr, setYearMonthStr] = useState();
     const [postInfos, setPostInfos] = useState([]);
     const [dataReady, setDataReady] = useState(false);
@@ -30,6 +35,13 @@ export default function MonthlySelectedCardList() {
                 return 0;
             }
         });
+
+        let showImageCount = countHasImageUsingFilter(respBody.results[0].postInfos);
+        if (showImageCount % 2 === 1 && showImageCount > 0) {
+            setImageCount(showImageCount - 1);
+        } else {
+            setImageCount(showImageCount);
+        }
     };
 
     useEffect(() => {
@@ -96,7 +108,8 @@ export default function MonthlySelectedCardList() {
                             (postInfo, index) => (
                                 <MonthlySelectedCard
                                     key={index}
-                                    postInfo={postInfo} />
+                                    postInfo={postInfo}
+                                    showImage={index < imageCount} />
                             ))
                     }
                 </div>

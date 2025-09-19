@@ -4,14 +4,14 @@ import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import PostCard from '../post-card/PostCard';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 
-export default function MonthlySelectedCard({ postInfo }) {
+export default function MonthlySelectedCard({ postInfo, showImage }) {
     const linkURL = getGoAddress(postInfo.link);
     const abstractURL = getAbstractAddress(postInfo.link);
 
     return (
         <Card>
             <Flex direction="column" gap="2">
-                {postInfo.hasImage ? <AspectRatio.Root
+                {postInfo.hasImage && showImage ? <AspectRatio.Root
                     ratio={16 / 9}
                     style={{
                         flexShrink: 0,

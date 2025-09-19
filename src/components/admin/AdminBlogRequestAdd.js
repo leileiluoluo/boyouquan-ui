@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BlogRequestAddForm from '../blog-request/BlogRequestAddForm';
 import { getCookie } from '../../utils/CookieUtil';
 import { redirectTo } from '../../utils/CommonUtil';
-import { ADMIN_BLOG_REQUESTS_ADDRESS } from '../../utils/PageAddressUtil';
+import { ADMIN_BLOG_REQUESTS_ADDRESS, ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
 import AdminMenu from './AdminMenu';
@@ -10,6 +10,17 @@ import AdminMenu from './AdminMenu';
 export default function AdminBlogRequestAdd() {
     const [formData, setFormData] = useState({});
     const [error, setError] = useState({});
+
+    const permissionCheck = async () => {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId'),
+        });
+
+        if (permissionCheckResp.status != 200) {
+            redirectTo(ADMIN_LOGIN_ADDRESS);
+        }
+    };
 
     const postData = async (formData) => {
         const resp = await RequestUtil.post('/api/admin/blog-requests', JSON.stringify(formData), {
@@ -22,7 +33,7 @@ export default function AdminBlogRequestAdd() {
             const respBody = await resp.json();
             setError(respBody);
         } else {
-            redirectTo(ADMIN_BLOG_REQUESTS_ADDRESS, 3);
+            redirectTo(ADMIN_BLOG_REQUESTS_ADDRESS);
         }
     };
 
@@ -36,6 +47,10 @@ export default function AdminBlogRequestAdd() {
 
         postData(formData);
     };
+
+    useEffect(() => {
+        permissionCheck();
+    }, []);
 
     return (
         <>

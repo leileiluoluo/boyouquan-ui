@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form } from '@radix-ui/react-form';
 import { Card, Box, Button, Flex, Text, TextField } from '@radix-ui/themes';
 
 import { redirectTo } from '../../../utils/CommonUtil';
 import { getCookie } from '../../../utils/CookieUtil';
-import { ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../../utils/PageAddressUtil';
+import { ADMIN_LOGIN_ADDRESS, ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../../utils/PageAddressUtil';
 import RequestUtil from '../../../utils/APIRequestUtil';
 
 export default function AdminRecommendedPostAdd() {
@@ -14,6 +14,17 @@ export default function AdminRecommendedPostAdd() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    };
+
+    const permissionCheck = async () => {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId'),
+        });
+
+        if (permissionCheckResp.status != 200) {
+            redirectTo(ADMIN_LOGIN_ADDRESS);
+        }
     };
 
     const recommend = async (e) => {
@@ -32,6 +43,10 @@ export default function AdminRecommendedPostAdd() {
             redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS);
         }
     }
+
+    useEffect(() => {
+        permissionCheck();
+    }, []);
 
     return (
         <Card>

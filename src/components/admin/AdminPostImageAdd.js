@@ -5,7 +5,7 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
 import AdminMenu from './AdminMenu';
 import AdminPostImageAddForm from './post-images/AdminPostImageAddForm';
-import { ADMIN_MONTHLY_SELECTED_ADDRESS } from '../../utils/PageAddressUtil';
+import { ADMIN_LOGIN_ADDRESS, ADMIN_MONTHLY_SELECTED_ADDRESS } from '../../utils/PageAddressUtil';
 
 export default function AdminPostImageAdd() {
     let link = getURLParameter('link') || '';
@@ -14,6 +14,17 @@ export default function AdminPostImageAdd() {
     const [postImages, setPostImages] = useState([]);
     const [formData, setFormData] = useState({ link: link });
     const [error, setError] = useState({});
+
+    const permissionCheck = async () => {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId'),
+        });
+
+        if (permissionCheckResp.status != 200) {
+            redirectTo(ADMIN_LOGIN_ADDRESS);
+        }
+    };
 
     const postData = async (formData) => {
         const resp = await RequestUtil.post('/api/admin/post-images', JSON.stringify(formData), {
@@ -71,6 +82,7 @@ export default function AdminPostImageAdd() {
     };
 
     useEffect(() => {
+        permissionCheck();
         fetchData(link);
     }, [link]);
 

@@ -7,12 +7,24 @@ import { redirectTo } from '../../utils/CommonUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import AdminMenuHeader from './AdminMenuHeader';
 import { Box } from '@radix-ui/themes';
+import { getCookie } from '../../utils/CookieUtil';
 
 export default function AdminRecommendedPosts() {
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
     const [posts, setPosts] = useState([]);
+
+    const permissionCheck = async () => {
+        const permissionCheckResp = await RequestUtil.get(`/api/admin/permission-check`, {
+            'username': getCookie('username'),
+            'sessionId': getCookie('sessionId'),
+        });
+
+        if (permissionCheckResp.status != 200) {
+            redirectTo(ADMIN_LOGIN_ADDRESS);
+        }
+    };
 
     const fetchData = async (pageNo) => {
         const resp = await RequestUtil.get(`/api/posts?sort=recommended&page=${pageNo}`);
@@ -28,6 +40,7 @@ export default function AdminRecommendedPosts() {
     };
 
     useEffect(() => {
+        permissionCheck();
         fetchData(pageNo);
     }, [pageNo]);
 

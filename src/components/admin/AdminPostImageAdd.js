@@ -26,7 +26,7 @@ export default function AdminPostImageAdd() {
             const respBody = await resp.json();
             setError(respBody);
         } else {
-            redirectTo(ADMIN_MONTHLY_SELECTED_ADDRESS, 1);
+            redirectTo(ADMIN_MONTHLY_SELECTED_ADDRESS);
         }
     };
 

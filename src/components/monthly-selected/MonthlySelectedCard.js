@@ -21,9 +21,9 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                     }}>
                     <Link target="_blank" size="3" weight="bold" href={postInfo.blogStatusOk ? linkURL : abstractURL}>
                         <img
-                            src={postInfo.imageURL}
+                            src={'https://www.boyouquan.com' + postInfo.imageURL}
                             alt={postInfo.title}
-                            style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                            style={{ width: "100%", height: "100%", objectFit: "cover", animation: "autoClear 1s ease-in-out forwards", transform: "scale(1.1)", filter: "blur(2px)" }} />
                     </Link>
                 </AspectRatio.Root> : ''}
 

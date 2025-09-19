@@ -4,9 +4,8 @@ import MonthlySelectedCard from '../../monthly-selected/MonthlySelectedCard';
 import RequestUtil from '../../../utils/APIRequestUtil';
 import Pagination from '../../pagination/Pagination';
 import AdminMenu from '../AdminMenu';
-import { Box, Button, Flex, Heading } from '@radix-ui/themes';
+import { Box, Button, Flex, Heading, Grid } from '@radix-ui/themes';
 import { ADMIN_POST_IMAGE_ADD_ADDRESS } from '../../../utils/PageAddressUtil';
-import '../../../CollageLayout.css';
 
 export default function AdminMonthlySelected() {
     const [pageNo, setPageNo] = useState(1);
@@ -50,7 +49,7 @@ export default function AdminMonthlySelected() {
                             <Heading size="3" weight="bold">{item.yearMonthStr}</Heading>
                         </Box>
 
-                        <div className="grid-container">
+                        <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
                             {
                                 item.postInfos.map(
                                     (postInfo, index) => (
@@ -63,7 +62,7 @@ export default function AdminMonthlySelected() {
                                         </Flex>
                                     ))
                             }
-                        </div>
+                        </Grid>
                     </Box>
 
                     <Pagination

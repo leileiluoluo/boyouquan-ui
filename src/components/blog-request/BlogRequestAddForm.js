@@ -43,7 +43,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                         <Box>
                             <Flex gap="2" align="center">
                                 <Text size="2">RSS 地址 *</Text>
-                                <Text size="2" color="red">{error.code == 'blog_request_rss_address_invalid' || error.code == 'blog_request_rss_address_black_list' || error.code == 'blog_request_rss_address_exists' ? error.message : ''}</Text>
+                                <Text size="2" color="red">{error.code == 'blog_request_rss_address_invalid' || error.code == 'blog_request_rss_address_black_list' || error.code == 'blog_request_rss_address_exists' || error.code == 'blog_request_blog_exists' ? error.message : ''}</Text>
                             </Flex>
 
                             <Box mt="2">

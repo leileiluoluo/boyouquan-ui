@@ -19,6 +19,7 @@ import { META_V2_1, RELEASE_INFO_V2_1 } from '../const/release-notes/ReleaseNote
 import { META_V2_2, RELEASE_INFO_V2_2 } from '../const/release-notes/ReleaseNoteV2.2';
 import { META_V2_3, RELEASE_INFO_V2_3 } from '../const/release-notes/ReleaseNoteV2.3';
 import { META_V2_4, RELEASE_INFO_V2_4 } from '../const/release-notes/ReleaseNoteV2.4';
+import { META_V2_5, RELEASE_INFO_V2_5 } from '../const/release-notes/ReleaseNoteV2.5';
 
 import { Box, Container } from '@radix-ui/themes';
 
@@ -26,6 +27,10 @@ const getMetaAndVersionInfo = (version) => {
     let meta = null
     let releaseInfo = null
     switch (version) {
+        case 'v2.5':
+            meta = META_V2_5;
+            releaseInfo = RELEASE_INFO_V2_5;
+            break;
         case 'v2.4':
             meta = META_V2_4;
             releaseInfo = RELEASE_INFO_V2_4;

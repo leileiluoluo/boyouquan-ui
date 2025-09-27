@@ -563,12 +563,18 @@
         "sponsoredAt": "2025/09/15",
         "sponsoredMoney": "100.00 元",
         "message": "博友圈太赞了，我也来助助力！",
-        "status": "已计入总额，待后续使用",
-        "spentAt": "--",
-        "spentOn": "--",
+        "status": "已完成",
+        "spentAt": "2025/09/27",
+        "spentOn": "主机续费",
         "spentDetails": [
-            "当前总额：483.75 元"
+            "当前总额：483.75 元，本次花费：168.00 元，本次结余：315.75 元",
+            "腾讯云主机续费一年，由 2026/05/11 续费至 2027/05/11"
         ],
-        "proofs": []
+        "proofs": [
+            {
+                "name": "花费证明",
+                "link": "/assets/images/sites/sponsor/cost_details/2025/09/host_renewal.png"
+            }
+        ]
     }
 ]

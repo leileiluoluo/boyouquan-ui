@@ -576,5 +576,19 @@
                 "link": "/assets/images/sites/sponsor/cost_details/2025/09/host_renewal.png"
             }
         ]
+    },
+    {
+        "blogName": "兜兜爸投资笔记",
+        "link": "/blogs/ddbzhou.com",
+        "sponsoredAt": "2025/09/28",
+        "sponsoredMoney": "19.00 元",
+        "message": "给服务器加点油！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：334.75 元"
+        ],
+        "proofs": []
     }
 ]

@@ -1,6 +1,7 @@
 export const BLOG_REQUESTS_ADDRESS = '/blog-requests';
 export const BLOG_REQUEST_ADD_ADDRESS = '/blog-requests/add';
 export const BLOG_REQUEST_ADD_EMAIL_VERIFICATION_ADDRESS = '/blog-requests/add/email-validation';
+export const MOMENTS_ADDRESS = '/moments';
 
 export const ADMIN_LOGIN_ADDRESS = '/admin/login';
 export const ADMIN_BLOG_REQUESTS_ADDRESS = '/admin/blog-requests';

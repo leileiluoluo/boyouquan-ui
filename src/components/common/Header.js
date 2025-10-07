@@ -13,15 +13,16 @@ export default function Header() {
         <Box style={{ marginBottom: "10px" }}>
             <Container size="3">
                 <Flex align="center" justify="between">
-                    <Box mt="1" width="40%">
+                    <Box mt="1" width="30%">
                         <Link href="/">
                             <img height="26px" src="/assets/images/sites/logo/logo.svg"></img>
                         </Link>
                     </Box>
-                    <Box mt="-2" width="60%">
+                    <Box mt="-2" width="70%">
                         <ScrollArea type="always" scrollbars="horizontal">
                             <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
+                                <TabNav.Link href="/moments" active={pathname === "/moments"}>随手一拍</TabNav.Link>
                                 <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
                                 <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
                                 <TabNav.Link asChild>

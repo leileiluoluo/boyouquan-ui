@@ -590,5 +590,19 @@
             "当前总额：334.75 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "王先生笔记",
+        "link": "/blogs/wxsnote.cn",
+        "sponsoredAt": "2025/10/07",
+        "sponsoredMoney": "9.99 元",
+        "message": "防止大家的博客被遗忘，丢失其存在的意义。",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：344.74 元"
+        ],
+        "proofs": []
     }
 ]

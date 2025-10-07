@@ -28,6 +28,7 @@ import BlogRequestEmailValidationPage from './pages/BlogRequestEmailValidationPa
 import CancelSubscriptionPage from './pages/CancelSubscriptionPage';
 import AdminPostImageAddPage from './pages/admin/AdminPostImageAddPage';
 import AdminMonthlySelectedPage from './pages/admin/AdminMonthlySelectedPage';
+import MomentsPage from './pages/MomentsPage';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
         <Route path='/home' element={<HomePage />} />
         // FIXME: just for compatibility, please remove me later
         <Route path='/home/page/:page' element={<HomePage />} />
+        <Route path='/moments' element={<MomentsPage />} />
         <Route path='/monthly-selected' element={<MonthlySelectedPage />} />
         <Route path='/blogs' element={<BlogsPage />} />
         <Route path='/blogs/:domain' element={<BlogPage />} />

@@ -82,11 +82,18 @@ export default function MomentsInput() {
             }
         }
 
+        if (null === error) {
+            if (null == blogInfo) {
+                error = { code: 'blog_info_invalid', message: '未查询到对应的博客！' };
+            }
+        }
+
         if (null !== error) {
             setError(error);
             return;
         }
 
+        setFormData({ ...formData, ['blogDomainName']: blogInfo.domainName });
         submit();
     }
 
@@ -107,7 +114,9 @@ export default function MomentsInput() {
         );
 
         const respBody = await resp.json();
-        if (resp.status != 200) {
+        if (resp.status == 413) {
+            setError({ code: 'file_invalid', message: '文件需要小于 10 M' });
+        } else if (resp.status != 200) {
             setError(respBody);
         } else {
             setError({ code: '', message: '' })

@@ -81,14 +81,20 @@ export default function MomentsInput() {
         }
 
         if (null === error) {
-            if (undefined === imageURL || null == imageURL) {
-                error = { code: 'file_invalid', message: '未上传图片！' };
+            if (description.trim().length < 10) {
+                error = { code: 'description_invalid', message: '描述不应少于 10 个字！' };
             }
         }
 
         if (null === error) {
             if (null == blogInfo) {
-                error = { code: 'blog_info_invalid', message: '未查询到对应的博客！' };
+                error = { code: 'blog_info_invalid', message: '未查询到对应的博客，请输入正确的邮箱！' };
+            }
+        }
+
+        if (null === error) {
+            if (undefined === imageURL || null == imageURL) {
+                error = { code: 'file_invalid', message: '未上传图片！' };
             }
         }
 

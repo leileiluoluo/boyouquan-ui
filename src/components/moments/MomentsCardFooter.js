@@ -1,14 +1,18 @@
 import { Box, Flex, Avatar, Text, Link, Image } from '@radix-ui/themes';
-import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import { getBlogAddress } from '../../utils/PageAddressUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 
-export default function MomentsCardFooter({ blogURL, gravatarURL, blogName, publishedAtFormatted, linkAccessCount, sharingURL }) {
+export default function MomentsCardFooter({ moment }) {
+    const blogURL = getBlogAddress(moment.blogDomainName);
+    const createdAtFormatted = formatDateStr(moment.createdAt);
+
     return <Flex gap="1" align="center">
         <Box>
             <Link href={blogURL}>
                 <Flex align="center">
                     <Avatar
                         style={{ width: 20, height: 20 }}
-                        src={gravatarURL}
+                        src={moment.blogInfo.blogAdminMediumImageURL}
                         radius="full"
                     />
                 </Flex>
@@ -20,7 +24,7 @@ export default function MomentsCardFooter({ blogURL, gravatarURL, blogName, publ
                 WebkitLineClamp: 1,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden'
-            }}>{blogName}</Link>
+            }}>{moment.blogInfo.name}</Link>
         </Box>
         <Box>
             <Text> · </Text>
@@ -32,29 +36,8 @@ export default function MomentsCardFooter({ blogURL, gravatarURL, blogName, publ
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden'
             }}>
-                {publishedAtFormatted}
+                {createdAtFormatted}
             </Text>
-        </Box>
-        <Box>
-            <Text> · </Text>
-        </Box>
-        <Box>
-            <Text size="2" color="gray" style={{
-                display: '-webkit-box',
-                WebkitLineClamp: 1,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden'
-            }}>
-                {linkAccessCount} 次浏览
-            </Text>
-        </Box>
-        <Box>
-            <Text> · </Text>
-        </Box>
-        <Box>
-            <Flex align="center">
-                <Link size="2" color="gray" href={sharingURL} asChild><a style={{ display: 'inline-flex' }}><ExternalLinkIcon /></a></Link>
-            </Flex>
         </Box>
     </Flex>
 }

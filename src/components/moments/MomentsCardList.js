@@ -41,7 +41,7 @@ export default function MomentsCardList() {
                         moments.map(
                             (moment, index) => (
                                 <MomentsCard
-                                    key={index}
+                                    key={moment.id}
                                     moment={moment} />
                             ))
                     }

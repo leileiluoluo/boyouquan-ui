@@ -7,7 +7,8 @@ import { useState } from 'react';
 
 export default function MomentsCardFooter({ moment }) {
     const [error, setError] = useState();
-    const [likeCount, setLikeCount] = useState(moment.likeCount);
+    const [animate, setAnimate] = useState(false);
+    const [likeCount, setLikeCount] = useState(() => moment.likeCount);
     const [liked, setLiked] = useState(false);
     const blogURL = getBlogAddress(moment.blogDomainName);
     const createdAtFormatted = formatDateStr(moment.createdAt);
@@ -29,6 +30,9 @@ export default function MomentsCardFooter({ moment }) {
             setLiked(true);
             setLikeCount(likeCount + 1);
             addLikes(id);
+
+            setAnimate(true);
+            setTimeout(() => setAnimate(false), 300);
         }
     };
 
@@ -71,7 +75,19 @@ export default function MomentsCardFooter({ moment }) {
             </Box>
             <Box>
                 <Flex align="center" gap="1">
-                    <HeartFilledIcon style={{ color: 'rgb(203, 46, 88)' }} onClick={() => handleIconClick(moment.id)} disabled={liked} />
+                    <style>
+                        {`
+                        @keyframes like-animation {
+                            0% { transform: scale(1); opacity: 1; }
+                            50% { transform: scale(1.8); opacity: 0.8; }
+                            100% { transform: scale(1); opacity: 1; }
+                        }
+                        .animate-like {
+                            animation: like-animation 0.5s ease-in-out;
+                        }
+                        `}
+                    </style>
+                    <HeartFilledIcon className={animate ? 'animate-like' : ''} style={{ color: 'rgb(203, 46, 88)' }} onClick={() => handleIconClick(moment.id)} disabled={liked} />
                     <Text size="2" color="gray" style={{
                         display: '-webkit-box',
                         WebkitLineClamp: 1,

@@ -12,6 +12,7 @@ export default function MomentsInput() {
     const emailInputRef = useRef(null);
     const inputRef = useRef(null);
 
+    const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
     const [blogInfo, setBlogInfo] = useState(null);
     const [email, setEmail] = useState(() => getCookie('email'));
     const [description, setDescription] = useState(null);
@@ -47,6 +48,7 @@ export default function MomentsInput() {
     }
 
     const submit = async () => {
+        setSubmitButtonDisabled(true);
         const formDataToSend = new FormData();
 
         formDataToSend.append('blogDomainName', blogDomainName);
@@ -56,8 +58,6 @@ export default function MomentsInput() {
             formDataToSend,
             {}
         );
-
-        setCookie('email', email);
 
         if (resp.status == 413) {
             setError({ code: 'file_invalid', message: '文件不能大于 10 M' });
@@ -71,6 +71,8 @@ export default function MomentsInput() {
             // cookie
             setCookie('email', email);
         }
+
+        setSubmitButtonDisabled(false);
     }
 
     const handleEmailChange = (e) => {
@@ -223,7 +225,7 @@ export default function MomentsInput() {
                                     <Text size="2" color="red">{error.code !== null ? error.message : ''}</Text>
                                 </Box>
                                 <Box>
-                                    <Button type="submit" onClick={handleSubmit}>发布</Button>
+                                    <Button type="submit" onClick={handleSubmit} disabled={submitButtonDisabled}>发布</Button>
                                 </Box>
                             </Flex>
                         </Flex>

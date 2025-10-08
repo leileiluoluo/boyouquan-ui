@@ -1,16 +1,22 @@
 import { Box, Flex, TextField, TextArea, Text, Button, Link, Avatar } from '@radix-ui/themes';
 import { Form } from '@radix-ui/react-form';
-import { ImageIcon } from '@radix-ui/react-icons';
-import { useRef, useState } from 'react';
+import { CheckboxIcon, ImageIcon, Link1Icon } from '@radix-ui/react-icons';
+import { useEffect, useRef, useState } from 'react';
 import { isEmailValid } from '../../utils/EmailUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 import { MOMENTS_ADDRESS } from '../../utils/PageAddressUtil';
+import { getCookie, setCookie } from '../../utils/CookieUtil';
 
 export default function MomentsInput() {
+    const emailInputRef = useRef(null);
     const inputRef = useRef(null);
-    const [blogInfo, setBlogInfo] = useState();
-    const [formData, setFormData] = useState({});
+
+    const [blogInfo, setBlogInfo] = useState(null);
+    const [email, setEmail] = useState(() => getCookie('email'));
+    const [description, setDescription] = useState(null);
+    const [blogDomainName, setBlogDomainName] = useState(null);
+    const [file, setFile] = useState(null);
     const [error, setError] = useState({});
 
     const emailValidation = (email) => {
@@ -32,47 +38,61 @@ export default function MomentsInput() {
             const respBody = await resp.json();
             if (respBody.length > 0) {
                 setBlogInfo(respBody[0]);
-                console.log(respBody[0]);
+                setBlogDomainName(respBody[0].domainName);
+            } else {
+                setBlogInfo(null);
+                setBlogDomainName(null);
             }
         }
     }
 
     const submit = async () => {
+        const formDataToSend = new FormData();
+
+        formDataToSend.append('blogDomainName', blogDomainName);
+        formDataToSend.append('description', description);
+        formDataToSend.append('file', file);
         const resp = await RequestUtil.post('/api/moments',
-            JSON.stringify(formData),
-            { 'Content-Type': 'application/json' }
+            formDataToSend,
+            {}
         );
 
-        if (resp.status != 201) {
+        setCookie('email', email);
+
+        if (resp.status == 413) {
+            setError({ code: 'file_invalid', message: '文件不能大于 10 M' });
+        } else if (resp.status != 201) {
             const respBody = await resp.json();
             setError(respBody);
         } else {
             setError({ code: '', message: '' });
             redirectTo(MOMENTS_ADDRESS);
+
+            // cookie
+            setCookie('email', email);
         }
     }
 
     const handleEmailChange = (e) => {
         const email = e.target.value;
-        setFormData({ ...formData, ['email']: email });
-
+        setEmail(email);
         var error = emailValidation(email);
         if (null === error) {
             getBlogInfo(email);
+        } else {
+            setBlogInfo(null);
+            setBlogDomainName(null);
         }
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const description = e.target.value;
+        setDescription(description);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const email = formData['email'];
-        const description = formData['description'];
-        const imageURL = formData['imageURL'];
         var error = emailValidation(email);
         if (null === error) {
             if (undefined === description || null == description || '' === description.trim()) {
@@ -87,13 +107,13 @@ export default function MomentsInput() {
         }
 
         if (null === error) {
-            if (null == blogInfo) {
+            if (null == blogInfo || undefined == blogDomainName || null == blogDomainName) {
                 error = { code: 'blog_info_invalid', message: '未查询到对应的博客，请输入正确的邮箱！' };
             }
         }
 
         if (null === error) {
-            if (undefined === imageURL || null == imageURL) {
+            if (undefined === file || null == file) {
                 error = { code: 'file_invalid', message: '未上传图片！' };
             }
         }
@@ -103,7 +123,7 @@ export default function MomentsInput() {
             return;
         }
 
-        setFormData({ ...formData, ['blogDomainName']: blogInfo.domainName });
+        setError({ code: '', message: '' });
         submit();
     }
 
@@ -115,26 +135,34 @@ export default function MomentsInput() {
         const file = e.target.files[0];
         if (!file) return;
 
-        const fileFormData = new FormData();
-        fileFormData.append('file', file);
+        setFile(file);
+        setError({ code: '', message: '' });
+    };
 
-        const resp = await RequestUtil.post('/images/uploads',
-            fileFormData,
-            {}
-        );
-
-        const respBody = await resp.json();
-        if (resp.status == 413) {
-            setError({ code: 'file_invalid', message: '文件需要小于 10 M' });
-        } else if (resp.status != 200) {
-            setError(respBody);
-        } else {
-            setError({ code: '', message: '' })
+    useEffect(() => {
+        // get blog info
+        const error = emailValidation(email);
+        if (null === error) {
+            getBlogInfo(email);
         }
 
-        const imageURL = respBody['imageURL'];
-        setFormData({ ...formData, ['imageURL']: imageURL });
-    };
+        // timer
+        const timer = setTimeout(() => {
+            if (emailInputRef.current) {
+                const value = emailInputRef.current.value;
+                const name = emailInputRef.current.name;
+                if ('email' === name && value !== email) {
+                    setEmail(value);
+                    const error = emailValidation(value);
+                    if (null === error) {
+                        getBlogInfo(value);
+                    }
+                }
+            }
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [email]);
 
     return (
         <Box>
@@ -162,7 +190,7 @@ export default function MomentsInput() {
                     <Box width="100%">
                         <Flex gap="2" direction="column">
                             <Box>
-                                <TextField.Root style={{ fontSize: '12px' }} name="email" placeholder="请输入邮箱" id="email" onChange={handleEmailChange} />
+                                <TextField.Root style={{ fontSize: '12px' }} name="email" placeholder="请输入邮箱" id="email" ref={emailInputRef} onFocus={handleEmailChange} onInput={handleEmailChange} onChange={handleEmailChange} autoComplete="email" value={email} />
                             </Box>
 
                             <Box>
@@ -171,13 +199,25 @@ export default function MomentsInput() {
 
                             <Flex justify="between">
                                 <Box>
-                                    <input
-                                        type="file"
-                                        ref={inputRef}
-                                        style={{ display: 'none' }}
-                                        onChange={handleFileChange}
-                                    />
-                                    <Link><ImageIcon style={{ width: '22px', height: '22px' }} onClick={handleIconClick} /></Link>
+                                    <Flex gap="2" align="center">
+                                        <Box>
+                                            <input
+                                                type="file"
+                                                ref={inputRef}
+                                                style={{ display: 'none' }}
+                                                onChange={handleFileChange}
+                                            />
+                                            <Link><ImageIcon style={{ width: '20px', height: '20px' }} onClick={handleIconClick} /></Link>
+                                        </Box>
+                                        <Box>
+                                            {
+                                                file && <Flex justify="center" align="center" gap="1">
+                                                    <Text size="1">{file.name} </Text>
+                                                    <CheckboxIcon />
+                                                </Flex>
+                                            }
+                                        </Box>
+                                    </Flex>
                                 </Box>
                                 <Box>
                                     <Text size="2" color="red">{error.code !== null ? error.message : ''}</Text>

@@ -21,7 +21,7 @@ export default function MomentsPage() {
                 <Box>
                     <Container size="2">
                         <Flex direction="column" gap="4">
-                            <MainContentHeader content='随手拍一张照片，然后附上一句话，分享您此刻看到的一处美景，一个瞬间！' />
+                            <MainContentHeader content='随手拍一张照片，然后附上一段话，分享您此刻看到的一处美景或一个瞬间！' />
                             <MomentsInput />
                             <MomentsCardList />
                         </Flex>

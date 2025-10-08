@@ -177,7 +177,7 @@ export default function MomentsInput() {
                                         style={{ display: 'none' }}
                                         onChange={handleFileChange}
                                     />
-                                    <Link size="4"><ImageIcon size="4" onClick={handleIconClick} /></Link>
+                                    <Link><ImageIcon style={{ width: '22px', height: '22px' }} onClick={handleIconClick} /></Link>
                                 </Box>
                                 <Box>
                                     <Text size="2" color="red">{error.code !== null ? error.message : ''}</Text>

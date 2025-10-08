@@ -52,15 +52,19 @@ export default function MomentsInput() {
         }
     }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+    const handleEmailChange = (e) => {
+        const email = e.target.value;
+        setFormData({ ...formData, ['email']: email });
 
-        const email = formData['email'];
         var error = emailValidation(email);
         if (null === error) {
             getBlogInfo(email);
         }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = (e) => {
@@ -105,11 +109,11 @@ export default function MomentsInput() {
         const file = e.target.files[0];
         if (!file) return;
 
-        const formData = new FormData();
-        formData.append('file', file);
+        const fileFormData = new FormData();
+        fileFormData.append('file', file);
 
         const resp = await RequestUtil.post('/images/uploads',
-            formData,
+            fileFormData,
             {}
         );
 
@@ -152,11 +156,11 @@ export default function MomentsInput() {
                     <Box width="100%">
                         <Flex gap="2" direction="column">
                             <Box>
-                                <TextField.Root style={{ fontSize: '12px' }} name="email" placeholder="请输入邮箱" id="email" onChange={handleChange} />
+                                <TextField.Root style={{ fontSize: '12px' }} name="email" placeholder="请输入邮箱" id="email" onChange={handleEmailChange} />
                             </Box>
 
                             <Box>
-                                <TextArea size="1" style={{ fontSize: '12px' }} name="description" placeholder="写一句话..." id="description" onChange={handleChange} />
+                                <TextArea size="1" style={{ fontSize: '12px' }} name="description" placeholder="请写一段话 ..." id="description" onChange={handleChange} />
                             </Box>
 
                             <Flex justify="between">

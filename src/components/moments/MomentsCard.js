@@ -1,5 +1,6 @@
-import { Flex, Card, Link } from '@radix-ui/themes';
+import { Flex, Card, Box, Link } from '@radix-ui/themes';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
+import MomentsCardFooter from './MomentsCardFooter';
 
 export default function MomentsCard({ moment }) {
     return (
@@ -20,37 +21,21 @@ export default function MomentsCard({ moment }) {
                     </Link>
                 </AspectRatio.Root>
 
-                {/* <Flex direction="column" gap="1">
+                <Flex direction="column" gap="1">
                     <Box>
                         <Flex gap="1">
-                            <img src="/assets/images/sites/pinned/pinned.svg" style={{ display: showPinned && pinned ? 'block' : 'none' }} />
-                            <Link target="_blank" size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
+                            <Link target="_blank" size="2" weight="bold" style={{
                                 display: '-webkit-box',
                                 WebkitLineClamp: 1,
                                 WebkitBoxOrient: 'vertical',
                                 overflow: 'hidden'
-                            }}>{title}</Link>
+                            }}>{moment.description}</Link>
                         </Flex>
-                    </Box>
-                    <Box>
-                        <Text as="div" size="2" color="gray" style={{
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden'
-                        }}>
-                            {description}
-                        </Text>
                     </Box>
 
                     <MomentsCardFooter
-                        blogURL={blogURL}
-                        gravatarURL={gravatarURL}
-                        blogName={blogName}
-                        publishedAtFormatted={publishedAtFormatted}
-                        linkAccessCount={linkAccessCount}
-                        sharingURL={sharingURL} />
-                </Flex> */}
+                        moment={moment} />
+                </Flex>
             </Flex>
         </Card>
     )

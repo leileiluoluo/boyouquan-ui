@@ -7,7 +7,6 @@ export default function PostCardFooter({ blogURL, gravatarURL, blogName, publish
             <Link href={blogURL}>
                 <Flex align="center">
                     <Avatar
-                        loading="lazy"
                         style={{ width: 20, height: 20 }}
                         src={gravatarURL}
                         radius="full"

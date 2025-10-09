@@ -597,12 +597,17 @@
         "sponsoredAt": "2025/10/07",
         "sponsoredMoney": "9.99 元",
         "message": "防止大家的博客被遗忘，丢失其存在的意义。",
-        "status": "已计入总额，待后续使用",
-        "spentAt": "--",
-        "spentOn": "--",
+        "status": "已完成",
+        "spentAt": "2025/10/09",
+        "spentOn": "CDN 服务购买",
         "spentDetails": [
-            "当前总额：344.74 元"
+            "当前总额：344.74 元，本次花费：9.90 元，本次结余：334.84 元"
         ],
-        "proofs": []
+        "proofs": [
+            {
+                "name": "花费证明",
+                "link": "/assets/images/sites/sponsor/cost_details/2025/10/cdn_purchase.png"
+            }
+        ]
     }
 ]

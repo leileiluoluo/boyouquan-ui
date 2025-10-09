@@ -21,6 +21,7 @@ export default function SpecialThanks({ isHome }) {
                                             <Tooltip content={item.name}>
                                                 <Link href={item.link}>
                                                     <Avatar
+                                                        loading="lazy"
                                                         size="2"
                                                         radius="full"
                                                         src={item.avatar}
@@ -36,6 +37,7 @@ export default function SpecialThanks({ isHome }) {
                                 <Tooltip content="我也要赞助">
                                     <Link href="/sponsor">
                                         <Avatar
+                                            loading="lazy"
                                             size="2"
                                             radius="full"
                                             fallback="+"

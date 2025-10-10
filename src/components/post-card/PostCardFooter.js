@@ -1,16 +1,16 @@
-import { Box, Flex, Avatar, Text, Link, Image } from '@radix-ui/themes';
+import { Box, Flex, Text, Link } from '@radix-ui/themes';
 import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import LazyAvatar from '../common/avatar/LazyAvatar';
 
 export default function PostCardFooter({ blogURL, gravatarURL, blogName, publishedAtFormatted, linkAccessCount, sharingURL }) {
     return <Flex gap="1" align="center">
         <Box>
             <Link href={blogURL}>
                 <Flex align="center">
-                    <Avatar
+                    <LazyAvatar
                         style={{ width: 20, height: 20 }}
                         src={gravatarURL}
-                        radius="full"
-                    />
+                        radius="full" />
                 </Flex>
             </Link>
         </Box>

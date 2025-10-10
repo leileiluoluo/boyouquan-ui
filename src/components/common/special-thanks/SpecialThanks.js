@@ -1,5 +1,6 @@
 import { Box, Flex, Card, Link, Tooltip, Avatar } from '@radix-ui/themes';
 import specialThanks from '../../../json/specialThanks.json';
+import LazyAvatar from '../avatar/LazyAvatar';
 
 export default function SpecialThanks({ isHome }) {
     return (
@@ -20,10 +21,10 @@ export default function SpecialThanks({ isHome }) {
                                         <Box key={index}>
                                             <Tooltip content={item.name}>
                                                 <Link href={item.link}>
-                                                    <Avatar
-                                                        size="2"
-                                                        radius="full"
+                                                    <LazyAvatar
+                                                        style={{ width: 28, height: 28 }}
                                                         src={item.avatar}
+                                                        radius="full"
                                                     />
                                                 </Link>
                                             </Tooltip>

@@ -3,6 +3,7 @@ import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 
 import PostCard from '../post-card/PostCard';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
+import LazyImg from '../common/img/LazyImg';
 
 export default function MonthlySelectedCard({ postInfo, showImage }) {
     const linkURL = getGoAddress(postInfo.link);
@@ -20,7 +21,7 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                         overflow: "hidden",
                     }}>
                     <Link target="_blank" size="3" weight="bold" href={postInfo.blogStatusOk ? linkURL : abstractURL}>
-                        <img
+                        <LazyImg
                             src={postInfo.imageURL}
                             alt={postInfo.title}
                             style={{ width: "100%", height: "100%", objectFit: "cover", animation: "autoClear 1s ease-in-out forwards", transform: "scale(1.1)", filter: "blur(2px)" }} />

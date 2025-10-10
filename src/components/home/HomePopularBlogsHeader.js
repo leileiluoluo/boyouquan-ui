@@ -8,7 +8,7 @@ export default function HomePopularBlogsHeader() {
     const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get('/api/popular-blogs');
+        const resp = await RequestUtil.get('/api/popular-blogs?size=16');
         const respBody = await resp.json();
         setDataReady(true);
         setBlogs(respBody);
@@ -24,8 +24,8 @@ export default function HomePopularBlogsHeader() {
                 wrap="wrap"
                 align="center"
                 justify="center">
-                {Array.from({ length: 14 }).map((_, index) => (
-                    <Skeleton key={index} width="32px" height="32px" style={{ borderRadius: '50%' }} />
+                {Array.from({ length: 15 }).map((_, index) => (
+                    <Skeleton key={index} width="28px" height="28px" style={{ borderRadius: '50%' }} />
                 ))}
             </Flex>
         );
@@ -37,7 +37,7 @@ export default function HomePopularBlogsHeader() {
             align="center"
             justify="center">
             {
-                blogs.slice(0, 14).map(
+                blogs.map(
                     (blog, index) => (
                         <PopularBlog key={index}
                             name={blog.name}

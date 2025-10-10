@@ -5,7 +5,7 @@ const META_V2_5 = {
 }
 
 const RELEASE_INFO_V2_5 = {
-    title: 'v2.4 版本说明',
+    title: 'v2.5 版本说明',
     content: <>
         <p>博友圈于 2025 年 9 月 24 日发布了 v2.5 版本！该版本对「<a href="/monthly-selected">每月精选</a>」页面进行了优化，将之前的表格展示改为了现在的图文展示。</p>
 

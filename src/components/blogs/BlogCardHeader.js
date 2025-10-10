@@ -1,5 +1,6 @@
-import { Avatar, Box, Flex, Link } from '@radix-ui/themes';
+import { Box, Flex, Link } from '@radix-ui/themes';
 import { getBlogAddress, getGoAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
+import LazyAvatar from '../common/avatar/LazyAvatar';
 
 export default function BlogCardHeader({ name, domainName, address, blogAdminLargeImageURL, nameSize }) {
     const blogAddress = getBlogAddress(domainName);

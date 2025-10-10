@@ -40,8 +40,14 @@ export default function BlogRequestTable({ name, description, domainName, addres
                         </DataList.Item>
                         <DataList.Item>
                             <DataList.Label minWidth="80px"><Text weight="bold">审核状态</Text></DataList.Label>
-                            <DataList.Value><Link href={blogAddress}><Badge size="2" color={approved ? "green" : (failed ? "crimson" : "orange")}>{statusInfo}</Badge></Link></DataList.Value>
+                            <DataList.Value><Badge size="2" color={approved ? "green" : (failed ? "crimson" : "orange")}>{statusInfo}</Badge></DataList.Value>
                         </DataList.Item>
+                        {
+                            'approved' === status && <DataList.Item>
+                                <DataList.Label minWidth="80px"><Text weight="bold">收录地址</Text></DataList.Label>
+                                <DataList.Value><Link href={blogAddress}>{blogAddress}</Link></DataList.Value>
+                            </DataList.Item>
+                        }
                         {
                             'approved' === status || 'rejected' === status || 'uncollected' === status ? <DataList.Item>
                                 <DataList.Label minWidth="80px"><Text weight="bold">审核时间</Text></DataList.Label>

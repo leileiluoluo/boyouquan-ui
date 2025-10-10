@@ -24,7 +24,7 @@ export default function HomePopularBlogsHeader() {
                 wrap="wrap"
                 align="center"
                 justify="center">
-                {Array.from({ length: 15 }).map((_, index) => (
+                {Array.from({ length: 16 }).map((_, index) => (
                     <Skeleton key={index} width="28px" height="28px" style={{ borderRadius: '50%' }} />
                 ))}
             </Flex>

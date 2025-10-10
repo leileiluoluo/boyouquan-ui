@@ -78,7 +78,7 @@ export default function MonthlySelectedCardList() {
                                             </Box>
                                             <Box>
                                                 <Flex gap="1" align="center">
-                                                    <Skeleton width="20px" height="20px" />
+                                                    <Skeleton width="20px" height="20px" style={{ borderRadius: '50%' }} />
                                                     <Skeleton width="80px" height="20px" />
                                                     <Skeleton width="50px" height="20px" />
                                                     <Skeleton width="50px" height="20px" />
@@ -104,7 +104,7 @@ export default function MonthlySelectedCardList() {
                                             </Box>
                                             <Box>
                                                 <Flex gap="1" align="center">
-                                                    <Skeleton width="20px" height="20px" />
+                                                    <Skeleton width="20px" height="20px" style={{ borderRadius: '50%' }} />
                                                     <Skeleton width="80px" height="20px" />
                                                     <Skeleton width="50px" height="20px" />
                                                     <Skeleton width="50px" height="20px" />

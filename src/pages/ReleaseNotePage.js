@@ -3,6 +3,8 @@ import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 import Meta from '../components/common/Meta';
 import Article from '../components/article/Article';
+import { Box, Container } from '@radix-ui/themes';
+
 import { META_V1_10, RELEASE_INFO_V1_10 } from '../const/release-notes/ReleaseNoteV1.10';
 import { META_V1_9, RELEASE_INFO_V1_9 } from '../const/release-notes/ReleaseNoteV1.9';
 import { META_V1_8, RELEASE_INFO_V1_8 } from '../const/release-notes/ReleaseNoteV1.8';
@@ -20,13 +22,16 @@ import { META_V2_2, RELEASE_INFO_V2_2 } from '../const/release-notes/ReleaseNote
 import { META_V2_3, RELEASE_INFO_V2_3 } from '../const/release-notes/ReleaseNoteV2.3';
 import { META_V2_4, RELEASE_INFO_V2_4 } from '../const/release-notes/ReleaseNoteV2.4';
 import { META_V2_5, RELEASE_INFO_V2_5 } from '../const/release-notes/ReleaseNoteV2.5';
-
-import { Box, Container } from '@radix-ui/themes';
+import { META_V2_6, RELEASE_INFO_V2_6 } from '../const/release-notes/ReleaseNoteV2.6';
 
 const getMetaAndVersionInfo = (version) => {
     let meta = null
     let releaseInfo = null
     switch (version) {
+        case 'v2.6':
+            meta = META_V2_6;
+            releaseInfo = RELEASE_INFO_V2_6;
+            break;
         case 'v2.5':
             meta = META_V2_5;
             releaseInfo = RELEASE_INFO_V2_5;

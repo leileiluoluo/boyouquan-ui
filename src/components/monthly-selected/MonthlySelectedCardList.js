@@ -5,7 +5,7 @@ import Pagination from '../pagination/Pagination';
 import { Box, Flex, Skeleton, Text, Heading, Grid, Card } from '@radix-ui/themes';
 
 function countHasImageUsingFilter(items) {
-    return items.filter(item => item.hasImage === true).length;
+    return items.filter(item => item.hasImage).length;
 }
 
 export default function MonthlySelectedCardList() {
@@ -25,17 +25,12 @@ export default function MonthlySelectedCardList() {
         setPageSize(respBody.pageSize);
         setTotal(respBody.total);
         setYearMonthStr(respBody.results[0].yearMonthStr);
-        setPostInfos(respBody.results[0].postInfos);
+        const postInfoList = respBody.results[0].postInfos;
 
-        respBody.results[0].postInfos.sort((a, b) => {
-            if (null !== a.imageURL && null === b.imageURL) {
-                return -1;
-            } else {
-                return 0;
-            }
-        });
+        postInfoList.sort((a, b) => Number(b.hasImage) - Number(a.hasImage));
 
-        let showImageCount = countHasImageUsingFilter(respBody.results[0].postInfos);
+        setPostInfos(postInfoList);
+        const showImageCount = countHasImageUsingFilter(postInfoList);
         if (showImageCount % 2 === 1 && showImageCount > 0) {
             setImageCount(showImageCount - 1);
         } else {
@@ -63,7 +58,7 @@ export default function MonthlySelectedCardList() {
                     <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
                         {
                             Array.from({ length: 4 }).map((_, index) => (
-                                <Card key={index}>
+                                <Card key={`part1-${index}`}>
                                     <Flex direction="column" gap="2">
                                         <Box>
                                             <Skeleton height="180px"></Skeleton>
@@ -93,7 +88,7 @@ export default function MonthlySelectedCardList() {
 
                         {
                             Array.from({ length: 6 }).map((_, index) => (
-                                <Card key={index}>
+                                <Card key={`part2-${index}`}>
                                     <Flex direction="column" gap="2">
                                         <Flex direction="column" gap="1">
                                             <Box>

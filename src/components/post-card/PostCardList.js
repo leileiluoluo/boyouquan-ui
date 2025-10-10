@@ -83,7 +83,7 @@ export default function PostCardList({ sort, keyword, showPinned }) {
                     <Flex direction="column" gap="2">
                         {posts.map(
                             (post, index) => (
-                                <Card>
+                                <Card key={index}>
                                     <PostCard
                                         key={index}
                                         showPinned={showPinned}

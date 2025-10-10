@@ -4,6 +4,7 @@ import { formatDateStr } from '../../utils/DateUtil';
 import { HeartFilledIcon } from '@radix-ui/react-icons';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { useState } from 'react';
+import LazyAvatar from '../common/avatar/LazyAvatar';
 
 export default function MomentsCardFooter({ moment }) {
     const [error, setError] = useState();
@@ -41,7 +42,7 @@ export default function MomentsCardFooter({ moment }) {
             <Box>
                 <Link href={blogURL}>
                     <Flex align="center">
-                        <Avatar
+                        <LazyAvatar
                             style={{ width: 20, height: 20 }}
                             src={moment.blogInfo.blogAdminMediumImageURL}
                             radius="full"

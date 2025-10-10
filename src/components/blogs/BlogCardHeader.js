@@ -11,8 +11,8 @@ export default function BlogCardHeader({ name, domainName, address, blogAdminLar
             <Flex gap="2" align="center">
                 <Box>
                     <Link href={blogAddress}>
-                        <Avatar
-                            style={{ width: '36px', height: '36px' }}
+                        <LazyAvatar
+                            style={{ width: 36, height: 36 }}
                             src={gravatarURL}
                             radius="full"
                         />

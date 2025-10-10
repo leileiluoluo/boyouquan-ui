@@ -1,6 +1,7 @@
 import { Flex, Card, Box, Link } from '@radix-ui/themes';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import MomentsCardFooter from './MomentsCardFooter';
+import LazyImg from '../common/img/LazyImg';
 
 export default function MomentsCard({ moment }) {
     return (
@@ -15,8 +16,9 @@ export default function MomentsCard({ moment }) {
                         overflow: "hidden",
                     }}>
                     <Link target="_blank" size="3" weight="bold">
-                        <img
+                        <LazyImg
                             src={moment.imageURL}
+                            alt={moment.description}
                             style={{ width: "100%", height: "100%", objectFit: "cover", animation: "autoClear 1s ease-in-out forwards", transform: "scale(1.1)", filter: "blur(2px)" }} />
                     </Link>
                 </AspectRatio.Root>

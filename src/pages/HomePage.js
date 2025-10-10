@@ -43,7 +43,7 @@ export default function HomePage() {
                         <Flex direction="column" gap="4">
                             <MainContentHeader content='博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！' />
                             {/* <HomeBanner /> */}
-                            {/* <HomePopularBlogsHeader /> */}
+                            <HomePopularBlogsHeader />
                             <HomeLatestNews />
                             <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
                             <SwitchSortType types={switchTypes} />

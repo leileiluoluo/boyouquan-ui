@@ -127,4 +127,45 @@ Replace the HOST and PASSWORD in Repository secrets, and re-run the pipelines.
 
 ## DNS Config
 
-Config DNS to the new host
+Config DNS to the new host, at the same time, please change the Nginx Config of the old host to the followings to resolve the DNS cache issue, this is very important!
+
+```shell
+cat /etc/nginx/conf.d/boyouquan.conf
+```
+
+```text
+# please replace 106.52.59.218 to the real IP of the new host
+server {
+    listen 80;
+    server_name boyouquan.com www.boyouquan.com;
+
+    location / {
+        proxy_pass http://106.52.59.218;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_connect_timeout 3s;
+        proxy_send_timeout 10s;
+        proxy_read_timeout 10s;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name boyouquan.com www.boyouquan.com;
+
+    ssl_certificate /usr/share/nginx/cert/boyouquan.com_bundle.crt;
+    ssl_certificate_key /usr/share/nginx/cert/boyouquan.com.key;
+
+    location / {
+        proxy_pass https://106.52.59.218;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```

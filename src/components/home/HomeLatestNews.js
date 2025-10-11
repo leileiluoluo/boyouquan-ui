@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
+import { SpeakerLoudIcon } from '@radix-ui/react-icons';
 
 export default function HomeLatestNews() {
     let animationControlStyle = { '--s': 4 };
@@ -26,7 +27,7 @@ export default function HomeLatestNews() {
         <>
             <div className="latest-news">
                 <div className="icon">
-                    <img width="40px" height="40px" src="/assets/images/sites/latest_news/broadcast.png" />
+                    <SpeakerLoudIcon />
                 </div>
                 <div className="content">
                     {

@@ -7,9 +7,8 @@ import Meta from '../components/common/Meta';
 import { getURLParameter } from '../utils/CommonUtil';
 import { Box, Container, Flex } from '@radix-ui/themes';
 import MainContentHeader from '../components/common/MainContentHeader';
-import HomePopularBlogsHeader from '../components/home/HomePopularBlogsHeader';
 import HomeLatestNews from '../components/home/HomeLatestNews';
-import HomeBanner from '../components/home/HomeBanner';
+import HomePopularBlogsHeader from '../components/home/HomePopularBlogsHeader';
 
 const switchTypes = [
     { name: '推荐', href: '/home', default: true },

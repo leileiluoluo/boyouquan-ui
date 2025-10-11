@@ -4,7 +4,7 @@ import LazyAvatar from '../avatar/LazyAvatar';
 
 export default function SpecialThanks({ isHome }) {
     return (
-        <Box id="special-thanks" display={isHome ? "block" : "none"}>
+        <Box display={isHome ? "block" : "none"}>
             <Card>
                 <Flex direction="column" gap="2">
                     <Box align="center">

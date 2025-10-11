@@ -6,6 +6,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const DotenvWebpack = require('dotenv-webpack');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
     entry: './src/index.js', // 入口文件
     output: {
@@ -15,8 +17,8 @@ module.exports = {
         publicPath: '/', // 资源的公共路径
         clean: true, // 清理旧的文件
     },
-    mode: 'development', // 开发模式
-    devtool: 'source-map', // 生成 source map
+    mode: isProduction ? 'production' : 'development', // 开发模式
+    devtool: isProduction ? false : 'eval-source-map', // 生成 source map
     devServer: {
         static: {
             directory: path.join(__dirname, 'dist')
@@ -31,7 +33,7 @@ module.exports = {
         splitChunks: {
             chunks: 'all',
         },
-        minimize: true,
+        minimize: isProduction,
         minimizer: [new TerserPlugin()],
     },
     module: {

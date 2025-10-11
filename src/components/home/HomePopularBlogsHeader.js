@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Skeleton, Flex } from '@radix-ui/themes';
 import RequestUtil from '../../utils/APIRequestUtil';
 import PopularBlog from './PopularBlog';
+import HomePopularBlogsHeaderFallBack from './HomePopularBlogsHeaderFallback';
 
 export default function HomePopularBlogsHeader() {
     const [blogs, setBlogs] = useState([]);
@@ -19,16 +20,7 @@ export default function HomePopularBlogsHeader() {
     }, []);
 
     if (!dataReady) {
-        return (
-            <Flex gap="4"
-                wrap="wrap"
-                align="center"
-                justify="center">
-                {Array.from({ length: 16 }).map((_, index) => (
-                    <Skeleton key={index} width="28px" height="28px" style={{ borderRadius: '50%' }} />
-                ))}
-            </Flex>
-        );
+        return <HomePopularBlogsHeaderFallBack />
     }
 
     return (

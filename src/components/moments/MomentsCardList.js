@@ -36,7 +36,7 @@ export default function MomentsCardList() {
             <>
                 <Box id="moments-container">
                     <Box mb="2">
-                        <Text>最新随拍</Text>
+                        <Heading size="3" weight="bold">最新随拍</Heading>
                     </Box>
                     <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
                         {

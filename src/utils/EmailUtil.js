@@ -1,4 +1,3 @@
-import md5 from 'blueimp-md5';
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function isEmailValid(email) {
@@ -8,8 +7,4 @@ export function isEmailValid(email) {
         return false;
     }
     return true;
-};
-
-export function md5Value(email) {
-    return md5(email);
 };

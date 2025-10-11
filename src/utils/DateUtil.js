@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('dayjs');
 
 export function formatDateStr(dateStr, useUnifiedFarmat) {
     useUnifiedFarmat = useUnifiedFarmat || false;

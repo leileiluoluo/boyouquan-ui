@@ -130,6 +130,7 @@ Replace the HOST and PASSWORD in Repository secrets, and re-run the pipelines.
 Config DNS to the new host, at the same time, please change the Nginx Config of the old host to the followings to resolve the DNS cache issue, this is very important!
 
 ```shell
+# on old host
 cat /etc/nginx/conf.d/boyouquan.conf
 ```
 

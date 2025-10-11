@@ -75,6 +75,11 @@
         "description": "发现有趣的独立博客"
     },
     {
+        "name": "博客之家",
+        "link": "https://www.perass.com/",
+        "description": "优秀个人博客网站导航"
+    },
+    {
         "name": "博客说",
         "link": "https://blogtalk.org/",
         "description": "个人博客站点聚合"

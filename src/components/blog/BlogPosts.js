@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Box, Text, Link, ScrollArea, Separator } from '@radix-ui/themes';
+import { Card, Flex, Box, Text, Link, ScrollArea, Separator, Tooltip } from '@radix-ui/themes';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 import { Timeline } from 'antd';
+import { Rss } from 'lucide-react';
 
-
-export default function BlogPosts({ domain, blogStatusOk }) {
+export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const [groupedPosts, setGroupedPosts] = useState([]);
 
     const groupedByYear = (posts) => {
@@ -56,7 +56,12 @@ export default function BlogPosts({ domain, blogStatusOk }) {
     return (
         <Card style={{ padding: 'var(--space-4)' }}>
             <Flex direction="column" gap="1">
-                <Text size="2" color="gray">收录文章</Text>
+                <Flex justify="between">
+                    <Text size="2" color="gray">收录文章</Text>
+                    <Tooltip content="文章 RSS 地址">
+                        <Link href={rssAddress} target="_blank"><Rss width="16" height="16" /></Link>
+                    </Tooltip>
+                </Flex>
                 <Box mt="2">
                     <ScrollArea type="always" scrollbars="vertical" style={{ maxHeight: '480px' }}>
                         <Timeline style={{ marginLeft: '16px', marginBottom: '0px' }}>

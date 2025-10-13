@@ -59,7 +59,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                 <Flex justify="between">
                     <Text size="2" color="gray">收录文章</Text>
                     <Tooltip content="文章 RSS 地址">
-                        <Link href={rssAddress} target="_blank"><Rss width="16" height="16" /></Link>
+                        <Link href={rssAddress} target="_blank"><Rss width="14" height="14" /></Link>
                     </Tooltip>
                 </Flex>
                 <Box mt="2">

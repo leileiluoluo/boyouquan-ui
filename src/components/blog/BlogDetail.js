@@ -63,7 +63,7 @@ export default function BlogDetail({ domain }) {
                             collectedAt={blogDetail.collectedAt} />
                         <Suspense>
                             <BlogCharts domain={domain} />
-                            <BlogPosts domain={domain} blogStatusOk={blogDetail.statusOk} />
+                            <BlogPosts domain={domain} rssAddress={blogDetail.rssAddress} blogStatusOk={blogDetail.statusOk} />
                             <RandomBlogs domain={domain} />
                         </Suspense>
                     </Flex>

@@ -50,7 +50,7 @@ export default function CertificatePage() {
     useEffect(() => {
         fetchData(domainName);
 
-        const verifyUrl = `https://www.boyouquan.com/certificate/${domainName}`;
+        const verifyUrl = `https://www.boyouquan.com/certificates/${domainName}`;
         setQrUrl(`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(verifyUrl)}`);
     }, [domainName]);
 

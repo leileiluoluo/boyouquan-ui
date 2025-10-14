@@ -29,6 +29,7 @@ import CancelSubscriptionPage from './pages/CancelSubscriptionPage';
 import AdminPostImageAddPage from './pages/admin/AdminPostImageAddPage';
 import AdminMonthlySelectedPage from './pages/admin/AdminMonthlySelectedPage';
 import MomentsPage from './pages/MomentsPage';
+import CertificatePage from './pages/CertificatePage';
 
 export default function App() {
   return (
@@ -61,6 +62,9 @@ export default function App() {
         <Route path='/planet-shuttle' element={<PlanetShuttlePage />} />
         <Route path='/go' element={<GoPage />} />
         <Route path='/cancel-subscription' element={<CancelSubscriptionPage />} />
+        <Route path='/certificates/:domain' element={<CertificatePage />} />
+        <Route path='/certificates/:domain/:sub' element={<CertificatePage />} />
+        <Route path='/certificates/:domain/:sub/:subsub' element={<CertificatePage />} />
         <Route path='/sponsor' element={<SponsorPage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/thanks' element={<ThanksPage />} />

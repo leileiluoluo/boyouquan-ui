@@ -66,3 +66,17 @@ export function getDaysTillNow(dateStr) {
 
     return timeDiff / oneDay | 0;
 }
+
+export function getYearsTillNow(dateStr) {
+    const date = moment(dateStr, 'YYYY-MM-DD HH:mm:ss');
+
+    const past = date.unix();
+
+    const oneDay = 24 * 60 * 60;
+    const oneYear = 365 * oneDay;
+
+    const now = moment().unix();
+    const timeDiff = now - past;
+
+    return timeDiff / oneYear | 0;
+}

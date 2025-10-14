@@ -7,6 +7,7 @@ import { redirectTo } from '../../utils/CommonUtil';
 import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 import { Flex } from '@radix-ui/themes';
 
+const BlogPerformance = lazy(() => import('./BlogPerformance'));
 const BlogCharts = lazy(() => import('./BlogCharts'));
 const RandomBlogs = lazy(() => import('./RandomBlogs'));
 const BlogPosts = lazy(() => import('./BlogPosts'));
@@ -62,6 +63,7 @@ export default function BlogDetail({ domain }) {
                             latestPublishedAt={blogDetail.latestPublishedAt}
                             collectedAt={blogDetail.collectedAt} />
                         <Suspense>
+                            <BlogPerformance domainName={domain} collectedAt={blogDetail.collectedAt} />
                             <BlogCharts domain={domain} />
                             <BlogPosts domain={domain} rssAddress={blogDetail.rssAddress} blogStatusOk={blogDetail.statusOk} />
                             <RandomBlogs domain={domain} />

@@ -38,21 +38,22 @@ module.exports = {
     },
     module: {
         rules: [
+            // JS/JSX
             {
-                test: /\.(js|jsx)$/, // 处理 .js 和 .jsx 文件
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader', // 使用 Babel 转译
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'], // 使用的预设
-                    },
-                },
+                use: 'babel-loader',
             },
+            // CSS
             {
-                test: /\.css$/, // 处理 .css 文件
+                test: /\.css$/i,
                 use: [
-                    MiniCssExtractPlugin.loader, // 提取 CSS
-                    'css-loader', // 处理 CSS
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: { importLoaders: 1 } // 确保 @import 的文件也走 postcss
+                    },
+                    'postcss-loader'
                 ],
             },
             {
@@ -68,6 +69,9 @@ module.exports = {
                 ],
             },
         ],
+    },
+    resolve: {
+        extensions: ['.js', '.jsx'],
     },
     plugins: [
         new DotenvWebpack({

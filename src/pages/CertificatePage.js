@@ -183,7 +183,7 @@ export default function CertificatePage() {
                                         alt="博主头像"
                                     />
                                 </div>
-                                <div className="text-yellow-200 text-center sm:text-left">
+                                <div className="text-yellow-200 sm:text-left">
                                     <div className="text-base sm:text-lg font-semibold break-all">
                                         <a
                                             href={`https://www.boyouquan.com/blogs/${domainName}`}

@@ -6,10 +6,8 @@ import { useParams } from 'react-router-dom';
 import { redirectTo } from '../utils/CommonUtil';
 import { formatDateStr, getYearsTillNow } from '../utils/DateUtil';
 import { stringToSixDigitNumber } from '../utils/StringUtil';
-import domtoimage from 'dom-to-image-more';
 import Meta from '../components/common/Meta';
 import { Helmet } from 'react-helmet';
-import '../tailwind.css';
 
 const getMeta = (name, description) => {
     return {
@@ -158,6 +156,7 @@ export default function CertificatePage() {
             <Meta meta={getMeta(blogDetail.name, blogDetail.description)} />
             <Helmet>
                 <style>{headStyle}</style>
+                <link rel="stylesheet" href="/assets/css/tailwind/tailwind.css" />
                 <script src="/assets/js/tongji.js" type="text/javascript"></script>
             </Helmet>
             <div className="flex items-center justify-center min-h-screen bg-neutral-100 text-neutral-900 p-4 sm:p-8">

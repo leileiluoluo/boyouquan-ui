@@ -609,5 +609,19 @@
                 "link": "/assets/images/sites/sponsor/cost_details/2025/10/cdn_purchase.png"
             }
         ]
+    },
+    {
+        "blogName": "游钓四方",
+        "link": "/blogs/lhasa.icu",
+        "sponsoredAt": "2025/10/15",
+        "sponsoredMoney": "9.99 元",
+        "message": "支持站长，让服务器多运行一会～",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：344.83 元"
+        ],
+        "proofs": []
     }
 ]

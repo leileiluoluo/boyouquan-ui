@@ -4,7 +4,7 @@ import { getYearsTillNow, getYear } from '../../utils/DateUtil';
 export default function BlogPerformance({ domainName, collectedAt }) {
     const joinedYear = getYear(collectedAt);
     const years = getYearsTillNow(collectedAt);
-    const value = years * 13;
+    const value = years * 10;
     const certLink = `/certificates/${domainName}`;
 
     return (

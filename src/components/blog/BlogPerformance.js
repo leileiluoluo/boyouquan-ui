@@ -1,14 +1,9 @@
 import { Box, Card, Flex, Link, Progress, Text, Tooltip } from '@radix-ui/themes';
 import { getYearsTillNow, getYear } from '../../utils/DateUtil';
 
-function generateYears(startYear) {
-    return Array.from({ length: 11 }, (_, index) => startYear + index);
-}
-
 export default function BlogPerformance({ domainName, collectedAt }) {
     const joinedYear = getYear(collectedAt);
     const years = getYearsTillNow(collectedAt);
-    const yearsArray = generateYears(joinedYear);
     const value = years * 13;
     const certLink = `/certificates/${domainName}`;
 
@@ -20,12 +15,13 @@ export default function BlogPerformance({ domainName, collectedAt }) {
                     <Box mt="2" maxWidth="100%">
                         <Link onClick={() => window.open(certLink, '博客集验证', 'height=800,width=470,top=0,right=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')}>
                             <Flex justify="between" mb="2" style={{ overflowX: 'auto' }}>
-                                {yearsArray.map((year) => (
-                                    <Text key={year} size="2" color="gray" mr="2">{year}</Text>
-                                ))}
+                                <Text size="2" color="gray" mr="2">{joinedYear}</Text>
+                                <Text size="2" color="gray" mr="2">{joinedYear + 10}</Text>
                             </Flex>
 
                             <Progress color="gold" value={value} duration="3s" />
+
+                            <Text size="1" color="gray" mt="2">* 该博客收录于 {joinedYear} 年，目前已履约 {years} 年</Text>
                         </Link>
                     </Box>
                 </Tooltip>

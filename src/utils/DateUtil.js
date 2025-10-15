@@ -80,3 +80,8 @@ export function getYearsTillNow(dateStr) {
 
     return timeDiff / oneYear | 0;
 }
+
+export function getYear(dateStr) {
+    const date = moment(dateStr, 'YYYY-MM-DD HH:mm:ss');
+    return date.year();
+}

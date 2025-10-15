@@ -189,11 +189,11 @@ export default function CertificatePage() {
                                             href={`https://www.boyouquan.com/blogs/${domainName}`}
                                             target="_blank"
                                         >
-                                            {domainName}
+                                            {blogDetail.name} ({domainName})
                                         </a>
                                     </div>
                                     <div className="text-xs opacity-80">
-                                        收录于 {joinedDate} · {level} · 正常履约中
+                                        收录于 {joinedDate} · {level} · 履约中
                                     </div>
                                 </div>
                             </div>
@@ -201,11 +201,11 @@ export default function CertificatePage() {
 
                         {/* Title */}
                         <div className="text-center my-6">
-                            <h1 className="text-2xl sm:text-4xl text-yellow-400 tracking-widest uppercase mb-2">
+                            <h1 className="text-6xl sm:text-4xl text-yellow-400 tracking-widest uppercase mb-6">
                                 履约证书
                             </h1>
                             <p className="text-yellow-100 opacity-90 text-sm sm:text-base">
-                                兹证明如下网站满足博友圈各项要求，且正在博友圈正常履约中。
+                                兹证明如下博客正在与「<a href="https://www.boyouquan.com/" target="_blank">博友圈</a>」正常履约中，未有不可访问及中途毁约等情形。
                             </p>
                         </div>
 
@@ -213,7 +213,7 @@ export default function CertificatePage() {
                         <div className="flex flex-col md:flex-row items-center gap-8">
                             <div className="flex-1 bg-neutral-800/70 p-4 sm:p-6 rounded-xl shadow-inner border border-yellow-600/20 w-full">
                                 <div className="text-lg sm:text-2xl text-white mb-2 break-all">
-                                    站点：
+                                    博客域名：
                                     <a
                                         href={`https://www.boyouquan.com/blogs/${domainName}`}
                                         target="_blank"
@@ -222,16 +222,10 @@ export default function CertificatePage() {
                                     </a>
                                 </div>
                                 <div className="text-yellow-100/90 text-sm sm:text-base">
-                                    通过本站审核并达到 {level} 等级，本证书记录该网站的加入时间与履约信息。
+                                    本证书可证明该博客的收录时间、收录地址、等级与履约情况等信息在「<a href="https://www.boyouquan.com/" target="_blank">博友圈</a>」真实有效。
                                 </div>
 
                                 <div className="grid grid-cols-2 sm:flex sm:gap-6 mt-4 items-center text-center sm:text-left">
-                                    <div>
-                                        <div className="text-xs sm:text-sm text-yellow-200/80">等级</div>
-                                        <div className="text-yellow-400 font-bold text-base sm:text-lg">
-                                            {level}
-                                        </div>
-                                    </div>
                                     <div>
                                         <div className="text-xs sm:text-sm text-yellow-200/80">
                                             收录时间
@@ -242,17 +236,9 @@ export default function CertificatePage() {
                                     </div>
                                     <div>
                                         <div className="text-xs sm:text-sm text-yellow-200/80">
-                                            履约情况
-                                        </div>
-                                        <div className="text-yellow-400 font-bold text-base sm:text-lg">
-                                            正常
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="text-xs sm:text-sm text-yellow-200/80">
                                             收录地址
                                         </div>
-                                        <div className="text-white font-medium text-xs sm:text-sm break-all">
+                                        <div className="text-yellow-400 font-bold text-base sm:text-lg">
                                             <a
                                                 href={`https://www.boyouquan.com/blogs/${domainName}`}
                                                 target="_blank"
@@ -261,33 +247,76 @@ export default function CertificatePage() {
                                             </a>
                                         </div>
                                     </div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-yellow-200/80">博客等级</div>
+                                        <div className="text-yellow-400 font-bold text-base sm:text-lg">
+                                            {level}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="text-xs sm:text-sm text-yellow-200/80">
+                                            履约情况
+                                        </div>
+                                        <div className="text-yellow-400 font-bold text-base sm:text-lg">
+                                            正常
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* 右侧金色徽章 */}
-                            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 shadow-lg flex items-center justify-center relative">
-                                <div className="absolute inset-1 rounded-full bg-gradient-to-t from-yellow-100/30 to-transparent"></div>
-                                <div className="text-center text-neutral-900 font-bold text-sm sm:text-lg leading-tight">
-                                    CERTIFIED
-                                    <br />
-                                    <span className="text-[10px] sm:text-xs opacity-90">
-                                        BY BOYOUQUAN.COM
-                                    </span>
-                                    <div className="text-xs sm:text-sm mt-1">Issued: {issueNumber}</div>
+                            {/* 右侧金色徽章 + 浮雕麦穗 + 柔光外环 */}
+                            <div className="relative flex items-center justify-center">
+                                {/* 柔光外环 */}
+                                <div className="absolute inset-0 w-[180%] h-[180%] sm:w-[200%] sm:h-[200%] rounded-full blur-3xl bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.25)_0%,rgba(255,215,0,0)_70%)]"></div>
+
+                                {/* 左侧浮雕金麦穗 */}
+                                <div className="absolute -left-16 sm:-left-20 w-14 sm:w-20 z-10">
+                                    <svg
+                                        viewBox="0 0 64 64"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-full h-auto"
+                                    >
+                                        <defs>
+                                            <linearGradient id="goldGradientLeft" x1="0" y1="0" x2="1" y2="1">
+                                                <stop offset="0%" stopColor="#fff6b7" />
+                                                <stop offset="35%" stopColor="#f9d423" />
+                                                <stop offset="70%" stopColor="#ffcc00" />
+                                                <stop offset="100%" stopColor="#c49b0b" />
+                                            </linearGradient>
+                                            <filter id="goldEmbossLeft" x="-10%" y="-10%" width="130%" height="130%">
+                                                <feOffset result="offOut" in="SourceAlpha" dx="1" dy="1" />
+                                                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1.2" />
+                                                <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+                                            </filter>
+                                        </defs>
+                                        <path
+                                            d="M50,10 C45,15 40,25 35,35 C30,45 25,50 20,55 L25,60 C30,55 35,50 40,40 C45,30 50,20 55,15 Z"
+                                            fill="url(#goldGradientLeft)"
+                                            stroke="#8b6f00"
+                                            strokeWidth="1"
+                                            filter="url(#goldEmbossLeft)"
+                                        />
+                                    </svg>
                                 </div>
-                                <div className="absolute inset-0 rounded-full border-2 border-yellow-700"></div>
+
+                                {/* 中心徽章 */}
+                                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 shadow-[0_0_25px_rgba(255,215,0,0.35)] flex items-center justify-center relative z-20">
+                                    <img width="100%" src="/assets/images/sites/performance/performance.svg" />
+                                </div>
                             </div>
+
                         </div>
 
                         {/* Footer */}
                         <footer className="flex flex-col sm:flex-row flex-wrap justify-between items-center mt-6 text-yellow-200 gap-3 sm:gap-4 text-center sm:text-left">
                             <div className="text-xs sm:text-sm">证书编号: {certificateId}</div>
                             <div className="text-xs sm:text-sm">
-                                签发者:{' '}
+                                签发网站:{' '}
                                 <a href="https://www.boyouquan.com/home" target="_blank">
                                     博友圈
                                 </a>
                             </div>
+                            <div className="text-xs sm:text-sm">签发时间: {issueNumber}</div>
                             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
                                 {qrUrl && (
                                     <img
@@ -297,17 +326,17 @@ export default function CertificatePage() {
                                     />
                                 )}
                                 <div className="text-[10px] sm:text-xs opacity-80">
-                                    扫描验证证书真伪
+                                    扫码验证真伪
                                 </div>
                             </div>
                         </footer>
                     </div>
 
                     {/* 底部按钮区 */}
-                    <div className="flex justify-center gap-4 mt-8 print:hidden">
+                    <div className="flex justify-center gap-4 mt-8">
                         <Button
                             variant="outline"
-                            className="text-yellow-400 bg-black/80 rounded-lg text-sm sm:text-base px-4 py-2"
+                            className="text-yellow-400 bg-gray/80 border-gray-400 rounded-lg text-sm sm:text-base px-4 py-2"
                             onClick={() => window.print()}
                         >
                             打印 / 导出
@@ -315,7 +344,7 @@ export default function CertificatePage() {
 
                         <Button
                             variant="outline"
-                            className="text-yellow-400 bg-black/80 rounded-lg text-sm sm:text-base px-4 py-2"
+                            className="text-yellow-400 bg-gray/80 border-gray-400 rounded-lg text-sm sm:text-base px-4 py-2"
                             onClick={handleScreenCapture} // 调用截屏生成 PNG
                         >
                             截屏为 PNG

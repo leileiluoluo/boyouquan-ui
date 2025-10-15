@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 240 240">
+  <defs>
+    <!-- 深金色渐变 -->
+    <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFC700"/>
+      <stop offset="50%" stop-color="#E6A800"/>
+      <stop offset="100%" stop-color="#C49B0B"/>
+    </radialGradient>
+
+    <!-- 光晕 -->
+    <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFC700" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#C49B0B" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- 外环花纹 -->
+    <pattern id="ringPattern" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M5 0 L6 2 L8 2 L6 4 L7 6 L5 5 L3 6 L4 4 L2 2 L4 2 Z" fill="#C49B0B"/>
+    </pattern>
+
+    <!-- 光斑渐变 -->
+    <radialGradient id="shine" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- 文字发光 -->
+    <filter id="textGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 内层金币 -->
+  <circle cx="120" cy="120" r="80" fill="url(#goldGradient)" />
+
+  <!-- 光晕 -->
+  <circle cx="120" cy="120" r="100" fill="url(#outerGlow)" />
+
+  <!-- 外环花纹 -->
+  <circle cx="120" cy="120" r="90" fill="url(#ringPattern)">
+    <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="20s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- 五角星环形装饰 -->
+  <g fill="#fff">
+    ${[...Array(16)].map((_, i) => {
+      const angle = (i * 360) / 16;
+      const rad = (angle * Math.PI) / 180;
+      const radius = 95;
+      const cx = 120 + radius * Math.cos(rad);
+      const cy = 120 + radius * Math.sin(rad);
+      const r = 14;
+      const points = Array.from({ length: 5 }, (_, j) => {
+        const theta = ((j * 72 - 90) * Math.PI) / 180;
+        return [
+          cx + r * Math.cos(theta),
+          cy + r * Math.sin(theta)
+        ].join(',');
+      }).join(' ');
+      return `<polygon points="${points}">
+                <animateTransform attributeName="transform" type="rotate"
+                  from="0 120 120" to="360 120 120" dur="30s" repeatCount="indefinite"/>
+              </polygon>`;
+    }).join('')}
+  </g>
+
+  <!-- 光斑效果 -->
+  <circle cx="120" cy="120" r="80" fill="url(#shine)">
+    <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="40s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- 中心文字，行间距加大 -->
+  <text x="120" y="120" text-anchor="middle" dominant-baseline="middle"
+        font-family="微软雅黑, sans-serif" font-weight="bold"
+        fill="#FFD100" stroke="#B88800" stroke-width="0.5"
+        filter="url(#textGlow)">
+    <tspan x="120" dy="-30" font-size="24">博友圈</tspan>
+    <tspan x="120" dy="50" font-size="48">履约中</tspan>
+  </text>
+</svg>

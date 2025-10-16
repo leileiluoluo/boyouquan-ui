@@ -102,67 +102,154 @@ export default function CertificatePage() {
     const handleScreenCapture = async () => {
         try {
             const element = document.getElementById('capture-area');
+            if (!element) {
+                throw new Error('未找到截图区域');
+            }
 
-            // 保存原始滚动位置
+            // 保存原始状态
             const originalScrollY = window.scrollY;
+            const originalOverflow = document.body.style.overflow;
 
-            // 滚动到元素顶部
+            // 防止滚动干扰
+            document.body.style.overflow = 'hidden';
+
+            // 滚动到元素位置
             window.scrollTo(0, element.offsetTop);
 
-            // 等待渲染稳定
+            // 增加等待时间确保渲染完成
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // 检查元素是否包含图片等资源
+            const images = element.getElementsByTagName('img');
+            const imageLoadPromises = [];
+
+            // 预加载所有图片
+            for (let img of images) {
+                if (img.complete) continue;
+
+                const promise = new Promise((resolve, reject) => {
+                    img.onload = resolve;
+                    img.onerror = resolve; // 即使加载失败也继续
+                    // 重新触发图片加载
+                    img.src = img.src + (img.src.includes('?') ? '&' : '?') + 't=' + Date.now();
+                });
+                imageLoadPromises.push(promise);
+            }
+
+            // 等待图片加载或超时
+            if (imageLoadPromises.length > 0) {
+                await Promise.race([
+                    Promise.all(imageLoadPromises),
+                    new Promise(resolve => setTimeout(resolve, 2000))
+                ]);
+            }
+
+            // 进一步等待渲染
             await new Promise(resolve => setTimeout(resolve, 300));
 
             const canvas = await html2canvas(element, {
-                scale: 2,
+                scale: window.devicePixelRatio || 1, // 使用设备像素比
                 useCORS: true,
                 allowTaint: false,
                 backgroundColor: '#ffffff',
                 logging: true,
+                removeContainer: true, // 清理临时容器
 
-                // 忽略特定元素
+                // 移动端优化配置
+                width: Math.min(element.scrollWidth, 2000), // 限制最大宽度
+                height: Math.min(element.scrollHeight, 4000), // 限制最大高度
+
+                // 性能优化
+                async: true,
+                proxy: null, // 禁用代理
+
+                // 忽略元素配置
                 ignoreElements: (element) => {
-                    // 忽略包含特定 class 的元素
                     if (element.classList?.contains('ignore-capture')) {
                         return true;
                     }
-
+                    // 忽略视频等复杂元素
+                    if (element.tagName === 'VIDEO' || element.tagName === 'IFRAME') {
+                        return true;
+                    }
                     return false;
                 },
 
-                // 关键配置：确保完整内容
-                width: element.scrollWidth,
-                height: element.scrollHeight,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: element.scrollWidth,
-                windowHeight: element.scrollHeight,
-
-                // 禁用视口限制
-                foreignObjectRendering: false,
-
+                // 图像处理配置
+                imageTimeout: 15000, // 增加图片加载超时时间
                 onclone: (clonedDoc, clonedElement) => {
-                    // 确保克隆元素使用完整尺寸
-                    clonedElement.style.width = '100%';
+                    // 确保克隆元素样式正确
+                    clonedElement.style.width = 'auto';
                     clonedElement.style.height = 'auto';
                     clonedElement.style.overflow = 'visible';
+                    clonedElement.style.position = 'static';
+
+                    // 处理克隆的图片
+                    const clonedImages = clonedElement.getElementsByTagName('img');
+                    for (let img of clonedImages) {
+                        if (!img.complete || img.naturalHeight === 0) {
+                            // 替换加载失败的图片
+                            img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7lm77niYc8L3RleHQ+PC9zdmc+';
+                        }
+                    }
                 }
             });
 
-            // 恢复原始滚动位置
+            // 恢复原始状态
+            document.body.style.overflow = originalOverflow;
             window.scrollTo(0, originalScrollY);
 
-            // 下载逻辑...
-            const imageData = canvas.toDataURL('image/png', 1.0);
+            // 处理图片数据 - 移动端优化
+            let imageData;
+            try {
+                imageData = canvas.toDataURL('image/png', 0.9); // 降低质量减少大小
+            } catch (dataError) {
+                console.warn('高质量导出失败，尝试低质量:', dataError);
+                imageData = canvas.toDataURL('image/jpeg', 0.7); // 尝试JPEG格式
+            }
+
+            // 下载处理 - 移动端兼容
+            if (imageData.length > 2000000) { // 如果图片大于2MB
+                console.warn('图片尺寸较大，可能下载失败');
+            }
+
             const link = document.createElement('a');
             link.download = `履约证书-${domainName}-${new Date().toISOString().slice(0, 10)}.png`;
             link.href = imageData;
+
+            // 移动端特殊处理
             document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+
+            // 触发下载
+            const clickEvent = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+            });
+            link.dispatchEvent(clickEvent);
+
+            // 延迟移除链接
+            setTimeout(() => {
+                document.body.removeChild(link);
+            }, 100);
 
         } catch (error) {
             console.error('截图失败:', error);
-            alert('截图失败，请重试');
+
+            // 恢复状态
+            document.body.style.overflow = originalOverflow;
+            if (originalScrollY !== undefined) {
+                window.scrollTo(0, originalScrollY);
+            }
+
+            // 更友好的错误提示
+            if (error.message.includes('security') || error.message.includes('tainted')) {
+                alert('截图失败：安全限制，请确保所有图片来自可信源');
+            } else if (error.message.includes('memory') || error.message.includes('size')) {
+                alert('截图失败：内容过大，请尝试缩小内容范围');
+            } else {
+                alert('截图失败，请重试或联系技术支持');
+            }
         }
     };
 

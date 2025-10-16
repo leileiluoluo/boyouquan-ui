@@ -61,7 +61,7 @@ export default function MonthlySelectedCardList() {
                                 <Card key={`part1-${index}`}>
                                     <Flex direction="column" gap="2">
                                         <Box>
-                                            <Skeleton height="180px"></Skeleton>
+                                            <Skeleton height="176px"></Skeleton>
                                         </Box>
 
                                         <Flex direction="column" gap="1">
@@ -69,7 +69,7 @@ export default function MonthlySelectedCardList() {
                                                 <Skeleton width="240px" height="20px" />
                                             </Box>
                                             <Box>
-                                                <Skeleton width="100%" height="48px" />
+                                                <Skeleton width="100%" height="40px" />
                                             </Box>
                                             <Box>
                                                 <Flex gap="1" align="center">

@@ -44,7 +44,7 @@ export default function MomentsCardList() {
                                 <Card key={index}>
                                     <Flex direction="column" gap="2">
                                         <Box>
-                                            <Skeleton height="180px"></Skeleton>
+                                            <Skeleton height="176px"></Skeleton>
                                         </Box>
 
                                         <Flex direction="column" gap="1">

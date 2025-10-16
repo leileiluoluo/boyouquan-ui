@@ -4,7 +4,7 @@ import CommonFooter from '../components/common/CommonFooter';
 import Meta from '../components/common/Meta';
 import { scrollToHash } from '../utils/ScrollUtil';
 import Article from '../components/article/Article';
-import { Box, Container, Link, ScrollArea, Table, Text } from '@radix-ui/themes';
+import { Box, Container, Flex, Link, ScrollArea, Table, Text } from '@radix-ui/themes';
 
 const meta = {
     title: '关于本站 - 博友圈 · 博客人的朋友圈！',
@@ -70,6 +70,21 @@ const content = <>
                 <Table.RowHeaderCell>100px * 30px</Table.RowHeaderCell>
                 <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/planet-shuttle.svg"><img width="100px" src="/assets/images/sites/logo/planet-shuttle.svg" /></Link></Table.Cell>
                 <Table.Cell><Link target="_blank" href="/assets/images/sites/logo/planet-shuttle-dark.svg"><img width="100px" src="/assets/images/sites/logo/planet-shuttle-dark.svg" /></Link></Table.Cell>
+            </Table.Row>
+            <Table.Row>
+                <Table.RowHeaderCell>100px * 30px</Table.RowHeaderCell>
+                <Table.Cell>
+                    <Flex direction="column" gap="1">
+                        <Link target="_blank" href="https://www.boyouquan.com/images/logo/performance.svg?domainName=leileiluoluo.com"><img width="100px" src="https://www.boyouquan.com/images/logo/performance.svg?domainName=leileiluoluo.com" /></Link>
+                        <Text size="1">请将链接中的 domainName 替换为您自己的</Text>
+                    </Flex>
+                </Table.Cell>
+                <Table.Cell>
+                    <Flex direction="column" gap="1">
+                        <Link target="_blank" href="https://www.boyouquan.com/images/logo/performance-dark.svg?domainName=leileiluoluo.com"><img width="100px" src="https://www.boyouquan.com/images/logo/performance-dark.svg?domainName=leileiluoluo.com" /></Link>
+                        <Text size="1">请将链接中的 domainName 替换为您自己的</Text>
+                    </Flex>
+                </Table.Cell>
             </Table.Row>
         </Table.Body>
     </Table.Root>

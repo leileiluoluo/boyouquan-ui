@@ -43,7 +43,14 @@ const toBase64 = async (url) => {
 
 export default function CertificatePage() {
     const domainName = getDomain();
+    const [selectedTheme, setSelectedTheme] = useState('dark'); // 'dark' or 'dim'
     const [copied, setCopied] = useState(false);
+
+    // 两个不同的代码片段（你可以按需修改具体代码内容）
+    const darkCode = `<a href="https://www.boyouquan.com/certificates/${domainName}" title="正在博友圈履约中" target="_blank"><img style="height: 26px;" src="https://www.boyouquan.com/images/logo/performance-dark.svg?domainName=${domainName}" alt="正在博友圈履约中" /></a>`;
+    const dimCode = `<a href="https://www.boyouquan.com/certificates/${domainName}" title="正在博友圈履约中" target="_blank"><img style="height: 26px;" src="https://www.boyouquan.com/images/logo/performance.svg?domainName=${domainName}" alt="正在博友圈履约中" /></a>`;
+
+    const currentCode = selectedTheme === 'dark' ? darkCode : dimCode;
 
     const certRef = useRef(null);
     const [loaded, setLoaded] = useState(false);
@@ -330,26 +337,74 @@ export default function CertificatePage() {
 
 
                 </div>
-                {/* 证书内容区域下方 - 透明代码框 */}
+
+
                 <div className="mt-6 pb-6 p-4 w-full flex justify-center print:hidden">
-                    <div className="flex flex-col p-4 rounded-lg border border-yellow-600/30 w-full max-w-[960px] relative">
-                        <label className="text-black-400 font-semibold text-sm mb-2 text-center">拷贝如下代码，将「履约中」LOGO 嵌入您的网站底部：</label>
-                        <div className="mb-2 ml-2">
-                            <a href={`/certificates/${domainName}`} title="正在博友圈履约中" target="_blank"><img style={{ height: '26px' }} src={`https://www.boyouquan.com/images/logo/performance.svg?domainName=${domainName}`} alt="正在博友圈履约中" /></a>
+                    <div className="flex flex-col p-4 rounded-xl border border-yellow-600/30 w-full max-w-[960px] relative bg-white/70 backdrop-blur-sm shadow-lg">
+
+                        {/* 提示文字 */}
+                        <label className="text-black-400 font-semibold text-sm mb-3 text-center">
+                            拷贝如下代码，将「履约中」LOGO 嵌入您的网站底部：
+                        </label>
+
+                        {/* 🔹 Tabs（移动到文字下方） */}
+                        <div className="flex mt-4 justify-center gap-3">
+                            {[
+                                { id: 'dark', label: '深色背景' },
+                                { id: 'dim', label: '浅色背景' },
+                            ].map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setSelectedTheme(tab.id)}
+                                    className={`relative px-4 py-2 rounded-lg text-sm font-medium border transition-all duration-300 shadow-sm
+                ${selectedTheme === tab.id
+                                            ? 'bg-black-500 text-black border-yellow-500 shadow-yellow-500/40 shadow-inner'
+                                            : 'bg-neutral-900/80 text-neutral-200 border-neutral-700 hover:bg-neutral-800 hover:text-yellow-400'
+                                        }`}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
                         </div>
-                        <div className="flex w-full gap-2 items-start">
+
+                        {/* LOGO 预览 */}
+                        <div className="mt-4 ml-2 flex justify-center">
+                            <a
+                                href={`/certificates/${domainName}`}
+                                title="正在博友圈履约中"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img
+                                    style={{ height: '26px' }}
+                                    src={
+                                        selectedTheme === 'dark'
+                                            ? `https://www.boyouquan.com/images/logo/performance-dark.svg?domainName=${domainName}`
+                                            : `https://www.boyouquan.com/images/logo/performance.svg?domainName=${domainName}`
+                                    }
+                                    alt="正在博友圈履约中"
+                                />
+                            </a>
+                        </div>
+
+                        {/* 代码 + 复制按钮 */}
+                        <div className="mt-4 flex w-full gap-2 items-start">
                             <textarea
-                                className="ml-2 mt-2 pb-2 flex-1 bg-neutral-100 text-black-200 text-sm sm:text-base p-2 rounded resize-none border border-yellow-400/30"
+                                className={`ml-2 pb-2 flex-1 text-sm sm:text-base p-3 rounded-lg resize-none border border-yellow-400/30 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 transition
+              ${selectedTheme === 'dark'
+                                        ? 'bg-neutral-900 text-neutral-100'
+                                        : 'bg-neutral-800 text-neutral-50'
+                                    }`}
                                 rows={4}
                                 readOnly
-                                value={`<a href="https://www.boyouquan.com/certificates/${domainName}" title="正在博友圈履约中" target="_blank"><img style="height: 26px;" src="https://www.boyouquan.com/images/logo/performance.svg?domainName=${domainName}" alt="正在博友圈履约中" /></a>`}
+                                value={currentCode}
                             />
+
                             <Button
                                 variant="outline"
-                                className="text-black-100 border-black-400 rounded-lg text-sm sm:text-base px-4 py-2 h-fit bg-transparent"
+                                className="text-black-100 border-black-400 rounded-lg text-sm sm:text-base px-4 py-2 h-fit bg-transparent hover:bg-yellow-100/40 transition"
                                 onClick={() => {
-                                    const copyCode = `<a href="https://www.boyouquan.com/certificates/${domainName}" title="正在博友圈履约中" target="_blank"><img style="height: 26px;" src="https://www.boyouquan.com/images/logo/performance.svg?domainName=${domainName}" alt="正在博友圈履约中" /></a>`;
-                                    navigator.clipboard.writeText(copyCode);
+                                    navigator.clipboard.writeText(currentCode);
                                     setCopied(true);
                                     setTimeout(() => setCopied(false), 2000);
                                 }}
@@ -358,7 +413,7 @@ export default function CertificatePage() {
                             </Button>
                         </div>
 
-                        {/* 浮动提示 */}
+                        {/* 复制提示 */}
                         {copied && (
                             <div className="absolute top-[-1.5rem] right-0 bg-yellow-400 text-black text-xs sm:text-sm px-2 py-1 rounded shadow-lg animate-fade-in-out">
                                 已复制到剪贴板
@@ -368,15 +423,15 @@ export default function CertificatePage() {
                         <style>
                             {`
             @keyframes fade-in-out {
-                0% { opacity: 0; transform: translateY(-5px); }
-                10% { opacity: 1; transform: translateY(0); }
-                90% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(-5px); }
+              0% { opacity: 0; transform: translateY(-5px); }
+              10% { opacity: 1; transform: translateY(0); }
+              90% { opacity: 1; transform: translateY(0); }
+              100% { opacity: 0; transform: translateY(-5px); }
             }
             .animate-fade-in-out {
-                animation: fade-in-out 2s ease-in-out forwards;
+              animation: fade-in-out 2s ease-in-out forwards;
             }
-            `}
+          `}
                         </style>
                     </div>
                 </div>

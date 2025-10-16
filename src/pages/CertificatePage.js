@@ -42,12 +42,128 @@ const toBase64 = async (url) => {
     }
 };
 
+// 移动端下载处理函数
+const downloadImage = (dataUrl, filename) => {
+    // 检查是否在移动端
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // 移动端处理方案
+        handleMobileDownload(dataUrl, filename);
+    } else {
+        // 桌面端传统下载方式
+        handleDesktopDownload(dataUrl, filename);
+    }
+};
+
+// 桌面端下载处理
+const handleDesktopDownload = (dataUrl, filename) => {
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = dataUrl;
+    document.body.appendChild(link);
+
+    const clickEvent = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+    });
+
+    try {
+        link.dispatchEvent(clickEvent);
+    } catch (error) {
+        console.error('桌面端下载失败:', error);
+        // 降级处理：在新窗口打开图片
+        window.open(dataUrl, '_blank');
+    }
+
+    setTimeout(() => {
+        document.body.removeChild(link);
+        // 释放内存
+        URL.revokeObjectURL(link.href);
+    }, 100);
+};
+
+// 移动端下载处理
+const handleMobileDownload = (dataUrl, filename) => {
+    // 方案1: 使用 File API 和 Blob URL
+    try {
+        fetch(dataUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                const blobUrl = URL.createObjectURL(blob);
+
+                // 尝试创建下载链接
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.download = filename;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+
+                // 尝试触发下载
+                const clickEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+
+                try {
+                    link.dispatchEvent(clickEvent);
+                } catch (error) {
+                    console.log('直接下载失败，尝试备用方案');
+                    // 备用方案：在新窗口打开
+                    window.open(blobUrl, '_blank');
+                }
+
+                // 清理
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(blobUrl);
+                }, 1000);
+            })
+            .catch(error => {
+                console.error('Blob处理失败:', error);
+                // 最终方案：直接在新窗口打开
+                window.open(dataUrl, '_blank');
+            });
+    } catch (error) {
+        console.error('移动端下载处理失败:', error);
+        // 最终降级方案
+        window.open(dataUrl, '_blank');
+    }
+};
+
+// 分享功能（移动端友好）
+const shareImage = async (dataUrl, filename, blogDetail) => {
+    if (navigator.share && navigator.canShare) {
+        try {
+            // 将 dataUrl 转换为 Blob
+            const response = await fetch(dataUrl);
+            const blob = await response.blob();
+
+            const file = new File([blob], filename, { type: 'image/png' });
+
+            if (navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    title: `${blogDetail.name}的履约证书`,
+                    text: `查看${blogDetail.name}在博友圈的履约证书`
+                });
+                return true;
+            }
+        } catch (error) {
+            console.log('分享失败，使用下载方式:', error);
+        }
+    }
+    return false;
+};
+
 export default function CertificatePage() {
     const domainName = getDomain();
-    const [selectedTheme, setSelectedTheme] = useState('dark'); // 'dark' or 'dim'
+    const [selectedTheme, setSelectedTheme] = useState('dark');
     const [copied, setCopied] = useState(false);
+    const [isCapturing, setIsCapturing] = useState(false);
 
-    // 两个不同的代码片段（你可以按需修改具体代码内容）
     const darkCode = `<a href="https://www.boyouquan.com/certificates/${domainName}" title="正在博友圈履约中" target="_blank"><img style="height: 26px;" src="https://www.boyouquan.com/images/logo/performance-dark.svg?domainName=${domainName}" alt="正在博友圈履约中" /></a>`;
     const dimCode = `<a href="https://www.boyouquan.com/certificates/${domainName}" title="正在博友圈履约中" target="_blank"><img style="height: 26px;" src="https://www.boyouquan.com/images/logo/performance.svg?domainName=${domainName}" alt="正在博友圈履约中" /></a>`;
 
@@ -72,7 +188,6 @@ export default function CertificatePage() {
         }
         const respBody = await resp.json();
 
-        // 转换头像为 Base64
         const avatarUrl = respBody.blogAdminLargeImageURL
             ? await toBase64(`https://www.boyouquan.com${respBody.blogAdminLargeImageURL}`)
             : '';
@@ -100,6 +215,10 @@ export default function CertificatePage() {
     }, [domainName]);
 
     const handleScreenCapture = async () => {
+        if (isCapturing) return;
+
+        setIsCapturing(true);
+
         try {
             const element = document.getElementById('capture-area');
             if (!element) {
@@ -112,84 +231,62 @@ export default function CertificatePage() {
 
             // 防止滚动干扰
             document.body.style.overflow = 'hidden';
-
-            // 滚动到元素位置
             window.scrollTo(0, element.offsetTop);
 
             // 增加等待时间确保渲染完成
             await new Promise(resolve => setTimeout(resolve, 500));
 
-            // 检查元素是否包含图片等资源
+            // 预加载图片
             const images = element.getElementsByTagName('img');
-            const imageLoadPromises = [];
-
-            // 预加载所有图片
-            for (let img of images) {
-                if (img.complete) continue;
-
-                const promise = new Promise((resolve, reject) => {
+            const imageLoadPromises = Array.from(images)
+                .filter(img => !img.complete)
+                .map(img => new Promise((resolve) => {
                     img.onload = resolve;
-                    img.onerror = resolve; // 即使加载失败也继续
-                    // 重新触发图片加载
-                    img.src = img.src + (img.src.includes('?') ? '&' : '?') + 't=' + Date.now();
-                });
-                imageLoadPromises.push(promise);
-            }
+                    img.onerror = resolve;
+                }));
 
-            // 等待图片加载或超时
             if (imageLoadPromises.length > 0) {
                 await Promise.race([
                     Promise.all(imageLoadPromises),
-                    new Promise(resolve => setTimeout(resolve, 2000))
+                    new Promise(resolve => setTimeout(resolve, 3000))
                 ]);
             }
 
-            // 进一步等待渲染
             await new Promise(resolve => setTimeout(resolve, 300));
 
             const canvas = await html2canvas(element, {
-                scale: window.devicePixelRatio || 1, // 使用设备像素比
+                scale: Math.min(window.devicePixelRatio || 1, 2), // 限制最大缩放
                 useCORS: true,
                 allowTaint: false,
                 backgroundColor: '#ffffff',
-                logging: true,
-                removeContainer: true, // 清理临时容器
-
-                // 移动端优化配置
-                width: Math.min(element.scrollWidth, 2000), // 限制最大宽度
-                height: Math.min(element.scrollHeight, 4000), // 限制最大高度
-
-                // 性能优化
+                logging: false,
+                removeContainer: true,
+                width: Math.min(element.scrollWidth, 1200),
+                height: Math.min(element.scrollHeight, 2000),
                 async: true,
-                proxy: null, // 禁用代理
+                proxy: null,
+                imageTimeout: 10000,
 
-                // 忽略元素配置
                 ignoreElements: (element) => {
                     if (element.classList?.contains('ignore-capture')) {
                         return true;
                     }
-                    // 忽略视频等复杂元素
                     if (element.tagName === 'VIDEO' || element.tagName === 'IFRAME') {
                         return true;
                     }
                     return false;
                 },
 
-                // 图像处理配置
-                imageTimeout: 15000, // 增加图片加载超时时间
                 onclone: (clonedDoc, clonedElement) => {
-                    // 确保克隆元素样式正确
                     clonedElement.style.width = 'auto';
                     clonedElement.style.height = 'auto';
                     clonedElement.style.overflow = 'visible';
                     clonedElement.style.position = 'static';
 
-                    // 处理克隆的图片
                     const clonedImages = clonedElement.getElementsByTagName('img');
                     for (let img of clonedImages) {
                         if (!img.complete || img.naturalHeight === 0) {
-                            // 替换加载失败的图片
-                            img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7lm77niYc8L3RleHQ+PC9zdmc+';
+                            img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+5Zu+54mHPC90ZXh0Pjwvc3ZnPg==';
                         }
                     }
                 }
@@ -199,39 +296,31 @@ export default function CertificatePage() {
             document.body.style.overflow = originalOverflow;
             window.scrollTo(0, originalScrollY);
 
-            // 处理图片数据 - 移动端优化
+            // 生成图片数据
             let imageData;
             try {
-                imageData = canvas.toDataURL('image/png', 0.9); // 降低质量减少大小
+                // 移动端使用较低质量以减少文件大小
+                const quality = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 0.8 : 0.9;
+                imageData = canvas.toDataURL('image/png', quality);
             } catch (dataError) {
-                console.warn('高质量导出失败，尝试低质量:', dataError);
-                imageData = canvas.toDataURL('image/jpeg', 0.7); // 尝试JPEG格式
+                console.warn('PNG导出失败，尝试JPEG:', dataError);
+                imageData = canvas.toDataURL('image/jpeg', 0.7);
             }
 
-            // 下载处理 - 移动端兼容
-            if (imageData.length > 2000000) { // 如果图片大于2MB
-                console.warn('图片尺寸较大，可能下载失败');
+            const filename = `履约证书-${domainName}-${new Date().toISOString().slice(0, 10)}.png`;
+
+            // 移动端优先尝试分享
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                const shared = await shareImage(imageData, filename, blogDetail);
+                if (shared) {
+                    return; // 分享成功，不需要下载
+                }
             }
 
-            const link = document.createElement('a');
-            link.download = `履约证书-${domainName}-${new Date().toISOString().slice(0, 10)}.png`;
-            link.href = imageData;
-
-            // 移动端特殊处理
-            document.body.appendChild(link);
-
-            // 触发下载
-            const clickEvent = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            });
-            link.dispatchEvent(clickEvent);
-
-            // 延迟移除链接
-            setTimeout(() => {
-                document.body.removeChild(link);
-            }, 100);
+            // 使用统一的下载处理
+            downloadImage(imageData, filename);
 
         } catch (error) {
             console.error('截图失败:', error);
@@ -242,14 +331,17 @@ export default function CertificatePage() {
                 window.scrollTo(0, originalScrollY);
             }
 
-            // 更友好的错误提示
+            // 用户友好的错误提示
+            let errorMessage = '截图失败，请重试';
             if (error.message.includes('security') || error.message.includes('tainted')) {
-                alert('截图失败：安全限制，请确保所有图片来自可信源');
+                errorMessage = '截图失败：安全限制，请确保所有图片来自可信源';
             } else if (error.message.includes('memory') || error.message.includes('size')) {
-                alert('截图失败：内容过大，请尝试缩小内容范围');
-            } else {
-                alert('截图失败，请重试或联系技术支持');
+                errorMessage = '截图失败：内容过大，请尝试缩小内容范围';
             }
+
+            alert(errorMessage);
+        } finally {
+            setIsCapturing(false);
         }
     };
 

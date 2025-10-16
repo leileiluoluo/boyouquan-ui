@@ -8,6 +8,7 @@ import { formatDateStr, getYearsTillNow } from '../utils/DateUtil';
 import { stringToSixDigitNumber } from '../utils/StringUtil';
 import Meta from '../components/common/Meta';
 import { Helmet } from 'react-helmet';
+import html2canvas from 'html2canvas';
 
 const getMeta = (name, description) => {
     return {
@@ -100,33 +101,68 @@ export default function CertificatePage() {
 
     const handleScreenCapture = async () => {
         try {
-            const stream = await navigator.mediaDevices.getDisplayMedia({
-                video: { cursor: 'always' },
-                audio: false,
+            const element = document.getElementById('capture-area');
+
+            // 保存原始滚动位置
+            const originalScrollY = window.scrollY;
+
+            // 滚动到元素顶部
+            window.scrollTo(0, element.offsetTop);
+
+            // 等待渲染稳定
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            const canvas = await html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: false,
+                backgroundColor: '#ffffff',
+                logging: true,
+
+                // 忽略特定元素
+                ignoreElements: (element) => {
+                    // 忽略包含特定 class 的元素
+                    if (element.classList?.contains('ignore-capture')) {
+                        return true;
+                    }
+
+                    return false;
+                },
+
+                // 关键配置：确保完整内容
+                width: element.scrollWidth,
+                height: element.scrollHeight,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: element.scrollWidth,
+                windowHeight: element.scrollHeight,
+
+                // 禁用视口限制
+                foreignObjectRendering: false,
+
+                onclone: (clonedDoc, clonedElement) => {
+                    // 确保克隆元素使用完整尺寸
+                    clonedElement.style.width = '100%';
+                    clonedElement.style.height = 'auto';
+                    clonedElement.style.overflow = 'visible';
+                }
             });
 
-            const track = stream.getVideoTracks()[0];
-            const imageCapture = new ImageCapture(track);
-            const bitmap = await imageCapture.grabFrame();
+            // 恢复原始滚动位置
+            window.scrollTo(0, originalScrollY);
 
-            const canvas = document.createElement('canvas');
-            canvas.width = bitmap.width;
-            canvas.height = bitmap.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(bitmap, 0, 0);
+            // 下载逻辑...
+            const imageData = canvas.toDataURL('image/png', 1.0);
+            const link = document.createElement('a');
+            link.download = `履约证书-${domainName}-${new Date().toISOString().slice(0, 10)}.png`;
+            link.href = imageData;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-            canvas.toBlob((blob) => {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'screenshot.png';
-                a.click();
-                URL.revokeObjectURL(url);
-            });
-
-            track.stop();
-        } catch (err) {
-            console.error('截屏失败：', err);
+        } catch (error) {
+            console.error('截图失败:', error);
+            alert('截图失败，请重试');
         }
     };
 
@@ -142,7 +178,7 @@ export default function CertificatePage() {
                 <script src="/assets/js/tongji.js" type="text/javascript"></script>
             </Helmet>
             <div style={{ backgroundColor: 'white' }}>
-                <div className="flex items-center justify-center min-h-screen bg-neutral-100 text-neutral-900 p-4 sm:p-8">
+                <div id="capture-area" className="flex items-center justify-center min-h-screen bg-neutral-100 text-neutral-900 p-4 sm:p-8">
                     <div className="relative w-full max-w-[960px] bg-black rounded-2xl p-4 sm:p-9 shadow-2xl">
                         {/* 证书内容区域 - 添加文字渲染优化样式 */}
                         <div
@@ -316,7 +352,7 @@ export default function CertificatePage() {
                         </div>
 
                         {/* 底部按钮区 */}
-                        <div className="flex justify-center gap-4 mt-8 print:hidden">
+                        <div className="flex justify-center gap-4 mt-8 print:hidden ignore-capture">
                             <Button
                                 variant="outline"
                                 className="text-yellow-400 bg-black/80 border-yellow-400 rounded-lg text-sm sm:text-base px-4 py-2"
@@ -334,10 +370,7 @@ export default function CertificatePage() {
                             </Button>
                         </div>
                     </div>
-
-
                 </div>
-
 
                 <div className="mt-6 pb-6 p-4 w-full flex justify-center print:hidden">
                     <div className="flex flex-col p-4 rounded-xl border border-yellow-600/30 w-full max-w-[960px] relative bg-white/70 backdrop-blur-sm shadow-lg">

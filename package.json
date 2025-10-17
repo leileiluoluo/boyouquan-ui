@@ -15,6 +15,7 @@
         "antd": "^5.27.0",
         "blueimp-md5": "^2.19.0",
         "dom-to-image-more": "^3.7.1",
+        "framer-motion": "^12.23.24",
         "frappe-charts": "^1.6.2",
         "html2canvas": "^1.4.1",
         "lucide-react": "^0.539.0",

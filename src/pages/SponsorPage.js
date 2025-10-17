@@ -2,8 +2,10 @@ import CommonHeader from '../components/common/CommonHeader';
 import CommonFooter from '../components/common/CommonFooter';
 import Meta from '../components/common/Meta';
 import Article from '../components/article/Article';
-import { Box, Container, Link, Strong, Text, Table, Flex, Separator } from '@radix-ui/themes';
+import { Box, Container, Link, Strong, Text, Table, Flex, Separator, Grid, Skeleton } from '@radix-ui/themes';
 import sponsorList from '../json/sponsor.json';
+import { lazy, Suspense } from 'react';
+const SponsorMotion = lazy(() => import('../components/sponsor/SponsorMotion'));
 
 const meta = {
     title: "赞助本站 - 博友圈 · 博客人的朋友圈！",
@@ -53,8 +55,20 @@ const content = (
         />
 
         <Text as="p" mb="2" mt="6">
+            <Strong>
+                感谢如下博友的赞助与接力，让博友圈运行至今！
+            </Strong>
+        </Text>
+
+        <Grid mb="2" style={{ display: 'flex', justifyContent: 'center', border: '1px solid var(--gray-5)', borderRadius: 'var(--radius-3)' }}>
+            <Suspense fallback={<Skeleton height="126px" />}>
+                <SponsorMotion />
+            </Suspense>
+        </Grid>
+
+        <Text as="p" mb="2" mt="6">
             <Strong id="sponsor-list">
-                赞助名单（同步在首页底部的「<a href="/home#special-thanks">感谢赞助</a>」模块显示）：
+                完整赞助名单（同步在首页底部的「<a href="/home#special-thanks">感谢赞助</a>」模块显示）：
             </Strong>
         </Text>
 

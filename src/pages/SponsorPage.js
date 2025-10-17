@@ -55,8 +55,8 @@ const content = (
         />
 
         <Text as="p" mb="2" mt="6">
-            <Strong>
-                感谢如下博友的赞助与接力，让博友圈运行至今！
+            <Strong id="sponsor-list">
+                完整赞助名单（感谢您的赞助与接力，让博友圈运行至今！）：
             </Strong>
         </Text>
 
@@ -65,12 +65,6 @@ const content = (
                 <SponsorMotion />
             </Suspense>
         </Grid>
-
-        <Text as="p" mb="2" mt="6">
-            <Strong id="sponsor-list">
-                完整赞助名单（同步在首页底部的「<a href="/home#special-thanks">感谢赞助</a>」模块显示）：
-            </Strong>
-        </Text>
 
         <div style={{
             position: 'relative',

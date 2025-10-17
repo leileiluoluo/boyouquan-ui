@@ -7,16 +7,29 @@ const DISPLAY_COUNT = 3;
 const RUN_DURATION = 2;
 
 export default function SponsorMotion() {
+    const firstItem = {
+        "blogName": "站长",
+        "link": "https://leileiluoluo.com/",
+        "sponsoredAt": "2023/07/01",
+        "sponsoredMoney": "网站启动"
+    };
+
+    // add one more item
+    const newSponsors = [
+        firstItem,
+        ...sponsors
+    ];
+
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1 < sponsors.length ? prev + 1 : prev));
+            setCurrentIndex((prev) => (prev + 1 < newSponsors.length ? prev + 1 : prev));
         }, RUN_DURATION * 1000);
         return () => clearInterval(timer);
     }, []);
 
-    const visibleSponsors = sponsors.slice(
+    const visibleSponsors = newSponsors.slice(
         Math.max(0, currentIndex - DISPLAY_COUNT + 1),
         currentIndex + 1
     );

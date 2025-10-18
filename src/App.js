@@ -30,6 +30,7 @@ import AdminPostImageAddPage from './pages/admin/AdminPostImageAddPage';
 import AdminMonthlySelectedPage from './pages/admin/AdminMonthlySelectedPage';
 import MomentsPage from './pages/MomentsPage';
 import CertificatePage from './pages/CertificatePage';
+import LinkGraphPage from './pages/LinkGraphPage';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
         <Route path='/home' element={<HomePage />} />
         // FIXME: just for compatibility, please remove me later
         <Route path='/home/page/:page' element={<HomePage />} />
+        <Route path='/link-graphs' element={<LinkGraphPage />} />
         <Route path='/moments' element={<MomentsPage />} />
         <Route path='/monthly-selected' element={<MonthlySelectedPage />} />
         <Route path='/blogs' element={<BlogsPage />} />

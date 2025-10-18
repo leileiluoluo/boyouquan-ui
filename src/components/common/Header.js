@@ -22,7 +22,7 @@ export default function Header() {
                         <ScrollArea type="always" scrollbars="horizontal">
                             <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
-                                <TabNav.Link style={{ color: "rgb(203, 46, 88)" }} href="/moments" active={pathname === "/moments"}>随手一拍
+                                <TabNav.Link style={{ color: "rgb(203, 46, 88)" }} href="/link-graphs" active={pathname === "/link-graphs"}>连接系数
                                     <span
                                         style={{
                                             position: "absolute",
@@ -33,7 +33,9 @@ export default function Header() {
                                         }}
                                     >
                                         New
-                                    </span></TabNav.Link>
+                                    </span>
+                                </TabNav.Link>
+                                <TabNav.Link href="/moments" active={pathname === "/moments"}>随手一拍</TabNav.Link>
                                 <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
                                 <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
                                 <TabNav.Link asChild>

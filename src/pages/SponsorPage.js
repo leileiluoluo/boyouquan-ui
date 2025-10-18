@@ -56,7 +56,7 @@ const content = (
 
         <Text as="p" mb="2" mt="6">
             <Strong id="sponsor-list">
-                完整赞助名单（感谢您的赞助与接力，让博友圈运行至今！）：
+                完整赞助名单（感谢您的赞助与接力，让博友圈运行至今）：
             </Strong>
         </Text>
 

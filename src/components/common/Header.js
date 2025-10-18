@@ -13,15 +13,18 @@ export default function Header() {
         <Box style={{ marginBottom: "10px" }}>
             <Container size="3">
                 <Flex align="center" justify="between">
-                    <Box mt="1" width="30%">
+                    <Box mt="1" width="20%">
                         <Link href="/">
                             <img height="26px" src="/assets/images/sites/logo/logo.svg"></img>
                         </Link>
                     </Box>
-                    <Box mt="-2" width="70%">
+                    <Box mt="-2" width="80%">
                         <ScrollArea type="always" scrollbars="horizontal">
                             <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
+                                <TabNav.Link href="/moments" active={pathname === "/moments"}>随手一拍</TabNav.Link>
+                                <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
+                                <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
                                 <TabNav.Link style={{ color: "rgb(203, 46, 88)" }} href="/link-graphs" active={pathname === "/link-graphs"}>连接系数
                                     <span
                                         style={{
@@ -35,9 +38,6 @@ export default function Header() {
                                         New
                                     </span>
                                 </TabNav.Link>
-                                <TabNav.Link href="/moments" active={pathname === "/moments"}>随手一拍</TabNav.Link>
-                                <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
-                                <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
                                 <TabNav.Link asChild>
                                     <a href="/planet-shuttle" target="_blank" rel="noopener noreferrer">
                                         星球穿梭

@@ -175,7 +175,7 @@ export default function LinkGraphInput({
                     </Box>
                     <Box>
                         <Text size="2" mt="2" style={{ color: '#6B7280', fontSize: '12px' }}>
-                            * 该数据集每月采集一次，这个评率不会对您的博客造成太大的压力，当前数据集采集于 2025/11/18。
+                            * 该数据集每月采集一次，这个频率不会对您的博客造成太大的压力，当前数据集采集于 2025/11/18。
                         </Text>
                     </Box>
                     <Box>

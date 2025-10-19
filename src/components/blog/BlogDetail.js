@@ -9,6 +9,7 @@ import { Flex } from '@radix-ui/themes';
 
 const BlogPerformance = lazy(() => import('./BlogPerformance'));
 const BlogCharts = lazy(() => import('./BlogCharts'));
+const FriendBlogs = lazy(() => import('./FriendBlogs'));
 const RandomBlogs = lazy(() => import('./RandomBlogs'));
 const BlogPosts = lazy(() => import('./BlogPosts'));
 
@@ -66,6 +67,7 @@ export default function BlogDetail({ domain }) {
                             <BlogPerformance domainName={domain} collectedAt={blogDetail.collectedAt} />
                             <BlogCharts domain={domain} />
                             <BlogPosts domain={domain} rssAddress={blogDetail.rssAddress} blogStatusOk={blogDetail.statusOk} />
+                            <FriendBlogs domain={domain} />
                             <RandomBlogs domain={domain} />
                         </Suspense>
                     </Flex>

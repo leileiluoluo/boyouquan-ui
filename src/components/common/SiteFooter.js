@@ -24,7 +24,7 @@ export default function SiteFooter() {
 
                 <Separator size="4" my="2" />
 
-                <Box mt="4">
+                <Box mt="2">
                     <Flex gap="2" justify="center" align="center">
                         <DropdownMenu.Root>
                             <DropdownMenu.Trigger>
@@ -69,8 +69,8 @@ export default function SiteFooter() {
                         </Link>
                     </Flex>
                 </Box>
-                <Box mt="2">
-                    <Box align="center" mt="2">
+                <Box mt="4" mb="2">
+                    <Box align="center" mb="1">
                         <Link href="/planet-shuttle" target="_blank">
                             <LazyImg
                                 src="/assets/images/sites/logo/planet-shuttle.svg"

@@ -13,7 +13,7 @@ const RELEASE_INFO_V2_7 = {
         <p>「履约证书」用于展示一个博客在博友圈的履约情况，若从收录之日起到现在未有断更和闭站的情况，即认为该博客在与博友圈正常履约中；否则，会被认为单方面毁约。建立该页面的初衷是希望博友能以此督促自己不断更、不闭站，将博客好好写下去。</p>
         <p>用户可以从博客详情页点击履约进度条来查看对应博客的履约证书。</p>
 
-        <p>博客详情页点击履约进度条：</p>
+        <p>博客详情页履约进度条：</p>
         <p><img align="center" width="480px" border="1" src="/assets/images/sites/release_notes/v2.7/blog-detail-page.png" /></p>
 
         <p>履约证书：</p>
@@ -26,7 +26,7 @@ const RELEASE_INFO_V2_7 = {
         <p>连接系数页面：</p>
         <p><img align="center" width="480px" border="1" src="/assets/images/sites/release_notes/v2.7/link-graph-page.png" /></p>
 
-        <h4>2 代码标签</h4>
+        <h4>3 代码标签</h4>
         <p>博友圈前端：<a href="https://github.com/leileiluoluo/boyouquan-ui/releases/tag/v2.7">boyouquan-ui</a></p>
         <p>博友圈后端：<a href="https://github.com/leileiluoluo/boyouquan-api/releases/tag/v2.7">boyouquan-api</a></p>
     </>,

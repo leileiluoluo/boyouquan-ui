@@ -1,11 +1,12 @@
-import { Button, Container, Flex, Tooltip } from '@radix-ui/themes';
+import { Button, Flex, Tooltip } from '@radix-ui/themes';
 import { useState, useEffect } from 'react';
-import blogNameAndDomainNameList from '../../json/blogNameAndDomainNameList.json';
 import LinkGraphNotes from './LinkGraphNotes';
 import LinkGraphBlogInput from './LinkGraphBlogInput';
-import { ArrowUpDown, Replace, Shuffle, ShuffleIcon } from 'lucide-react';
+import { ArrowUpDown } from 'lucide-react';
 
 export default function LinkGraphInput({
+    allSourceBlogs,
+    allTargetBlogs,
     sourceDomainName,
     targetDomainName,
     setSourceDomainName,
@@ -22,11 +23,18 @@ export default function LinkGraphInput({
         setTarget(targetDomainName);
     }, [sourceDomainName, targetDomainName]);
 
-    const handleInputChange = (value, setValue, setSuggestions) => {
+    const handleInputChange = (type, value, setValue, setSuggestions) => {
         setValue(value);
         if (!value) {
             setSuggestions([]);
             return;
+        }
+
+        let blogNameAndDomainNameList = [];
+        if (type === 'source') {
+            blogNameAndDomainNameList = allSourceBlogs;
+        } else if (type === 'target') {
+            blogNameAndDomainNameList = allTargetBlogs;
         }
 
         const filtered = blogNameAndDomainNameList
@@ -35,7 +43,11 @@ export default function LinkGraphInput({
                     item.blogName.toLowerCase().includes(value.toLowerCase()) ||
                     item.domainName.toLowerCase().includes(value.toLowerCase())
             )
-            .map(item => ({ display: `${item.blogName} - ${item.domainName}`, value: item.domainName }));
+            .map(item => ({
+                display: `${item.blogName} - ${item.domainName}`,
+                blogName: item.blogName,
+                value: item.domainName
+            }));
 
         setSuggestions(filtered);
     };
@@ -62,6 +74,7 @@ export default function LinkGraphInput({
         <Flex gap="1" direction="column">
             <Flex justify="between" gap="2" align="center">
                 <LinkGraphBlogInput
+                    type="source"
                     placeholder="源博客域名或名称"
                     value={source}
                     setValue={setSource}
@@ -75,6 +88,7 @@ export default function LinkGraphInput({
                 </Tooltip>
 
                 <LinkGraphBlogInput
+                    type="target"
                     placeholder="目的博客域名或名称"
                     value={target}
                     setValue={setTarget}

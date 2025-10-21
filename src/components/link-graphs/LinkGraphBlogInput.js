@@ -1,13 +1,13 @@
 import { Box, DataList, Flex, TextField, Card, ScrollArea, Text } from '@radix-ui/themes';
 
-export default function LinkGraphBlogInput({ placeholder, value, setValue, suggestions, setSuggestions, handleInputChange, handleSelectSuggestion }) {
+export default function LinkGraphBlogInput({ type, placeholder, value, setValue, suggestions, setSuggestions, handleInputChange, handleSelectSuggestion }) {
     return (
         <Flex width="100%" direction="column" gap="1">
             <Box>
                 <TextField.Root
                     style={{ fontSize: '12px' }}
                     value={value}
-                    onChange={e => handleInputChange(e.target.value, setValue, setSuggestions)}
+                    onChange={e => handleInputChange(type, e.target.value, setValue, setSuggestions)}
                     placeholder={placeholder}
                 />
             </Box>
@@ -23,7 +23,12 @@ export default function LinkGraphBlogInput({ placeholder, value, setValue, sugge
                                             <DataList.Item
                                                 key={index}
                                                 onClick={() => handleSelectSuggestion(suggestion.value, setValue, setSuggestions)}>
-                                                <DataList.Value><Text size="1">{suggestion.display}</Text></DataList.Value>
+                                                <DataList.Value>
+                                                    <Flex justify="end" gap="2">
+                                                        <Text size="1" color="blue">{suggestion.blogName}</Text>
+                                                        <Text size="1" color="amber">{suggestion.value}</Text>
+                                                    </Flex>
+                                                </DataList.Value>
                                             </DataList.Item>
                                         ))
                                     }

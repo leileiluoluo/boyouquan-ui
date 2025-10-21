@@ -2,7 +2,7 @@ import { Box, Flex, Link, Text } from '@radix-ui/themes';
 
 export default function LinkGraphNotes() {
     return (
-        <Flex direction="column" mt="4" gap="1">
+        <Flex direction="column" mt="2">
             <Box>
                 <Text size="1" color="gray">
                     * 友链数据从博客首页中含有「Link」、「友链」、「圈子」、「关于」等字样的内部页面抓取。

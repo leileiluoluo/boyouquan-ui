@@ -128,18 +128,22 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
         </Box>
 
         {
-          !sourceDomainName || !targetDomainName || searching ?
+          !sourceDomainName || !targetDomainName ?
             <Box>
-              <img src="/assets/images/sites/link-graph/spherical_network_25_nodes.svg" alt="No Data" style={{ width: '300px', marginTop: '40px' }} />
-            </Box> :
-            <ScrollArea type="always" ref={scrollRef} scrollbars="horizontal" style={{ width: '100%', overflowX: 'auto' }}>
-              <LinkGraphRelationResult
-                contentWidth={contentWidth}
-                lines={lines}
-                nodes={nodes}
-                svgRef={svgRef}
-                nodeRefs={nodeRefs} />
-            </ScrollArea>
+              <img src="/assets/images/sites/link-graph/spherical_network_25_nodes_static.svg" alt="No Data" style={{ width: '300px', marginTop: '40px' }} />
+            </Box>
+            : searching ?
+              <Box>
+                <img src="/assets/images/sites/link-graph/spherical_network_25_nodes.svg" alt="Searching" style={{ width: '300px', marginTop: '40px' }} />
+              </Box> :
+              <ScrollArea type="always" ref={scrollRef} scrollbars="horizontal" style={{ width: '100%', overflowX: 'auto' }}>
+                <LinkGraphRelationResult
+                  contentWidth={contentWidth}
+                  lines={lines}
+                  nodes={nodes}
+                  svgRef={svgRef}
+                  nodeRefs={nodeRefs} />
+              </ScrollArea>
         }
       </Flex>
     </Card>

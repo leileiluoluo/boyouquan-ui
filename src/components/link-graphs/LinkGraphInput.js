@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import LinkGraphNotes from './LinkGraphNotes';
 import LinkGraphBlogInput from './LinkGraphBlogInput';
 import { ArrowUpDown } from 'lucide-react';
+import GlobalDialog from '../common/dialog/GlobalDialog';
+import { tr } from 'framer-motion/client';
 
 export default function LinkGraphInput({
     allSourceBlogs,
@@ -13,6 +15,8 @@ export default function LinkGraphInput({
     setTargetDomainName,
     loading
 }) {
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [error, setError] = useState({ code: '', message: '' });
     const [source, setSource] = useState(sourceDomainName);
     const [target, setTarget] = useState(targetDomainName);
     const [sourceSuggestions, setSourceSuggestions] = useState([]);
@@ -63,7 +67,8 @@ export default function LinkGraphInput({
 
     const handleSubmit = () => {
         if (!source || !target) {
-            alert('请填写源站和目的站');
+            setError({ code: 'params_invalid', message: '请填写源博客和目的博客地址' });
+            setDialogOpen(true);
             return;
         }
         setSourceDomainName(source);
@@ -105,6 +110,15 @@ export default function LinkGraphInput({
                 </Button>
             </Flex>
             <LinkGraphNotes />
+
+            <GlobalDialog
+                title={'' != error.code ? '错误提示' : '提示'}
+                titleColor={'' != error.code ? 'crimson' : ''}
+                message={error.message}
+                closeButtonName={'' != error.code ? '返回' : '关闭窗口'}
+                dialogOpen={dialogOpen}
+                setDialogOpen={setDialogOpen}
+            />
         </Flex>
     );
 }

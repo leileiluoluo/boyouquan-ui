@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Skeleton, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 import RequestUtil from '../../utils/APIRequestUtil';
 import PopularBlog from './PopularBlog';
 import HomePopularBlogsHeaderFallBack from './HomePopularBlogsHeaderFallback';
@@ -31,9 +31,11 @@ export default function HomePopularBlogsHeader() {
             {
                 blogs.map(
                     (blog, index) => (
-                        <PopularBlog key={index}
-                            name={blog.name}
-                            domainName={blog.domainName}
+                        <PopularBlog 
+                            key={index}
+                            type={blog.type}
+                            name={blog.blogName}
+                            domainName={blog.blogDomainName}
                             blogAdminLargeImageURL={blog.blogAdminLargeImageURL} />
                     )
                 )

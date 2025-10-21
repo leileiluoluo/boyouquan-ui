@@ -1,8 +1,9 @@
-import { Button, Container } from '@radix-ui/themes';
+import { Button, Container, Flex, Tooltip } from '@radix-ui/themes';
 import { useState, useEffect } from 'react';
 import blogNameAndDomainNameList from '../../json/blogNameAndDomainNameList.json';
 import LinkGraphNotes from './LinkGraphNotes';
 import LinkGraphBlogInput from './LinkGraphBlogInput';
+import { ArrowUpDown, Replace, Shuffle, ShuffleIcon } from 'lucide-react';
 
 export default function LinkGraphInput({
     sourceDomainName,
@@ -44,6 +45,10 @@ export default function LinkGraphInput({
         setSuggestions([]);
     };
 
+    const handleSwap = () => {
+        [setSourceDomainName(target), setTargetDomainName(source)];
+    };
+
     const handleSubmit = () => {
         if (!source || !target) {
             alert('请填写源站和目的站');
@@ -54,49 +59,38 @@ export default function LinkGraphInput({
     };
 
     return (
-        <Container size="2">
-            <div
-                style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '16px',
-                    alignItems: 'flex-end',
-                }}
-            >
-                {/* 源博客输入 */}
+        <Flex gap="1" direction="column">
+            <Flex justify="between" gap="2" align="center">
                 <LinkGraphBlogInput
-                    source={source}
-                    sourceSuggestions={sourceSuggestions}
+                    placeholder="源博客域名或名称"
+                    value={source}
+                    setValue={setSource}
+                    suggestions={sourceSuggestions}
+                    setSuggestions={setSourceSuggestions}
                     handleInputChange={handleInputChange}
                     handleSelectSuggestion={handleSelectSuggestion} />
 
-                {/* 目的博客输入 */}
+                <Tooltip content="对调">
+                    <ArrowUpDown style={{ transform: 'rotate(90deg)' }} onClick={handleSwap} />
+                </Tooltip>
+
                 <LinkGraphBlogInput
-                    source={target}
-                    sourceSuggestions={targetSuggestions}
+                    placeholder="目的博客域名或名称"
+                    value={target}
+                    setValue={setTarget}
+                    suggestions={targetSuggestions}
+                    setSuggestions={setTargetSuggestions}
                     handleInputChange={handleInputChange}
                     handleSelectSuggestion={handleSelectSuggestion} />
 
-                {/* 确定按钮 */}
-                <div style={{ flex: '0 0 auto' }}>
-                    <Button
-                        onClick={handleSubmit}
-                        disabled={loading}
-                        style={{
-                            padding: '10px 20px',
-                            backgroundColor: loading ? '#A5B4FC' : '#4f46e5',
-                            color: '#fff',
-                            border: 'none',
-                            borderRadius: '6px',
-                            cursor: loading ? 'not-allowed' : 'pointer',
-                        }}
-                    >
-                        确定
-                    </Button>
-
-                    <LinkGraphNotes />
-                </div>
-            </div>
-        </Container>
+                <Button
+                    size="2"
+                    onClick={handleSubmit}
+                    disabled={loading}>
+                    探索
+                </Button>
+            </Flex>
+            <LinkGraphNotes />
+        </Flex>
     );
 }

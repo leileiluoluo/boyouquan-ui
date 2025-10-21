@@ -26,7 +26,7 @@ export default function LinkGraphPage() {
                 <Box>
                     <Container size="2">
                         <Flex direction="column" gap="4">
-                            <MainContentHeader content='一个友链连向另一个友链，形成了友链的海洋。欢迎使用「连接系数」来探索您与其他博友的连接系数！' />
+                            <MainContentHeader content='一个友链连向另一个友链，形成了友链的海洋。您与另一位博友的「赛博距离」有多远？欢迎使用「连接系数」来探索博友间的连接度！' />
                             <LinkGraphInput
                                 sourceDomainName={sourceDomainName}
                                 targetDomainName={targetDomainName}

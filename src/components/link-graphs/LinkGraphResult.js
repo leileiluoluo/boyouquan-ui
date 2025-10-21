@@ -22,6 +22,7 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
 
   const fetchData = async () => {
     if (!sourceDomainName || !targetDomainName) return;
+
     setLoading(true);
     setSearching(true);
     setPath([]);

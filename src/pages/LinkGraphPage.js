@@ -8,6 +8,7 @@ import MainContentHeader from '../components/common/MainContentHeader';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../utils/APIRequestUtil';
 import { getURLParameter } from '../utils/CommonUtil';
+import LinkGraphLatestSearch from '../components/link-graphs/LinkGraphLatestSearch';
 
 const meta = {
     title: "连接系数 - 博友圈 · 博客人的朋友圈！",
@@ -62,6 +63,7 @@ export default function LinkGraphPage() {
                                 setTargetDomainName={setTargetDomainName}
                                 loading={loading}
                             />
+                            <LinkGraphLatestSearch />
                             <LinkGraphResult
                                 sourceDomainName={sourceDomainName}
                                 targetDomainName={targetDomainName}

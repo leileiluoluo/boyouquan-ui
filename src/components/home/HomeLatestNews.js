@@ -3,7 +3,7 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import { SpeakerLoudIcon } from '@radix-ui/react-icons';
 
 export default function HomeLatestNews() {
-    let animationControlStyle = { '--s': 4 };
+    const [size, setSize] = useState(0);
     const [display, setDisplay] = useState(false);
     const [items, setItems] = useState([]);
 
@@ -13,7 +13,7 @@ export default function HomeLatestNews() {
         if (resp.status == 200 && respBody.length > 0) {
             const first = respBody[0];
             respBody.push(first);
-            animationControlStyle = { '--s': respBody.length - 1 }
+            setSize(respBody.length - 1);
             setItems(respBody);
             setDisplay(true);
         }
@@ -31,7 +31,7 @@ export default function HomeLatestNews() {
                 </div>
                 <div className="content">
                     {
-                        display ? <ul style={animationControlStyle}>
+                        display && <ul style={{ '--s': size }}>
                             {
                                 items.map(
                                     (item, index) => (
@@ -39,7 +39,7 @@ export default function HomeLatestNews() {
                                     )
                                 )
                             }
-                        </ul> : ''
+                        </ul>
                     }
                 </div>
             </div>

@@ -1,23 +1,29 @@
-import { useEffect, useState } from 'react';
-import { TextField, IconButton } from '@radix-ui/themes';
+import { useState } from 'react';
+import { Flex, Box, Button, TextField, IconButton } from '@radix-ui/themes';
 import { MagnifyingGlassIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
 import { useNavigate } from 'react-router-dom';
 
 export default function SearchBox({ placeholder, gotoPage, sortType }) {
     const keyword = getURLParameter('keyword');
-    const [searchTerm, setSearchTerm] = useState(null !== keyword ? keyword : '');
+    const [searchTerm, setSearchTerm] = useState(keyword ?? '');
     const navigate = useNavigate();
 
-    const handleSearch = (e) => {
-        if (e.key === 'Enter' && searchTerm.trim()) {
-            const keyword = searchTerm.trim();
+    const doSearch = () => {
+        const trimmed = searchTerm.trim();
+        if (!trimmed) return;
 
-            let goTo = (null != sortType)
-                ? `${gotoPage}?sort=${sortType}&keyword=${encodeURIComponent(keyword)}`
-                : `${gotoPage}?keyword=${encodeURIComponent(keyword)}`;
+        const goTo =
+            sortType != null
+                ? `${gotoPage}?sort=${sortType}&keyword=${encodeURIComponent(trimmed)}`
+                : `${gotoPage}?keyword=${encodeURIComponent(trimmed)}`;
 
-            redirectTo(goTo);
+        redirectTo(goTo);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            doSearch();
         }
     };
 
@@ -27,19 +33,31 @@ export default function SearchBox({ placeholder, gotoPage, sortType }) {
     };
 
     return (
-        <TextField.Root
-            placeholder={placeholder}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={handleSearch}>
-            <TextField.Slot>
-                <MagnifyingGlassIcon />
-            </TextField.Slot>
-            <TextField.Slot>
-                <IconButton size="1" variant="ghost" onClick={clearSearch}>
-                    <Cross2Icon />
-                </IconButton>
-            </TextField.Slot>
-        </TextField.Root>
-    )
+        <Flex align="center" justify="start" gap="8px" width="100%">
+            <Box flexGrow="1">
+                <TextField.Root
+                    placeholder={placeholder}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    style={{ width: '100%' }}
+                >
+                    <TextField.Slot>
+                        <MagnifyingGlassIcon />
+                    </TextField.Slot>
+                    <TextField.Slot>
+                        <IconButton size="1" variant="ghost" onClick={clearSearch}>
+                            <Cross2Icon />
+                        </IconButton>
+                    </TextField.Slot>
+                </TextField.Root>
+            </Box>
+
+            <Box>
+                <Button type="button" onClick={doSearch}>
+                    搜索
+                </Button>
+            </Box>
+        </Flex>
+    );
 }

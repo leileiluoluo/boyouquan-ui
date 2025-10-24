@@ -143,8 +143,8 @@ const content = (
         <Text as='p' mb="2">
             <Strong>
                 除了个人赞助以外，博友圈还愿意承接一些跟博客或站长相关的、不影响用户体验的、内容健康的广告内容，若您有合作意向，请联系：
-                <Link href="mailto:contact@boyouquan.com?subject=广告合作&amp;body=合作说明：%0d%0a">
-                    contact@boyouquan.com
+                <Link href="mailto:support@boyouquan.com?subject=广告合作&amp;body=合作说明：%0d%0a">
+                    support@boyouquan.com
                 </Link>
                 。</Strong>
         </Text>

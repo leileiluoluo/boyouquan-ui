@@ -33,8 +33,8 @@ const content = <>
     <p>确认满足如上要求并承诺十年不闭站后，可以通过点击导航栏「<a href="https://www.boyouquan.com/blog-requests/add/email-validation">提交博客</a>」按钮来填写申请表单，提交后一般在 24 小时内会得到审核，审核通过或未通过都会收到邮件提醒。</p>
 
     <h4 id="del-link">修改博客</h4>
-    <p>若您因域名更换、站点重建等各种原因，想对已收录的博客信息进行修改，请使用能证明您是博客所有者的邮箱「<a href="mailto:contact@boyouquan.com?subject=博客信息修改&amp;body=博客地址：%0d%0a需要修改的信息：%0d%0a">给我们发送邮件</a>」，信息修改成功后会收到邮件通知！</p>
-    <p>若您因任何原因，不想自己的博客被博友圈收录，也可以「<a href="mailto:contact@boyouquan.com?subject=博客删除申请&amp;body=博客地址：%0d%0a原因：%0d%0a">联系我们</a>」进行删除，博客删除成功后也会收到邮件通知！</p>
+    <p>若您因域名更换、站点重建等各种原因，想对已收录的博客信息进行修改，请使用能证明您是博客所有者的邮箱「<a href="mailto:support@boyouquan.com?subject=博客信息修改&amp;body=博客地址：%0d%0a需要修改的信息：%0d%0a">给我们发送邮件</a>」，信息修改成功后会收到邮件通知！</p>
+    <p>若您因任何原因，不想自己的博客被博友圈收录，也可以「<a href="mailto:support@boyouquan.com?subject=博客删除申请&amp;body=博客地址：%0d%0a原因：%0d%0a">联系我们</a>」进行删除，博客删除成功后也会收到邮件通知！</p>
 
     <h4 id="add-link">添加链接</h4>
     <p>希望您在收到博客通过审核的邮件通知后，将博友圈链接添加到您博客的适当位置，以让更多的博客人发现我们这个圈子！</p>
@@ -118,7 +118,7 @@ const content = <>
     <h4 id="contact-admin">联系站长</h4>
     <p>若您有关于本站的任何问题，请使用如下方式与我们联系！</p>
     <ul>
-        <li>邮箱地址：<a href="mailto:contact@boyouquan.com">contact@boyouquan.com</a></li>
+        <li>邮箱地址：<a href="mailto:support@boyouquan.com">support@boyouquan.com</a></li>
     </ul>
 
     <p>最后，愿独立博客可以走得更远！</p>

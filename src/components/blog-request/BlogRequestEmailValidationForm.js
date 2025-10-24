@@ -44,7 +44,7 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                         <Box mt="2">
                             {
                                 isAdminPage ? '' : <Text size="2" style={noticeStyle}>
-                                    <Link href="mailto:contact@boyouquan.com?subject=验证邮箱时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">收不到验证码？我要联系站长！</Link>
+                                    <Link href="mailto:support@boyouquan.com?subject=验证邮箱时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">收不到验证码？我要联系站长！</Link>
                                 </Text>
                             }
                         </Box>

@@ -31,7 +31,7 @@ export default function LoginForm({ formData, error, handleChange, handleSubmit 
                         </Box>
 
                         <Box mt="2">
-                            <Button style={{ fontSize: '12px' }} type="submit" onClick={handleSubmit}>登录</Button>
+                            <Button type="submit" onClick={handleSubmit}>登录</Button>
                         </Box>
                     </Flex>
                 </Form>

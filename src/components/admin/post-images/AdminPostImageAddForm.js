@@ -2,8 +2,6 @@ import { Card, Box, Button, Flex, Text, TextField, Heading, TextArea, Link, Radi
 import { Form } from '@radix-ui/react-form';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 
-const inputFontSizeStyle = { fontSize: '12px' };
-
 export default function AdminPostImageAddForm({ postInfo, postImages, formData, error, handleChange, handleSubmit, isAdminPage }) {
     return (
         <>
@@ -22,7 +20,7 @@ export default function AdminPostImageAddForm({ postInfo, postImages, formData, 
                             </Flex>
 
                             <Box mt="2">
-                                <TextField.Root style={inputFontSizeStyle} value={postInfo.title} readOnly />
+                                <TextField.Root value={postInfo.title} readOnly />
                             </Box>
                         </Box>
 
@@ -62,12 +60,12 @@ export default function AdminPostImageAddForm({ postInfo, postImages, formData, 
                             </Flex>
 
                             <Box mt="2">
-                                <TextField.Root style={inputFontSizeStyle} name="customImageURL" value={formData.customImageURL} onChange={handleChange} />
+                                <TextField.Root name="customImageURL" value={formData.customImageURL} onChange={handleChange} />
                             </Box>
                         </Box>
 
                         <Box mt="2">
-                            <Button type="submit" style={{ fontSize: '12px' }}>提交</Button>
+                            <Button type="submit">提交</Button>
                         </Box>
                     </Flex>
                 </Form>

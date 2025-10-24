@@ -111,7 +111,7 @@ export default function CancelSubscription() {
 
                             <Box>
                                 <Text size="2">您的邮箱：</Text>
-                                <TextField.Root mt="2" style={{ fontSize: '12px' }} value={email} readOnly />
+                                <TextField.Root mt="2" value={email} readOnly />
                             </Box>
 
                             <Box>
@@ -127,7 +127,7 @@ export default function CancelSubscription() {
                             <Text mt="2" size="2">请勾选需要取消的频道，然后点击提交！</Text>
 
                             <Box mt="2">
-                                <Button style={{ fontSize: '12px' }} onClick={handleSubmit}>取消订阅</Button>
+                                <Button onClick={handleSubmit}>取消订阅</Button>
                             </Box>
                         </Flex>
                     </Form>

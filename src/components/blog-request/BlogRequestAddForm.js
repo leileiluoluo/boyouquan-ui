@@ -1,7 +1,6 @@
 import { Card, Box, Button, Flex, Text, TextField, Heading, TextArea, Link, Radio } from '@radix-ui/themes';
 import { Form } from '@radix-ui/react-form';
 
-const inputFontSizeStyle = { fontSize: '12px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
 
 export default function BlogRequestAddForm({ formData, error, handleChange, handleSubmit, isAdminPage }) {
@@ -23,8 +22,8 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
 
                             <Box mt="2">
                                 {
-                                    isAdminPage ? <TextField.Root style={{ fontSize: '12px' }} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
-                                        : <TextField.Root style={{ fontSize: '12px' }} name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} disabled />
+                                    isAdminPage ? <TextField.Root name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
+                                        : <TextField.Root name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} disabled />
                                 }
                             </Box>
                         </Box>
@@ -36,7 +35,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                             </Flex>
 
                             <Box mt="2">
-                                <TextField.Root style={inputFontSizeStyle} name="name" placeholder="您的博客名称" id="name" value={formData.name} onChange={handleChange} />
+                                <TextField.Root name="name" placeholder="您的博客名称" id="name" value={formData.name} onChange={handleChange} />
                             </Box>
                         </Box>
 
@@ -47,7 +46,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                             </Flex>
 
                             <Box mt="2">
-                                <TextField.Root style={inputFontSizeStyle} name="rssAddress" placeholder="用于抓取文章" id="rssAddress" value={formData.rssAddress} onChange={handleChange} />
+                                <TextField.Root name="rssAddress" placeholder="用于抓取文章" id="rssAddress" value={formData.rssAddress} onChange={handleChange} />
                             </Box>
                         </Box>
 
@@ -58,7 +57,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                             </Flex>
 
                             <Box mt="2">
-                                <TextArea size="1" style={inputFontSizeStyle} name="description" placeholder="描述一下您的博客，建议 100 字以内" id="description" value={formData.description} onChange={handleChange} />
+                                <TextArea size="2" name="description" placeholder="描述一下您的博客，建议 100 字以内" id="description" value={formData.description} onChange={handleChange} />
                             </Box>
                         </Box>
 
@@ -66,7 +65,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                             <Flex gap="2" align="center">
                                 <Flex asChild>
                                     <Text as="label" size="2">
-                                        <Radio size="1" name="promise" value={formData.promise} onChange={handleChange} />
+                                        <Radio size="2" name="promise" value={formData.promise} onChange={handleChange} />
                                         「我承诺十年不停更，十年不闭站」
                                     </Text>
                                 </Flex>
@@ -75,7 +74,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                         </Box>
 
                         <Box mt="2">
-                            <Button type="submit" style={{ fontSize: '12px' }}>提交</Button>
+                            <Button type="submit">提交</Button>
                         </Box>
 
                         <Box mt="2">

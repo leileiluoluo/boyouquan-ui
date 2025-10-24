@@ -1,4 +1,4 @@
-import { Box, Flex, TextField, TextArea, Text, Button, Link, Avatar } from '@radix-ui/themes';
+import { Box, Flex, TextField, TextArea, Text, Button, Link, Avatar, Tooltip } from '@radix-ui/themes';
 import { Form } from '@radix-ui/react-form';
 import { CheckboxIcon, ImageIcon, Link1Icon } from '@radix-ui/react-icons';
 import { useEffect, useRef, useState } from 'react';
@@ -209,7 +209,9 @@ export default function MomentsInput() {
                                                 style={{ display: 'none' }}
                                                 onChange={handleFileChange}
                                             />
-                                            <Link><ImageIcon style={{ width: '20px', height: '20px' }} onClick={handleIconClick} /></Link>
+                                            <Tooltip content="请上传一张图片" side="top">
+                                                <Link><ImageIcon style={{ width: '20px', height: '20px' }} onClick={handleIconClick} /></Link>
+                                            </Tooltip>
                                         </Box>
                                         <Box>
                                             {

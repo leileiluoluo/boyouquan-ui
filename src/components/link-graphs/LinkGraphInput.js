@@ -67,7 +67,7 @@ export default function LinkGraphInput({
 
     const handleSubmit = () => {
         if (!source || !target) {
-            setError({ code: 'params_invalid', message: '请填写源博客和目的博客地址' });
+            setError({ code: 'params_invalid', message: '请填写源博客和目的博客域名' });
             setDialogOpen(true);
             return;
         }

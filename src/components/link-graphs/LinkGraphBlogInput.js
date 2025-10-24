@@ -5,7 +5,6 @@ export default function LinkGraphBlogInput({ type, placeholder, value, setValue,
         <Flex width="100%" direction="column" gap="1">
             <Box>
                 <TextField.Root
-                    style={{ fontSize: '12px' }}
                     value={value}
                     onChange={e => handleInputChange(type, e.target.value, setValue, setSuggestions)}
                     placeholder={placeholder}

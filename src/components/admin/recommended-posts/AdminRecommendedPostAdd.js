@@ -62,7 +62,7 @@ export default function AdminRecommendedPostAdd() {
                     </Box>
 
                     <Box mt="2">
-                        <Button style={{ fontSize: '12px' }} type="submit" onClick={recommend}>提交</Button>
+                        <Button type="submit" onClick={recommend}>提交</Button>
                     </Box>
                 </Flex>
             </Form>

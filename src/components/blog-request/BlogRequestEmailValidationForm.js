@@ -1,7 +1,6 @@
 import { Form } from '@radix-ui/react-form';
 import { Card, Box, Button, Flex, Text, TextField, Heading, Link } from '@radix-ui/themes';
 
-const inputFontSizeStyle = { fontSize: '12px' };
 const noticeStyle = { marginTop: '18px', fontSize: '12px' };
 
 export default function BlogRequestEmailValidationForm({ formData, error, adminEmailInputRef, sendCodeInputRef, emailValidationCodeInputRef, emailValidationButtonRef, handleChange, handleValidationButtonClick, handleSubmit, isAdminPage }) {
@@ -21,11 +20,11 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                                 <Text size="2" color="red">{error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_limit_exceed' ? error.message : ''}</Text>
                             </Flex>
 
-                            <TextField.Root mt="2" style={inputFontSizeStyle} ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
+                            <TextField.Root mt="2" ref={adminEmailInputRef} name="adminEmail" placeholder="博主身份凭据，用于鉴定博客拥有权、展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
                         </Box>
 
                         <Box mt="2">
-                            <Button style={{ fontSize: '12px' }} type="button" ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</Button>
+                            <Button type="button" ref={sendCodeInputRef} onClick={handleValidationButtonClick} >发送验证码</Button>
                         </Box>
 
                         <Box mt="2" ref={emailValidationCodeInputRef} style={{ display: "none" }}>
@@ -34,11 +33,11 @@ export default function BlogRequestEmailValidationForm({ formData, error, adminE
                                 <Text size="2" color="red">{error.code == 'blog_request_email_validation_code_invalid' ? error.message : ''}</Text>
                             </Flex>
 
-                            <TextField.Root mt="2" type="number" style={inputFontSizeStyle} name="emailVerificationCode" placeholder="上述邮箱收到的 6 位验证码" id="emailVerificationCode" value={formData.emailVerificationCode} onChange={handleChange} />
+                            <TextField.Root mt="2" type="number" name="emailVerificationCode" placeholder="上述邮箱收到的 6 位验证码" id="emailVerificationCode" value={formData.emailVerificationCode} onChange={handleChange} />
                         </Box>
 
                         <Box mt="2" ref={emailValidationButtonRef} style={{ display: "none" }}>
-                            <Button style={{ fontSize: '12px' }} type="submit" onClick={handleSubmit}>验证</Button>
+                            <Button type="submit" onClick={handleSubmit}>验证</Button>
                         </Box>
 
                         <Box mt="2">

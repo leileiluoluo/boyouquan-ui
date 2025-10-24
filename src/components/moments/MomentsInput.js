@@ -184,19 +184,19 @@ export default function MomentsInput() {
                                     />
                             }
                             {
-                                blogInfo ? <Link size="1">{blogInfo.name}</Link> :
-                                    <Text size="1">匿名用户</Text>
+                                blogInfo ? <Link size="2">{blogInfo.name}</Link> :
+                                    <Text size="2">匿名用户</Text>
                             }
                         </Flex>
                     </Box>
                     <Box width="100%">
                         <Flex gap="2" direction="column">
                             <Box>
-                                <TextField.Root style={{ fontSize: '12px' }} name="email" placeholder="请输入邮箱" id="email" ref={emailInputRef} onFocus={handleEmailChange} onInput={handleEmailChange} onChange={handleEmailChange} autoComplete="email" value={email} />
+                                <TextField.Root name="email" placeholder="请输入邮箱" id="email" ref={emailInputRef} onFocus={handleEmailChange} onInput={handleEmailChange} onChange={handleEmailChange} autoComplete="email" value={email} />
                             </Box>
 
                             <Box>
-                                <TextArea size="1" style={{ fontSize: '12px' }} name="description" placeholder="请写一段话 ..." id="description" onChange={handleChange} />
+                                <TextArea size="2" name="description" placeholder="请写一段话 ..." id="description" onChange={handleChange} />
                             </Box>
 
                             <Flex justify="between">

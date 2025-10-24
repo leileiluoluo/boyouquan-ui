@@ -44,7 +44,6 @@ const fontStyle = { fontSize: '20px', textDecoration: 'none', WebkitBackgroundCl
 const marginStyle = { marginTop: '28px' };
 const fontSizeLargeStyle = { fontSize: '16px' };
 const blogDescriptionStyle = { fontSize: '14px', color: 'gray', marginTop: '20px', maxWidth: '460px' };
-const fontSizeStyle = { fontSize: '12px' };
 const animationStyle = { color: 'white', textDecoration: 'auto', animation: 'typing 0.7s infinite' };
 const colorWhiteStyle = { color: 'white' };
 const marginOneStyle = { margin: '1px 1px' };
@@ -104,7 +103,7 @@ export default function PlanetShuttlePage() {
                     }
                 </Box>
                 <Box style={marginStyle}>
-                    <span style={fontSizeStyle}>Copyright © 2023-2025 <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>博友圈</a></span>
+                    <span style={{ fontSize: '12px' }}>Copyright © 2023-2025 <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>博友圈</a></span>
                 </Box>
             </Box>
         </>

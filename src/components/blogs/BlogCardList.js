@@ -170,6 +170,26 @@ export default function BlogCardList() {
         );
     }
 
+    if (null !== keyword && '' !== keyword && 0 === total) {
+        return (
+            <Box className='blogs-container'>
+                <Box mt="5" mb="5" width="100%" height="100px" align="center">
+                    <Text size="2">
+                        未找到相关博客，试试更换关键词吧！
+                    </Text>
+                </Box>
+
+                <Box mt="3">
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+                </Box>
+            </Box>
+        );
+    }
+
     return (
         <Box className='blogs-container'>
             <Flex direction="column">

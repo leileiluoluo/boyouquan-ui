@@ -3,7 +3,7 @@ import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Box, Flex, Card, Skeleton } from '@radix-ui/themes';
+import { Box, Flex, Card, Skeleton, Text } from '@radix-ui/themes';
 
 export default function PostCardList({ sort, keyword, showPinned }) {
     const [pageNo, setPageNo] = useState(1);
@@ -73,6 +73,26 @@ export default function PostCardList({ sort, keyword, showPinned }) {
                     </Box>
                 </Flex>
             </Box >
+        );
+    }
+
+    if (null !== keyword && '' !== keyword && 0 === total) {
+        return (
+            <Box>
+                <Box mt="5" mb="5" width="100%" height="100px" align="center">
+                    <Text size="2">
+                        未找到相关文章，试试更换关键词吧！
+                    </Text>
+                </Box>
+
+                <Box>
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+                </Box>
+            </Box>
         );
     }
 

@@ -178,7 +178,7 @@ export default function CertificatePage() {
     const [certificateId, setCertificateId] = useState(
         `BYQ-${new Date().toISOString().slice(0, 4)}-${stringToSixDigitNumber(domainName)}`
     );
-    const [issueNumber, setIssueNumber] = useState(new Date().toISOString().slice(0, 10));
+    const [issueNumber, setIssueNumber] = useState(new Date().toISOString().slice(0, 10).replace(/-/g, '/'));
 
     const fetchData = async (domainName) => {
         const resp = await RequestUtil.get(`/api/blogs?domainName=${domainName}`);

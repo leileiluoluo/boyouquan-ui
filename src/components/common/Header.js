@@ -15,7 +15,7 @@ export default function Header() {
                 <Flex align="center" justify="between">
                     <Box mt="1" width="20%">
                         <Link href="/">
-                            <img height="26px" src="/assets/images/sites/logo/logo.svg"></img>
+                            <img height="30px" src="/assets/images/sites/logo/logo.png"></img>
                         </Link>
                     </Box>
                     <Box mt="-2" width="80%">

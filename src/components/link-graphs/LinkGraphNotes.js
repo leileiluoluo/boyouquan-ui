@@ -1,6 +1,26 @@
-import { Box, Flex, Link, Text } from '@radix-ui/themes';
+import { Box, Flex, Link, Skeleton, Text } from '@radix-ui/themes';
+import { useEffect, useState } from 'react';
+import RequestUtil from '../../utils/APIRequestUtil';
+import { formatDateStr } from '../../utils/DateUtil';
 
 export default function LinkGraphNotes() {
+    const [loading, setLoading] = useState(true);
+    const [datasetCreatedAt, setDatasetCreatedAt] = useState();
+
+    const fetchDatasetCreatedAt = async () => {
+        const resp = await RequestUtil.get(`/api/blog-intimacies/dataset-created-time`);
+
+        const respBody = await resp.json();
+        const createdAt = respBody.maxCreatedAt;
+        const maxCreatedAt = null === createdAt ? 'Unknown' : formatDateStr(createdAt, true);
+        setDatasetCreatedAt(maxCreatedAt);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchDatasetCreatedAt();
+    }, []);
+
     return (
         <Flex direction="column" mt="2">
             <Box>
@@ -10,7 +30,7 @@ export default function LinkGraphNotes() {
             </Box>
             <Box>
                 <Text size="1" color="gray">
-                    * 该数据集每月采集一次，这个频率不会对您的博客造成太大的压力，当前数据集采集于 2025/10/18。
+                    * 该数据集每月采集一次，这个频率不会对您的博客造成太大的压力，当前数据集采集于 {loading ? <Skeleton width="40px" height="12px" /> : datasetCreatedAt}。
                 </Text>
             </Box>
             <Box>

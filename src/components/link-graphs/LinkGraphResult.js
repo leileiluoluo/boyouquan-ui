@@ -10,6 +10,8 @@ function computeScore(newPath) {
 }
 
 export default function LinkGraphResult({ sourceDomainName, targetDomainName, setLoading }) {
+  const [sourceBlog, setSourceBlog] = useState({});
+  const [targetBlog, setTargetBlog] = useState({});
   const [path, setPath] = useState([]);
   const [lines, setLines] = useState([]);
   const [score, setScore] = useState(null);
@@ -35,6 +37,9 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
       );
       const respBody = await resp.json();
       const newPath = Array.isArray(respBody.path) ? respBody.path : [];
+
+      setSourceBlog(respBody.sourceBlog);
+      setTargetBlog(respBody.targetBlog);
       setPath(newPath);
       setScore(computeScore(newPath));
     } catch (err) {
@@ -122,8 +127,8 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
               : searching
                 ? '正在搜索源博客到目的博客的连接系数...'
                 : path.length === 0
-                  ? '源博客到目的博客的连接系数为 0'
-                  : `源博客到目的博客的连接系数为 ${score}`}
+                  ? `「${sourceBlog.name}」到「${targetBlog.name}」的连接系数为 0`
+                  : `「${sourceBlog.name}」到「${targetBlog.name}」的连接系数为 ${score}`}
           </Text>
         </Box>
 

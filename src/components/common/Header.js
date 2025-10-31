@@ -5,20 +5,22 @@ import { ScrollArea } from '@radix-ui/react-scroll-area';
 export default function Header() {
     const [pathname, setPathname] = useState('');
 
+    const siteNameStyle = { fontSize: '22px', fontWeight: 500, '-webkit-background-clip': 'text', '-webkit-text-fill-color': 'transparent', backgroundImage: 'linear-gradient(to right, rgba(205, 28, 87, 1), rgba(126, 9, 184, 1))' };
+
     useEffect(() => {
         setPathname(window.location.pathname);
     });
 
     return (
-        <Box style={{ marginBottom: "10px" }}>
+        <Box mt="-2" style={{ marginBottom: "10px" }}>
             <Container size="3">
                 <Flex align="center" justify="between">
                     <Box mt="1" width="20%">
-                        <Link href="/">
-                            <img height="30px" src="/assets/images/sites/logo/logo.png"></img>
+                        <Link href="/" style={siteNameStyle}>
+                            博友圈
                         </Link>
                     </Box>
-                    <Box mt="-2" width="80%">
+                    <Box width="80%">
                         <ScrollArea type="always" scrollbars="horizontal">
                             <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
                                 <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>

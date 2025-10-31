@@ -38,15 +38,11 @@ export default function App() {
       <Routes>
         <Route path='/' exact element={<Navigate to='/home' />} />
         <Route path='/home' element={<HomePage />} />
-        // FIXME: just for compatibility, please remove me later
-        <Route path='/home/page/:page' element={<HomePage />} />
         <Route path='/link-graphs' element={<LinkGraphPage />} />
         <Route path='/moments' element={<MomentsPage />} />
         <Route path='/monthly-selected' element={<MonthlySelectedPage />} />
         <Route path='/blogs' element={<BlogsPage />} />
         <Route path='/blogs/:domain' element={<BlogPage />} />
-        <Route path='/blogs/:domain/:sub' element={<BlogPage />} />
-        <Route path='/blogs/:domain/:sub/:subsub' element={<BlogPage />} />
         <Route path='/blog-requests' element={<BlogRequestsPage />} />
         <Route path='/blog-requests/add' element={<BlogRequestAddPage />} />
         <Route path='/blog-requests/add/email-validation' element={<BlogRequestEmailValidationPage />} />

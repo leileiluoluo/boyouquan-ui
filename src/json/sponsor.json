@@ -241,7 +241,7 @@
     },
     {
         "blogName": "CloseX",
-        "link": "/blogs/blog.closex.org/cn",
+        "link": "/blogs/blog.closex.org",
         "sponsoredAt": "2024/12/29",
         "sponsoredMoney": "9.99 元",
         "message": "CloseX 祝博友圈长长久久！",
@@ -521,7 +521,7 @@
     },
     {
         "blogName": "故事的程序猿",
-        "link": "/blogs/blog.lichenghao.cn/article",
+        "link": "/blogs/blog.lichenghao.cn",
         "sponsoredAt": "2025/07/08",
         "sponsoredMoney": "9.00 元",
         "message": "祝博友圈越来越好",

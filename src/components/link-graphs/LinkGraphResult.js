@@ -125,7 +125,7 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
             ? <Text size="2" color="gray">填入源博客域名和目的博客域名，然后检索源博客到目的博客的连接系数</Text>
             : searching
               ? <Text size="2" color="gray">正在搜索源博客到目的博客的连接系数...</Text>
-              : <Text size="2" color="gray">「<Link href={`/blogs/${sourceDomainName}`} target="_blank">{sourceBlog.name}</Link>」到「<Link href={`/blogs/${targetDomainName}`} target="_blank">{targetBlog.name}</Link>」的连接系数为 {path.length === 0 ? 0 : score} </Text>
+              : <Text size="2" color="gray">「<Link href={`/blogs/${sourceDomainName}`} color="blue" target="_blank">{sourceBlog.name}</Link>」到「<Link href={`/blogs/${targetDomainName}`} color="blue" target="_blank">{targetBlog.name}</Link>」的连接系数为 {path.length === 0 ? 0 : score} </Text>
           }
         </Box>
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Box, Card, Flex, ScrollArea, Text } from '@radix-ui/themes';
+import { Box, Card, Flex, Link, ScrollArea, Text } from '@radix-ui/themes';
 import LinkGraphRelationResult from './LinkGraphRelationResult';
 
 function computeScore(newPath) {
@@ -121,15 +121,12 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
     <Card>
       <Flex direction="column" align="center">
         <Box>
-          <Text size="2" color="gray">
-            {!sourceDomainName || !targetDomainName
-              ? '填入源博客域名和目的博客域名，然后检索源博客到目的博客的连接系数'
-              : searching
-                ? '正在搜索源博客到目的博客的连接系数...'
-                : path.length === 0
-                  ? `「${sourceBlog.name}」到「${targetBlog.name}」的连接系数为 0`
-                  : `「${sourceBlog.name}」到「${targetBlog.name}」的连接系数为 ${score}`}
-          </Text>
+          {!sourceDomainName || !targetDomainName
+            ? <Text size="2" color="gray">填入源博客域名和目的博客域名，然后检索源博客到目的博客的连接系数</Text>
+            : searching
+              ? <Text size="2" color="gray">正在搜索源博客到目的博客的连接系数...</Text>
+              : <Text size="2" color="gray">「<Link href={`/blogs/${sourceDomainName}`} target="_blank">{sourceBlog.name}</Link>」到「<Link href={`/blogs/${targetDomainName}`} target="_blank">{targetBlog.name}</Link>」的连接系数为 {path.length === 0 ? 0 : score} </Text>
+          }
         </Box>
 
         {

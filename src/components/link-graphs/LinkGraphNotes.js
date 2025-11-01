@@ -35,7 +35,7 @@ export default function LinkGraphNotes() {
             </Box>
             <Box>
                 <Text size="1" color="gray">
-                    * 若您不想您的友链数据被采集，可以「<Link href="mailto:support@boyouquan.com?subject=请将我移出友链抓取名单&body=我的博客地址：%0d%0a">联系站长</Link>」将您的博客加入免采集名单。
+                    * 若您不想您的友链数据被采集，可以「<Link color="indigo" href="mailto:support@boyouquan.com?subject=请将我移出友链抓取名单&body=我的博客地址：%0d%0a">联系站长</Link>」将您的博客加入免采集名单。
                 </Text>
             </Box>
         </Flex>

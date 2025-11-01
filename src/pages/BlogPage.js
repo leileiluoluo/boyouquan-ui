@@ -7,21 +7,10 @@ import RequestUtil from '../utils/APIRequestUtil';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const getDomain = () => {
-    let { domain, sub, subsub } = useParams();
-    if (undefined !== sub) {
-        domain += '/' + sub;
-    }
-    if (undefined !== subsub) {
-        domain += '/' + subsub;
-    }
-    return domain;
-}
-
 export default function BlogPage() {
     const [loaded, setLoaded] = useState(false);
 
-    const domain = getDomain();
+    const { domain } = useParams();
 
     const hasNewDomain = async (domain) => {
         const resp = await RequestUtil.get(`/api/new-domain-names?domainName=${domain}`);

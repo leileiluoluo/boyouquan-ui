@@ -4,6 +4,12 @@ import MonthlySelectedCard from './MonthlySelectedCard';
 import Pagination from '../pagination/Pagination';
 import { Box, Flex, Skeleton, Text, Heading, Grid, Card } from '@radix-ui/themes';
 
+function formatDateToChinese(dateStr) {
+    const [year, month] = dateStr.split('/');
+    const monthNum = parseInt(month, 10);
+    return `${year} 年 ${monthNum} 月精选`;
+}
+
 function countHasImageUsingFilter(items) {
     return items.filter(item => item.hasImage).length;
 }
@@ -53,7 +59,7 @@ export default function MonthlySelectedCardList() {
             <>
                 <Box id="monthly-selected-container">
                     <Box mb="2">
-                        <Skeleton><Text>2025/08</Text></Skeleton>
+                        <Skeleton><Text>2025 年 8 月精选</Text></Skeleton>
                     </Box>
                     <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
                         {
@@ -126,7 +132,7 @@ export default function MonthlySelectedCardList() {
         <>
             <Box id="monthly-selected-container">
                 <Box mb="2">
-                    <Heading size="3" weight="bold">{yearMonthStr}</Heading>
+                    <Heading size="3" weight="bold">{formatDateToChinese(yearMonthStr)}</Heading>
                 </Box>
 
                 <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">

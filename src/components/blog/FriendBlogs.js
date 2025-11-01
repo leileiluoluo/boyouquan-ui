@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Box, Text, Link, ScrollArea, Badge } from '@radix-ui/themes';
+import { Card, Flex, Box, Text, Link, ScrollArea, Badge, Tooltip } from '@radix-ui/themes';
 
 export default function FriendBlogs({ domain }) {
     const [linksFromMe, setLinksFromMe] = useState([]);
@@ -45,7 +45,9 @@ export default function FriendBlogs({ domain }) {
     return (
         <Card style={{ padding: 'var(--space-4)' }}>
             <Flex direction="column" gap="2">
-                <Text size="2" color="gray">连接系数</Text>
+                <Tooltip content="连接系数采集自博客的友链数据，每个月初更新一次">
+                    <Text size="2" color="gray">连接系数</Text>
+                </Tooltip>
                 <Flex direction="column" gap="2">
                     <Box>
                         <ScrollArea scrollbars="horizontal">

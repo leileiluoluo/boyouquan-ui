@@ -9,7 +9,7 @@ const DotenvWebpack = require('dotenv-webpack');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    entry: './src/index.js', // 入口文件
+    entry: './src/index.tsx', // 入口文件
     output: {
         path: path.resolve(__dirname, 'dist'), // 输出目录
         filename: '[name].[contenthash].js', // 输出文件名
@@ -38,9 +38,9 @@ module.exports = {
     },
     module: {
         rules: [
-            // JS/JSX
+            // TypeScript/TSX
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
                 use: 'babel-loader',
             },
@@ -70,9 +70,6 @@ module.exports = {
             },
         ],
     },
-    resolve: {
-        extensions: ['.js', '.jsx'],
-    },
     plugins: [
         new DotenvWebpack({
             path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env',
@@ -98,6 +95,6 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.js', '.jsx'], // 解析文件扩展名
+        extensions: ['.ts', '.tsx', '.js', '.jsx'], // 解析文件扩展名
     },
 };

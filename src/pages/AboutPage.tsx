@@ -92,7 +92,7 @@ const content = <>
 
     <h4 id="data-spider">数据采集</h4>
     <p>为了在本站聚合展示最新博文，本站会对已收录的博客定时进行数据采集，采集 URL 为博客的 RSS 地址，采集频率为 2 小时 1 次（一天 12 次），相信这样的频率不会对您的博客造成多大的压力。</p>
-    <p>此外，「<a href="/link-graphs">连接系数</a>」页面的博友连接度基于博客的友链数据来计算。该数据集每月采集一次，这个频率更不会对您的博客造成压力。</p>
+    <p>此外，「<a href="/link-graphs">连接系数</a>」页面的博友连接度基于博客的友链数据来计算。该数据集每周采集一次，这个频率更不会对您的博客造成任何压力。</p>
     <p>标识请求来源为本站的 <code>User-Agent</code> 信息如下：</p>
     <ScrollArea scrollbars="horizontal">
         <Text size="2">Mozilla/5.0 (compatible; Boyouquanspider/1.0; +https://www.boyouquan.com/about#data-spider)</Text>

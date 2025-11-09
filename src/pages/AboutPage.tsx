@@ -27,7 +27,7 @@ const content = <>
         <li>内容要求：满足我国法律法规要求，勿含有政治（不得有任何贬低我国领导人，政治制度等言论）、色情（不得有任何衣着特别暴露的图片，包含动漫图片）、赌博、暴力等内容；</li>
         <li>原创要求：原创文章数占总文章数比例不少于 80%；</li>
         <li>站龄要求：建站已有一年或以上；</li>
-        <li>RSS 要求：拥有可以访问的 RSS 地址（如：<a href="https://www.boyouquan.com/feed.xml">https://www.boyouquan.com/feed.xml</a>）；</li>
+        <li>RSS 要求：拥有可以访问的 RSS 地址（如：<a href="https://www.boyouquan.com/feed.xml">https://www.boyouquan.com/feed.xml</a>），且若您的博客有多种语言的文章，请为中文文章提供一个单独的 RSS 地址；</li>
         <li>性能要求：确保在中国大陆地区拥有良好的访问性能；</li>
         <li>个人承诺：十年不停更，十年不闭站！</li>
     </ul>
@@ -92,7 +92,7 @@ const content = <>
 
     <h4 id="data-spider">数据采集</h4>
     <p>为了在本站聚合展示最新博文，本站会对已收录的博客定时进行数据采集，采集 URL 为博客的 RSS 地址，采集频率为 2 小时 1 次（一天 12 次），相信这样的频率不会对您的博客造成多大的压力。</p>
-    <p>此外，「<a href="/link-graphs">连接系数</a>」页面的博友连接度基于博客的友链数据来计算。该数据集每月采集一次，这个频率更不会对您的博客造成压力。</p>
+    <p>此外，「<a href="/link-graphs">连接系数</a>」页面的博友连接度基于博客的友链数据来计算。该数据集每周采集一次，这个频率更不会对您的博客造成任何压力。</p>
     <p>标识请求来源为本站的 <code>User-Agent</code> 信息如下：</p>
     <ScrollArea scrollbars="horizontal">
         <Text size="2">Mozilla/5.0 (compatible; Boyouquanspider/1.0; +https://www.boyouquan.com/about#data-spider)</Text>

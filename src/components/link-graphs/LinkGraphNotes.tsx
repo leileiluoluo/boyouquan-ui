@@ -31,7 +31,7 @@ export default function LinkGraphNotes() {
             </Box>
             <Box>
                 <Text size="1" color="gray">
-                    * 该数据集每月采集一次，这个频率不会对您的博客造成太大的压力，当前数据集采集于 {loading ? <Skeleton width="40px" height="12px" /> : datasetCreatedAt}。
+                    * 该数据集每周末采集一次，这个频率不会对您的博客造成太大的压力，当前数据集采集于 {loading ? <Skeleton width="40px" height="12px" /> : datasetCreatedAt}。
                 </Text>
             </Box>
             <Box>

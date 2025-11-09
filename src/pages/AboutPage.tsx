@@ -27,7 +27,7 @@ const content = <>
         <li>内容要求：满足我国法律法规要求，勿含有政治（不得有任何贬低我国领导人，政治制度等言论）、色情（不得有任何衣着特别暴露的图片，包含动漫图片）、赌博、暴力等内容；</li>
         <li>原创要求：原创文章数占总文章数比例不少于 80%；</li>
         <li>站龄要求：建站已有一年或以上；</li>
-        <li>RSS 要求：拥有可以访问的 RSS 地址（如：<a href="https://www.boyouquan.com/feed.xml">https://www.boyouquan.com/feed.xml</a>）；</li>
+        <li>RSS 要求：拥有可以访问的 RSS 地址（如：<a href="https://www.boyouquan.com/feed.xml">https://www.boyouquan.com/feed.xml</a>），且若您的博客有多种语言的文章，请为中文文章提供一个单独的 RSS 地址；</li>
         <li>性能要求：确保在中国大陆地区拥有良好的访问性能；</li>
         <li>个人承诺：十年不停更，十年不闭站！</li>
     </ul>

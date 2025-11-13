@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Box, Button, Flex, Text, TextField, Heading, TextArea, Link, Radio } from '@radix-ui/themes';
+import { Card, Box, Button, Flex, Text, TextField, Heading, TextArea, Link, RadioGroup } from '@radix-ui/themes';
 import { Form } from '@radix-ui/react-form';
 import { FormError } from '../../types';
 
@@ -73,12 +73,18 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
 
                         <Box mt="2">
                             <Flex gap="2" align="center">
-                                <Flex asChild>
-                                    <Text as="label" size="2">
-                                        <Radio size="2" name="promise" value={formData.promise} onChange={handleChange} />
-                                        「我承诺十年不停更，十年不闭站」
-                                    </Text>
-                                </Flex>
+                                <RadioGroup.Root
+                                    name="promise"
+                                    value={formData.promise}
+                                    onValueChange={(value) => handleChange({ target: { name: 'promise', value } } as any)}
+                                >
+                                    <Flex>
+                                        <RadioGroup.Item value="yes" />
+                                        <Text as="label" size="2">
+                                            「我承诺十年不停更，十年不闭站」
+                                        </Text>
+                                    </Flex>
+                                </RadioGroup.Root>
                                 <Text size="2" color="red">{error.code == 'promise_not_selected' ? error.message : ''}</Text>
                             </Flex>
                         </Box>

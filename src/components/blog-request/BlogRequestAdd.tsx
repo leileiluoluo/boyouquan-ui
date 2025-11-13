@@ -19,7 +19,8 @@ export default function BlogRequestAdd(): React.JSX.Element {
 
     const [formData, setFormData] = useState<Record<string, string>>({
         'adminEmail': adminEmail,
-        'emailVerificationCode': emailVerificationCode
+        'emailVerificationCode': emailVerificationCode,
+        'promise': ''
     });
     const [error, setError] = useState<FormError>({});
 

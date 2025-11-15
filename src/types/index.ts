@@ -2,6 +2,7 @@
 
 export interface ApiResponse<T = any> {
   data?: T;
+  code?: string,
   error?: string;
   message?: string;
 }

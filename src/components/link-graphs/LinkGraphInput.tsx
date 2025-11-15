@@ -1,11 +1,9 @@
-import React from 'react';
 import { Button, Flex, Tooltip } from '@radix-ui/themes';
 import { useState, useEffect } from 'react';
 import LinkGraphNotes from './LinkGraphNotes';
 import LinkGraphBlogInput from './LinkGraphBlogInput';
 import { ArrowUpDown } from 'lucide-react';
 import GlobalDialog from '../common/dialog/GlobalDialog';
-import { tr } from 'framer-motion/client';
 
 export default function LinkGraphInput({
     allSourceBlogs,

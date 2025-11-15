@@ -1,19 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-import RequestUtil from '../../utils/APIRequestUtil';
-import { Box, Card, Flex, Link, ScrollArea, Text } from '@radix-ui/themes';
-import LinkGraphRelationResult from './LinkGraphRelationResult';
-import GlobalDialog from '../common/dialog/GlobalDialog';
-import { ApiResponse } from '@/types';
+import RequestUtil from "../../utils/APIRequestUtil";
+import { Box, Card, Flex, Link, ScrollArea, Text } from "@radix-ui/themes";
+import LinkGraphRelationResult from "./LinkGraphRelationResult";
+import GlobalDialog from "../common/dialog/GlobalDialog";
+import { ApiResponse } from "@/types";
 
 function computeScore(newPath) {
   const maxSteps = 10;
-  return newPath.length === 0 ? 0 : Math.max(0, Math.round(((maxSteps - newPath.length + 1) / maxSteps) * 100))
+  return newPath.length === 0
+    ? 0
+    : Math.max(
+      0,
+      Math.round(((maxSteps - newPath.length + 1) / maxSteps) * 100)
+    );
 }
 
-export default function LinkGraphResult({ sourceDomainName, targetDomainName, setLoading }) {
+export default function LinkGraphResult({
+  sourceDomainName,
+  targetDomainName,
+  setLoading,
+}) {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [error, setError] = useState({ code: '', message: '' });
+  const [error, setError] = useState({ code: "", message: "" });
 
   const [sourceBlog, setSourceBlog] = useState(null);
   const [targetBlog, setTargetBlog] = useState(null);
@@ -48,7 +57,10 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
       }
 
       if (!respBody.sourceBlog || !respBody.targetBlog) {
-        setError({ code: 'params_invalid', message: '源博客或目的博客域名无效' });
+        setError({
+          code: "params_invalid",
+          message: "源博客或目的博客域名无效",
+        });
         setDialogOpen(true);
         return;
       }
@@ -90,7 +102,7 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
       nodeRefs.current.forEach((el, idx) => {
         if (!el) return;
         const row = idx % 2;
-        el.style.position = 'absolute';
+        el.style.position = "absolute";
         el.style.left = `${spacingX * (idx + 1)}px`;
         el.style.top = `${200 + (row === 0 ? -spacingY / 2 : spacingY / 2)}px`;
       });
@@ -121,57 +133,99 @@ export default function LinkGraphResult({ sourceDomainName, targetDomainName, se
 
       // ✅ 自动滚动到最左侧
       if (scrollRef.current) {
-        const scrollEl = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
+        const scrollEl = scrollRef.current.querySelector(
+          "[data-radix-scroll-area-viewport]"
+        );
         if (scrollEl) scrollEl.scrollLeft = 0;
       }
     }, 50);
 
-    window.addEventListener('resize', computeLayout);
+    window.addEventListener("resize", computeLayout);
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('resize', computeLayout);
+      window.removeEventListener("resize", computeLayout);
     };
   }, [path]);
 
-  const nodes = path.length > 0 ? [path[0]?.sourceBlog, ...path.map(item => item.targetBlog)] : [];
+  const nodes =
+    path.length > 0
+      ? [path[0]?.sourceBlog, ...path.map((item) => item.targetBlog)]
+      : [];
 
   return (
     <Card>
       <Flex direction="column" align="center">
         <Box>
-          {!sourceBlog || !targetBlog
-            ? <Text size="2" color="gray">填入源博客域名和目的博客域名，然后检索源博客到目的博客的连接系数</Text>
-            : searching
-              ? <Text size="2" color="gray">正在搜索源博客到目的博客的连接系数...</Text>
-              : <Text size="2" color="gray">「<Link href={`/blogs/${sourceDomainName}`} color="indigo" target="_blank">{sourceBlog.name}</Link>」到「<Link href={`/blogs/${targetDomainName}`} color="indigo" target="_blank">{targetBlog.name}</Link>」的连接系数为 {path.length === 0 ? 0 : score} </Text>
-          }
+          {!sourceBlog || !targetBlog ? (
+            <Text size="2" color="gray">
+              填入源博客域名和目的博客域名，然后检索源博客到目的博客的连接系数
+            </Text>
+          ) : searching ? (
+            <Text size="2" color="gray">
+              正在搜索源博客到目的博客的连接系数...
+            </Text>
+          ) : (
+            <Text size="2" color="gray">
+              「
+              <Link
+                href={`/blogs/${sourceDomainName}`}
+                color="indigo"
+                target="_blank"
+              >
+                {sourceBlog.name}
+              </Link>
+              」到「
+              <Link
+                href={`/blogs/${targetDomainName}`}
+                color="indigo"
+                target="_blank"
+              >
+                {targetBlog.name}
+              </Link>
+              」的连接系数为 {path.length === 0 ? 0 : score}{" "}
+            </Text>
+          )}
         </Box>
 
-        {
-          !sourceBlog || !targetBlog ?
-            <Box>
-              <img src="/assets/images/sites/link-graph/spherical_network_25_nodes_static.svg" alt="No Data" style={{ width: '300px', marginTop: '40px' }} />
-            </Box>
-            : searching ?
-              <Box>
-                <img src="/assets/images/sites/link-graph/spherical_network_25_nodes.svg" alt="Searching" style={{ width: '300px', marginTop: '40px' }} />
-              </Box> :
-              <ScrollArea type="always" ref={scrollRef} scrollbars="horizontal" style={{ width: '100%', overflowX: 'auto' }}>
-                <LinkGraphRelationResult
-                  contentWidth={contentWidth}
-                  lines={lines}
-                  nodes={nodes}
-                  svgRef={svgRef}
-                  nodeRefs={nodeRefs} />
-              </ScrollArea>
-        }
+        {!sourceBlog || !targetBlog ? (
+          <Box>
+            <img
+              src="/assets/images/sites/link-graph/spherical_network_25_nodes_static.svg"
+              alt="No Data"
+              style={{ width: "300px", marginTop: "40px" }}
+            />
+          </Box>
+        ) : searching ? (
+          <Box>
+            <img
+              src="/assets/images/sites/link-graph/spherical_network_25_nodes.svg"
+              alt="Searching"
+              style={{ width: "300px", marginTop: "40px" }}
+            />
+          </Box>
+        ) : (
+          <ScrollArea
+            type="always"
+            ref={scrollRef}
+            scrollbars="horizontal"
+            style={{ width: "100%", overflowX: "auto" }}
+          >
+            <LinkGraphRelationResult
+              contentWidth={contentWidth}
+              lines={lines}
+              nodes={nodes}
+              svgRef={svgRef}
+              nodeRefs={nodeRefs}
+            />
+          </ScrollArea>
+        )}
       </Flex>
 
       <GlobalDialog
-        title={'' != error.code ? '错误提示' : '提示'}
-        titleColor={'' != error.code ? 'crimson' : ''}
+        title={"" != error.code ? "错误提示" : "提示"}
+        titleColor={"" != error.code ? "crimson" : ""}
         message={error.message}
-        closeButtonName={'' != error.code ? '返回' : '关闭窗口'}
+        closeButtonName={"" != error.code ? "返回" : "关闭窗口"}
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
       />

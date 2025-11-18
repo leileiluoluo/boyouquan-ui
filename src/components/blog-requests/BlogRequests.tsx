@@ -1,10 +1,9 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import BlogRequestsTable from './BlogRequestsTable';
 import Pagination from '../pagination/Pagination';
 import { getURLParameter } from '../../utils/CommonUtil';
-import { Box, Skeleton, Table, Text } from '@radix-ui/themes';
+import { Flex, Box, Skeleton, Table, Text } from '@radix-ui/themes';
 
 export default function BlogRequests() {
     const [keyword, setKeyword] = useState('');
@@ -39,8 +38,8 @@ export default function BlogRequests() {
 
     if (!dataReady) {
         return (
-            <Box>
-                <Box id="blog-requests">
+            <Box id="blog-requests">
+                <Flex direction="column" gap="3">
                     <Table.Root variant="surface">
                         <Table.Header>
                             <Table.Row>
@@ -67,42 +66,48 @@ export default function BlogRequests() {
                             }
                         </Table.Body>
                     </Table.Root>
-                </Box>
-                <Pagination
-                    pageNo={pageNo}
-                    pageSize={pageSize}
-                    total={total}
-                    setCurrectPage={setCurrectPage} />
+
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+
+                </Flex>
             </Box>
         );
     }
 
     if (null !== keyword && '' !== keyword && 0 === total) {
         return (
-            <Box>
-                <Box mt="5" mb="5" width="100%" height="100px" align="center">
-                    <Text size="2">
-                        未找到相关的博客收录申请，试试更换关键词吧！
-                    </Text>
-                </Box>
+            <Box id="blog-requests">
+                <Flex direction="column" gap="3">
+                    <Box mt="5" mb="5" width="100%" height="100px" align="center">
+                        <Text size="2">
+                            未找到相关的博客收录申请，试试更换关键词吧！
+                        </Text>
+                    </Box>
 
-                <Pagination
-                    pageNo={pageNo}
-                    pageSize={pageSize}
-                    total={total}
-                    setCurrectPage={setCurrectPage} />
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+                </Flex>
             </Box>
         );
     }
 
     return (
-        <Box>
-            <BlogRequestsTable requests={blogRequests} />
-            <Pagination
-                pageNo={pageNo}
-                pageSize={pageSize}
-                total={total}
-                setCurrectPage={setCurrectPage} />
+        <Box id="blog-requests">
+            <Flex direction="column" gap="3">
+                <BlogRequestsTable requests={blogRequests} />
+                <Pagination
+                    pageNo={pageNo}
+                    pageSize={pageSize}
+                    total={total}
+                    setCurrectPage={setCurrectPage} />
+            </Flex>
         </Box>
     )
 }

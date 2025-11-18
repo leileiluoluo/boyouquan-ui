@@ -57,7 +57,7 @@ export default function BlogCardList() {
     if (!dataReady) {
         return (
             <Box className='blogs-container'>
-                <Flex direction="column">
+                <Flex direction="column" gap="3">
                     <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
                         {
                             Array.from({ length: 10 }).map((_, index) => (
@@ -158,15 +158,13 @@ export default function BlogCardList() {
                             ))
                         }
                     </Grid>
-                </Flex>
 
-                <Box mt="3">
                     <Pagination
                         pageNo={pageNo}
                         pageSize={pageSize}
                         total={total}
                         setCurrectPage={setCurrectPage} />
-                </Box>
+                </Flex>
             </Box>
         );
     }
@@ -174,26 +172,28 @@ export default function BlogCardList() {
     if (null !== keyword && '' !== keyword && 0 === total) {
         return (
             <Box className='blogs-container'>
-                <Box mt="5" mb="5" width="100%" height="100px" align="center">
-                    <Text size="2">
-                        未找到相关博客，试试更换关键词吧！
-                    </Text>
-                </Box>
+                <Flex direction="column" gap="3">
+                    <Box mt="5" mb="5" width="100%" height="100px" align="center">
+                        <Text size="2">
+                            未找到相关博客，试试更换关键词吧！
+                        </Text>
+                    </Box>
 
-                <Box mt="3">
-                    <Pagination
-                        pageNo={pageNo}
-                        pageSize={pageSize}
-                        total={total}
-                        setCurrectPage={setCurrectPage} />
-                </Box>
+                    <Box mt="3">
+                        <Pagination
+                            pageNo={pageNo}
+                            pageSize={pageSize}
+                            total={total}
+                            setCurrectPage={setCurrectPage} />
+                    </Box>
+                </Flex>
             </Box>
         );
     }
 
     return (
         <Box className='blogs-container'>
-            <Flex direction="column">
+            <Flex direction="column" gap="3">
                 <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
                     {
                         blogs.map(
@@ -210,15 +210,13 @@ export default function BlogCardList() {
                             ))
                     }
                 </Grid>
-            </Flex>
 
-            <Box mt="3">
                 <Pagination
                     pageNo={pageNo}
                     pageSize={pageSize}
                     total={total}
                     setCurrectPage={setCurrectPage} />
-            </Box>
+            </Flex>
         </Box>
     )
 }

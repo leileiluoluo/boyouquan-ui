@@ -98,40 +98,38 @@ export default function PostCardList({ sort, keyword, showPinned }) {
     }
 
     return (
-        <Box>
-            <Flex direction="column" gap="3">
-                <Box>
-                    <Flex direction="column" gap="2">
-                        {posts.map(
-                            (post, index) => (
-                                <Card key={index}>
-                                    <PostCard
-                                        key={index}
-                                        showPinned={showPinned}
-                                        pinned={post.pinned}
-                                        blogDomainName={post.blogDomainName}
-                                        blogName={post.blogName}
-                                        blogStatusOk={post.blogStatusOk}
-                                        blogAdminMediumImageURL={post.blogAdminMediumImageURL}
-                                        link={post.link}
-                                        title={post.title}
-                                        description={post.description}
-                                        publishedAt={post.publishedAt}
-                                        linkAccessCount={post.linkAccessCount} />
-                                </Card>
-                            )
-                        )}
-                    </Flex>
-                </Box>
+        <Flex direction="column" gap="3">
+            <Box>
+                <Flex direction="column" gap="2">
+                    {posts.map(
+                        (post, index) => (
+                            <Card key={index}>
+                                <PostCard
+                                    key={index}
+                                    showPinned={showPinned}
+                                    pinned={post.pinned}
+                                    blogDomainName={post.blogDomainName}
+                                    blogName={post.blogName}
+                                    blogStatusOk={post.blogStatusOk}
+                                    blogAdminMediumImageURL={post.blogAdminMediumImageURL}
+                                    link={post.link}
+                                    title={post.title}
+                                    description={post.description}
+                                    publishedAt={post.publishedAt}
+                                    linkAccessCount={post.linkAccessCount} />
+                            </Card>
+                        )
+                    )}
+                </Flex>
+            </Box>
 
-                <Box>
-                    <Pagination
-                        pageNo={pageNo}
-                        pageSize={pageSize}
-                        total={total}
-                        setCurrectPage={setCurrectPage} />
-                </Box>
-            </Flex>
-        </Box >
+            <Box>
+                <Pagination
+                    pageNo={pageNo}
+                    pageSize={pageSize}
+                    total={total}
+                    setCurrectPage={setCurrectPage} />
+            </Box>
+        </Flex>
     )
 }

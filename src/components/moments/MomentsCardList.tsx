@@ -1,8 +1,7 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import Pagination from '../pagination/Pagination';
-import { Box, Flex, Skeleton, Text, Heading, Grid, Card } from '@radix-ui/themes';
+import { Box, Flex, Skeleton, Heading, Grid, Card } from '@radix-ui/themes';
 import MomentsCard from './MomentsCard';
 
 export default function MomentsCardList() {
@@ -34,7 +33,7 @@ export default function MomentsCardList() {
 
     if (!dataReady) {
         return (
-            <>
+            <Flex direction="column" gap="3">
                 <Box id="moments-container">
                     <Box mb="2">
                         <Heading size="3" weight="bold">最新随拍</Heading>
@@ -72,12 +71,12 @@ export default function MomentsCardList() {
                     pageSize={pageSize}
                     total={total}
                     setCurrectPage={setCurrectPage} />
-            </>
+            </Flex>
         );
     }
 
     return (
-        <>
+        <Flex direction="column" gap="3">
             <Box id="moments-container">
                 <Box mb="2">
                     <Heading size="3" weight="bold">最新随拍</Heading>
@@ -99,6 +98,6 @@ export default function MomentsCardList() {
                 pageSize={pageSize}
                 total={total}
                 setCurrectPage={setCurrectPage} />
-        </>
+        </Flex>
     )
 }

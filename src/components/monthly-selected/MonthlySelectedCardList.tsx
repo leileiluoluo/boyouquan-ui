@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import MonthlySelectedCard from './MonthlySelectedCard';
@@ -57,7 +56,7 @@ export default function MonthlySelectedCardList() {
 
     if (!dataReady) {
         return (
-            <>
+            <Flex direction="column" gap="3">
                 <Box id="monthly-selected-container">
                     <Box mb="2">
                         <Skeleton><Text>2025 年 8 月精选</Text></Skeleton>
@@ -125,12 +124,12 @@ export default function MonthlySelectedCardList() {
                     pageSize={pageSize}
                     total={total}
                     setCurrectPage={setCurrectPage} />
-            </>
+            </Flex>
         );
     }
 
     return (
-        <>
+        <Flex direction="column" gap="3">
             <Box id="monthly-selected-container">
                 <Box mb="2">
                     <Heading size="3" weight="bold">{formatDateToChinese(yearMonthStr)}</Heading>
@@ -153,6 +152,6 @@ export default function MonthlySelectedCardList() {
                 pageSize={pageSize}
                 total={total}
                 setCurrectPage={setCurrectPage} />
-        </>
+        </Flex>
     )
 }

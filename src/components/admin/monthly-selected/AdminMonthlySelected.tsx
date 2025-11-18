@@ -29,7 +29,7 @@ export default function AdminMonthlySelected(): React.JSX.Element {
     const permissionCheck = async (): Promise<void> => {
         const username = getCookie('username');
         const sessionId = getCookie('sessionId');
-        
+
         if (!username || !sessionId) {
             redirectTo(ADMIN_LOGIN_ADDRESS);
             return;
@@ -48,7 +48,7 @@ export default function AdminMonthlySelected(): React.JSX.Element {
     const fetchData = async (pageNoParam: number): Promise<void> => {
         const username = getCookie('username');
         const sessionId = getCookie('sessionId');
-        
+
         if (!username || !sessionId) {
             redirectTo(ADMIN_LOGIN_ADDRESS);
             return;
@@ -106,27 +106,29 @@ export default function AdminMonthlySelected(): React.JSX.Element {
                             <Heading size="3" weight="bold">{item.yearMonthStr}</Heading>
                         </Box>
 
-                        <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
-                            {
-                                (item.postInfos || []).map(
-                                    (postInfo, index) => (
-                                        <Flex gap="2" key={index}>
-                                            <MonthlySelectedCard
-                                                postInfo={postInfo}
-                                                showImage="true" />
+                        <Flex direction="column" gap="3">
+                            <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
+                                {
+                                    (item.postInfos || []).map(
+                                        (postInfo, index) => (
+                                            <Flex gap="2" key={index}>
+                                                <MonthlySelectedCard
+                                                    postInfo={postInfo}
+                                                    showImage="true" />
 
-                                            <Button size="1" color="amber" onClick={() => addPostImage(postInfo.link)}>配图</Button>
-                                        </Flex>
-                                    ))
-                            }
-                        </Grid>
-                    </Box>
+                                                <Button size="1" color="amber" onClick={() => addPostImage(postInfo.link)}>配图</Button>
+                                            </Flex>
+                                        ))
+                                }
+                            </Grid>
 
-                    <Pagination
-                        pageNo={pageNo}
-                        pageSize={pageSize}
-                        total={total}
-                        setCurrectPage={setCurrectPage} /></> : ''
+                            <Pagination
+                                pageNo={pageNo}
+                                pageSize={pageSize}
+                                total={total}
+                                setCurrectPage={setCurrectPage} />
+                        </Flex>
+                    </Box></> : ''
             }
         </>
     )

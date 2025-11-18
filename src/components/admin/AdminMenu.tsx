@@ -1,4 +1,3 @@
-import React from 'react';
 import { redirectTo } from '../../utils/CommonUtil';
 import { getCookie, setCookie } from '../../utils/CookieUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
@@ -11,7 +10,7 @@ import { useEffect, useState } from 'react';
 const sendLogout = async (): Promise<void> => {
     const username = getCookie('username');
     const sessionId = getCookie('sessionId');
-    
+
     if (!username || !sessionId) return;
 
     await RequestUtil.post('/api/admin/logout', 'null', {
@@ -40,8 +39,11 @@ export default function AdminMenu() {
         <Box mb="2">
             <Flex gap="1" direction="column">
                 <Box mt="2">
-                    <Text>{getCookie('username')}</Text> |
-                    <Button size="1" onClick={() => logout()}>退出登录</Button>
+                    <Flex gap="2">
+                        <Text>{getCookie('username')}</Text>
+                        <Text> | </Text>
+                        <Button size="1" color="crimson" onClick={() => logout()}>退出登录</Button>
+                    </Flex>
                 </Box>
                 <ScrollArea>
                     <TabNav.Root size="2" color="crimson">

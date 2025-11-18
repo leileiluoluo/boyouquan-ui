@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { getCookie } from '../../utils/CookieUtil';
 import SearchBox from '../common/SearchBox';
@@ -9,7 +8,7 @@ import Pagination from '../pagination/Pagination';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
-import { Box } from '@radix-ui/themes';
+import { Flex, Box } from '@radix-ui/themes';
 
 export default function AdminBlogRequests() {
     const [pageNo, setPageNo] = useState(1);
@@ -20,7 +19,7 @@ export default function AdminBlogRequests() {
     const fetchData = async (keyword: string, pageNo: number): Promise<void> => {
         const username = getCookie('username');
         const sessionId = getCookie('sessionId');
-        
+
         if (!username || !sessionId) {
             redirectTo(ADMIN_LOGIN_ADDRESS);
             return;
@@ -69,15 +68,15 @@ export default function AdminBlogRequests() {
             <Box mt="2">
                 <SearchBox placeholder='搜索已提交的博客 ↵' gotoPage='/admin/blog-requests' />
             </Box>
-            <Box mt="2">
-                <BlogRequestsTable adminPage='true' requests={blogRequests} />
-            </Box>
-            <Box mt="2">
-                <Pagination
-                    pageNo={pageNo}
-                    pageSize={pageSize}
-                    total={total}
-                    setCurrectPage={setCurrectPage} />
+            <Box mt="2" id="blog-requests">
+                <Flex direction="column" gap="3">
+                    <BlogRequestsTable adminPage='true' requests={blogRequests} />
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+                </Flex>
             </Box>
         </>
     )

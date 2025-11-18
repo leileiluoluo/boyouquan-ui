@@ -7,7 +7,7 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import { redirectTo } from '../../utils/CommonUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import AdminMenuHeader from './AdminMenuHeader';
-import { Box } from '@radix-ui/themes';
+import { Box, Flex } from '@radix-ui/themes';
 import { getCookie } from '../../utils/CookieUtil';
 import { Post } from '../../types';
 
@@ -20,7 +20,7 @@ export default function AdminRecommendedPosts(): React.JSX.Element {
     const permissionCheck = async (): Promise<void> => {
         const username = getCookie('username');
         const sessionId = getCookie('sessionId');
-        
+
         if (!username || !sessionId) {
             redirectTo(ADMIN_LOGIN_ADDRESS);
             return;
@@ -67,13 +67,16 @@ export default function AdminRecommendedPosts(): React.JSX.Element {
         <>
             <AdminMenuHeader title='推荐文章管理 - 管理页面' />
             <AdminMenu />
-            <AdminRecommendedPostsTable posts={posts} />
+
             <Box mt="2">
-                <Pagination
-                    pageNo={pageNo}
-                    pageSize={pageSize}
-                    total={total}
-                    setCurrectPage={setCurrectPage} />
+                <Flex direction="column" gap="3">
+                    <AdminRecommendedPostsTable posts={posts} />
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
+                </Flex>
             </Box>
         </>
     )

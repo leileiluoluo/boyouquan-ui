@@ -1,4 +1,9 @@
 // 通用类型定义
+export interface MetaInfo {
+  title: string;
+  keywords: string;
+  description: string;
+}
 
 export interface ApiResponse<T = any> {
   data?: T;

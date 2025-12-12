@@ -1,5 +1,3 @@
-import React from 'react';
-
 const META_2024 = {
     title: '2024 年度报告 - 博友圈 · 博客人的朋友圈！',
     keywords: '博友圈, 年度报告, 2024',

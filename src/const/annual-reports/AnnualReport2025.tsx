@@ -9,7 +9,22 @@ const REPORT_INFO_2025 = {
     content: <>
         <p>时光荏苒，岁月如梭，转眼已是岁末时分。回首即将过去的 2025 年，博友圈感恩有您一路相伴！</p>
 
-        <h4>一、全站之最</h4>
+        <h4>一、博友圈这一年</h4>
+
+        <p>2025 全年，博友圈共收录了 <strong>402</strong> 个博客，其中 <strong>212</strong> 个为自行提交，<strong>190</strong> 个为后台收录。</p>
+        <p>2025 全年，大家共发布了 <strong>16677</strong> 篇文章，其中 <strong>1249</strong> 篇被加入到了首页推荐，<strong>69</strong> 篇被置顶过。</p>
+        <p>2025 全年，博友圈共给大家带去了 <strong>541358</strong> 个 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：</p>
+
+        <p><img align="center" width="480px" border="1" src="/assets/images/sites/annual_reports/2025/access-map.png" /></p>
+
+        访问博友圈前三个的省份或直辖市为：
+        <ul>
+            <li>广东</li>
+            <li>江苏</li>
+            <li>北京</li>
+        </ul>
+
+        <h4>二、全站之最</h4>
 
         <p>
             <ul>
@@ -19,7 +34,7 @@ const REPORT_INFO_2025 = {
             </ul>
         </p>
 
-        <h4>二、年度之最</h4>
+        <h4>三、年度之最</h4>
 
         <p>
             <ul>

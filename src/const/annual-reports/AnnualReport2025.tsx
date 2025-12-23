@@ -11,10 +11,11 @@ const REPORT_INFO_2025 = {
 
         <h4>一、博友圈这一年</h4>
 
-        <p>2025 这一年，博友圈推出了「<a href="/moments" target="_blank">随手一拍</a>」、「<a href="/link-graphs" target="_blank">连接系数</a>」和「<a href="/certificates/leileiluoluo.com" target="_blank">履约证书</a>」三大功能，获得了博友们的广泛关注和喜爱。</p>
-        <p>2025 这一年，博友圈共收录了 <strong>284</strong> 个博客，其中 <strong>265</strong> 个为自行提交，<strong>19</strong> 个为后台收录。</p>
-        <p>2025 这一年，博友们共发布了 <strong>21258</strong> 篇文章，其中 <strong>857</strong> 篇被加入到了首页推荐，<strong>152</strong> 篇被置顶过。</p>
-        <p>2025 这一年，博友们共发布了 <strong>33</strong> 个随拍，收获 <strong>86</strong> 个喜欢。</p>
+        <p>2025 这一年，博友圈推出了「<a href="/moments" target="_blank">随手一拍</a>」、「<a href="/link-graphs" target="_blank">连接系数</a>」和「<a href="/certificates/leileiluoluo.com" target="_blank">履约证书</a>」三大功能，获得了博友们的广泛关注和喜爱；</p>
+        <p>2025 这一年，博友圈共收录了 <strong>284</strong> 个博客，其中 <strong>265</strong> 个为自行提交，<strong>19</strong> 个为后台收录；</p>
+        <p>2025 这一年，博友们共发布了 <strong>21258</strong> 篇文章，其中 <strong>857</strong> 篇被加入到了首页推荐，<strong>152</strong> 篇被置顶过；</p>
+        <p>2025 这一年，博友们共发布了 <strong>33</strong> 个随拍，收获 <strong>86</strong> 个喜欢；</p>
+        <p>2025 这一年，共有 <strong>94</strong> 个博友发起过「<a href="/planet-shuttle" target="_blank">星球穿梭</a>」，共给大家带去 <strong>2454</strong> 个 IP 访问；</p>
         <p>2025 这一年，博友圈共收到 <strong>643.94</strong> 元的赞助，在此衷心感谢您的支持与帮助，这些资金已<a href="/sponsor" target="_blank"><strong>全数</strong></a>用在了云资源的续费上！</p>
         <p>2025 这一年，博友圈共给大家带去了 <strong>42532</strong> 个 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：</p>
 

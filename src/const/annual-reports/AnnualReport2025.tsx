@@ -33,7 +33,7 @@ const REPORT_INFO_2025 = {
             <ul>
                 <li>加入博友圈最早的博客为「<a href="https://www.boyouquan.com/blogs/yinji.org" target="_blank">印记</a>」，加入时间为 <strong>2023</strong> 年 <strong>7</strong> 月；</li>
                 <li>友链指向最多的博客为「<a href="https://www.boyouquan.com/blogs/xyzbz.cn" target="_blank">网友小宋</a>」，共 <strong>102</strong> 个博客的友链指向了该博客；</li>
-                <li>域名年龄最长的博客为「<a href="https://www.boyouquan.com/blogs/bkm.net" target="_blank">八九的日记</a>」，域名年龄为 <strong>30</strong> 岁；</li>
+                <li>域名年龄最长的博客为「<a href="https://www.boyouquan.com/blogs/bkm.net" target="_blank">八九的日记</a>」，域名年龄为 <strong>30</strong> 岁。</li>
             </ul>
         </p>
 
@@ -43,7 +43,9 @@ const REPORT_INFO_2025 = {
             <ul>
                 <li>2025 这一年，发布文章最多的博客为「<a href="https://www.boyouquan.com/blogs/acevs.com" target="_blank">acevs</a>」，共发布 <strong>360</strong> 篇文章；</li>
                 <li>2025 这一年，获得访问最多的博客为「<a href="https://www.boyouquan.com/blogs/rushihu.com" target="_blank">如是乎 · 生活百味随笔</a>」，共获得 <strong>2657</strong> 个 IP 访问；</li>
+                <li>2025 这一年，文章被置顶最多的博客为「<a href="https://www.boyouquan.com/blogs/yayu.net" target="_blank">雅余</a>」，共被指定 <strong>13</strong> 次；</li>
                 <li>2025 这一年，星球穿梭发起最多的博客为「<a href="https://www.boyouquan.com/blogs/www.52txr.cn" target="_blank">陶小桃Blog</a>」，共发起 <strong>256</strong> 次星球穿梭；</li>
+                <li>2025 这一年，连接系数被探索最多的目的博客为「<a href="https://www.boyouquan.com/blogs/blog.zhheo.com" target="_blank">张洪Heo</a>」，共被探索 <strong>30</strong> 次。</li>
             </ul>
         </p>
 

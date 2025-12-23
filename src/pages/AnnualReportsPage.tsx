@@ -12,6 +12,9 @@ const meta = {
 }
 
 const content = <>
+    <h4>2025 年度报告</h4>
+    <p><a href="/annual-reports/2025">点击查看详情！</a></p>
+
     <h4>2024 年度报告</h4>
     <p><a href="/annual-reports/2024">点击查看详情！</a></p>
 </>

@@ -643,5 +643,19 @@
                 "link": "/assets/images/sites/sponsor/cost_details/2025/11/host_renewal.png"
             }
         ]
+    },
+    {
+        "blogName": "我是军爸",
+        "link": "/blogs/me.xu19.com",
+        "sponsoredAt": "2025/12/23",
+        "sponsoredMoney": "9.99 元",
+        "message": "祝博友圈能够长长久久！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：93.70 元"
+        ],
+        "proofs": []
     }
 ]

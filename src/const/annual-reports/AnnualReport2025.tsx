@@ -44,7 +44,8 @@ const REPORT_INFO_2025 = {
             <ul>
                 <li>2025 这一年，发布文章最多的博客为「<a href="https://www.boyouquan.com/blogs/acevs.com" target="_blank">acevs</a>」，共发布 <strong>360</strong> 篇文章；</li>
                 <li>2025 这一年，获得访问最多的博客为「<a href="https://www.boyouquan.com/blogs/rushihu.com" target="_blank">如是乎 · 生活百味随笔</a>」，共获得 <strong>2657</strong> 个 IP 访问；</li>
-                <li>2025 这一年，文章被置顶最多的博客为「<a href="https://www.boyouquan.com/blogs/yayu.net" target="_blank">雅余</a>」，共被置顶 <strong>13</strong> 次；</li>
+                <li>2025 这一年，文章被置顶最多的博客为「<a href="https://www.boyouquan.com/blogs/yayu.net" target="_blank">雅余</a>」，共有 <strong>13</strong> 篇文章被置顶过；</li>
+                <li>2025 这一年，文章被推荐最多的博客为「<a href="https://www.boyouquan.com/blogs/www.chenrui.com" target="_blank">陈锐同学</a>」，共有 <strong>56</strong> 篇文章被推荐；</li>
                 <li>2025 这一年，星球穿梭发起最多的博客为「<a href="https://www.boyouquan.com/blogs/www.52txr.cn" target="_blank">陶小桃Blog</a>」，共发起 <strong>256</strong> 次星球穿梭；</li>
                 <li>2025 这一年，连接系数被探索最多的目的博客为「<a href="https://www.boyouquan.com/blogs/blog.zhheo.com" target="_blank">张洪Heo</a>」，共被探索 <strong>30</strong> 次。</li>
             </ul>

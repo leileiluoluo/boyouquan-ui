@@ -657,5 +657,19 @@
             "当前总额：93.70 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "leorain",
+        "link": "/blogs/www.leorain.cn",
+        "sponsoredAt": "2025/12/24",
+        "sponsoredMoney": "29.00 元",
+        "message": "致敬每一份热爱！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：122.70 元"
+        ],
+        "proofs": []
     }
 ]

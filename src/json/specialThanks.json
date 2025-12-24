@@ -183,5 +183,10 @@
         "name": "我是军爸",
         "link": "/blogs/me.xu19.com",
         "avatar": "/assets/images/sites/special_thanks/me.xu19.com.jpeg"
+    },
+    {
+        "name": "leorain",
+        "link": "/blogs/www.leorain.cn",
+        "avatar": "/assets/images/sites/special_thanks/www.leorain.cn.jpeg"
     }
 ]

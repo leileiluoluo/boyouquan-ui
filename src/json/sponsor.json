@@ -645,6 +645,20 @@
         ]
     },
     {
+        "blogName": "小十的个人博客",
+        "link": "/blogs/www.xiaoten.com",
+        "sponsoredAt": "2025/12/17",
+        "sponsoredMoney": "39.00 元",
+        "message": "坚持不易，支持一下！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：122.71 元"
+        ],
+        "proofs": []
+    },
+    {
         "blogName": "我是军爸",
         "link": "/blogs/me.xu19.com",
         "sponsoredAt": "2025/12/23",
@@ -654,7 +668,7 @@
         "spentAt": "--",
         "spentOn": "--",
         "spentDetails": [
-            "当前总额：93.70 元"
+            "当前总额：132.70 元"
         ],
         "proofs": []
     },
@@ -668,7 +682,7 @@
         "spentAt": "--",
         "spentOn": "--",
         "spentDetails": [
-            "当前总额：122.70 元"
+            "当前总额：161.70 元"
         ],
         "proofs": []
     }

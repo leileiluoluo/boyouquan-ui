@@ -113,7 +113,7 @@ export default function PlanetShuttlePage() {
                     }
                 </Box>
                 <Box style={marginStyle}>
-                    <span style={{ fontSize: '12px' }}>Copyright © 2023-2025 <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>博友圈</a></span>
+                    <span style={{ fontSize: '12px' }}>Copyright © 2023-2026 <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>博友圈</a></span>
                 </Box>
             </Box>
         </>

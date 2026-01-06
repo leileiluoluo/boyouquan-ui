@@ -85,7 +85,7 @@ export default function SiteFooter() {
                     </Box>
                     <Flex gap="2" direction="column" align="center">
                         <Link size="1" href="https://beian.miit.gov.cn/">辽ICP备2022012085号-2</Link>
-                        <Text size="1">Copyright © 2023-2025 <Link href="https://www.boyouquan.com/home">博友圈</Link></Text>
+                        <Text size="1">Copyright © 2023-2026 <Link href="https://www.boyouquan.com/home">博友圈</Link></Text>
                     </Flex>
                 </Box>
             </Box>

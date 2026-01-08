@@ -33,21 +33,9 @@ export default function Header(): React.JSX.Element {
                                 <TabNav.Link href="/moments" active={pathname === "/moments"}>随手一拍</TabNav.Link>
                                 <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
                                 <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
-                                <TabNav.Link style={{ color: "rgb(203, 46, 88)" }} href="/link-graphs" active={pathname === "/link-graphs"}>连接系数
-                                    <span
-                                        style={{
-                                            position: "absolute",
-                                            top: "-0.6em",
-                                            right: "-0.6em",
-                                            fontSize: "0.6em",
-                                            color: "rgb(203, 46, 88)",
-                                        }}
-                                    >
-                                        New
-                                    </span>
-                                </TabNav.Link>
+                                <TabNav.Link href="/link-graphs" active={pathname === "/link-graphs"}>连接系数</TabNav.Link>
                                 <TabNav.Link asChild>
-                                    <a href="/planet-shuttle" target="_blank" rel="noopener noreferrer">
+                                    <a href="/planet-shuttle" target="_blank">
                                         星球穿梭
                                     </a>
                                 </TabNav.Link>

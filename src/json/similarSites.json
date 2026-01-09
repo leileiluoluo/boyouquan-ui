@@ -83,5 +83,10 @@
         "name": "博客说",
         "link": "https://blogtalk.org/",
         "description": "个人博客站点聚合"
+    },
+    {
+        "name": "博客星球",
+        "link": "https://www.blogplanet.cn/",
+        "description": "每一个博客都是一个独立星球"
     }
 ]

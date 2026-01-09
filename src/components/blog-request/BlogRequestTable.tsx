@@ -33,7 +33,7 @@ export default function BlogRequestTable({ name, description, domainName, addres
                     <DataList.Root>
                         <DataList.Item>
                             <DataList.Label minWidth="80px"><Text weight="bold">博客名称</Text></DataList.Label>
-                            <DataList.Value><Link target="_blank" href={address}>{name}</Link></DataList.Value>
+                            <DataList.Value><Link weight="bold" target="_blank" href={address}>{name}</Link></DataList.Value>
                         </DataList.Item>
                         <DataList.Item>
                             <DataList.Label minWidth="80px"><Text weight="bold">博客描述</Text></DataList.Label>
@@ -62,7 +62,7 @@ export default function BlogRequestTable({ name, description, domainName, addres
                         {
                             'approved' === status && <DataList.Item>
                                 <DataList.Label minWidth="80px"><Text weight="bold">收录地址</Text></DataList.Label>
-                                <DataList.Value><Link href={blogAddress}>{blogAddress}</Link></DataList.Value>
+                                <DataList.Value><Link weight="bold" href={blogAddress}>{blogAddress}</Link></DataList.Value>
                             </DataList.Item>
                         }
                         {

@@ -6,7 +6,7 @@ export default function HotSearch() {
 
     return (
         <Text size="2">
-            <Strong style={style}>大家在找啥：</Strong><Link href="/annual-reports/2024#annual-blogs">2024 年度博客</Link>
+            <Strong style={style}>大家在找啥：</Strong><Link href="/annual-reports/2025">2025 年度报告</Link>
         </Text>
     )
 }

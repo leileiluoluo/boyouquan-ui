@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link, Strong, Text } from "@radix-ui/themes";
+import { Link, Strong, Text } from '@radix-ui/themes';
 
 export default function HotSearch() {
     const style = { color: 'rgb(203, 46, 88)' };

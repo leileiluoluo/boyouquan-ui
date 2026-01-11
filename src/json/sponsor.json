@@ -691,5 +691,19 @@
                 "link": "/assets/images/sites/sponsor/cost_details/2026/01/host_renewal.png"
             }
         ]
+    },
+    {
+        "blogName": "陈锐同学",
+        "link": "/blogs/www.chenrui.com",
+        "sponsoredAt": "2026/01/11",
+        "sponsoredMoney": "168.00 元",
+        "message": "博友圈，让独立博客有个家！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：187.14 元"
+        ],
+        "proofs": []
     }
 ]

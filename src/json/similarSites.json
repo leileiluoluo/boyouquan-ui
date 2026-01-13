@@ -88,5 +88,10 @@
         "name": "博客星球",
         "link": "https://www.blogplanet.cn/",
         "description": "每一个博客都是一个独立星球"
+    },
+    {
+        "name": "友链展示站",
+        "link": "https://peng.you/",
+        "description": "发现优质博客与网站"
     }
 ]

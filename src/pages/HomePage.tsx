@@ -54,7 +54,7 @@ export default function HomePage(): React.JSX.Element {
                     <Container size="2">
                         <Flex direction="column" gap="4">
                             <MainContentHeader content='博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！' />
-                            {/* <HomeBanner /> */}
+                            <HomeBanner />
                             <HomePopularBlogsHeader />
                             <HomeLatestNews />
                             <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />

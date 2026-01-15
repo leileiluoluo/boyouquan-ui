@@ -705,5 +705,19 @@
             "当前总额：187.14 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "Mooe Ren",
+        "link": "/blogs/mooe.ren",
+        "sponsoredAt": "2026/01/14",
+        "sponsoredMoney": "20.00 元",
+        "message": "支持站长，让服务器多运行一会～",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：207.14 元"
+        ],
+        "proofs": []
     }
 ]

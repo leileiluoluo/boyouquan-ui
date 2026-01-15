@@ -96,7 +96,7 @@ const content = (
                             (sponsor, index) => (
                                 <Table.Row key={index}>
                                     <Table.Cell>
-                                        <Link href={sponsor.link}>{sponsor.blogName}</Link>
+                                        <Link weight="bold" href={sponsor.link}>{sponsor.blogName}</Link>
                                     </Table.Cell>
                                     <Table.Cell>{sponsor.sponsoredAt}</Table.Cell>
                                     <Table.Cell>{sponsor.sponsoredMoney}</Table.Cell>

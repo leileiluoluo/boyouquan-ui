@@ -1,10 +1,12 @@
-import React from 'react';
 import { Flex, Card, Box, Link } from '@radix-ui/themes';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import MomentsCardFooter from './MomentsCardFooter';
 import LazyImg from '../common/img/LazyImg';
+import { getGoAddress } from '../../utils/PageAddressUtil';
 
 export default function MomentsCard({ moment }) {
+    const goToAddress = getGoAddress(moment.blogInfo.address);
+
     return (
         <Card>
             <Flex direction="column" gap="2">
@@ -16,7 +18,7 @@ export default function MomentsCard({ moment }) {
                         borderRadius: "4px",
                         overflow: "hidden",
                     }}>
-                    <Link target="_blank" size="3" weight="bold">
+                    <Link href={goToAddress} target="_blank" size="3" weight="bold">
                         <LazyImg
                             src={moment.imageURL}
                             alt={moment.description}

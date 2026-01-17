@@ -12,7 +12,7 @@ export const ADMIN_MONTHLY_SELECTED_ADDRESS = '/admin/monthly-selected';
 export const NOT_FOUND_ADDRESS = '/404-not-found';
 
 export function getGoAddress(originalLink: string): string {
-    return '/go?from=website&link=' + encodeURIComponent(originalLink);
+    return '/go?from=website&link=' + encodeURI(originalLink);
 }
 
 export function getBlogAddress(domainName: string): string {
@@ -20,11 +20,11 @@ export function getBlogAddress(domainName: string): string {
 }
 
 export function getAbstractAddress(originalLink: string): string {
-    return `/abstract?link=${encodeURIComponent(originalLink)}`;
+    return `/abstract?link=${encodeURI(originalLink)}`;
 }
 
 export function getSharingAddress(originalLink: string): string {
-    return `/sharing?link=${encodeURIComponent(originalLink)}`;
+    return `/sharing?link=${encodeURI(originalLink)}`;
 }
 
 export function getBlogRequestAddress(id: number | string): string {

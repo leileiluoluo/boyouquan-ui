@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { Card, Flex, Box, Text, Link, ScrollArea, Separator, Tooltip } from '@radix-ui/themes';
@@ -56,7 +55,6 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
         const totalCount = respBody.total || newPosts.length;
         setTotal(totalCount);
 
-        // ✅ 提前计算是否还有更多
         const allLoadedCount = (page - 1) * size + newPosts.length;
         if (allLoadedCount >= totalCount) {
             setHasMore(false);

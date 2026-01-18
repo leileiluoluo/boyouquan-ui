@@ -93,5 +93,10 @@
         "name": "友链展示站",
         "link": "https://peng.you/",
         "description": "发现优质博客与网站"
+    },
+    {
+        "name": "微博文",
+        "link": "https://peng.you/",
+        "description": "独立博客的聚合绿洲"
     }
 ]

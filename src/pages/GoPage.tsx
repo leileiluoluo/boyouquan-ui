@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect } from 'react';
 import Meta from '../components/common/Meta';
 import RequestUtil from '../utils/APIRequestUtil';
@@ -19,7 +18,15 @@ export default function GoPage() {
         const resp = await RequestUtil.get(`/api/go?from=${from}&link=${linkEncoded}`);
 
         const respBody = await resp.json();
-        redirectTo(respBody.link);
+
+        const meta = document.createElement('meta');
+        meta.name = 'referrer';
+        meta.content = 'origin';
+        document.head.appendChild(meta);
+
+        setTimeout(() => {
+            redirectTo(respBody.link);
+        }, 50);
     };
 
     useEffect(() => {

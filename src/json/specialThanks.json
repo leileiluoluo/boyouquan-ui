@@ -203,5 +203,10 @@
         "name": "Mooe Ren",
         "link": "/blogs/mooe.ren",
         "avatar": "/assets/images/sites/special_thanks/mooe.ren.jpeg"
+    },
+    {
+        "name": "若梦博客",
+        "link": "https://www.rmbk.cc/",
+        "avatar": "/assets/images/sites/special_thanks/www.rmbk.cc.png"
     }
 ]

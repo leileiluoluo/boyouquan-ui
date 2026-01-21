@@ -719,5 +719,19 @@
             "当前总额：207.14 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "若梦博客",
+        "link": "https://www.rmbk.cc/",
+        "sponsoredAt": "2026/01/21",
+        "sponsoredMoney": "9.99 元",
+        "message": "与博友圈一起长久加油！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：217.13 元"
+        ],
+        "proofs": []
     }
 ]

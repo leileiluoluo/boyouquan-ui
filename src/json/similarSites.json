@@ -98,5 +98,10 @@
         "name": "微博文",
         "link": "https://peng.you/",
         "description": "独立博客的聚合绿洲"
+    },
+    {
+        "name": "若梦博客",
+        "link": "https://www.rmbk.cc/",
+        "description": "发现优质中文独立博客"
     }
 ]

@@ -10,6 +10,7 @@ import MainContentHeader from '../components/common/MainContentHeader';
 import HomeLatestNews from '../components/home/HomeLatestNews';
 import HomePopularBlogsHeader from '../components/home/HomePopularBlogsHeader';
 import HomeBanner from '../components/home/HomeBanner';
+import HotSearch from '../components/common/HotSearch';
 
 interface SwitchType {
     name: string;
@@ -58,6 +59,7 @@ export default function HomePage(): React.JSX.Element {
                             <HomePopularBlogsHeader />
                             <HomeLatestNews />
                             <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
+                            <HotSearch label='近期热搜' title='OpenClaw' link='/home?sort=latest&keyword=OpenClaw' />
                             <SwitchSortType types={switchTypes} />
                             <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
                         </Flex>

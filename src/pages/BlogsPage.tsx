@@ -44,7 +44,7 @@ export default function BlogsPage(): React.JSX.Element {
                         <Flex direction="column" gap="4">
                             <BlogsMainContentHeader />
                             <SearchBox placeholder='搜索博客 ↵' gotoPage='/blogs' />
-                            <HotSearch />
+                            <HotSearch label='大家在找啥' title='2025 年度报告' link='/annual-reports/2025' />
                             <SwitchSortType types={switchTypes} />
                             <BlogCardList />
                         </Flex>

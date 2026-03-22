@@ -747,5 +747,19 @@
             "当前总额：222.13 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "清云小栈",
+        "link": "/blogs/www.qynest.cn",
+        "sponsoredAt": "2026/03/21",
+        "sponsoredMoney": "9.99 元",
+        "message": "给博友圈加点「油」！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：232.12 元"
+        ],
+        "proofs": []
     }
 ]

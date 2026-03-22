@@ -208,5 +208,10 @@
         "name": "若梦博客",
         "link": "https://www.rmbk.cc/",
         "avatar": "/assets/images/sites/special_thanks/www.rmbk.cc.png"
+    },
+    {
+        "name": "清云小栈",
+        "link": "/blogs/www.qynest.cn",
+        "avatar": "/assets/images/sites/special_thanks/www.qynest.cn.jpeg"
     }
 ]

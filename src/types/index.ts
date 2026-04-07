@@ -4,16 +4,20 @@ export interface MetaInfo {
   description: string;
 }
 
-export type MetaFields = Readonly<{
+export interface MetaFields {
   title: string;
   keywords: string;
   description: string;
-}>;
+}
+
+export interface MetaProps {
+  meta?: MetaFields;
+}
 
 export type SwitchType = Readonly<{
-    name: string;
-    href: string;
-    default: boolean;
+  name: string;
+  href: string;
+  default: boolean;
 }>;
 
 export interface ApiResponse<T = any> {

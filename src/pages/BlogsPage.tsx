@@ -2,7 +2,7 @@ import { Box, Container, Flex } from '@radix-ui/themes';
 
 import { CommonHeader, CommonFooter, SearchBox, SwitchSortType, Meta, HotSearch } from '@components/common';
 import { BlogsMainContentHeader, BlogCardList } from '@components/blogs';
-import { MetaFields } from '@types';
+import { MetaFields, SwitchType } from '@types';
 
 const meta: MetaFields = {
     title: '博客广场 - 博友圈 · 博客人的朋友圈！',

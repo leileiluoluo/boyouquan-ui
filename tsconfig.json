@@ -31,7 +31,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
+      "@*": [
         "src/*"
       ],
       "@components/*": [

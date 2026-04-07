@@ -18,11 +18,29 @@ export default function MomentsCard({ moment }) {
                         borderRadius: "4px",
                         overflow: "hidden",
                     }}>
-                    <Link href={goToAddress} target="_blank" size="3" weight="bold">
+                    <Link
+                        href={goToAddress}
+                        target="_blank"
+                        size="3"
+                        weight="bold"
+                        style={{
+                            display: "block",
+                            width: "100%",
+                            height: "100%"
+                        }}
+                    >
                         <LazyImg
                             src={moment.imageURL}
                             alt={moment.description}
-                            style={{ width: "100%", height: "100%", objectFit: "cover", animation: "autoClear 1s ease-in-out forwards", transform: "scale(1.1)", filter: "blur(2px)" }} />
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                                animation: "autoClear 1s ease-in-out forwards",
+                                transform: "scale(1.1)",
+                                filter: "blur(2px)"
+                            }}
+                        />
                     </Link>
                 </AspectRatio.Root>
 

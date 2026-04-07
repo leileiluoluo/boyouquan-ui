@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import RequestUtil from '../utils/APIRequestUtil';
-import Meta from '../components/common/Meta';
-import { getGoAddress } from '../utils/PageAddressUtil';
-import { redirectTo } from '../utils/CommonUtil';
 import { Box } from '@radix-ui/themes';
-import { getDaysTillNow } from '../utils/DateUtil';
 
-const meta = {
+import RequestUtil from '@utils/APIRequestUtil';
+import Meta from '@components/common/Meta';
+import { getGoAddress } from '@utils/PageAddressUtil';
+import { redirectTo } from '@utils/CommonUtil';
+import { getDaysTillNow } from '@utils/DateUtil';
+import { MetaFields } from '@types';
+
+const meta: MetaFields = {
     title: '星球穿梭 - 博友圈 · 博客人的朋友圈！',
     keywords: '星球穿梭, 博友圈',
     description: '博友圈星球穿梭，随机穿梭到一位博友的星球！'

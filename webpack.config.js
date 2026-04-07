@@ -100,7 +100,9 @@ module.exports = {
             '@components': path.resolve(__dirname, 'src/components'),
             '@types': path.resolve(__dirname, 'src/types'),
             '@utils': path.resolve(__dirname, 'src/utils'),
+            '@const': path.resolve(__dirname, 'src/const'),
+            '@json': path.resolve(__dirname, 'src/json'),
         },
-        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     },
 };

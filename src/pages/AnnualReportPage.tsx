@@ -1,15 +1,15 @@
-import { Navigate, useParams } from 'react-router-dom';
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import Meta from '../components/common/Meta';
-import Article from '../components/article/Article';
-import { MetaInfo } from '../types';
-
-import { META_2025, REPORT_INFO_2025 } from '../const/annual-reports/AnnualReport2025';
-import { META_2024, REPORT_INFO_2024 } from '../const/annual-reports/AnnualReport2024';
-import { scrollToHash } from '../utils/ScrollUtil';
 import { useEffect } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import { Box, Container } from '@radix-ui/themes';
+
+import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import Article from '@components/article/Article';
+import { MetaFields } from '@types';
+
+import { META_2025, REPORT_INFO_2025 } from '@const/annual-reports/AnnualReport2025';
+import { META_2024, REPORT_INFO_2024 } from '@const/annual-reports/AnnualReport2024';
+import { scrollToHash } from '@utils/ScrollUtil';
+
 
 export interface ReportInfo {
     title: string;
@@ -18,7 +18,7 @@ export interface ReportInfo {
 }
 
 const getMetaAndYearInfo = (year?: string) => {
-    let meta: MetaInfo | null = null
+    let meta: MetaFields | null = null
     let reportInfo: ReportInfo | null = null
     if (!year) {
         return { meta, reportInfo }

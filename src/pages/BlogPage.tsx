@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import BlogDetail from '../components/blog/BlogDetail';
-import { Box, Container, Flex } from '@radix-ui/themes';
-import { redirectTo } from '../utils/CommonUtil';
-import RequestUtil from '../utils/APIRequestUtil';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Box, Container, Flex } from '@radix-ui/themes';
 
-export default function BlogPage(): React.JSX.Element {
+import { CommonHeader, CommonFooter } from '@components/common';
+import BlogDetail from '@components/blog/BlogDetail';
+import { redirectTo } from '@utils/CommonUtil';
+import RequestUtil from '@utils/APIRequestUtil';
+
+export default function BlogPage() {
     const [loaded, setLoaded] = useState<boolean>(false);
 
     const { domain } = useParams<{ domain: string }>();
 
     const hasNewDomain = async (domainName: string | undefined): Promise<void> => {
         if (!domainName) return;
-        
+
         const resp = await RequestUtil.get(`/api/new-domain-names?domainName=${domainName}`);
-        
+
         if (typeof resp !== 'string' && resp.status === 200) {
             const respBody = await resp.json();
             const newDomainName = respBody.newDomainName;

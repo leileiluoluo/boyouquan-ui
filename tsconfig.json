@@ -42,6 +42,12 @@
       ],
       "@types/*": [
         "src/types/*"
+      ],
+      "@const/*": [
+        "src/const/*"
+      ],
+      "@json/*": [
+        "src/json/*"
       ]
     }
   },

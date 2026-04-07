@@ -1,8 +1,7 @@
-import React from 'react';
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import BlogRequest from '../components/blog-request/BlogRequest';
 import { Box, Container } from '@radix-ui/themes';
+
+import { CommonHeader, CommonFooter } from '@components/common';
+import BlogRequest from '@components/blog-request/BlogRequest';
 
 export default function BlogRequestPage() {
     return (

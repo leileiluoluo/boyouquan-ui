@@ -1,25 +1,26 @@
-import React from 'react';
 import { useEffect, useState, useRef } from 'react';
-import { Button } from '@radix-ui/themes';
-import RequestUtil from '../utils/APIRequestUtil';
-import { NOT_FOUND_ADDRESS } from '../utils/PageAddressUtil';
 import { useParams } from 'react-router-dom';
-import { redirectTo } from '../utils/CommonUtil';
-import { formatDateStr, getYearsTillNow } from '../utils/DateUtil';
-import { stringToSixDigitNumber } from '../utils/StringUtil';
-import Meta from '../components/common/Meta';
 import { Helmet } from 'react-helmet';
 import html2canvas from 'html2canvas';
+import { Button } from '@radix-ui/themes';
 
-const getMeta = (name, description) => {
+import RequestUtil from '@utils/APIRequestUtil';
+import { NOT_FOUND_ADDRESS } from '@utils/PageAddressUtil';
+import { redirectTo } from '@utils/CommonUtil';
+import { formatDateStr, getYearsTillNow } from '@utils/DateUtil';
+import { stringToSixDigitNumber } from '@utils/StringUtil';
+import Meta from '@components/common/Meta';
+import { MetaFields } from '@types';
+
+const getMeta = (name: string, description: string): MetaFields => {
     return {
         title: `${name}的履约证书 - 博友圈 · 博客人的朋友圈！`,
         keywords: name,
         description: description
-    }
+    };
 }
 
-const getDomain = () => {
+const getDomain = (): string | undefined => {
     let { domain, sub, subsub } = useParams();
     if (sub !== undefined) domain += '/' + sub;
     if (subsub !== undefined) domain += '/' + subsub;
@@ -27,7 +28,7 @@ const getDomain = () => {
 };
 
 // 工具函数：将外部图片转 Base64 避免跨域问题
-const toBase64 = async (url) => {
+const toBase64 = async (url: string) => {
     if (!url) return '';
     try {
         const res = await fetch(url);

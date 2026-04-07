@@ -1,13 +1,12 @@
-import React from 'react';
 import { useEffect } from 'react';
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import Meta from '../components/common/Meta';
-import { scrollToHash } from '../utils/ScrollUtil';
-import Article from '../components/article/Article';
 import { Box, Container, Flex, Link, ScrollArea, Table, Heading, Text } from '@radix-ui/themes';
 
-const meta = {
+import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { scrollToHash } from '@utils/ScrollUtil';
+import Article from '@components/article/Article';
+import { MetaFields } from '@types';
+
+const meta: MetaFields = {
     title: '关于本站 - 博友圈 · 博客人的朋友圈！',
     keywords: '关于本站',
     description: '博友圈网站介绍。'
@@ -137,7 +136,7 @@ export default function AboutPage() {
             <main className="main">
                 <Box>
                     <Container size="2">
-                        <Article title='关于本站' content={content} />
+                        <Article title="关于本站" content={content} />
                     </Container>
                 </Box>
             </main>

@@ -1,19 +1,20 @@
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import Meta from '../components/common/Meta';
-import Article from '../components/article/Article';
-import { Box, Container, Link, Strong, Text, Table, Flex, Separator, Grid, Skeleton } from '@radix-ui/themes';
-import sponsorList from '../json/sponsor.json';
 import { lazy, Suspense } from 'react';
-const SponsorMotion = lazy(() => import('../components/sponsor/SponsorMotion'));
+import { Box, Container, Link, Strong, Text, Table, Flex, Separator, Grid, Skeleton } from '@radix-ui/themes';
 
-const meta = {
+import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import Article from '@components/article/Article';
+import sponsorList from '@json/sponsor.json';
+import { MetaFields } from '@types';
+
+const SponsorMotion = lazy(() => import('@components/sponsor/SponsorMotion'));
+
+const meta: MetaFields = {
     title: "赞助本站 - 博友圈 · 博客人的朋友圈！",
     keywords: "赞助本站",
     description: "赞助本站，以使得本站能更好的运营下去。",
 };
 
-const content = (
+const content: JSX.Element = (
     <>
         <Text as="p" mb="2">感谢您点开此页，开设这个页面实属不得已为之！</Text>
         <Text as="p" mb="2">

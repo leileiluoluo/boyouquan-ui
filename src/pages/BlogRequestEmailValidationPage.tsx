@@ -1,12 +1,11 @@
-import React from 'react';
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import BlogRequestAddMainContentHeader from '../components/blog-request/BlogRequestAddMainContentHeader';
-import Meta from '../components/common/Meta';
-import BlogRequestEmailValidation from '../components/blog-request/BlogRequestEmailValidation';
 import { Box, Container, Flex } from '@radix-ui/themes';
 
-const meta = {
+import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import BlogRequestAddMainContentHeader from '@components/blog-request/BlogRequestAddMainContentHeader';
+import BlogRequestEmailValidation from '@components/blog-request/BlogRequestEmailValidation';
+import { MetaFields } from '@types';
+
+const meta: MetaFields = {
     title: '提交博客 - 博友圈 · 博客人的朋友圈！',
     keywords: '提交博客, 邮箱验证',
     description: '提交博客，邮箱验证。'

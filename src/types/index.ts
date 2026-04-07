@@ -1,13 +1,24 @@
-// 通用类型定义
 export interface MetaInfo {
   title: string;
   keywords: string;
   description: string;
 }
 
+export type MetaFields = Readonly<{
+  title: string;
+  keywords: string;
+  description: string;
+}>;
+
+export type SwitchType = Readonly<{
+    name: string;
+    href: string;
+    default: boolean;
+}>;
+
 export interface ApiResponse<T = any> {
   data?: T;
-  code?: string,
+  code?: string;
   error?: string;
   message?: string;
 }
@@ -138,4 +149,3 @@ declare global {
 }
 
 export {};
-

@@ -51,19 +51,19 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
-                        options: { importLoaders: 1 } // 确保 @import 的文件也走 postcss
+                        options: { importLoaders: 1 }
                     },
                     'postcss-loader'
                 ],
             },
             {
-                test: /\.(png|jpg|gif|svg)$/, // 处理图片文件
+                test: /\.(png|jpg|gif|svg)$/,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[path][name].[ext]', // 输出文件名格式
-                            outputPath: 'images/', // 输出目录
+                            name: '[path][name].[ext]',
+                            outputPath: 'images/',
                         },
                     },
                 ],
@@ -78,8 +78,8 @@ module.exports = {
             "React": "react",
         }),
         new HtmlWebpackPlugin({
-            template: './public/index.html', // HTML 模板
-            filename: 'index.html', // 输出 HTML 文件名
+            template: './public/index.html',
+            filename: 'index.html',
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
@@ -95,6 +95,12 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx'], // 解析文件扩展名
+        alias: {
+            '@': path.resolve(__dirname, 'src'),
+            '@components': path.resolve(__dirname, 'src/components'),
+            '@types': path.resolve(__dirname, 'src/types'),
+            '@utils': path.resolve(__dirname, 'src/utils'),
+        },
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
 };

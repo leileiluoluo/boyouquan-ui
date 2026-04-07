@@ -1,39 +1,22 @@
-import React from 'react';
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import BlogsMainContentHeader from '../components/blogs/BlogsMainContentHeader';
-import SearchBox from '../components/common/SearchBox';
-import SwitchSortType from '../components/common/SwitchSortType';
-import Meta from '../components/common/Meta';
-import BlogCardList from '../components/blogs/BlogCardList';
-import HotSearch from '../components/common/HotSearch';
 import { Box, Container, Flex } from '@radix-ui/themes';
 
-interface MetaData {
-    title: string;
-    keywords: string;
-    description: string;
-}
+import { CommonHeader, CommonFooter, SearchBox, SwitchSortType, Meta, HotSearch } from '@components/common';
+import { BlogsMainContentHeader, BlogCardList } from '@components/blogs';
+import { MetaFields } from '@types';
 
-const meta: MetaData = {
+const meta: MetaFields = {
     title: '博客广场 - 博友圈 · 博客人的朋友圈！',
     keywords: '博客广场, 博客列表',
     description: '展示博友圈所收录的全部博客。'
 };
 
-interface SwitchType {
-    name: string;
-    href: string;
-    default: boolean;
-}
-
-const switchTypes: SwitchType[] = [
+const SWITCH_TYPES = [
     { name: '最近收录', href: '/blogs', default: true },
     { name: '最多浏览', href: '/blogs?sort=access_count', default: false },
     { name: '最长博龄', href: '/blogs?sort=create_time', default: false }
-];
+] as const satisfies readonly SwitchType[];
 
-export default function BlogsPage(): React.JSX.Element {
+export default function BlogsPage() {
     return (
         <>
             <Meta meta={meta} />
@@ -43,9 +26,9 @@ export default function BlogsPage(): React.JSX.Element {
                     <Container size="2">
                         <Flex direction="column" gap="4">
                             <BlogsMainContentHeader />
-                            <SearchBox placeholder='搜索博客 ↵' gotoPage='/blogs' />
-                            <HotSearch label='大家在找啥' title='2025 年度报告' link='/annual-reports/2025' />
-                            <SwitchSortType types={switchTypes} />
+                            <SearchBox placeholder="搜索博客 ↵" gotoPage="/blogs" />
+                            <HotSearch label="大家在找啥" title="2025 年度报告" link="/annual-reports/2025" />
+                            <SwitchSortType types={SWITCH_TYPES} />
                             <BlogCardList />
                         </Flex>
                     </Container>

@@ -1,27 +1,16 @@
-import CommonHeader from '../components/common/CommonHeader';
-import CommonFooter from '../components/common/CommonFooter';
-import SearchBox from '../components/common/SearchBox';
-import SwitchSortType from '../components/common/SwitchSortType';
-import PostCardList from '../components/post-card/PostCardList';
-import Meta from '../components/common/Meta';
-import { getURLParameter } from '../utils/CommonUtil';
 import { Box, Container, Flex } from '@radix-ui/themes';
-import MainContentHeader from '../components/common/MainContentHeader';
-import HomeLatestNews from '../components/home/HomeLatestNews';
-import HomePopularBlogsHeader from '../components/home/HomePopularBlogsHeader';
-import HomeBanner from '../components/home/HomeBanner';
-import HotSearch from '../components/common/HotSearch';
 
-interface SwitchType {
-    name: string;
-    href: string;
-    default: boolean;
-}
+import { CommonHeader, CommonFooter, MainContentHeader, Meta, SearchBox, HotSearch, SwitchSortType } from '@components/common';
+import { HomeLatestNews, HomePopularBlogsHeader } from '@components/home';
+import PostCardList from '@components/post-card/PostCardList';
 
-const switchTypes: SwitchType[] = [
+import { SwitchType } from '@types';
+import { getURLParameter } from '@utils/CommonUtil';
+
+const SWITCH_TYPES = [
     { name: '推荐', href: '/home', default: true },
-    { name: '最新', href: '/home?sort=latest', default: false }
-];
+    { name: '最新', href: '/home?sort=latest', default: false },
+] as const satisfies readonly SwitchType[];
 
 interface SortKeywordShowPinned {
     sort: string;
@@ -43,7 +32,7 @@ const getSortAndKeywordAndShowPinned = (): SortKeywordShowPinned => {
     return { sort, keyword: keyword || '', showPinned };
 };
 
-export default function HomePage(): React.JSX.Element {
+export default function HomePage() {
     const { sort, keyword, showPinned } = getSortAndKeywordAndShowPinned();
 
     return (
@@ -54,13 +43,12 @@ export default function HomePage(): React.JSX.Element {
                 <Box>
                     <Container size="2">
                         <Flex direction="column" gap="4">
-                            <MainContentHeader content='博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！' />
-                            {/* <HomeBanner /> */}
+                            <MainContentHeader content="博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！" />
                             <HomePopularBlogsHeader />
                             <HomeLatestNews />
-                            <SearchBox placeholder='搜索文章 ↵' gotoPage='/home' sortType='latest' />
-                            <HotSearch label='近期热搜' title='OpenClaw' link='/home?sort=latest&keyword=OpenClaw' />
-                            <SwitchSortType types={switchTypes} />
+                            <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
+                            <HotSearch label="近期热搜" title="OpenClaw" link="/home?sort=latest&keyword=OpenClaw" />
+                            <SwitchSortType types={SWITCH_TYPES} />
                             <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
                         </Flex>
                         <CommonFooter isHome="true" />

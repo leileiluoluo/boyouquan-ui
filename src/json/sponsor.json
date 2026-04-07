@@ -775,5 +775,19 @@
             "当前总额：233.12 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "人间半闲",
+        "link": "/blogs/lhdrc.com",
+        "sponsoredAt": "2026/04/07",
+        "sponsoredMoney": "9.99 元",
+        "message": "敬站长守其本，成其事~",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：243.11 元"
+        ],
+        "proofs": []
     }
 ]

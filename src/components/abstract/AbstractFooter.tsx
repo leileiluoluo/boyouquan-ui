@@ -1,7 +1,6 @@
-import React from 'react';
-import { formatDateStr } from '../../utils/DateUtil';
-import { getBlogAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
-import PostCardFooter from '../post-card/PostCardFooter';
+import { formatDateStr } from '@utils/DateUtil';
+import { getBlogAddress, getGravatarImageFullURL } from '@utils/PageAddressUtil';
+import PostCardFooter from '@components/post-card/PostCardFooter';
 
 interface AbstractFooterProps {
     blogName: string;
@@ -11,7 +10,7 @@ interface AbstractFooterProps {
     linkAccessCount?: number;
 }
 
-export default function AbstractFooter({ blogName, blogDomainName, blogAdminMediumImageURL, publishedAt, linkAccessCount }: AbstractFooterProps): React.JSX.Element {
+export default function AbstractFooter({ blogName, blogDomainName, blogAdminMediumImageURL, publishedAt, linkAccessCount }: AbstractFooterProps) {
     const blogAddress = getBlogAddress(blogDomainName);
     const gravatarImageFullURL = getGravatarImageFullURL(blogAdminMediumImageURL || '');
     const publishedAtFormatted = formatDateStr(publishedAt);

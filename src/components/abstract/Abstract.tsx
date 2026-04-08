@@ -1,24 +1,19 @@
-import React from 'react';
 import { Fragment, useEffect, useState } from 'react';
-import AbstractNotice from './AbstractNotice';
-import RequestUtil from '../../utils/APIRequestUtil';
-import AbstractTitle from './AbstractTitle';
-import AbstractFooter from './AbstractFooter';
-import AbstractGo from './AbstractGo';
-import AbstractDescription from './AbstractDescription';
-import Meta from '../common/Meta';
-import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
-import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
-import { Card, Flex } from '@radix-ui/themes';
-import { PostInfo } from '../../types';
+import { Card, Flex, Text } from '@radix-ui/themes';
 
-interface MetaData {
-    title: string;
-    keywords: string;
-    description: string;
-}
+import AbstractTitle from '@components/abstract/AbstractTitle';
+import AbstractFooter from '@components/abstract/AbstractFooter';
+import AbstractGo from '@components/abstract/AbstractGo';
+import AbstractDescription from '@components/abstract/AbstractDescription';
 
-const getMeta = (isSharingPage: string | undefined, title: string, description: string): MetaData => {
+import { Meta } from '@components/common';
+import RequestUtil from '@utils/APIRequestUtil';
+import { getURLParameter, redirectTo } from '@utils/CommonUtil';
+import { NOT_FOUND_ADDRESS } from '@utils/PageAddressUtil';
+
+import { MetaFields, PostInfo } from '@types';
+
+const getMeta = (isSharingPage: string | undefined, title: string, description: string): MetaFields => {
     if (isSharingPage) {
         return {
             title: `发现一篇有趣的文章：「${title}」 - 博友圈 · 博客人的朋友圈！`,
@@ -38,7 +33,7 @@ interface AbstractProps {
     isSharingPage?: string;
 }
 
-export default function Abstract({ isSharingPage }: AbstractProps): React.JSX.Element {
+export default function Abstract({ isSharingPage }: AbstractProps) {
     const link = getURLParameter('link') || '';
 
     const [loaded, setLoaded] = useState<boolean>(false);
@@ -54,7 +49,7 @@ export default function Abstract({ isSharingPage }: AbstractProps): React.JSX.El
 
     const fetchData = async (linkParam: string): Promise<void> => {
         if (!linkParam) return;
-        
+
         const linkEncoded = encodeURIComponent(linkParam);
         const resp = await RequestUtil.get(`/api/posts/by-link?link=${linkEncoded}`);
 
@@ -84,7 +79,7 @@ export default function Abstract({ isSharingPage }: AbstractProps): React.JSX.El
                     <Card>
                         <Flex direction="column" gap="1">
                             {
-                                isSharingPage || postInfo.blogStatusOk ? '' : <AbstractNotice />
+                                isSharingPage || postInfo.blogStatusOk ? '' : <Text size="1" color="crimson">* 原始文章地址可能暂时无法访问，本页为文章的摘要信息</Text>
                             }
                             <AbstractTitle isSharingPage={isSharingPage} title={postInfo.title} link={postInfo.link} />
                             <AbstractDescription description={postInfo.description} />

@@ -1,9 +1,3 @@
-export interface MetaInfo {
-  title: string;
-  keywords: string;
-  description: string;
-}
-
 export interface MetaFields {
   title: string;
   keywords: string;

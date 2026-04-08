@@ -1,12 +1,11 @@
-import React from 'react';
 import { Box, Link } from '@radix-ui/themes';
-import { getGoAddress } from '../../utils/PageAddressUtil';
+import { getGoAddress } from '@utils/PageAddressUtil';
 
 interface AbstractGoProps {
     link: string;
 }
 
-export default function AbstractGo({ link }: AbstractGoProps): React.JSX.Element {
+export default function AbstractGo({ link }: AbstractGoProps) {
     const gotoLink = getGoAddress(link);
     return (
         <Box>

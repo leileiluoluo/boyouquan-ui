@@ -1,4 +1,12 @@
 /* global.css */
+
+body#top {
+    background-image: url('https://www.boyouquan.com/assets/images/sites/background/background.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 :root {
   /* 轮播的条数，可以覆盖 */
   --s: 6;

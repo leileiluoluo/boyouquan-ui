@@ -2,7 +2,7 @@ import { Box, Link, Text } from '@radix-ui/themes';
 import { getGoAddress } from '@utils/PageAddressUtil';
 
 interface AbstractTitleProps {
-    isSharingPage?: string;
+    isSharingPage?: boolean;
     title: string;
     link: string;
 }

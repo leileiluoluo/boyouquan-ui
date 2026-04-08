@@ -4,7 +4,7 @@ import { CommonHeader, CommonFooter } from '@components/common';
 import Abstract from '@components/abstract/Abstract';
 
 interface AbstractPageProps {
-    isSharingPage?: string;
+    isSharingPage: boolean;
 }
 
 export default function AbstractPage({ isSharingPage }: AbstractPageProps) {

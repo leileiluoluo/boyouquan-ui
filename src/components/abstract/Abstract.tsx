@@ -13,7 +13,7 @@ import { NOT_FOUND_ADDRESS } from '@utils/PageAddressUtil';
 
 import { MetaFields, PostInfo } from '@types';
 
-const getMeta = (isSharingPage: string | undefined, title: string, description: string): MetaFields => {
+const getMeta = (isSharingPage: boolean, title: string, description: string): MetaFields => {
     if (isSharingPage) {
         return {
             title: `发现一篇有趣的文章：「${title}」 - 博友圈 · 博客人的朋友圈！`,
@@ -30,7 +30,7 @@ const getMeta = (isSharingPage: string | undefined, title: string, description: 
 };
 
 interface AbstractProps {
-    isSharingPage?: string;
+    isSharingPage: boolean;
 }
 
 export default function Abstract({ isSharingPage }: AbstractProps) {

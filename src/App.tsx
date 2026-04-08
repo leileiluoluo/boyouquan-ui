@@ -56,8 +56,8 @@ export default function App() {
         <Route path="/admin/recommended-posts" element={<AdminRecommendedPostsPage />} />
         <Route path="/admin/recommended-posts/add" element={<AdminRecommendPostPage />} />
         <Route path="/admin/post-images/add" element={<AdminPostImageAddPage />} />
-        <Route path="/sharing" element={<AbstractPage isSharingPage='true' />} />
-        <Route path="/abstract" element={<AbstractPage />} />
+        <Route path="/sharing" element={<AbstractPage isSharingPage={true} />} />
+        <Route path="/abstract" element={<AbstractPage isSharingPage={false} />} />
         <Route path="/planet-shuttle" element={<PlanetShuttlePage />} />
         <Route path="/go" element={<GoPage />} />
         <Route path="/cancel-subscription" element={<CancelSubscriptionPage />} />

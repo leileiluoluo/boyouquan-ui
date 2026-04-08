@@ -1,11 +1,10 @@
-import React from 'react';
-import { Box, Text } from "@radix-ui/themes";
+import { Box, Text } from '@radix-ui/themes';
 
 interface AbstractDescriptionProps {
     description: string;
 }
 
-export default function AbstractDescription({ description }: AbstractDescriptionProps): React.JSX.Element {
+export default function AbstractDescription({ description }: AbstractDescriptionProps) {
     return (
         <Box>
             <Text size="2" color="gray" style={{

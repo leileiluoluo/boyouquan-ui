@@ -1,6 +1,5 @@
-import React from 'react';
 import { Box, Link, Text } from '@radix-ui/themes';
-import { getGoAddress } from '../../utils/PageAddressUtil';
+import { getGoAddress } from '@utils/PageAddressUtil';
 
 interface AbstractTitleProps {
     isSharingPage?: string;
@@ -8,7 +7,7 @@ interface AbstractTitleProps {
     link: string;
 }
 
-export default function AbstractTitle({ isSharingPage, title, link }: AbstractTitleProps): React.JSX.Element {
+export default function AbstractTitle({ isSharingPage, title, link }: AbstractTitleProps) {
     const gotoLink = getGoAddress(link);
     return (
         <Box>

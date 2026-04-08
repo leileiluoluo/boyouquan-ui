@@ -8,7 +8,7 @@ import App from './App';
 
 const rootElement = document.getElementById('top');
 if (!rootElement) {
-  throw new Error('Root element not found');
+    throw new Error('Root element not found');
 }
 
 ReactDOMClient.createRoot(rootElement).render(

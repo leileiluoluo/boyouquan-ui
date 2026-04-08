@@ -61,7 +61,7 @@ export default function SiteFooter() {
 
                         <Link target="_blank" href="https://curl.qcloud.com/okTsvSrj">
                             <IconButton variant="soft">
-                                <Tooltip content="本站使用的云服务">
+                                <Tooltip content="本站使用腾讯云服务">
                                     <Cloud width="14" height="14" />
                                 </Tooltip>
                             </IconButton>

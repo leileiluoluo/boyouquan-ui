@@ -1,7 +1,5 @@
-import React from 'react';
 import { Box, Container, Flex, Link, ScrollArea, Separator, Text, IconButton, DropdownMenu, Tooltip } from '@radix-ui/themes';
 import { Rss, Github, Cloud } from 'lucide-react';
-import LazyImg from '../common/img/LazyImg';
 
 export default function SiteFooter() {
     return (
@@ -73,7 +71,7 @@ export default function SiteFooter() {
                 <Box mt="4" mb="2">
                     <Box align="center" mb="1">
                         <Link href="/planet-shuttle" target="_blank">
-                            <LazyImg
+                            <img
                                 src="/assets/images/sites/logo/planet-shuttle.svg"
                                 alt="星球穿梭"
                                 style={{ height: '24px' }}

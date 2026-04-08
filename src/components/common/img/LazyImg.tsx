@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 
 export default function LazyImg({ src, alt, style }) {
@@ -18,14 +17,32 @@ export default function LazyImg({ src, alt, style }) {
     }, []);
 
     return (
-        <div ref={ref}>
+        <div
+            ref={ref}
+            style={{
+                width: "100%",
+                height: "100%",
+                overflow: "hidden"
+            }}
+        >
             {visible ? (
                 <img
                     src={src}
                     alt={alt}
-                    style={style} />
+                    style={{
+                        ...style,
+                        width: "100%",
+                        height: "100%",
+                        display: "block",
+                        objectFit: style?.objectFit || "cover"
+                    }}
+                />
             ) : (
-                <img />
+                <div style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "#f0f0f0"
+                }} />
             )}
         </div>
     )

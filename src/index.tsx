@@ -4,7 +4,7 @@ import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 import './styles.css';
 
-import App from './App';
+import App from './App.tsx';
 
 const rootElement = document.getElementById('top');
 if (!rootElement) {

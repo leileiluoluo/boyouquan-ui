@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
-import { Box, Container, Link, Strong, Text, Table, Flex, Separator, Grid, Skeleton } from '@radix-ui/themes';
+import { Link, Strong, Text, Table, Flex, Separator, Grid, Skeleton } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import Article from '@components/article/Article';
 import sponsorList from '@json/sponsor.json';
 import { MetaFields } from '@types';
@@ -156,15 +156,7 @@ export default function SponsorPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Article title="赞助本站" content={content} />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Article title="赞助本站" content={content} />
         </>
     );
 }

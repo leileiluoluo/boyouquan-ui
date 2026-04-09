@@ -1,6 +1,6 @@
-import { Box, Container, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import CancelSubscription from '@components/subscription/CancelSubscription';
 import { MetaFields } from '@types';
 
@@ -14,17 +14,9 @@ export default function CancelSubscriptionPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Flex direction="column" gap="4">
-                            <CancelSubscription />
-                        </Flex>
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Flex direction="column" gap="4">
+                <CancelSubscription />
+            </Flex>
         </>
     )
 }

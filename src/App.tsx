@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
+import MainLayout from '@layouts/MainLayout';
 import HomePage from '@pages/HomePage';
 import ReleaseNotesPage from '@pages/ReleaseNotesPage';
 import ReleaseNotePage from '@pages/ReleaseNotePage';
 import SimilarSitesPage from '@pages/SimilarSitesPage';
-import ThanksPage from '@pages/ThanksPage';
 import AboutPage from '@pages/AboutPage';
 import SponsorPage from '@pages/SponsorPage';
 import GoPage from '@pages/GoPage';
@@ -33,49 +33,51 @@ import MomentsPage from '@pages/MomentsPage';
 import CertificatePage from '@pages/CertificatePage';
 import LinkGraphPage from '@pages/LinkGraphPage';
 
-export default function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to='/home' replace />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/link-graphs" element={<LinkGraphPage />} />
-        <Route path="/moments" element={<MomentsPage />} />
-        <Route path="/monthly-selected" element={<MonthlySelectedPage />} />
-        <Route path="/blogs" element={<BlogsPage />} />
-        <Route path="/blogs/:domain" element={<BlogPage />} />
-        <Route path="/blog-requests" element={<BlogRequestsPage />} />
-        <Route path="/blog-requests/add" element={<BlogRequestAddPage />} />
-        <Route path="/blog-requests/add/email-validation" element={<BlogRequestEmailValidationPage />} />
-        <Route path="/blog-requests/:id" element={<BlogRequestPage />} />
-        <Route path="/admin/login" element={<LoginPage />} />
-        <Route path="/admin/blog-requests" element={<AdminBlogRequestsPage />} />
-        <Route path="/admin/blog-requests/:id" element={<AdminBlogRequestPage />} />
-        <Route path="/admin/blog-requests/add" element={<AdminBlogRequestAddPage />} />
-        <Route path="/admin/monthly-selected" element={<AdminMonthlySelectedPage />} />
-        <Route path="/admin/recommended-posts" element={<AdminRecommendedPostsPage />} />
-        <Route path="/admin/recommended-posts/add" element={<AdminRecommendPostPage />} />
-        <Route path="/admin/post-images/add" element={<AdminPostImageAddPage />} />
-        <Route path="/sharing" element={<AbstractPage isSharingPage={true} />} />
-        <Route path="/abstract" element={<AbstractPage isSharingPage={false} />} />
-        <Route path="/planet-shuttle" element={<PlanetShuttlePage />} />
-        <Route path="/go" element={<GoPage />} />
-        <Route path="/cancel-subscription" element={<CancelSubscriptionPage />} />
-        <Route path="/certificates/:domain" element={<CertificatePage />} />
-        <Route path="/certificates/:domain/:sub" element={<CertificatePage />} />
-        <Route path="/certificates/:domain/:sub/:subsub" element={<CertificatePage />} />
-        <Route path="/sponsor" element={<SponsorPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/thanks" element={<ThanksPage />} />
-        <Route path="/similar-sites" element={<SimilarSitesPage />} />
-        <Route path="/release-notes" element={<ReleaseNotesPage />} />
-        <Route path="/release-notes/:version" element={<ReleaseNotePage />} />
-        <Route path="/annual-reports" element={<AnnualReportsPage />} />
-        <Route path="/annual-reports/:year" element={<AnnualReportPage />} />
-        <Route path="/404-not-found" element={<NotFoundPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
-  );
-}
+const App: React.FC = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route element={<MainLayout />}>
+                    <Route path="/" element={<Navigate to='/home' replace />} />
+                    <Route path="/home" element={<HomePage />} />
+                    <Route path="/link-graphs" element={<LinkGraphPage />} />
+                    <Route path="/moments" element={<MomentsPage />} />
+                    <Route path="/monthly-selected" element={<MonthlySelectedPage />} />
+                    <Route path="/blogs" element={<BlogsPage />} />
+                    <Route path="/blogs/:domain" element={<BlogPage />} />
+                    <Route path="/blog-requests" element={<BlogRequestsPage />} />
+                    <Route path="/blog-requests/add" element={<BlogRequestAddPage />} />
+                    <Route path="/blog-requests/add/email-validation" element={<BlogRequestEmailValidationPage />} />
+                    <Route path="/blog-requests/:id" element={<BlogRequestPage />} />
+                    <Route path="/admin/login" element={<LoginPage />} />
+                    <Route path="/admin/blog-requests" element={<AdminBlogRequestsPage />} />
+                    <Route path="/admin/blog-requests/:id" element={<AdminBlogRequestPage />} />
+                    <Route path="/admin/blog-requests/add" element={<AdminBlogRequestAddPage />} />
+                    <Route path="/admin/monthly-selected" element={<AdminMonthlySelectedPage />} />
+                    <Route path="/admin/recommended-posts" element={<AdminRecommendedPostsPage />} />
+                    <Route path="/admin/recommended-posts/add" element={<AdminRecommendPostPage />} />
+                    <Route path="/admin/post-images/add" element={<AdminPostImageAddPage />} />
+                    <Route path="/sharing" element={<AbstractPage isSharingPage={true} />} />
+                    <Route path="/abstract" element={<AbstractPage isSharingPage={false} />} />
+                    <Route path="/planet-shuttle" element={<PlanetShuttlePage />} />
+                    <Route path="/go" element={<GoPage />} />
+                    <Route path="/cancel-subscription" element={<CancelSubscriptionPage />} />
+                    <Route path="/certificates/:domain" element={<CertificatePage />} />
+                    <Route path="/certificates/:domain/:sub" element={<CertificatePage />} />
+                    <Route path="/certificates/:domain/:sub/:subsub" element={<CertificatePage />} />
+                    <Route path="/sponsor" element={<SponsorPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/similar-sites" element={<SimilarSitesPage />} />
+                    <Route path="/release-notes" element={<ReleaseNotesPage />} />
+                    <Route path="/release-notes/:version" element={<ReleaseNotePage />} />
+                    <Route path="/annual-reports" element={<AnnualReportsPage />} />
+                    <Route path="/annual-reports/:year" element={<AnnualReportPage />} />
+                    <Route path="/404-not-found" element={<NotFoundPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
+};
 
+export default App;

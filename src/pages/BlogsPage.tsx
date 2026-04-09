@@ -1,6 +1,6 @@
-import { Box, Container, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, SearchBox, SwitchSortType, Meta, HotSearch } from '@components/common';
+import { SearchBox, SwitchSortType, Meta, HotSearch } from '@components/common';
 import { BlogsMainContentHeader, BlogCardList } from '@components/blogs';
 import { MetaFields, SwitchType } from '@types';
 
@@ -20,21 +20,13 @@ export default function BlogsPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Flex direction="column" gap="4">
-                            <BlogsMainContentHeader />
-                            <SearchBox placeholder="搜索博客 ↵" gotoPage="/blogs" />
-                            <HotSearch label="大家在找啥" title="2025 年度报告" link="/annual-reports/2025" />
-                            <SwitchSortType types={SWITCH_TYPES} />
-                            <BlogCardList />
-                        </Flex>
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Flex direction="column" gap="4">
+                <BlogsMainContentHeader />
+                <SearchBox placeholder="搜索博客 ↵" gotoPage="/blogs" />
+                <HotSearch label="大家在找啥" title="2025 年度报告" link="/annual-reports/2025" />
+                <SwitchSortType types={SWITCH_TYPES} />
+                <BlogCardList />
+            </Flex>
         </>
     );
 }

@@ -1,6 +1,6 @@
-import { Box, Container, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, MainContentHeader, Meta, SearchBox, HotSearch, SwitchSortType } from '@components/common';
+import { MainContentHeader, Meta, SearchBox, HotSearch, SwitchSortType } from '@components/common';
 import { HomeLatestNews, HomePopularBlogsHeader } from '@components/home';
 import PostCardList from '@components/post-card/PostCardList';
 
@@ -38,23 +38,15 @@ export default function HomePage() {
     return (
         <>
             <Meta />
-            <CommonHeader />
-            <main>
-                <Box>
-                    <Container size="2">
-                        <Flex direction="column" gap="4">
-                            <MainContentHeader content="博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！" />
-                            <HomePopularBlogsHeader />
-                            <HomeLatestNews />
-                            <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
-                            <HotSearch label="近期热搜" title="OpenClaw" link="/home?sort=latest&keyword=OpenClaw" />
-                            <SwitchSortType types={SWITCH_TYPES} />
-                            <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
-                        </Flex>
-                        <CommonFooter isHome="true" />
-                    </Container>
-                </Box>
-            </main>
+            <Flex direction="column" gap="4">
+                <MainContentHeader content="博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！" />
+                <HomePopularBlogsHeader />
+                <HomeLatestNews />
+                <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
+                <HotSearch label="近期热搜" title="OpenClaw" link="/home?sort=latest&keyword=OpenClaw" />
+                <SwitchSortType types={SWITCH_TYPES} />
+                <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
+            </Flex>
         </>
     );
 }

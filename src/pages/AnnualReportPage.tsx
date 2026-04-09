@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { Box, Container } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import Article from '@components/article/Article';
 import { MetaFields } from '@types';
 
@@ -53,18 +52,10 @@ export default function AnnualReportPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Article
-                            title={reportInfo.title}
-                            content={reportInfo.content}
-                            publishedAt={reportInfo.publishedAt} />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Article
+                title={reportInfo.title}
+                content={reportInfo.content}
+                publishedAt={reportInfo.publishedAt} />
         </>
     )
 }

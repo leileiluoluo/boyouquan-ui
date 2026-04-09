@@ -1,7 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { Box, Container } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import Article from '@components/article/Article';
 
 import { META_V1_10, RELEASE_INFO_V1_10 } from '@const/release-notes/ReleaseNoteV1.10';
@@ -120,18 +119,10 @@ export default function ReleaseNotePage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Article
-                            title={releaseInfo.title}
-                            content={releaseInfo.content}
-                            publishedAt={releaseInfo.publishedAt} />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Article
+                title={releaseInfo.title}
+                content={releaseInfo.content}
+                publishedAt={releaseInfo.publishedAt} />
         </>
     )
 }

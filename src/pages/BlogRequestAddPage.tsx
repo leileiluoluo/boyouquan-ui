@@ -1,6 +1,6 @@
-import { Box, Container, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import BlogRequestAddMainContentHeader from '@components/blog-request/BlogRequestAddMainContentHeader';
 import BlogRequestAdd from '@components/blog-request/BlogRequestAdd';
 import { MetaFields } from '@types';
@@ -15,19 +15,10 @@ export default function BlogRequestAddPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-
-                <Box>
-                    <Container size="2">
-                        <Flex direction="column" gap="4">
-                            <BlogRequestAddMainContentHeader />
-                            <BlogRequestAdd />
-                        </Flex>
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Flex direction="column" gap="4">
+                <BlogRequestAddMainContentHeader />
+                <BlogRequestAdd />
+            </Flex>
         </>
     )
 }

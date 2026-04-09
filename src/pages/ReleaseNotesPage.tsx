@@ -1,6 +1,6 @@
-import { Box, Container, Heading, Text } from '@radix-ui/themes';
+import { Heading, Text } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import Article from '@components/article/Article';
 import { MetaFields } from '@types';
 
@@ -94,17 +94,9 @@ export default function ReleaseNotesPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box pt="0">
-                    <Container size="2">
-                        <Article
-                            title="发布历史"
-                            content={content} />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Article
+                title="发布历史"
+                content={content} />
         </>
     )
 }

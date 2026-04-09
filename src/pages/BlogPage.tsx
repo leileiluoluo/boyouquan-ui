@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Container, Flex } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter } from '@components/common';
 import BlogDetail from '@components/blog/BlogDetail';
 import { redirectTo } from '@utils/CommonUtil';
 import RequestUtil from '@utils/APIRequestUtil';
@@ -34,21 +33,9 @@ export default function BlogPage() {
     return (
         <>
             {
-                loaded ? (
-                    <>
-                        <CommonHeader />
-                        <main className="main">
-                            <Box>
-                                <Container size="2">
-                                    <Flex direction="column" gap="4">
-                                        <BlogDetail domain={domain || ''} />
-                                    </Flex>
-                                </Container>
-                            </Box>
-                        </main>
-                        <CommonFooter />
-                    </>
-                ) : null
+                loaded ? <Flex direction="column" gap="4">
+                    <BlogDetail domain={domain || ''} />
+                </Flex> : null
             }
         </>
     );

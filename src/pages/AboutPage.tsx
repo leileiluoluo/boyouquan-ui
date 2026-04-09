@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Box, Container, Flex, Link, ScrollArea, Table, Heading, Text } from '@radix-ui/themes';
+import { Flex, Link, ScrollArea, Table, Heading, Text } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import { scrollToHash } from '@utils/ScrollUtil';
 import Article from '@components/article/Article';
 import { MetaFields } from '@types';
@@ -132,15 +132,7 @@ export default function AboutPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Article title="关于本站" content={content} />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Article title="关于本站" content={content} />
         </>
     )
 }

@@ -1,6 +1,6 @@
-import { Box, Container, Heading, Text } from '@radix-ui/themes';
+import { Heading, Text } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import Article from '@components/article/Article';
 import { MetaFields } from '@types';
 
@@ -24,17 +24,9 @@ export default function AnnualReportsPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Article
-                            title="年度报告"
-                            content={content} />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Article
+                title="年度报告"
+                content={content} />
         </>
     )
 }

@@ -1,6 +1,6 @@
-import { Box, Container, Text } from '@radix-ui/themes';
+import { Text } from '@radix-ui/themes';
 
-import { CommonHeader, CommonFooter, Meta } from '@components/common';
+import { Meta } from '@components/common';
 import Article from '@components/article/Article';
 import similarSites from '@json/similarSites.json';
 
@@ -28,17 +28,9 @@ export default function SimilarSitesPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Article
-                            title="同类网站"
-                            content={content} />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Article
+                title="同类网站"
+                content={content} />
         </>
     )
 }

@@ -46,7 +46,7 @@ const MainFooter: React.FC = () => {
             background: '#f8f9fa',
             color: '#2c3e50',
             padding: '30px 24px 28px',
-            marginTop: 'auto',
+            marginTop: '30px',
             borderTop: '1px solid #e9ecef'
         }}>
             <Flex vertical gap={28} style={{ maxWidth: 1200, margin: '0 auto' }}>

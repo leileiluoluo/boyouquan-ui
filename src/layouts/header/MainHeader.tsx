@@ -1,9 +1,11 @@
-import React from 'react';
-import { Layout, Flex, Menu, Typography } from 'antd';
+import React, { useState } from 'react';
+import { Layout, Flex, Menu, Typography, Drawer, Button, Grid } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import { useLocation } from 'react-router-dom';
 
 const { Header } = Layout;
 const { Link } = Typography;
+const { useBreakpoint } = Grid;
 
 const MENU_ITEMS = [
     { key: 0, label: '首页', href: '/home' },
@@ -18,16 +20,20 @@ const MENU_ITEMS = [
 
 const MainHeader: React.FC = () => {
     const location = useLocation();
+    const screens = useBreakpoint();
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
-    // 根据当前路径找到对应的 menu key
     const getSelectedKey = () => {
         const currentItem = MENU_ITEMS.find(item => location.pathname.includes(item.href));
         return currentItem ? String(currentItem.key) : '0';
     };
 
+    // 小屏幕：显示汉堡菜单按钮
+    const isMobile = !screens.md; // md 断点为 768px
+
     return (
-        <Header style={{ display: 'flex', alignItems: 'center' }}>
-            <Flex justify="space-between" align="center" gap={32}>
+        <Header style={{ display: 'flex', alignItems: 'center', padding: '0 16px' }}>
+            <Flex justify="space-between" align="center" style={{ width: '100%' }} gap={16}>
                 <Link href="/">
                     <img
                         src="/assets/images/sites/logo/logo-dark.svg"
@@ -36,16 +42,42 @@ const MainHeader: React.FC = () => {
                     />
                 </Link>
 
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    selectedKeys={[getSelectedKey()]}
-                    items={MENU_ITEMS.map(item => ({
-                        key: item.key,
-                        label: <a href={item.href}>{item.label}</a>
-                    }))}
-                    style={{ flex: 1, minWidth: 0, fontWeight: 600 }}
-                />
+                {!isMobile ? (
+                    <Menu
+                        theme="dark"
+                        mode="horizontal"
+                        selectedKeys={[getSelectedKey()]}
+                        items={MENU_ITEMS.map(item => ({
+                            key: item.key,
+                            label: <a href={item.href}>{item.label}</a>
+                        }))}
+                        style={{ flex: 1, minWidth: 0, fontWeight: 600, justifyContent: 'flex-end' }}
+                    />
+                ) : (
+                    <Button
+                        type="text"
+                        icon={<MenuOutlined style={{ color: 'white', fontSize: 20 }} />}
+                        onClick={() => setDrawerOpen(true)}
+                    />
+                )}
+
+                <Drawer
+                    title="菜单"
+                    placement="right"
+                    onClose={() => setDrawerOpen(false)}
+                    open={drawerOpen}
+                    styles={{ body: { padding: 0 } }}
+                >
+                    <Menu
+                        mode="vertical"
+                        selectedKeys={[getSelectedKey()]}
+                        items={MENU_ITEMS.map(item => ({
+                            key: item.key,
+                            label: <a href={item.href}>{item.label}</a>
+                        }))}
+                        onClick={() => setDrawerOpen(false)}
+                    />
+                </Drawer>
             </Flex>
         </Header>
     );

@@ -1,11 +1,12 @@
 // @layouts/MainLayout.tsx
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Layout } from 'antd';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import MainHeader from '@layouts/header/MainHeader';
 import MainFooter from '@layouts/footer/MainFooter';
-import SpecialThanks from '@components/common/special-thanks/SpecialThanks';
+
+const SpecialThanks = lazy(() => import('@components/common/special-thanks/SpecialThanks'));
 
 const { Content } = Layout;
 
@@ -48,7 +49,9 @@ const MainLayout: React.FC = () => {
                     </div>
                 </div>
             </Content>
-            <SpecialThanks isHome={true} />
+            <Suspense>
+                <SpecialThanks isHome={true} />
+            </Suspense>
             <MainFooter />
         </Layout>
     );

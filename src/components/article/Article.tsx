@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography, Space, Divider } from 'antd';
+import { Card, Typography, Space } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
 
 const { Title, Text, Paragraph } = Typography;
@@ -15,7 +15,7 @@ export default function Article({ title, content, publishedAt }: ArticleProps): 
         <Space direction="vertical" size="middle" style={{ width: '100%' }}>
             {/* 文章头部 */}
             <div className="article-header">
-                <Title level={3} style={{ marginBottom: 8, marginTop: 0 }}>
+                <Title level={4} style={{ marginBottom: 8, marginTop: 0 }}>
                     {title}
                 </Title>
                 {publishedAt && (

@@ -789,5 +789,19 @@
             "当前总额：243.11 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "瓦匠",
+        "link": "/blogs/airy.ink",
+        "sponsoredAt": "2026/04/10",
+        "sponsoredMoney": "19.99 元",
+        "message": "期待博友圈越来越好，一直运行~",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：263.10 元"
+        ],
+        "proofs": []
     }
 ]

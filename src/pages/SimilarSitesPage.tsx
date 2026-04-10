@@ -1,8 +1,10 @@
-import { Text } from '@radix-ui/themes';
+import { Typography } from 'antd';
 
 import { Meta } from '@components/common';
 import Article from '@components/article/Article';
 import similarSites from '@json/similarSites.json';
+
+const { Paragraph, Link } = Typography;
 
 const meta = {
     title: '同类网站 - 博友圈 · 博客人的朋友圈！',
@@ -12,14 +14,18 @@ const meta = {
 
 const content: JSX.Element = (
     <>
-        <Text as="p" mb="2">下面列出一些与博友圈类似的博客收录网站，希望关注博友圈的朋友们也可以同时关注一下这些同类网站，其中有的收录站点已有接近 20 年的站龄，感谢他们的陪伴与引流，让这个年代还在坚持写博的人有了一丝欣慰！</Text>
-        <ul>
-            {
-                similarSites.map(
-                    (site, index) => (
-                        <li key={index}><a href={site.link} target="_blank">{site.name}</a> · {site.description}</li>
-                    ))
-            }
+        <Paragraph style={{ marginBottom: 16 }}>
+            下面列出一些与博友圈类似的博客收录网站，希望关注博友圈的朋友们也可以同时关注一下这些同类网站，其中有的收录站点已有接近 20 年的站龄，感谢他们的陪伴与引流，让这个年代还在坚持写博的人有了一丝欣慰！
+        </Paragraph>
+        <ul style={{ marginBottom: 16, paddingLeft: 24 }}>
+            {similarSites.map((site, index) => (
+                <li key={index} style={{ marginBottom: 8 }}>
+                    <Link href={site.link} target="_blank">
+                        {site.name}
+                    </Link>
+                    <span> · {site.description}</span>
+                </li>
+            ))}
         </ul>
     </>
 );
@@ -30,7 +36,8 @@ export default function SimilarSitesPage() {
             <Meta meta={meta} />
             <Article
                 title="同类网站"
-                content={content} />
+                content={content}
+            />
         </>
-    )
+    );
 }

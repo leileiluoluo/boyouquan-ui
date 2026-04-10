@@ -36,7 +36,7 @@ const MainHeader: React.FC = () => {
             <Header style={{
                 background: '#ffffff',
                 padding: '0 16px',
-                height: '70px',
+                height: '64px',
                 display: 'flex',
                 alignItems: 'center',
                 position: 'sticky',
@@ -48,7 +48,7 @@ const MainHeader: React.FC = () => {
                 <Flex justify="space-between" align="center" style={{ width: '100%' }} gap={16}>
                     <Link href="/">
                         <img
-                            src="/assets/images/sites/logo/logo.svg"
+                            src="/assets/images/sites/logo/logo-blue.svg"
                             alt="博友圈"
                             style={{ height: 26, verticalAlign: 'middle' }}
                         />

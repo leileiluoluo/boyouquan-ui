@@ -1,12 +1,18 @@
 import React from 'react';
-import { Box, Text } from '@radix-ui/themes';
+import { Typography } from 'antd';
 
-export default function MainContentHeader({ content }) {
+const { Text } = Typography;
+
+interface MainContentHeaderProps {
+    content: string;
+}
+
+export default function MainContentHeader({ content }: MainContentHeaderProps) {
     return (
-        <Box>
-            <Text size="2" color="gray">
+        <div style={{ marginBottom: 16 }}>
+            <Text type="secondary" style={{ fontSize: 14 }}>
                 {content}
             </Text>
-        </Box>
-    )
+        </div>
+    );
 }

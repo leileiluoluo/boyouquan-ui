@@ -1,4 +1,4 @@
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 
 import { MainContentHeader, Meta } from '@components/common';
 import MomentsInput from '@components/moments/MomentsInput';
@@ -15,7 +15,7 @@ export default function MomentsPage() {
     return (
         <>
             <Meta meta={meta} />
-            <Flex direction="column" gap="4">
+            <Flex vertical gap={16} style={{ width: '100%' }}>
                 <MainContentHeader content="随手拍一张照片，然后附上一段话，分享您此刻看到的一处美景或一个瞬间！" />
                 <MomentsInput />
                 <MomentsCardList />
@@ -23,4 +23,3 @@ export default function MomentsPage() {
         </>
     );
 }
-

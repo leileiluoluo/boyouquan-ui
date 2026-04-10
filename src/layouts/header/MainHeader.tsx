@@ -36,7 +36,7 @@ const MainHeader: React.FC = () => {
             <Header style={{
                 background: '#ffffff',
                 padding: '0 16px',
-                height: '70px',
+                height: '64px',
                 display: 'flex',
                 alignItems: 'center',
                 position: 'sticky',

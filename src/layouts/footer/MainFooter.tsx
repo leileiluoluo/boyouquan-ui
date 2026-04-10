@@ -86,14 +86,14 @@ const MainFooter: React.FC = () => {
                     </Flex>
 
                     {/* 数据统计 - 卡片式设计 */}
-                    <Flex vertical gap={6} style={{ minWidth: 200 }}>
+                    <Flex vertical gap={6}>
                         {loading ? (
                             <Spin size="small" style={{ marginTop: 8 }} />
                         ) : (
-                            <Flex vertical gap={10} style={{ marginTop: 4 }}>
+                            <Flex vertical gap={8} style={{ marginTop: 4 }}>
                                 {/* 博客数量 */}
-                                <Flex align="center" justify="space-between" style={{ minWidth: 160 }}>
-                                    <Flex align="center" gap={6}>
+                                <Flex align="center" gap={6}>
+                                    <Flex align="center" gap={2}>
                                         <div style={{
                                             width: 24,
                                             height: 24,
@@ -107,14 +107,14 @@ const MainFooter: React.FC = () => {
                                         </div>
                                         <Text style={{ color: 'rgba(255, 255, 255, 0.55)', fontWeight: 600, fontSize: 12 }}>收录博客</Text>
                                     </Flex>
-                                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: 600, fontFamily: 'monospace' }}>
+                                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: 600 }}>
                                         <CountUp end={stats.totalBlogs} duration={1} separator="," />
                                     </Text>
                                 </Flex>
 
                                 {/* 文章数量 */}
-                                <Flex align="center" justify="space-between">
-                                    <Flex align="center" gap={6}>
+                                <Flex align="center" gap={6}>
+                                    <Flex align="center" gap={2}>
                                         <div style={{
                                             width: 24,
                                             height: 24,
@@ -128,14 +128,14 @@ const MainFooter: React.FC = () => {
                                         </div>
                                         <Text style={{ color: 'rgba(255, 255, 255, 0.55)', fontWeight: 600, fontSize: 12 }}>收录文章</Text>
                                     </Flex>
-                                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: 600, fontFamily: 'monospace' }}>
+                                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: 600 }}>
                                         <CountUp end={stats.totalPosts} duration={1} separator="," />
                                     </Text>
                                 </Flex>
 
                                 {/* 浏览数量 */}
-                                <Flex align="center" justify="space-between">
-                                    <Flex align="center" gap={6}>
+                                <Flex align="center" gap={6}>
+                                    <Flex align="center" gap={2}>
                                         <div style={{
                                             width: 24,
                                             height: 24,
@@ -149,7 +149,7 @@ const MainFooter: React.FC = () => {
                                         </div>
                                         <Text style={{ color: 'rgba(255, 255, 255, 0.55)', fontWeight: 600, fontSize: 12 }}>浏览文章</Text>
                                     </Flex>
-                                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: 600, fontFamily: 'monospace' }}>
+                                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: 600 }}>
                                         <CountUp end={stats.totalAccesses} duration={1} separator="," />
                                     </Text>
                                 </Flex>

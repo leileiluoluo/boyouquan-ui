@@ -1,6 +1,6 @@
 // @layouts/MainLayout.tsx
 import React from 'react';
-import { Layout, Flex, Card } from 'antd';
+import { Layout } from 'antd';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import MainHeader from '@layouts/header/MainHeader';
@@ -27,12 +27,25 @@ const MainLayout: React.FC = () => {
             <Content>
                 <div
                     style={{
-                        backgroundColor: 'white',
-                        minHeight: 400,
-                        padding: 20,
+                        marginTop: '10px',
+                        backgroundColor: '#f5f5f5',
+                        minHeight: '400px',
+                        display: 'flex',
+                        justifyContent: 'center',
                     }}
                 >
-                    <Outlet />
+                    <div
+                        style={{
+                            width: '100%',
+                            maxWidth: '900px',  // 固定最大宽度
+                            margin: '0 auto',     // 水平居中
+                            padding: '40px 24px',
+                            backgroundColor: '#fff',
+                            minHeight: '400px',
+                        }}
+                    >
+                        <Outlet />
+                    </div>
                 </div>
             </Content>
             <SpecialThanks isHome={true} />

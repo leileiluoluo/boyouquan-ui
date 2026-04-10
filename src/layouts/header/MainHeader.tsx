@@ -76,9 +76,9 @@ const MainHeader: React.FC = () => {
                             type="text"
                             icon={<MenuOutlined style={{ color: '#333333', fontSize: 20 }} />}
                             onClick={() => setDrawerOpen(true)}
-                            style={{ 
-                                display: 'flex', 
-                                alignItems: 'center', 
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
                                 justifyContent: 'center',
                                 width: 40,
                                 height: 40,
@@ -111,6 +111,9 @@ const MainHeader: React.FC = () => {
                         label: <a href={item.href}>{item.label}</a>
                     }))}
                     onClick={() => setDrawerOpen(false)}
+                    style={{
+                        fontWeight: 600,
+                    }}
                 />
             </Drawer>
         </>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Flex, Typography, Tooltip, Avatar, Space } from 'antd';
+import { Card, Flex, Typography, Tooltip, Avatar } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import specialThanks from '../../../json/specialThanks.json';
 import LazyAvatar from '../avatar/LazyAvatar';
@@ -16,9 +16,16 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
     return (
         <Card
             id="special-thanks"
-            style={{ marginTop: '20px', padding: '16px' }}
+            className="special-thanks-card"
+            style={{
+                width: '100%',
+                maxWidth: '900px',  // 固定最大宽度
+                margin: '0 auto',     // 水平居中
+                marginTop: '10px',
+                padding: '40px 24px',
+            }}
         >
-            <Flex vertical gap={16}>
+            <Flex vertical gap={20}>
                 {/* 标题 */}
                 <Flex justify="center">
                     <Link
@@ -32,10 +39,11 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
 
                 {/* 头像列表 */}
                 <Flex
-                    gap={16}
+                    gap={20}
                     wrap="wrap"
                     align="center"
                     justify="center"
+                    className="special-thanks-avatars"
                 >
                     {specialThanks.map((item, index) => (
                         <Tooltip title={item.name} key={index}>

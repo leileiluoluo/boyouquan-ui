@@ -166,7 +166,7 @@ const MainFooter: React.FC = () => {
                             <Link href="https://beian.miit.gov.cn/" style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>辽ICP备2022012085号-2</Link>
                             <Text style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>Copyright © 2023-2026</Text>
                             <Link href="/planet-shuttle" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }}>
-                                <img src="/assets/images/sites/logo/planet-shuttle.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
+                                <img src="/assets/images/sites/logo/planet-shuttle-blue.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
                             </Link>
                         </Flex>
                     </Flex>
@@ -311,7 +311,7 @@ const MainFooter: React.FC = () => {
                         <Link href="https://beian.miit.gov.cn/" style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>辽ICP备2022012085号-2</Link>
                         <Text style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>Copyright © 2023-2026</Text>
                         <Link href="/planet-shuttle" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }}>
-                            <img src="/assets/images/sites/logo/planet-shuttle.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
+                            <img src="/assets/images/sites/logo/planet-shuttle-blue.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
                         </Link>
                     </Flex>
                 </Flex>

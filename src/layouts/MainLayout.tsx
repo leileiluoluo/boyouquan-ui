@@ -1,10 +1,11 @@
 // @layouts/MainLayout.tsx
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Flex, Card } from 'antd';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import MainHeader from '@layouts/header/MainHeader';
 import MainFooter from '@layouts/footer/MainFooter';
+import SpecialThanks from '@components/common/special-thanks/SpecialThanks';
 
 const { Content } = Layout;
 
@@ -13,7 +14,7 @@ const NO_LAYOUT_PATHS = ['/planet-shuttle', '/go', '/certificates'];
 
 const MainLayout: React.FC = () => {
     const location = useLocation();
-    
+
     const shouldShowLayout = !NO_LAYOUT_PATHS.some(path => location.pathname.includes(path));
 
     if (!shouldShowLayout) {
@@ -34,6 +35,7 @@ const MainLayout: React.FC = () => {
                     <Outlet />
                 </div>
             </Content>
+            <SpecialThanks isHome={true} />
             <MainFooter />
         </Layout>
     );

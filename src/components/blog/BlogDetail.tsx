@@ -6,7 +6,7 @@ import BlogDetailMain from './BlogDetailMain';
 import BlogDetailSummary from './BlogDetailSummary';
 import { redirectTo } from '../../utils/CommonUtil';
 import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
-import { Flex } from '@radix-ui/themes';
+import { Flex, Spin } from 'antd';
 
 const BlogPerformance = lazy(() => import('./BlogPerformance'));
 const BlogCharts = lazy(() => import('./BlogCharts'));
@@ -59,39 +59,43 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
         fetchData(domain);
     }, [domain]);
 
+    if (!loaded) {
+        return (
+            <Flex justify="center" align="center" style={{ minHeight: '200px' }}>
+                <Spin size="large" />
+            </Flex>
+        );
+    }
+
     return (
-        <>
-            {loaded ?
-                <Fragment>
-                    <Meta meta={getMeta(blogDetail.name, blogDetail.description)} />
-                    <Flex gap="2" direction="column">
-                        <BlogDetailMain
-                            name={blogDetail.name}
-                            domainName={blogDetail.domainName}
-                            address={blogDetail.address}
-                            description={blogDetail.description}
-                            statusOk={blogDetail.statusOk}
-                            submittedInfo={blogDetail.submittedInfo}
-                            submittedInfoTip={blogDetail.submittedInfoTip}
-                            statusUnOkInfo={blogDetail.statusUnOkInfo}
-                            blogAdminLargeImageURL={blogDetail.blogAdminLargeImageURL}
-                            domainNameRegisteredAt={blogDetail.domainNameRegisteredAt}
-                            blogServerLocation={blogDetail.blogServerLocation} />
-                        <BlogDetailSummary
-                            postCount={blogDetail.postCount}
-                            accessCount={blogDetail.accessCount}
-                            latestPublishedAt={blogDetail.latestPublishedAt}
-                            collectedAt={blogDetail.collectedAt} />
-                        <Suspense>
-                            <BlogPerformance domainName={domain} collectedAt={blogDetail.collectedAt} />
-                            <BlogCharts domain={domain} />
-                            <BlogPosts domain={domain} rssAddress={blogDetail.rssAddress} blogStatusOk={blogDetail.statusOk} />
-                            <FriendBlogs domain={domain} />
-                            <RandomBlogs domain={domain} />
-                        </Suspense>
-                    </Flex>
-                </Fragment> : ''
-            }
-        </>
-    )
+        <Fragment>
+            <Meta meta={getMeta(blogDetail.name, blogDetail.description)} />
+            <Flex vertical gap={8}>
+                <BlogDetailMain
+                    name={blogDetail.name}
+                    domainName={blogDetail.domainName}
+                    address={blogDetail.address}
+                    description={blogDetail.description}
+                    statusOk={blogDetail.statusOk}
+                    submittedInfo={blogDetail.submittedInfo}
+                    submittedInfoTip={blogDetail.submittedInfoTip}
+                    statusUnOkInfo={blogDetail.statusUnOkInfo}
+                    blogAdminLargeImageURL={blogDetail.blogAdminLargeImageURL}
+                    domainNameRegisteredAt={blogDetail.domainNameRegisteredAt}
+                    blogServerLocation={blogDetail.blogServerLocation} />
+                <BlogDetailSummary
+                    postCount={blogDetail.postCount}
+                    accessCount={blogDetail.accessCount}
+                    latestPublishedAt={blogDetail.latestPublishedAt}
+                    collectedAt={blogDetail.collectedAt} />
+                <Suspense fallback={<Spin size="large" />}>
+                    <BlogPerformance domainName={domain} collectedAt={blogDetail.collectedAt} />
+                    <BlogCharts domain={domain} />
+                    <BlogPosts domain={domain} rssAddress={blogDetail.rssAddress} blogStatusOk={blogDetail.statusOk} />
+                    <FriendBlogs domain={domain} />
+                    <RandomBlogs domain={domain} />
+                </Suspense>
+            </Flex>
+        </Fragment>
+    );
 }

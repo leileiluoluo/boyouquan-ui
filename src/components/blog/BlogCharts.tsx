@@ -2,15 +2,19 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Chart } from 'frappe-charts';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Tabs, Text } from '@radix-ui/themes';
+import { Card, Flex, Tabs, Typography } from 'antd';
+
+const { Text } = Typography;
 
 export default function BlogCharts({ domain }) {
-    const [showAccessChart, setShowAccessChart] = useState(true);
-    const [showPublishChart, setShowPublishChart] = useState(false);
-    const [showInitiatedChart, setShowInitiatedChart] = useState(false);
-
+    const [activeTab, setActiveTab] = useState('access-charts');
     const [hasPublishChart, setHasPublishChart] = useState(false);
     const [hasInitiatedChart, setHasInitiatedChart] = useState(false);
+    const [charts, setCharts] = useState({
+        accessChart: null,
+        publishChart: null,
+        initiatedChart: null
+    });
 
     const fetchData = async (domain) => {
         const resp = await RequestUtil.get(`/api/blogs/charts?domainName=${domain}`);
@@ -31,82 +35,73 @@ export default function BlogCharts({ domain }) {
             initiatedChart = newChart('#initiated-charts', '最近一年星球穿梭助力统计', '次穿梭', respBody.yearlyInitiatedDataLabels, respBody.yearlyInitiatedDataValues, '#4299f5');
         }
 
+        setCharts({ accessChart, publishChart, initiatedChart });
+
         return () => {
             accessChart.destroy();
-            if (null !== publishChart) {
-                publishChart.destroy();
-            }
-            if (null !== initiatedChart) {
-                initiatedChart.destroy();
-            }
+            if (publishChart) publishChart.destroy();
+            if (initiatedChart) initiatedChart.destroy();
         };
     };
 
-    const handleValueChange = (value) => {
-        setShowAccessChart(false);
-        setShowPublishChart(false);
-        setShowInitiatedChart(false);
-        if ('access-charts' === value) {
-            setShowAccessChart(true);
-        } else if ('publish-charts' == value) {
-            setShowPublishChart(true);
-        } else if ('initiated-charts' == value) {
-            setShowInitiatedChart(true);
-        }
+    const handleTabChange = (key) => {
+        setActiveTab(key);
     };
 
     useEffect(() => {
         fetchData(domain);
     }, [domain]);
 
+    // 定义 Tab 项
+    const tabItems = [
+        { key: 'access-charts', label: '浏览统计' },
+        ...(hasPublishChart ? [{ key: 'publish-charts', label: '收录统计' }] : []),
+        ...(hasInitiatedChart ? [{ key: 'initiated-charts', label: '穿梭统计' }] : [])
+    ];
+
     return (
-        <Card style={{ padding: 'var(--space-4)' }}>
-            <Flex direction="column" gap="1">
-                <Text size="2" color="gray">数据统计</Text>
-                <Tabs.Root defaultValue="access-charts" onValueChange={handleValueChange}>
-                    <Tabs.List size="1">
-                        <Tabs.Trigger value="access-charts" >浏览统计</Tabs.Trigger>
-                        <Tabs.Trigger value="publish-charts" style={{ display: hasPublishChart ? 'block' : 'none' }}>收录统计</Tabs.Trigger>
-                        <Tabs.Trigger value="initiated-charts" style={{ display: hasInitiatedChart ? 'block' : 'none' }}>穿梭统计</Tabs.Trigger>
-                    </Tabs.List>
-                </Tabs.Root>
-                <div id='access-charts' style={{ display: showAccessChart ? 'block' : 'none' }}></div>
-                <div id='publish-charts' style={{ display: showPublishChart ? 'block' : 'none' }}></div>
-                <div id='initiated-charts' style={{ display: showInitiatedChart ? 'block' : 'none' }}></div>
+        <Card style={{ padding: 16, width: '100%' }}>
+            <Flex vertical gap={4}>
+                <Text type="secondary" style={{ fontSize: 14 }}>数据统计</Text>
+                <Tabs
+                    activeKey={activeTab}
+                    onChange={handleTabChange}
+                    items={tabItems}
+                    size="small"
+                />
+                <div id='access-charts' style={{ display: activeTab === 'access-charts' ? 'block' : 'none' }}></div>
+                <div id='publish-charts' style={{ display: activeTab === 'publish-charts' ? 'block' : 'none' }}></div>
+                <div id='initiated-charts' style={{ display: activeTab === 'initiated-charts' ? 'block' : 'none' }}></div>
             </Flex>
         </Card>
     )
 }
 
 function newChart(id, title, note, labels, values, color) {
-    return new Chart(id, { // or DOM element
+    return new Chart(id, {
         data: {
             labels: labels,
             datasets: [
                 {
-                    name: note, chartType: 'line',
+                    name: note,
+                    chartType: 'line',
                     values: values
                 }
             ],
         },
-
-        // title: title,
-        type: 'bar', // or 'bar', 'line', 'pie', 'percentage'
+        type: 'bar',
         height: 200,
         colors: [color],
-
         axisOptions: {
-            xIsSeries: true,   //default:false
+            xIsSeries: true,
             xAxisMode: "tick",
         },
-
         lineOptions: {
-            hideDots: 0,   //default:0
-            regionFill: 1, // default: 0
-            heatline: 1, // default: 0
-            dotSize: 6, // default: 4
+            hideDots: 0,
+            regionFill: 1,
+            heatline: 1,
+            dotSize: 6,
         },
-
         tooltipOptions: {
             formatTooltipX: d => (d + '').toUpperCase(),
             formatTooltipY: d => d,

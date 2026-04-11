@@ -7,6 +7,7 @@ import BlogRequestTable from './BlogRequestTable';
 import { redirectTo } from '../../utils/CommonUtil';
 import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 import { BlogRequestInfo } from '../../types';
+import { Flex, Spin } from 'antd';
 
 interface MetaData {
     title: string;
@@ -42,6 +43,7 @@ export default function BlogRequest(): React.JSX.Element {
         email: '',
         posts: []
     });
+    const [loading, setLoading] = useState<boolean>(true);
 
     const { id } = useParams<{ id: string }>();
 
@@ -51,6 +53,7 @@ export default function BlogRequest(): React.JSX.Element {
             return;
         }
 
+        setLoading(true);
         const resp = await RequestUtil.get(`/api/blog-requests/${idParam}`);
 
         if (typeof resp === 'string' || resp.status !== 200) {
@@ -59,11 +62,20 @@ export default function BlogRequest(): React.JSX.Element {
             const respBody = await resp.json();
             setBlogRequest(respBody as BlogRequestData);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
         fetchData(id);
     }, [id]);
+
+    if (loading) {
+        return (
+            <Flex justify="center" align="center" style={{ minHeight: '200px' }}>
+                <Spin size="large" />
+            </Flex>
+        );
+    }
 
     return (
         <>

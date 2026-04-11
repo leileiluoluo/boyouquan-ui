@@ -1,12 +1,27 @@
 import React from 'react';
 import { getGoAddress, getGravatarImageFullURL } from '../../utils/PageAddressUtil';
 import { formatDateStr, formatDomainNameRegistrationDateStr } from '../../utils/DateUtil';
-import { Box, Flex, Link, Avatar, Text, Tooltip } from '@radix-ui/themes';
+import { Flex, Typography, Avatar, Tooltip, Image } from 'antd';
+import { EnvironmentOutlined, CalendarOutlined, LinkOutlined } from '@ant-design/icons';
 import BlogCardFooter from '../blogs/BlogCardFooter';
 import { useEffect } from 'react';
 import { setBackgroundFromAvatar } from '../../utils/CssUtil';
 
-export default function BlogDetailMain({ name, domainName, address, description, statusOk, submittedInfo, submittedInfoTip, statusUnOkInfo, blogAdminLargeImageURL, domainNameRegisteredAt, blogServerLocation }) {
+const { Text, Link } = Typography;
+
+export default function BlogDetailMain({ 
+    name, 
+    domainName, 
+    address, 
+    description, 
+    statusOk, 
+    submittedInfo, 
+    submittedInfoTip, 
+    statusUnOkInfo, 
+    blogAdminLargeImageURL, 
+    domainNameRegisteredAt, 
+    blogServerLocation 
+}) {
     const blogGoAddress = getGoAddress(address);
     const gravatarURL = getGravatarImageFullURL(blogAdminLargeImageURL);
     const domainNameRegisteredAtStdStr = formatDateStr(domainNameRegisteredAt, true);
@@ -17,78 +32,85 @@ export default function BlogDetailMain({ name, domainName, address, description,
     }, []);
 
     return (
-        <Box id="blog-detail-domain" style={{
-            background: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
-            padding: 'var(--space-4)',
-            borderRadius: '6px'
-        }}>
-            <Flex gap="1" direction="column">
+        <div 
+            id="blog-detail-domain" 
+            style={{
+                background: 'url(/assets/images/sites/blog_detail/blog-detail-header-background.jpeg)',
+                padding: 16,
+                borderRadius: 6
+            }}
+        >
+            <Flex vertical gap={4}>
                 <BlogCardFooter
                     statusOk={statusOk}
                     submittedInfo={submittedInfo}
                     submittedInfoTip={submittedInfoTip} />
 
-                <Flex direction="column" align="center">
-                    <Box>
-                        <Link target="_blank" href={blogGoAddress}>
-                            <Avatar
-                                style={{ width: '60px', height: '60px' }}
-                                src={gravatarURL}
-                                radius="full"
-                            />
-                        </Link>
-                    </Box>
-                    <Box mt="2">
-                        <Link target="_blank" mt="1" weight="bold" href={blogGoAddress}>
+                <Flex vertical align="center">
+                    <Link href={blogGoAddress} target="_blank">
+                        <Avatar
+                            size={60}
+                            src={gravatarURL}
+                            shape="circle"
+                        />
+                    </Link>
+
+                    <div style={{ marginTop: 8 }}>
+                        <Link href={blogGoAddress} target="_blank" strong>
                             {name}
                         </Link>
-                    </Box>
-                    <Box>
-                        <Flex gap="1" align="center">
-                            <Link target="_blank" size="1" href={blogGoAddress}>{domainName}</Link>
-                            <Box size="1">
-                                <Link mt="1" weight="bold" href={blogGoAddress}>
-                                    <svg fill="none" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" height="12" width="12">
-                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                                        <path d="M15 3h6v6"></path>
-                                        <path d="M10 14L21 3"></path>
-                                    </svg>
-                                </Link>
-                            </Box>
+                    </div>
+
+                    <div>
+                        <Flex gap={4} align="center">
+                            <Link href={blogGoAddress} target="_blank" style={{ fontSize: 12 }}>
+                                {domainName}
+                            </Link>
+                            <Link href={blogGoAddress} target="_blank">
+                                <LinkOutlined style={{ fontSize: 12 }} />
+                            </Link>
                         </Flex>
-                    </Box>
-                    <Box style={{ marginTop: '8px', marginBottom: '2px', backgroundColor: 'rgb(255, 255, 255)', padding: '6px', borderRadius: 'calc(0.4rem)' }}>
-                        <Text size="2" color="gray">{description}</Text>
-                    </Box>
+                    </div>
+
+                    <div style={{ 
+                        marginTop: 8, 
+                        marginBottom: 2, 
+                        backgroundColor: '#fff', 
+                        padding: 6, 
+                        borderRadius: 6 
+                    }}>
+                        <Text type="secondary" style={{ fontSize: 14 }}>
+                            {description}
+                        </Text>
+                    </div>
                 </Flex>
 
-                <Flex justify="between" mt="2">
-                    <Box>
-                        <Tooltip content={`该博客域名注册于：${domainNameRegisteredAtStdStr}`}>
-                            <Flex align="center">
-                                <img style={{
-                                    userSelect: 'none',
-                                    width: '14px',
-                                    display: 'block'
-                                }} src="/assets/images/sites/blog_detail/domain-info-icon.png" />
-                                <Text size="1" ml="1" color="gray" style={{ userSelect: 'none' }}>{`博客年龄：${domainNameRegisteredDateStr}`}</Text>
-                            </Flex>
-                        </Tooltip>
-                    </Box>
-                    <Box>
-                        <Tooltip content={`该博客服务器位于：${blogServerLocation}`}>
-                            <Flex align="center">
-                                <img style={{
-                                    userSelect: 'none',
-                                    width: '14px',
-                                    display: 'block'
-                                }} src="/assets/images/sites/blog_detail/location-icon.png" />
-                                <Text size="1" ml="1" color="gray" style={{ userSelect: 'none' }}>{blogServerLocation}</Text>
-                            </Flex>
-                        </Tooltip>
-                    </Box>
+                <Flex justify="space-between" style={{ marginTop: 8 }}>
+                    <Tooltip title={`该博客域名注册于：${domainNameRegisteredAtStdStr}`}>
+                        <Flex align="center">
+                            <CalendarOutlined style={{ fontSize: 14, color: '#8c8c8c' }} />
+                            <Text 
+                                type="secondary" 
+                                style={{ fontSize: 12, marginLeft: 4, userSelect: 'none' }}
+                            >
+                                {`博客年龄：${domainNameRegisteredDateStr}`}
+                            </Text>
+                        </Flex>
+                    </Tooltip>
+
+                    <Tooltip title={`该博客服务器位于：${blogServerLocation}`}>
+                        <Flex align="center">
+                            <EnvironmentOutlined style={{ fontSize: 14, color: '#8c8c8c' }} />
+                            <Text 
+                                type="secondary" 
+                                style={{ fontSize: 12, marginLeft: 4, userSelect: 'none' }}
+                            >
+                                {blogServerLocation}
+                            </Text>
+                        </Flex>
+                    </Tooltip>
                 </Flex>
             </Flex>
-        </Box>
-    )
+        </div>
+    );
 }

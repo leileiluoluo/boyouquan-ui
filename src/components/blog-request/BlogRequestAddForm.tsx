@@ -1,7 +1,9 @@
 import React from 'react';
-import { Card, Box, Button, Flex, Text, TextField, Heading, TextArea, Link, RadioGroup } from '@radix-ui/themes';
-import { Form } from '@radix-ui/react-form';
+import { Card, Flex, Typography, Input, Button, Form, Radio, Space } from 'antd';
 import { FormError } from '../../types';
+
+const { Text, Title, Link } = Typography;
+const { TextArea } = Input;
 
 const noticeStyle: React.CSSProperties = { marginTop: '18px', fontSize: '12px' };
 
@@ -14,95 +16,179 @@ interface BlogRequestAddFormProps {
 }
 
 export default function BlogRequestAddForm({ formData, error, handleChange, handleSubmit, isAdminPage }: BlogRequestAddFormProps): React.JSX.Element {
+    const [form] = Form.useForm();
+
+    // 判断是否有错误
+    const hasError = (errorCode: string) => {
+        return error.code === errorCode;
+    };
+
+    const getErrorMessage = (errorCodes: string[]) => {
+        const matchedCode = errorCodes.find(code => error.code === code);
+        return matchedCode ? error.message : '';
+    };
+
     return (
         <>
-            {
-                isAdminPage ? '' : <Heading size="3" weight="bold">
+            {!isAdminPage && (
+                <Title level={4} style={{ fontWeight: 'bold' }}>
                     提交博客
-                </Heading>
-            }
-            <Card>
-                <Form onSubmit={handleSubmit}>
-                    <Flex direction="column" gap="2">
-                        <Box>
-                            <Flex gap="2" align="center">
-                                <Text size="2">博主邮箱 *</Text>
-                                <Text size="2" color="red">{error.code == 'blog_request_admin_email_invalid' || error.code == 'blog_request_email_validation_code_invalid' ? error.message : ''}</Text>
-                            </Flex>
+                </Title>
+            )}
+            <Card style={{ width: '100%' }}>
+                <Form
+                    form={form}
+                    layout="vertical"
+                    onFinish={handleSubmit}
+                    initialValues={formData}
+                >
+                    <Flex vertical gap={8}>
+                        {/* 博主邮箱 */}
+                        <Form.Item
+                            label={
+                                <Space size={8}>
+                                    <Text style={{ fontSize: 14 }}>博主邮箱 *</Text>
+                                    {hasError('blog_request_admin_email_invalid') && (
+                                        <Text type="danger" style={{ fontSize: 14 }}>
+                                            {error.message}
+                                        </Text>
+                                    )}
+                                    {hasError('blog_request_email_validation_code_invalid') && (
+                                        <Text type="danger" style={{ fontSize: 14 }}>
+                                            {error.message}
+                                        </Text>
+                                    )}
+                                </Space>
+                            }
+                            style={{ marginBottom: 0 }}
+                        >
+                            <Input
+                                name="adminEmail"
+                                placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知"
+                                id="adminEmail"
+                                value={formData.adminEmail}
+                                onChange={handleChange}
+                                disabled={!isAdminPage}
+                                style={{ marginTop: 8 }}
+                            />
+                        </Form.Item>
 
-                            <Box mt="2">
-                                {
-                                    isAdminPage ? <TextField.Root name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} />
-                                        : <TextField.Root name="adminEmail" placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知" id="adminEmail" value={formData.adminEmail} onChange={handleChange} disabled />
-                                }
-                            </Box>
-                        </Box>
+                        {/* 博客名称 */}
+                        <Form.Item
+                            label={
+                                <Space size={8}>
+                                    <Text style={{ fontSize: 14 }}>博客名称 *</Text>
+                                    {(hasError('blog_request_name_invalid') || hasError('blog_submitted_with_same_ip')) && (
+                                        <Text type="danger" style={{ fontSize: 14 }}>
+                                            {error.message}
+                                        </Text>
+                                    )}
+                                </Space>
+                            }
+                            style={{ marginBottom: 0 }}
+                        >
+                            <Input
+                                name="name"
+                                placeholder="您的博客名称"
+                                id="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                style={{ marginTop: 8 }}
+                            />
+                        </Form.Item>
 
-                        <Box>
-                            <Flex gap="2" align="center">
-                                <Text size="2">博客名称 *</Text>
-                                <Text size="2" color="red">{error.code == 'blog_request_name_invalid' || error.code == 'blog_submitted_with_same_ip' ? error.message : ''}</Text>
-                            </Flex>
+                        {/* RSS 地址 */}
+                        <Form.Item
+                            label={
+                                <Space size={8}>
+                                    <Text style={{ fontSize: 14 }}>RSS 地址 *</Text>
+                                    {(hasError('blog_request_rss_address_invalid') ||
+                                      hasError('blog_request_rss_address_black_list') ||
+                                      hasError('blog_request_rss_address_exists') ||
+                                      hasError('blog_request_blog_exists')) && (
+                                        <Text type="danger" style={{ fontSize: 14 }}>
+                                            {error.message}
+                                        </Text>
+                                    )}
+                                </Space>
+                            }
+                            style={{ marginBottom: 0 }}
+                        >
+                            <Input
+                                name="rssAddress"
+                                placeholder="用于抓取文章"
+                                id="rssAddress"
+                                value={formData.rssAddress}
+                                onChange={handleChange}
+                                style={{ marginTop: 8 }}
+                            />
+                        </Form.Item>
 
-                            <Box mt="2">
-                                <TextField.Root name="name" placeholder="您的博客名称" id="name" value={formData.name} onChange={handleChange} />
-                            </Box>
-                        </Box>
+                        {/* 博客描述 */}
+                        <Form.Item
+                            label={
+                                <Space size={8}>
+                                    <Text style={{ fontSize: 14 }}>博客描述 *</Text>
+                                    {hasError('blog_request_description_invalid') && (
+                                        <Text type="danger" style={{ fontSize: 14 }}>
+                                            {error.message}
+                                        </Text>
+                                    )}
+                                </Space>
+                            }
+                            style={{ marginBottom: 0 }}
+                        >
+                            <TextArea
+                                name="description"
+                                placeholder="描述一下您的博客，建议 100 字以内"
+                                id="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                rows={4}
+                                style={{ marginTop: 8 }}
+                            />
+                        </Form.Item>
 
-                        <Box>
-                            <Flex gap="2" align="center">
-                                <Text size="2">RSS 地址 *</Text>
-                                <Text size="2" color="red">{error.code == 'blog_request_rss_address_invalid' || error.code == 'blog_request_rss_address_black_list' || error.code == 'blog_request_rss_address_exists' || error.code == 'blog_request_blog_exists' ? error.message : ''}</Text>
-                            </Flex>
-
-                            <Box mt="2">
-                                <TextField.Root name="rssAddress" placeholder="用于抓取文章" id="rssAddress" value={formData.rssAddress} onChange={handleChange} />
-                            </Box>
-                        </Box>
-
-                        <Box>
-                            <Flex gap="2" align="center">
-                                <Text size="2">博客描述 *</Text>
-                                <Text size="2" color="red">{error.code == 'blog_request_description_invalid' ? error.message : ''}</Text>
-                            </Flex>
-
-                            <Box mt="2">
-                                <TextArea size="2" name="description" placeholder="描述一下您的博客，建议 100 字以内" id="description" value={formData.description} onChange={handleChange} />
-                            </Box>
-                        </Box>
-
-                        <Box mt="2">
-                            <Flex gap="2" align="center">
-                                <RadioGroup.Root
+                        {/* 承诺 */}
+                        <Form.Item style={{ marginBottom: 0 }}>
+                            <Space size={8} align="center">
+                                <Radio.Group
                                     name="promise"
                                     value={formData.promise}
-                                    onValueChange={(value) => handleChange({ target: { name: 'promise', value } } as any)}
+                                    onChange={(e) => handleChange({ target: { name: 'promise', value: e.target.value } } as any)}
                                 >
-                                    <Flex>
-                                        <RadioGroup.Item value="yes" />
-                                        <Text as="label" size="2">
-                                            「我承诺十年不停更，十年不闭站」
-                                        </Text>
-                                    </Flex>
-                                </RadioGroup.Root>
-                                <Text size="2" color="red">{error.code == 'promise_not_selected' ? error.message : ''}</Text>
-                            </Flex>
-                        </Box>
+                                    <Radio value="yes">
+                                        <Text style={{ fontSize: 14 }}>「我承诺十年不停更，十年不闭站」</Text>
+                                    </Radio>
+                                </Radio.Group>
+                                {hasError('promise_not_selected') && (
+                                    <Text type="danger" style={{ fontSize: 14 }}>
+                                        {error.message}
+                                    </Text>
+                                )}
+                            </Space>
+                        </Form.Item>
 
-                        <Box mt="2">
-                            <Button type="submit">提交</Button>
-                        </Box>
+                        {/* 提交按钮 */}
+                        <Form.Item style={{ marginTop: 8, marginBottom: 0 }}>
+                            <Button type="primary" htmlType="submit">
+                                提交
+                            </Button>
+                        </Form.Item>
 
-                        <Box mt="2">
-                            {
-                                isAdminPage ? '' : <Text size="2" style={noticeStyle}>
-                                    <Link href="mailto:support@boyouquan.com?subject=提交博客时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">提交博客遇到问题？我要联系站长！</Link>
+                        {/* 联系站长 */}
+                        {!isAdminPage && (
+                            <div style={{ marginTop: 8 }}>
+                                <Text style={noticeStyle}>
+                                    <Link href="mailto:support@boyouquan.com?subject=提交博客时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">
+                                        提交博客遇到问题？我要联系站长！
+                                    </Link>
                                 </Text>
-                            }
-                        </Box>
+                            </div>
+                        )}
                     </Flex>
                 </Form>
             </Card>
         </>
-    )
+    );
 }

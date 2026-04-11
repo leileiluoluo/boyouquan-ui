@@ -1,6 +1,8 @@
 import React from 'react';
-import { Flex, Box, Text, Card, DataList, Link, Badge } from '@radix-ui/themes';
+import { Flex, Card, Typography, Tag, Space, Divider } from 'antd';
 import { getBlogAddress } from '../../utils/PageAddressUtil';
+
+const { Text, Link } = Typography;
 
 interface BlogRequestTableProps {
     name?: string;
@@ -18,68 +20,63 @@ interface BlogRequestTableProps {
     reason?: string;
 }
 
-export default function BlogRequestTable({ name, description, domainName, address, rssAddress, adminEmail, requestedAt, updatedAt, approved, failed, status, statusInfo, reason }: BlogRequestTableProps): React.JSX.Element {
+export default function BlogRequestTable({ 
+    name, 
+    description, 
+    domainName, 
+    address, 
+    rssAddress, 
+    adminEmail, 
+    requestedAt, 
+    updatedAt, 
+    approved, 
+    failed, 
+    status, 
+    statusInfo, 
+    reason 
+}: BlogRequestTableProps): React.JSX.Element {
     const title = `博客「${name}」审核详情`;
-
     const blogAddress = approved && domainName ? getBlogAddress(domainName) : (address || '');
 
-    return (
-        <Flex direction="column" gap="2">
-            <Box>
-                <Text size="3" weight="bold">{title}</Text>
-            </Box>
-            <Box>
-                <Card>
-                    <DataList.Root>
-                        <DataList.Item>
-                            <DataList.Label minWidth="80px"><Text weight="bold">博客名称</Text></DataList.Label>
-                            <DataList.Value><Link weight="bold" target="_blank" href={address}>{name}</Link></DataList.Value>
-                        </DataList.Item>
-                        <DataList.Item>
-                            <DataList.Label minWidth="80px"><Text weight="bold">博客描述</Text></DataList.Label>
-                            <DataList.Value>
-                                {description}
-                            </DataList.Value>
-                        </DataList.Item>
-                        <DataList.Item>
-                            <DataList.Label minWidth="80px"><Text weight="bold">RSS 地址</Text></DataList.Label>
-                            <DataList.Value>
-                                <Link target="_blank" href={rssAddress}>{rssAddress}</Link>
-                            </DataList.Value>
-                        </DataList.Item>
-                        <DataList.Item>
-                            <DataList.Label minWidth="80px"><Text weight="bold">博主邮箱</Text></DataList.Label>
-                            <DataList.Value>{adminEmail}</DataList.Value>
-                        </DataList.Item>
-                        <DataList.Item>
-                            <DataList.Label minWidth="80px"><Text weight="bold">提交时间</Text></DataList.Label>
-                            <DataList.Value>{requestedAt}</DataList.Value>
-                        </DataList.Item>
-                        <DataList.Item>
-                            <DataList.Label minWidth="80px"><Text weight="bold">审核状态</Text></DataList.Label>
-                            <DataList.Value><Badge size="2" color={approved ? "green" : (failed ? "crimson" : "orange")}>{statusInfo}</Badge></DataList.Value>
-                        </DataList.Item>
-                        {
-                            'approved' === status && <DataList.Item>
-                                <DataList.Label minWidth="80px"><Text weight="bold">收录地址</Text></DataList.Label>
-                                <DataList.Value><Link weight="bold" href={blogAddress}>{blogAddress}</Link></DataList.Value>
-                            </DataList.Item>
-                        }
-                        {
-                            'approved' === status || 'rejected' === status || 'uncollected' === status ? <DataList.Item>
-                                <DataList.Label minWidth="80px"><Text weight="bold">审核时间</Text></DataList.Label>
-                                <DataList.Value>{updatedAt}</DataList.Value>
-                            </DataList.Item> : ''
-                        }
-                        {
-                            'rejected' === status || 'uncollected' === status ? <DataList.Item>
-                                <DataList.Label minWidth="80px"><Text weight="bold">驳回原因</Text></DataList.Label>
-                                <DataList.Value>{reason}</DataList.Value>
-                            </DataList.Item> : ''
-                        }
-                    </DataList.Root>
-                </Card>
-            </Box>
+    const getStatusColor = () => {
+        if (approved) return 'green';
+        if (failed) return 'red';
+        return 'orange';
+    };
+
+    // 定义信息行
+    const InfoRow = ({ label, value }: { label: string; value: React.ReactNode }) => (
+        <Flex gap={16} style={{ padding: '8px 0' }}>
+            <Text strong style={{ width: '100px', flexShrink: 0 }}>{label}</Text>
+            <Text style={{ flex: 1 }}>{value}</Text>
         </Flex>
-    )
+    );
+
+    return (
+        <Flex vertical gap={8}>
+            <Text strong style={{ fontSize: 16 }}>
+                {title}
+            </Text>
+            <Card style={{ width: '100%' }}>
+                <InfoRow label="博客名称" value={<Link href={address} target="_blank" strong>{name}</Link>} />
+                <InfoRow label="博客描述" value={description} />
+                <InfoRow label="RSS 地址" value={<Link href={rssAddress} target="_blank">{rssAddress}</Link>} />
+                <InfoRow label="博主邮箱" value={adminEmail} />
+                <InfoRow label="提交时间" value={requestedAt} />
+                <InfoRow label="审核状态" value={<Tag color={getStatusColor()}>{statusInfo}</Tag>} />
+                
+                {status === 'approved' && (
+                    <InfoRow label="收录地址" value={<Link href={blogAddress} strong>{blogAddress}</Link>} />
+                )}
+                
+                {(status === 'approved' || status === 'rejected' || status === 'uncollected') && (
+                    <InfoRow label="审核时间" value={updatedAt} />
+                )}
+                
+                {(status === 'rejected' || status === 'uncollected') && (
+                    <InfoRow label="驳回原因" value={reason} />
+                )}
+            </Card>
+        </Flex>
+    );
 }

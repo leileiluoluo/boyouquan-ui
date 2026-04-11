@@ -1,10 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { Flex, Row, Col, Card, Skeleton, Typography, Empty } from 'antd';
 import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
 import BlogCard from './BlogCard';
 import { getURLParameter } from '../../utils/CommonUtil';
-import { Box, Grid, Flex, Card, Skeleton, Text } from '@radix-ui/themes';
+
+const { Text } = Typography;
 
 const getSortAndKeywordAndHighligts = () => {
     let sort = getURLParameter('sort') || 'collect_time';
@@ -50,114 +52,87 @@ export default function BlogCardList() {
 
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
-
         document.getElementById('switch-sort-type').scrollIntoView();
     }
 
     if (!dataReady) {
         return (
-            <Box className='blogs-container'>
-                <Flex direction="column" gap="3">
-                    <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
-                        {
-                            Array.from({ length: 10 }).map((_, index) => (
-                                <Box key={index}>
-                                    <Card style={{ padding: 'var(--space-4)' }}>
-                                        <Flex direction="column" gap="1">
-                                            <Box mt="2">
-                                                <Flex gap="2" align="center">
-                                                    <Box>
-                                                        <Skeleton width="36px" height="36px" style={{ borderRadius: '50%' }} />
-                                                    </Box>
-                                                    <Box>
-                                                        <Flex direction="column" gap="2">
-                                                            <Skeleton width="88px" height="16px" />
-                                                            <Flex gap="1" align="center">
-                                                                <Skeleton width="72px" height="12px" />
-                                                                <Skeleton width="12px" height="12px" />
-                                                            </Flex>
-                                                        </Flex>
-                                                    </Box>
-                                                </Flex>
-                                            </Box>
-                                            <Box p="1" radius="large" mt="2"
-                                                style={{
-                                                    backgroundColor: 'rgb(245, 245, 245)'
-                                                }}>
-                                                <Skeleton>
-                                                    <Text size="2">Lorem ipsum dolor sit amet</Text>
-                                                </Skeleton>
-                                            </Box>
-                                            <Box mt="2">
-                                                <Flex gap="2" justify="between">
-                                                    <Box>
-                                                        <Flex direction="column" gap="1">
-                                                            <Skeleton width="62px" height="14px" />
-                                                            <Skeleton width="62px" height="14px" />
-                                                        </Flex>
-                                                    </Box>
-                                                    <Box>
-                                                        <Flex direction="column" gap="1">
-                                                            <Skeleton width="62px" height="14px" />
-                                                            <Skeleton width="62px" height="14px" />
-                                                        </Flex>
-                                                    </Box>
-                                                    <Box>
-                                                        <Flex direction="column" gap="1">
-                                                            <Skeleton width="62px" height="14px" />
-                                                            <Skeleton width="62px" height="14px" />
-                                                        </Flex>
-                                                    </Box>
-
-                                                    <Box>
-                                                        <Flex direction="column" gap="1">
-                                                            <Skeleton width="62px" height="14px" />
-                                                            <Skeleton width="62px" height="14px" />
-                                                        </Flex>
-                                                    </Box>
-                                                </Flex>
-                                            </Box>
-                                            <Box mt="2">
-                                                <Flex direction="column" gap="1">
-                                                    <Skeleton width="62px" height="14px" />
-                                                    <Flex direction="column" gap="2">
-                                                        <Flex gap="2">
-                                                            <Skeleton width="20%" height="14px" />
-                                                            <Skeleton width="80%" height="14px" />
-                                                        </Flex>
-                                                        <Flex gap="2">
-                                                            <Skeleton width="20%" height="14px" />
-                                                            <Skeleton width="80%" height="14px" />
-                                                        </Flex>
-                                                        <Flex gap="2">
-                                                            <Skeleton width="20%" height="14px" />
-                                                            <Skeleton width="80%" height="14px" />
-                                                        </Flex>
+            <div className='blogs-container'>
+                <Flex vertical gap={12}>
+                    <Row gutter={[12, 12]}>
+                        {Array.from({ length: 10 }).map((_, index) => (
+                            <Col xs={24} md={12} key={index}>
+                                <Card style={{ padding: 16, width: '100%' }}>
+                                    <Flex vertical gap={4}>
+                                        <div style={{ marginTop: 8 }}>
+                                            <Flex gap={8} align="center">
+                                                <Skeleton.Avatar active size="large" />
+                                                <Flex vertical gap={8}>
+                                                    <Skeleton.Input active size="small" style={{ width: 88 }} />
+                                                    <Flex gap={4} align="center">
+                                                        <Skeleton.Input active size="small" style={{ width: 72 }} />
+                                                        <Skeleton.Button active size="small" shape="circle" />
                                                     </Flex>
                                                 </Flex>
-                                            </Box>
-                                            <Box mt="2" mb="1">
-                                                <Flex justify="between">
-                                                    <Box>
-                                                        <Flex align="center" gap="1">
-                                                            <Skeleton width="12px" height="12px" style={{ borderRadius: '50%' }} />
-                                                            <Skeleton width="40px" height="12px" />
-                                                        </Flex>
-                                                    </Box>
-                                                    <Box>
-                                                        <Flex align="center" gap="1">
-                                                            <Skeleton width="12px" height="12px" style={{ borderRadius: '50%' }} />
-                                                            <Skeleton width="40px" height="12px" />
-                                                        </Flex>
-                                                    </Box>
+                                            </Flex>
+                                        </div>
+
+                                        <div style={{ padding: 4, marginTop: 8, backgroundColor: '#f5f5f5', borderRadius: 8 }}>
+                                            <Skeleton.Input active size="small" style={{ width: '100%' }} />
+                                        </div>
+
+                                        <div style={{ marginTop: 8 }}>
+                                            <Flex gap={8} justify="space-between">
+                                                <Flex vertical gap={4}>
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
                                                 </Flex>
-                                            </Box>
-                                        </Flex>
-                                    </Card>
-                                </Box>
-                            ))
-                        }
-                    </Grid>
+                                                <Flex vertical gap={4}>
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                </Flex>
+                                                <Flex vertical gap={4}>
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                </Flex>
+                                                <Flex vertical gap={4}>
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                </Flex>
+                                            </Flex>
+                                        </div>
+
+                                        <div style={{ marginTop: 8 }}>
+                                            <Flex vertical gap={4}>
+                                                <Skeleton.Input active size="small" style={{ width: 62 }} />
+                                                <Flex vertical gap={8}>
+                                                    {[1, 2, 3].map((_, i) => (
+                                                        <Flex gap={8} key={i}>
+                                                            <Skeleton.Input active size="small" style={{ width: '20%' }} />
+                                                            <Skeleton.Input active size="small" style={{ width: '80%' }} />
+                                                        </Flex>
+                                                    ))}
+                                                </Flex>
+                                            </Flex>
+                                        </div>
+
+                                        <div style={{ marginTop: 8, marginBottom: 4 }}>
+                                            <Flex justify="space-between">
+                                                <Flex align="center" gap={4}>
+                                                    <Skeleton.Avatar active size="small" />
+                                                    <Skeleton.Input active size="small" style={{ width: 40 }} />
+                                                </Flex>
+                                                <Flex align="center" gap={4}>
+                                                    <Skeleton.Avatar active size="small" />
+                                                    <Skeleton.Input active size="small" style={{ width: 40 }} />
+                                                </Flex>
+                                            </Flex>
+                                        </div>
+                                    </Flex>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
 
                     <Pagination
                         pageNo={pageNo}
@@ -165,51 +140,43 @@ export default function BlogCardList() {
                         total={total}
                         setCurrectPage={setCurrectPage} />
                 </Flex>
-            </Box>
+            </div>
         );
     }
 
     if (null !== keyword && '' !== keyword && 0 === total) {
         return (
-            <Box className='blogs-container'>
-                <Flex direction="column" gap="3">
-                    <Box mt="5" mb="5" width="100%" height="100px" align="center">
-                        <Text size="2">
-                            未找到相关博客，试试更换关键词吧！
-                        </Text>
-                    </Box>
-
-                    <Box mt="3">
-                        <Pagination
-                            pageNo={pageNo}
-                            pageSize={pageSize}
-                            total={total}
-                            setCurrectPage={setCurrectPage} />
-                    </Box>
+            <div className='blogs-container'>
+                <Flex vertical gap={12}>
+                    <Empty
+                        description="未找到相关博客，试试更换关键词吧！"
+                        style={{ marginTop: 40, marginBottom: 40 }}
+                    />
+                    <Pagination
+                        pageNo={pageNo}
+                        pageSize={pageSize}
+                        total={total}
+                        setCurrectPage={setCurrectPage} />
                 </Flex>
-            </Box>
+            </div>
         );
     }
 
     return (
-        <Box className='blogs-container'>
-            <Flex direction="column" gap="3">
-                <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
-                    {
-                        blogs.map(
-                            (blog, index) => (
-                                <Box key={index}>
-                                    <BlogCard
-                                        key={index}
-                                        blog={blog}
-                                        posts={blog.posts}
-                                        publishedAtHighlight={publishedAtHighlight}
-                                        accessCountHighlight={accessCountHighlight}
-                                        createTimeHighlight={createTimeHighlight} />
-                                </Box>
-                            ))
-                    }
-                </Grid>
+        <div className='blogs-container'>
+            <Flex vertical gap={12}>
+                <Row gutter={[12, 12]}>
+                    {blogs.map((blog, index) => (
+                        <Col xs={24} md={12} key={index}>
+                            <BlogCard
+                                blog={blog}
+                                posts={blog.posts}
+                                publishedAtHighlight={publishedAtHighlight}
+                                accessCountHighlight={accessCountHighlight}
+                                createTimeHighlight={createTimeHighlight} />
+                        </Col>
+                    ))}
+                </Row>
 
                 <Pagination
                     pageNo={pageNo}
@@ -217,6 +184,6 @@ export default function BlogCardList() {
                     total={total}
                     setCurrectPage={setCurrectPage} />
             </Flex>
-        </Box>
-    )
+        </div>
+    );
 }

@@ -1,4 +1,4 @@
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 
 import { MainContentHeader, Meta } from '@components/common';
 import MonthlySelectedCardList from '@components/monthly-selected/MonthlySelectedCardList';
@@ -15,7 +15,7 @@ export default function MonthlySelectedPage() {
     return (
         <>
             <Meta meta={meta} />
-            <Flex direction="column" gap="4">
+            <Flex vertical gap={16}>
                 <MainContentHeader content="首页文章更新的太快？几天不刷就感觉错过了什么？快来每月精选看看过去几个月的精选文章吧！" />
                 <Subscription />
                 <MonthlySelectedCardList />

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Flex, Text, Link } from '@radix-ui/themes';
-import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import { Flex, Typography, Space, Avatar } from 'antd';
+import { LinkOutlined } from '@ant-design/icons';
 import LazyAvatar from '../common/avatar/LazyAvatar';
+
+const { Text, Link } = Typography;
 
 interface PostCardFooterProps {
     blogURL: string;
@@ -12,59 +14,77 @@ interface PostCardFooterProps {
     sharingURL: string;
 }
 
-export default function PostCardFooter({ blogURL, gravatarURL, blogName, publishedAtFormatted, linkAccessCount, sharingURL }: PostCardFooterProps): React.JSX.Element {
-    return <Flex gap="1" align="center">
-        <Box>
+export default function PostCardFooter({ 
+    blogURL, 
+    gravatarURL, 
+    blogName, 
+    publishedAtFormatted, 
+    linkAccessCount, 
+    sharingURL 
+}: PostCardFooterProps): React.JSX.Element {
+    return (
+        <Flex gap={4} align="center" wrap="wrap">
             <Link href={blogURL}>
-                <Flex align="center">
-                    <LazyAvatar
-                        style={{ width: 20, height: 20 }}
-                        src={gravatarURL}
-                        radius="full" />
-                </Flex>
+                <LazyAvatar
+                    style={{ width: 20, height: 20 }}
+                    src={gravatarURL}
+                    shape="circle"
+                />
             </Link>
-        </Box>
-        <Box>
-            <Link size="2" href={blogURL} style={{
-                display: '-webkit-box',
-                WebkitLineClamp: 1,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden'
-            }}>{blogName}</Link>
-        </Box>
-        <Box>
-            <Text> · </Text>
-        </Box>
-        <Box>
-            <Text size="2" color="gray" style={{
-                display: '-webkit-box',
-                WebkitLineClamp: 1,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden'
-            }}>
+
+            <Link 
+                href={blogURL}
+                style={{
+                    fontSize: 14,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}
+            >
+                {blogName}
+            </Link>
+
+            <Text type="secondary">·</Text>
+
+            <Text 
+                type="secondary"
+                style={{
+                    fontSize: 14,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}
+            >
                 {publishedAtFormatted}
             </Text>
-        </Box>
-        <Box>
-            <Text> · </Text>
-        </Box>
-        <Box>
-            <Text size="2" color="gray" style={{
-                display: '-webkit-box',
-                WebkitLineClamp: 1,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden'
-            }}>
+
+            <Text type="secondary">·</Text>
+
+            <Text 
+                type="secondary"
+                style={{
+                    fontSize: 14,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}
+            >
                 {linkAccessCount} 次浏览
             </Text>
-        </Box>
-        <Box>
-            <Text> · </Text>
-        </Box>
-        <Box>
-            <Flex align="center">
-                <Link size="2" color="gray" href={sharingURL} asChild><a style={{ display: 'inline-flex' }}><ExternalLinkIcon /></a></Link>
-            </Flex>
-        </Box>
-    </Flex>
+
+            <Text type="secondary">·</Text>
+
+            <Link 
+                href={sharingURL} 
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 14, display: 'inline-flex', alignItems: 'center' }}
+            >
+                <LinkOutlined />
+            </Link>
+        </Flex>
+    );
 }

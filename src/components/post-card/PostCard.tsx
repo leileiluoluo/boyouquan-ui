@@ -1,8 +1,11 @@
 import React from 'react';
-import { Box, Card, Flex, Text, Link } from '@radix-ui/themes';
+import { Flex, Typography } from 'antd';
+import { PushpinOutlined } from '@ant-design/icons';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
 import PostCardFooter from './PostCardFooter';
+
+const { Text, Link, Paragraph } = Typography;
 
 interface PostCardProps {
     showPinned?: boolean;
@@ -39,28 +42,44 @@ export default function PostCard({
     const publishedAtFormatted = formatDateStr(publishedAt);
 
     return (
-        <Flex direction="column" gap="1">
-            <Box>
-                <Flex gap="1">
-                    <img src="/assets/images/sites/pinned/pinned.svg" style={{ display: showPinned && pinned ? 'block' : 'none' }} alt="pinned" />
-                    <Link target="_blank" size="3" weight="bold" href={blogStatusOk ? linkURL : abstractURL} style={{
+        <Flex vertical gap={4}>
+            <Flex gap={4} align="flex-start">
+                {showPinned && pinned && (
+                    <PushpinOutlined 
+                        style={{ 
+                            color: '#ff4d4f', 
+                            fontSize: 14,
+                            marginTop: 2,
+                            flexShrink: 0
+                        }} 
+                    />
+                )}
+                <Link 
+                    href={blogStatusOk ? linkURL : abstractURL}
+                    target="_blank"
+                    strong
+                    style={{
                         display: '-webkit-box',
                         WebkitLineClamp: 1,
                         WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden'
-                    } as React.CSSProperties}>{title}</Link>
-                </Flex>
-            </Box>
-            <Box>
-                <Text as="div" size="2" color="gray" style={{
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                } as React.CSSProperties}>
+                        overflow: 'hidden',
+                        wordBreak: 'break-word',
+                        flex: 1
+                    }}
+                >
+                    {title}
+                </Link>
+            </Flex>
+
+            {description && (
+                <Paragraph
+                    type="secondary"
+                    ellipsis={{ rows: 2, expandable: false }}
+                    style={{ fontSize: 14, marginBottom: 0 }}
+                >
                     {description}
-                </Text>
-            </Box>
+                </Paragraph>
+            )}
 
             <PostCardFooter
                 blogURL={blogURL}
@@ -72,4 +91,3 @@ export default function PostCard({
         </Flex>
     );
 }
-

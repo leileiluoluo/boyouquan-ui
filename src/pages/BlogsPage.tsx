@@ -1,4 +1,4 @@
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 
 import { SearchBox, SwitchSortType, Meta, HotSearch } from '@components/common';
 import { BlogsMainContentHeader, BlogCardList } from '@components/blogs';
@@ -20,7 +20,7 @@ export default function BlogsPage() {
     return (
         <>
             <Meta meta={meta} />
-            <Flex direction="column" gap="4">
+            <Flex vertical gap={16}>
                 <BlogsMainContentHeader />
                 <SearchBox placeholder="搜索博客 ↵" gotoPage="/blogs" />
                 <HotSearch label="大家在找啥" title="2025 年度报告" link="/annual-reports/2025" />
@@ -30,4 +30,3 @@ export default function BlogsPage() {
         </>
     );
 }
-

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { Flex, Box, Button, TextField, IconButton } from '@radix-ui/themes';
-import { MagnifyingGlassIcon, Cross2Icon } from '@radix-ui/react-icons';
+import { Flex, Input, Button, Space } from 'antd';
+import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
 import { useNavigate } from 'react-router-dom';
+
+const { Search } = Input;
 
 interface SearchBoxProps {
     placeholder: string;
@@ -28,7 +30,7 @@ export default function SearchBox({ placeholder, gotoPage, sortType }: SearchBox
         redirectTo(goTo);
     };
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             doSearch();
         }
@@ -40,31 +42,26 @@ export default function SearchBox({ placeholder, gotoPage, sortType }: SearchBox
     };
 
     return (
-        <Flex align="center" justify="start" gap="8px" width="100%">
-            <Box flexGrow="1">
-                <TextField.Root
-                    placeholder={placeholder}
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    style={{ width: '100%' }}
-                >
-                    <TextField.Slot>
-                        <MagnifyingGlassIcon />
-                    </TextField.Slot>
-                    <TextField.Slot>
-                        <IconButton size="1" variant="ghost" onClick={clearSearch}>
-                            <Cross2Icon />
-                        </IconButton>
-                    </TextField.Slot>
-                </TextField.Root>
-            </Box>
-
-            <Box>
-                <Button type="button" onClick={doSearch}>
-                    搜索
-                </Button>
-            </Box>
+        <Flex align="center" justify="start" gap={8} style={{ width: '100%' }}>
+            <Input
+                placeholder={placeholder}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}
+                prefix={<SearchOutlined />}
+                suffix={
+                    searchTerm && (
+                        <CloseOutlined
+                            onClick={clearSearch}
+                            style={{ cursor: 'pointer', color: 'rgba(0,0,0,0.45)' }}
+                        />
+                    )
+                }
+                style={{ flex: 1 }}
+            />
+            <Button type="primary" onClick={doSearch}>
+                搜索
+            </Button>
         </Flex>
     );
 }

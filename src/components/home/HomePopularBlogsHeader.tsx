@@ -1,6 +1,5 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 import RequestUtil from '../../utils/APIRequestUtil';
 import PopularBlog from './PopularBlog';
 import HomePopularBlogsHeaderFallBack from './HomePopularBlogsHeaderFallback';
@@ -25,10 +24,12 @@ export default function HomePopularBlogsHeader() {
     }
 
     return (
-        <Flex gap="4"
+        <Flex 
+            gap={16}
             wrap="wrap"
             align="center"
-            justify="center">
+            justify="center"
+        >
             {
                 blogs.map(
                     (blog, index) => (

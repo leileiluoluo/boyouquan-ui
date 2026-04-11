@@ -14,69 +14,76 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
     if (!isHome) return null;
 
     return (
-        <Card
-            id="special-thanks"
-            className="special-thanks-card"
+        <div
             style={{
-                width: '100%',
-                maxWidth: '900px',  // 固定最大宽度
-                margin: '0 auto',     // 水平居中
                 marginTop: '10px',
-                padding: '40px 24px',
+                backgroundColor: '#f5f5f5',
+                display: 'flex',
+                justifyContent: 'center',
             }}
         >
-            <Flex vertical gap={20}>
-                {/* 标题 */}
-                <Flex justify="center">
-                    <Link
-                        href="/sponsor"
-                        strong
-                        style={{ fontSize: 14 }}
-                    >
-                        感谢赞助
-                    </Link>
-                </Flex>
+            <div
+                style={{
+                    width: '100%',
+                    maxWidth: '900px',  // 固定最大宽度
+                    margin: '0 auto',     // 水平居中
+                    padding: '40px 24px',
+                    backgroundColor: '#fff',
+                }}
+            >
+                <Flex vertical gap={20}>
+                    {/* 标题 */}
+                    <Flex justify="center">
+                        <Link
+                            href="/sponsor"
+                            strong
+                            style={{ fontSize: 14 }}
+                        >
+                            感谢赞助
+                        </Link>
+                    </Flex>
 
-                {/* 头像列表 */}
-                <Flex
-                    gap={20}
-                    wrap="wrap"
-                    align="center"
-                    justify="center"
-                    className="special-thanks-avatars"
-                >
-                    {specialThanks.map((item, index) => (
-                        <Tooltip title={item.name} key={index}>
-                            <Link href={item.link} target="_blank">
-                                <LazyAvatar
+                    {/* 头像列表 */}
+                    <Flex
+                        gap={20}
+                        wrap="wrap"
+                        align="center"
+                        justify="center"
+                        className="special-thanks-avatars"
+                    >
+                        {specialThanks.map((item, index) => (
+                            <Tooltip title={item.name} key={index}>
+                                <Link href={item.link} target="_blank">
+                                    <LazyAvatar
+                                        size={28}
+                                        src={item.avatar}
+                                        style={{
+                                            width: 28,
+                                            height: 28,
+                                            borderRadius: '50%',
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                </Link>
+                            </Tooltip>
+                        ))}
+
+                        {/* 我也要赞助按钮 */}
+                        <Tooltip title="我也要赞助">
+                            <Link href="/sponsor">
+                                <Avatar
                                     size={28}
-                                    src={item.avatar}
+                                    icon={<PlusOutlined />}
                                     style={{
-                                        width: 28,
-                                        height: 28,
-                                        borderRadius: '50%',
-                                        objectFit: 'cover'
+                                        backgroundColor: '#f0f0f0',
+                                        cursor: 'pointer'
                                     }}
                                 />
                             </Link>
                         </Tooltip>
-                    ))}
-
-                    {/* 我也要赞助按钮 */}
-                    <Tooltip title="我也要赞助">
-                        <Link href="/sponsor">
-                            <Avatar
-                                size={28}
-                                icon={<PlusOutlined />}
-                                style={{
-                                    backgroundColor: '#f0f0f0',
-                                    cursor: 'pointer'
-                                }}
-                            />
-                        </Link>
-                    </Tooltip>
+                    </Flex>
                 </Flex>
-            </Flex>
-        </Card>
+            </div>
+        </div>
     );
 }

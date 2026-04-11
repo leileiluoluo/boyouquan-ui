@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { SoundOutlined } from '@ant-design/icons';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { SpeakerLoudIcon } from '@radix-ui/react-icons';
 
 export default function HomeLatestNews() {
     const [size, setSize] = useState(0);
@@ -25,25 +25,27 @@ export default function HomeLatestNews() {
     }, []);
 
     return (
-        <>
-            <div className="latest-news">
-                <div className="icon">
-                    <SpeakerLoudIcon />
-                </div>
-                <div className="content">
-                    {
-                        display && <ul style={{ '--s': size }}>
+        <div className="latest-news">
+            <div className="icon">
+                <SoundOutlined />
+            </div>
+            <div className="content">
+                {
+                    display && (
+                        <ul style={{ '--s': size } as React.CSSProperties}>
                             {
                                 items.map(
                                     (item, index) => (
-                                        <li key={index}><a href={item.link}>{item.title}</a></li>
+                                        <li key={index}>
+                                            <a href={item.link}>{item.title}</a>
+                                        </li>
                                     )
                                 )
                             }
                         </ul>
-                    }
-                </div>
+                    )
+                }
             </div>
-        </>
-    )
+        </div>
+    );
 }

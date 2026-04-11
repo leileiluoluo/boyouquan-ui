@@ -1,8 +1,7 @@
-import React from 'react';
-import { Box, Tooltip, Link } from '@radix-ui/themes';
+import { Tooltip, Flex } from 'antd';
+import { CameraOutlined } from '@ant-design/icons';
 import { getBlogAddress, getGravatarImageFullURL, MOMENTS_ADDRESS } from '../../utils/PageAddressUtil';
 import LazyAvatar from '../common/avatar/LazyAvatar';
-import { CameraIcon } from '@radix-ui/react-icons';
 
 export default function PopularBlog({ type, name, domainName, blogAdminLargeImageURL }) {
     let href = getBlogAddress(domainName);
@@ -11,31 +10,37 @@ export default function PopularBlog({ type, name, domainName, blogAdminLargeImag
     }
 
     return (
-        <Box>
-            <Tooltip content={name}>
-                <Link href={href} style={{ position: 'relative', display: 'inline-block' }}>
+        <Flex>
+            <Tooltip title={name}>
+                <a 
+                    href={href} 
+                    style={{ position: 'relative', display: 'inline-block' }}
+                >
                     <LazyAvatar
                         style={{ width: 28, height: 28 }}
                         src={getGravatarImageFullURL(blogAdminLargeImageURL)}
-                        radius="full"
+                        shape="circle"
                     />
 
                     {
-                        type === 'moment' && <CameraIcon
-                            style={{
-                                position: 'absolute',
-                                top: '-4px',
-                                right: '-4px',
-                                backgroundColor: 'white',
-                                borderRadius: '10%',
-                                padding: '0px',
-                                width: '12px',
-                                height: '12px'
-                            }}
-                        />
+                        type === 'moment' && (
+                            <CameraOutlined
+                                style={{
+                                    position: 'absolute',
+                                    top: '-4px',
+                                    right: '-4px',
+                                    backgroundColor: 'white',
+                                    borderRadius: '10%',
+                                    padding: '0px',
+                                    fontSize: '12px',
+                                    width: '12px',
+                                    height: '12px'
+                                }}
+                            />
+                        )
                     }
-                </Link>
+                </a>
             </Tooltip>
-        </Box>
+        </Flex>
     );
 }

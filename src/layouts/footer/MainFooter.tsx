@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Rss, Github, Cloud, Mail, ArrowUp, Users, FileText, Eye, BarChart3, Link2, Info, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
-import { Layout, Divider, Typography, Flex, Button, Spin, Grid } from 'antd';
+import type { MenuProps } from 'antd';
+import { Rss, Github, Cloud, Mail, ArrowUp, Users, FileText, Eye, BarChart3, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { Layout, Divider, Typography, Flex, Button, Spin, Grid, Dropdown, Tooltip } from 'antd';
 import CountUp from 'react-countup';
 
 import RequestUtil from '@utils/APIRequestUtil';
@@ -8,6 +9,44 @@ import RequestUtil from '@utils/APIRequestUtil';
 const { Footer } = Layout;
 const { Link, Text } = Typography;
 const { useBreakpoint } = Grid;
+
+const rssItems: MenuProps['items'] = [
+    {
+        key: '1',
+        label: (
+            <a style={{ fontSize: '12px' }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=recommended">
+                推荐文章聚合
+            </a>
+        ),
+    },
+    {
+        key: '2',
+        label: (
+            <a style={{ fontSize: '12px' }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=latest">
+                最新文章聚合
+            </a>
+        ),
+    },
+];
+
+const githubItems: MenuProps['items'] = [
+    {
+        key: '1',
+        label: (
+            <a style={{ fontSize: '12px' }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-ui">
+                前端源码
+            </a>
+        ),
+    },
+    {
+        key: '2',
+        label: (
+            <a style={{ fontSize: '12px' }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-api">
+                后端源码
+            </a>
+        ),
+    },
+];
 
 const useStats = () => {
     const [stats, setStats] = useState({
@@ -69,7 +108,7 @@ const MainFooter: React.FC = () => {
                 borderTop: '1px solid #e9ecef'
             }}>
                 <Flex vertical gap={16} style={{ maxWidth: 1200, margin: '0 auto' }}>
-                    <div style={{ 
+                    <div style={{
                         display: 'flex',
                         justifyContent: 'space-between',
                         flexWrap: 'wrap',
@@ -77,16 +116,32 @@ const MainFooter: React.FC = () => {
                     }}>
                         {/* 网站信息 */}
                         <div style={{ width: 280 }}>
-                            <Flex vertical gap={8}>
+                            <Flex vertical gap={14}>
                                 <Text style={{ fontSize: 16, fontWeight: 700, color: '#1a1a2e' }}>博友圈</Text>
                                 <Text style={{ color: '#4a5568', fontSize: 13, lineHeight: 1.5, fontWeight: 500 }}>
                                     将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！
                                 </Text>
                                 <Flex gap={14} style={{ marginTop: 4 }}>
-                                    <Link href="/feed.xml" style={{ color: '#4a5568' }}><Rss size={16} /></Link>
-                                    <Link href="https://github.com/leileiluoluo/boyouquan-ui" style={{ color: '#4a5568' }}><Github size={16} /></Link>
-                                    <Link href="https://cloud.tencent.com/act/cps/redirect?redirect=5990&cps_key=b47473307f5d83202fb2d8a72cd303d7&from=console" style={{ color: '#4a5568' }}><Cloud size={16} /></Link>
-                                    <Link href="mailto:support@boyouquan.com" style={{ color: '#4a5568' }}><Mail size={16} /></Link>
+                                    <Dropdown menu={{ items: rssItems }}>
+                                        <Rss color='#4a5568' size={16} />
+                                    </Dropdown>
+                                    <Dropdown menu={{ items: githubItems }}>
+                                        <Github color='#4a5568' size={16} />
+                                    </Dropdown>
+                                    <Tooltip placement="bottom" color="#fff" title="本站使用腾讯云主机提供服务" styles={{ // 使用 styles 属性
+                                        root: {
+                                            fontSize: '12px',
+                                        }
+                                    }}>
+                                        <Link target="_blank" href="https://cloud.tencent.com/act/cps/redirect?redirect=5990&cps_key=b47473307f5d83202fb2d8a72cd303d7&from=console" style={{ color: '#4a5568' }}><Cloud size={16} /></Link>
+                                    </Tooltip>
+                                    <Tooltip placement="bottom" color="#fff" title="站长信箱" styles={{ // 使用 styles 属性
+                                        root: {
+                                            fontSize: '12px',
+                                        }
+                                    }}>
+                                        <Link target="_blank" href="mailto:support@boyouquan.com" style={{ color: '#4a5568' }}><Mail size={16} /></Link>
+                                    </Tooltip>
                                 </Flex>
                             </Flex>
                         </div>
@@ -102,21 +157,21 @@ const MainFooter: React.FC = () => {
                                     <Spin size="small" />
                                 ) : (
                                     <Flex vertical gap={8}>
-                                        <Flex align="center" gap={8} style={{ height: 22 }}>
+                                        <Flex align="center" gap={4} style={{ height: 22 }}>
                                             <Users size={14} style={{ color: '#1890ff', flexShrink: 0 }} />
                                             <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500, width: 60 }}>收录博客</Text>
                                             <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
                                                 <CountUp end={stats.totalBlogs} duration={1} separator="," />
                                             </Text>
                                         </Flex>
-                                        <Flex align="center" gap={8} style={{ height: 22 }}>
+                                        <Flex align="center" gap={4} style={{ height: 22 }}>
                                             <FileText size={14} style={{ color: '#1890ff', flexShrink: 0 }} />
                                             <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500, width: 60 }}>收录文章</Text>
                                             <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
                                                 <CountUp end={stats.totalPosts} duration={1} separator="," />
                                             </Text>
                                         </Flex>
-                                        <Flex align="center" gap={8} style={{ height: 22 }}>
+                                        <Flex align="center" gap={4} style={{ height: 22 }}>
                                             <Eye size={14} style={{ color: '#1890ff', flexShrink: 0 }} />
                                             <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500, width: 60 }}>浏览文章</Text>
                                             <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
@@ -209,9 +264,9 @@ const MainFooter: React.FC = () => {
 
                 {/* 统计 - 可折叠 */}
                 <div>
-                    <Flex 
-                        align="center" 
-                        justify="space-between" 
+                    <Flex
+                        align="center"
+                        justify="space-between"
                         style={{ cursor: 'pointer', padding: '8px 0' }}
                         onClick={() => toggleSection('stats')}
                     >
@@ -256,9 +311,9 @@ const MainFooter: React.FC = () => {
 
                 {/* 支持 - 可折叠 */}
                 <div>
-                    <Flex 
-                        align="center" 
-                        justify="space-between" 
+                    <Flex
+                        align="center"
+                        justify="space-between"
                         style={{ cursor: 'pointer', padding: '8px 0' }}
                         onClick={() => toggleSection('support')}
                     >
@@ -281,9 +336,9 @@ const MainFooter: React.FC = () => {
 
                 {/* 关于 - 可折叠 */}
                 <div>
-                    <Flex 
-                        align="center" 
-                        justify="space-between" 
+                    <Flex
+                        align="center"
+                        justify="space-between"
                         style={{ cursor: 'pointer', padding: '8px 0' }}
                         onClick={() => toggleSection('about')}
                     >

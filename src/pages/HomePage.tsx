@@ -1,4 +1,4 @@
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 
 import { MainContentHeader, Meta, SearchBox, HotSearch, SwitchSortType } from '@components/common';
 import { HomeLatestNews, HomePopularBlogsHeader } from '@components/home';
@@ -38,7 +38,7 @@ export default function HomePage() {
     return (
         <>
             <Meta />
-            <Flex direction="column" gap="4">
+            <Flex vertical gap={16}>
                 <MainContentHeader content="博友圈是博客人的专属朋友圈。我们的愿景是：将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！" />
                 <HomePopularBlogsHeader />
                 <HomeLatestNews />

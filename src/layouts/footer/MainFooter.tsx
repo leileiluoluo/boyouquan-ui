@@ -151,7 +151,7 @@ const MainFooter: React.FC = () => {
                             <Flex vertical gap={8}>
                                 <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
                                     <BarChart3 size={16} style={{ color: '#1890ff' }} />
-                                    <Text style={{ color: '#1a1a2e', fontSize: 15 }}>统计</Text>
+                                    <Text style={{ color: '#1a1a2e', fontSize: 14 }}>统计</Text>
                                 </Flex>
                                 {loading ? (
                                     <Spin size="small" />
@@ -188,7 +188,7 @@ const MainFooter: React.FC = () => {
                             <Flex vertical gap={8}>
                                 <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
                                     <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                                    <Text style={{ color: '#1a1a2e', fontSize: 15 }}>支持</Text>
+                                    <Text style={{ color: '#1a1a2e', fontSize: 14 }}>支持</Text>
                                 </Flex>
                                 <Flex vertical gap={8}>
                                     <Link href="/sponsor" style={{ color: '#4a5568', fontSize: 13 }}>赞助本站</Link>
@@ -203,7 +203,7 @@ const MainFooter: React.FC = () => {
                             <Flex vertical gap={8}>
                                 <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
                                     <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                                    <Text style={{ color: '#1a1a2e', fontSize: 15 }}>关于</Text>
+                                    <Text style={{ color: '#1a1a2e', fontSize: 14 }}>关于</Text>
                                 </Flex>
                                 <Flex vertical gap={8}>
                                     <Link href="/about" style={{ color: '#4a5568', fontSize: 13 }}>关于本站</Link>
@@ -272,7 +272,7 @@ const MainFooter: React.FC = () => {
                     >
                         <Flex align="center" gap={8}>
                             <BarChart3 size={16} style={{ color: '#1890ff' }} />
-                            <Text style={{ color: '#1a1a2e', fontSize: 15 }}>统计</Text>
+                            <Text style={{ color: '#1a1a2e', fontSize: 14 }}>统计</Text>
                         </Flex>
                         {expandedSections.stats ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </Flex>
@@ -319,7 +319,7 @@ const MainFooter: React.FC = () => {
                     >
                         <Flex align="center" gap={8}>
                             <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                            <Text style={{ color: '#1a1a2e', fontSize: 15 }}>支持</Text>
+                            <Text style={{ color: '#1a1a2e', fontSize: 14 }}>支持</Text>
                         </Flex>
                         {expandedSections.support ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </Flex>
@@ -344,7 +344,7 @@ const MainFooter: React.FC = () => {
                     >
                         <Flex align="center" gap={8}>
                             <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                            <Text style={{ color: '#1a1a2e', fontSize: 15 }}>关于</Text>
+                            <Text style={{ color: '#1a1a2e', fontSize: 14 }}>关于</Text>
                         </Flex>
                         {expandedSections.about ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </Flex>

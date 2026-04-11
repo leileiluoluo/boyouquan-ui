@@ -34,7 +34,7 @@ const MainHeader: React.FC = () => {
     return (
         <>
             <Header style={{
-                background: '#ffffff',
+                background: 'rgb(255 255 255 / 90%)',
                 padding: '0 16px',
                 height: '60px',
                 display: 'flex',
@@ -62,14 +62,18 @@ const MainHeader: React.FC = () => {
                                 key: item.key,
                                 label: <a href={item.href}>{item.label}</a>
                             }))}
-                            // style={{
-                            //     flex: 1,
-                            //     minWidth: 0,
-                            //     background: 'transparent',
-                            //     fontWeight: 600,
-                            //     justifyContent: 'flex-end',
-                            //     border: 'none',
-                            // }}
+                            style={{
+                                background: 'transparent',  // 添加这行
+                                border: 'none',             // 添加这行，移除默认边框
+                            }}
+                        // style={{
+                        //     flex: 1,
+                        //     minWidth: 0,
+                        //     background: 'transparent',
+                        //     fontWeight: 600,
+                        //     justifyContent: 'flex-end',
+                        //     border: 'none',
+                        // }}
                         />
                     ) : (
                         <Button

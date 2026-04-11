@@ -43,7 +43,7 @@ const { useToken } = theme;
 // API 返回的博客文章数据结构
 interface ApiBlogPost {
     blogAddress: string;
-    HomePageblogAdminLargeImageURL: string;
+    blogAdminLargeImageURL: string;
     blogDomainName: string;
     blogName: string;
     blogStatusOk: boolean;
@@ -135,9 +135,9 @@ const transformApiPost = (apiPost: ApiBlogPost, index: number): BlogPost => {
         description: cleanedDesc.length > 200 ? cleanedDesc.substring(0, 200) + '...' : cleanedDesc,
         author: {
             name: apiPost.blogName,
-            avatar: apiPost.HomePageblogAdminLargeImageURL.startsWith('http')
-                ? apiPost.HomePageblogAdminLargeImageURL
-                : `${apiPost.HomePageblogAdminLargeImageURL}`,
+            avatar: apiPost.blogAdminLargeImageURL.startsWith('http')
+                ? apiPost.blogAdminLargeImageURL
+                : `${apiPost.blogAdminLargeImageURL}`,
             blogAddress: apiPost.blogAddress,
             isVerified: apiPost.blogStatusOk,
         },

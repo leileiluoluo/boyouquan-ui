@@ -36,7 +36,7 @@ const MainHeader: React.FC = () => {
             <Header style={{
                 background: '#ffffff',
                 padding: '0 16px',
-                height: '64px',
+                height: '60px',
                 display: 'flex',
                 alignItems: 'center',
                 position: 'sticky',
@@ -62,14 +62,14 @@ const MainHeader: React.FC = () => {
                                 key: item.key,
                                 label: <a href={item.href}>{item.label}</a>
                             }))}
-                            style={{
-                                flex: 1,
-                                minWidth: 0,
-                                background: 'transparent',
-                                fontWeight: 600,
-                                justifyContent: 'flex-end',
-                                border: 'none',
-                            }}
+                            // style={{
+                            //     flex: 1,
+                            //     minWidth: 0,
+                            //     background: 'transparent',
+                            //     fontWeight: 600,
+                            //     justifyContent: 'flex-end',
+                            //     border: 'none',
+                            // }}
                         />
                     ) : (
                         <Button
@@ -97,7 +97,7 @@ const MainHeader: React.FC = () => {
                 keyboard={true}
                 rootStyle={{ position: 'fixed' }}
                 getContainer={false}
-                width={260}  // 设置更窄的宽度
+                width={200}  // 设置更窄的宽度
                 styles={{
                     body: { padding: 0 },
                     wrapper: { position: 'fixed' },
@@ -111,9 +111,6 @@ const MainHeader: React.FC = () => {
                         label: <a href={item.href}>{item.label}</a>
                     }))}
                     onClick={() => setDrawerOpen(false)}
-                    style={{
-                        fontWeight: 600,
-                    }}
                 />
             </Drawer>
         </>

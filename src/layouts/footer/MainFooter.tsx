@@ -102,12 +102,12 @@ const MainFooter: React.FC = () => {
         return (
             <Footer style={{
                 background: '#f8f9fa',
-                color: '#2c3e50',
+                // color: '#2c3e50',
                 padding: '30px 24px 20px',
                 marginTop: '30px',
                 borderTop: '1px solid #e9ecef'
             }}>
-                <Flex vertical gap={16} style={{ maxWidth: 1200, margin: '0 auto' }}>
+                <Flex vertical gap={16}>
                     <div style={{
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -117,8 +117,8 @@ const MainFooter: React.FC = () => {
                         {/* 网站信息 */}
                         <div style={{ width: 280 }}>
                             <Flex vertical gap={14}>
-                                <Text style={{ fontSize: 16, fontWeight: 700, color: '#1a1a2e' }}>博友圈</Text>
-                                <Text style={{ color: '#4a5568', fontSize: 13, lineHeight: 1.5, fontWeight: 500 }}>
+                                <Text style={{ fontSize: 16, color: '#1a1a2e' }}>博友圈</Text>
+                                <Text style={{ color: '#4a5568', fontSize: 13, lineHeight: 1.5 }}>
                                     将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！
                                 </Text>
                                 <Flex gap={14} style={{ marginTop: 4 }}>
@@ -151,7 +151,7 @@ const MainFooter: React.FC = () => {
                             <Flex vertical gap={8}>
                                 <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
                                     <BarChart3 size={16} style={{ color: '#1890ff' }} />
-                                    <Text style={{ color: '#1a1a2e', fontWeight: 700, fontSize: 15 }}>统计</Text>
+                                    <Text style={{ color: '#1a1a2e', fontSize: 15 }}>统计</Text>
                                 </Flex>
                                 {loading ? (
                                     <Spin size="small" />
@@ -159,22 +159,22 @@ const MainFooter: React.FC = () => {
                                     <Flex vertical gap={8}>
                                         <Flex align="center" gap={4} style={{ height: 22 }}>
                                             <Users size={14} style={{ color: '#1890ff', flexShrink: 0 }} />
-                                            <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500, width: 60 }}>收录博客</Text>
-                                            <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
+                                            <Text style={{ color: '#2c3e50', fontSize: 13, width: 60 }}>收录博客</Text>
+                                            <Text style={{ color: '#1a1a2e', fontSize: 13 }}>
                                                 <CountUp end={stats.totalBlogs} duration={1} separator="," />
                                             </Text>
                                         </Flex>
                                         <Flex align="center" gap={4} style={{ height: 22 }}>
                                             <FileText size={14} style={{ color: '#1890ff', flexShrink: 0 }} />
-                                            <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500, width: 60 }}>收录文章</Text>
-                                            <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
+                                            <Text style={{ color: '#2c3e50', fontSize: 13, width: 60 }}>收录文章</Text>
+                                            <Text style={{ color: '#1a1a2e', fontSize: 13 }}>
                                                 <CountUp end={stats.totalPosts} duration={1} separator="," />
                                             </Text>
                                         </Flex>
                                         <Flex align="center" gap={4} style={{ height: 22 }}>
                                             <Eye size={14} style={{ color: '#1890ff', flexShrink: 0 }} />
-                                            <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500, width: 60 }}>浏览文章</Text>
-                                            <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
+                                            <Text style={{ color: '#2c3e50', fontSize: 13, width: 60 }}>浏览文章</Text>
+                                            <Text style={{ color: '#1a1a2e', fontSize: 13 }}>
                                                 <CountUp end={stats.totalAccesses} duration={1} separator="," />
                                             </Text>
                                         </Flex>
@@ -188,12 +188,12 @@ const MainFooter: React.FC = () => {
                             <Flex vertical gap={8}>
                                 <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
                                     <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                                    <Text style={{ color: '#1a1a2e', fontWeight: 700, fontSize: 15 }}>支持</Text>
+                                    <Text style={{ color: '#1a1a2e', fontSize: 15 }}>支持</Text>
                                 </Flex>
                                 <Flex vertical gap={8}>
-                                    <Link href="/sponsor" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>赞助本站</Link>
-                                    <Link href="/about#add-link" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>添加链接</Link>
-                                    <Link href="/similar-sites" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>同类网站</Link>
+                                    <Link href="/sponsor" style={{ color: '#4a5568', fontSize: 13 }}>赞助本站</Link>
+                                    <Link href="/about#add-link" style={{ color: '#4a5568', fontSize: 13 }}>添加链接</Link>
+                                    <Link href="/similar-sites" style={{ color: '#4a5568', fontSize: 13 }}>同类网站</Link>
                                 </Flex>
                             </Flex>
                         </div>
@@ -203,12 +203,12 @@ const MainFooter: React.FC = () => {
                             <Flex vertical gap={8}>
                                 <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
                                     <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                                    <Text style={{ color: '#1a1a2e', fontWeight: 700, fontSize: 15 }}>关于</Text>
+                                    <Text style={{ color: '#1a1a2e', fontSize: 15 }}>关于</Text>
                                 </Flex>
                                 <Flex vertical gap={8}>
-                                    <Link href="/about" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>关于本站</Link>
-                                    <Link href="/release-notes" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>发布历史</Link>
-                                    <Link href="/annual-reports" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>年度报告</Link>
+                                    <Link href="/about" style={{ color: '#4a5568', fontSize: 13 }}>关于本站</Link>
+                                    <Link href="/release-notes" style={{ color: '#4a5568', fontSize: 13 }}>发布历史</Link>
+                                    <Link href="/annual-reports" style={{ color: '#4a5568', fontSize: 13 }}>年度报告</Link>
                                 </Flex>
                             </Flex>
                         </div>
@@ -218,8 +218,8 @@ const MainFooter: React.FC = () => {
 
                     <Flex justify="space-between" align="center" wrap="wrap" gap={12}>
                         <Flex gap={20} wrap="wrap" align="center">
-                            <Link href="https://beian.miit.gov.cn/" style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>辽ICP备2022012085号-2</Link>
-                            <Text style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>Copyright © 2023-2026</Text>
+                            <Link href="https://beian.miit.gov.cn/" style={{ color: '#6c757d', fontSize: 12 }}>辽ICP备2022012085号-2</Link>
+                            <Text style={{ color: '#6c757d', fontSize: 12 }}>Copyright © 2023-2026</Text>
                             <Link href="/planet-shuttle" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }}>
                                 <img src="/assets/images/sites/logo/planet-shuttle-blue.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
                             </Link>
@@ -249,8 +249,8 @@ const MainFooter: React.FC = () => {
                 {/* 网站信息 - 始终显示 */}
                 <div>
                     <Flex vertical gap={10}>
-                        <Text style={{ fontSize: 16, fontWeight: 700, color: '#1a1a2e' }}>博友圈</Text>
-                        <Text style={{ color: '#4a5568', fontSize: 13, lineHeight: 1.5, fontWeight: 500 }}>
+                        <Text style={{ fontSize: 16, color: '#1a1a2e' }}>博友圈</Text>
+                        <Text style={{ color: '#4a5568', fontSize: 13, lineHeight: 1.5 }}>
                             将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！
                         </Text>
                         <Flex gap={14} style={{ marginTop: 4 }}>
@@ -272,7 +272,7 @@ const MainFooter: React.FC = () => {
                     >
                         <Flex align="center" gap={8}>
                             <BarChart3 size={16} style={{ color: '#1890ff' }} />
-                            <Text style={{ color: '#1a1a2e', fontWeight: 700, fontSize: 15 }}>统计</Text>
+                            <Text style={{ color: '#1a1a2e', fontSize: 15 }}>统计</Text>
                         </Flex>
                         {expandedSections.stats ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </Flex>
@@ -284,22 +284,22 @@ const MainFooter: React.FC = () => {
                                 <Flex vertical gap={12}>
                                     <Flex align="center" gap={8} wrap="wrap">
                                         <Users size={14} style={{ color: '#1890ff' }} />
-                                        <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500 }}>收录博客</Text>
-                                        <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
+                                        <Text style={{ color: '#2c3e50', fontSize: 13 }}>收录博客</Text>
+                                        <Text style={{ color: '#1a1a2e', fontSize: 13 }}>
                                             <CountUp end={stats.totalBlogs} duration={1} separator="," />
                                         </Text>
                                     </Flex>
                                     <Flex align="center" gap={8} wrap="wrap">
                                         <FileText size={14} style={{ color: '#1890ff' }} />
-                                        <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500 }}>收录文章</Text>
-                                        <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
+                                        <Text style={{ color: '#2c3e50', fontSize: 13 }}>收录文章</Text>
+                                        <Text style={{ color: '#1a1a2e', fontSize: 13 }}>
                                             <CountUp end={stats.totalPosts} duration={1} separator="," />
                                         </Text>
                                     </Flex>
                                     <Flex align="center" gap={8} wrap="wrap">
                                         <Eye size={14} style={{ color: '#1890ff' }} />
-                                        <Text style={{ color: '#2c3e50', fontSize: 13, fontWeight: 500 }}>浏览文章</Text>
-                                        <Text style={{ color: '#1a1a2e', fontSize: 13, fontWeight: 700 }}>
+                                        <Text style={{ color: '#2c3e50', fontSize: 13 }}>浏览文章</Text>
+                                        <Text style={{ color: '#1a1a2e', fontSize: 13 }}>
                                             <CountUp end={stats.totalAccesses} duration={1} separator="," />
                                         </Text>
                                     </Flex>
@@ -319,16 +319,16 @@ const MainFooter: React.FC = () => {
                     >
                         <Flex align="center" gap={8}>
                             <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                            <Text style={{ color: '#1a1a2e', fontWeight: 700, fontSize: 15 }}>支持</Text>
+                            <Text style={{ color: '#1a1a2e', fontSize: 15 }}>支持</Text>
                         </Flex>
                         {expandedSections.support ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </Flex>
                     {expandedSections.support && (
                         <div style={{ marginTop: 12, paddingLeft: 24 }}>
                             <Flex vertical gap={8}>
-                                <Link href="/sponsor" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>赞助本站</Link>
-                                <Link href="/about#add-link" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>添加链接</Link>
-                                <Link href="/similar-sites" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>同类网站</Link>
+                                <Link href="/sponsor" style={{ color: '#4a5568', fontSize: 13 }}>赞助本站</Link>
+                                <Link href="/about#add-link" style={{ color: '#4a5568', fontSize: 13 }}>添加链接</Link>
+                                <Link href="/similar-sites" style={{ color: '#4a5568', fontSize: 13 }}>同类网站</Link>
                             </Flex>
                         </div>
                     )}
@@ -344,16 +344,16 @@ const MainFooter: React.FC = () => {
                     >
                         <Flex align="center" gap={8}>
                             <ExternalLink size={16} style={{ color: '#1890ff' }} />
-                            <Text style={{ color: '#1a1a2e', fontWeight: 700, fontSize: 15 }}>关于</Text>
+                            <Text style={{ color: '#1a1a2e', fontSize: 15 }}>关于</Text>
                         </Flex>
                         {expandedSections.about ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </Flex>
                     {expandedSections.about && (
                         <div style={{ marginTop: 12, paddingLeft: 24 }}>
                             <Flex vertical gap={8}>
-                                <Link href="/about" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>关于本站</Link>
-                                <Link href="/release-notes" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>发布历史</Link>
-                                <Link href="/annual-reports" style={{ color: '#4a5568', fontSize: 13, fontWeight: 500 }}>年度报告</Link>
+                                <Link href="/about" style={{ color: '#4a5568', fontSize: 13 }}>关于本站</Link>
+                                <Link href="/release-notes" style={{ color: '#4a5568', fontSize: 13 }}>发布历史</Link>
+                                <Link href="/annual-reports" style={{ color: '#4a5568', fontSize: 13 }}>年度报告</Link>
                             </Flex>
                         </div>
                     )}
@@ -363,8 +363,8 @@ const MainFooter: React.FC = () => {
 
                 <Flex justify="space-between" align="center" wrap="wrap" gap={12}>
                     <Flex gap={10} wrap="wrap" align="center">
-                        <Link href="https://beian.miit.gov.cn/" style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>辽ICP备2022012085号-2</Link>
-                        <Text style={{ color: '#6c757d', fontSize: 12, fontWeight: 500 }}>Copyright © 2023-2026</Text>
+                        <Link href="https://beian.miit.gov.cn/" style={{ color: '#6c757d', fontSize: 12 }}>辽ICP备2022012085号-2</Link>
+                        <Text style={{ color: '#6c757d', fontSize: 12 }}>Copyright © 2023-2026</Text>
                         <Link href="/planet-shuttle" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }}>
                             <img src="/assets/images/sites/logo/planet-shuttle-blue.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
                         </Link>

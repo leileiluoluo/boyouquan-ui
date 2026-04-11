@@ -1,33 +1,47 @@
 import React from 'react';
-import { Flex, Card, Link } from '@radix-ui/themes';
-import * as AspectRatio from '@radix-ui/react-aspect-ratio';
-
+import { Card, Flex, Image, Typography } from 'antd';
 import PostCard from '../post-card/PostCard';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 import LazyImg from '../common/img/LazyImg';
+
+const { Link } = Typography;
 
 export default function MonthlySelectedCard({ postInfo, showImage }) {
     const linkURL = getGoAddress(postInfo.link);
     const abstractURL = getAbstractAddress(postInfo.link);
 
     return (
-        <Card>
-            <Flex direction="column" gap="2">
-                {postInfo.hasImage && showImage ? <AspectRatio.Root
-                    ratio={16 / 9}
-                    style={{
-                        flexShrink: 0,
-                        backgroundColor: "#f3f3f3",
-                        borderRadius: "4px",
-                        overflow: "hidden",
-                    }}>
-                    <Link target="_blank" size="3" weight="bold" href={postInfo.blogStatusOk ? linkURL : abstractURL}>
-                        <LazyImg
-                            src={postInfo.imageURL}
-                            alt={postInfo.title}
-                            style={{ width: "100%", height: "100%", objectFit: "cover", animation: "autoClear 1s ease-in-out forwards", transform: "scale(1.1)", filter: "blur(2px)" }} />
-                    </Link>
-                </AspectRatio.Root> : ''}
+        <Card style={{ width: '100%' }}>
+            <Flex vertical gap={8}>
+                {postInfo.hasImage && showImage && (
+                    <div
+                        style={{
+                            flexShrink: 0,
+                            backgroundColor: "#f3f3f3",
+                            borderRadius: "4px",
+                            overflow: "hidden",
+                            aspectRatio: "16 / 9",
+                        }}
+                    >
+                        <Link 
+                            target="_blank" 
+                            href={postInfo.blogStatusOk ? linkURL : abstractURL}
+                        >
+                            <LazyImg
+                                src={postInfo.imageURL}
+                                alt={postInfo.title}
+                                style={{ 
+                                    width: "100%", 
+                                    height: "100%", 
+                                    objectFit: "cover", 
+                                    animation: "autoClear 1s ease-in-out forwards", 
+                                    transform: "scale(1.1)", 
+                                    filter: "blur(2px)" 
+                                }} 
+                            />
+                        </Link>
+                    </div>
+                )}
 
                 <PostCard
                     blogDomainName={postInfo.blogDomainName}
@@ -41,5 +55,5 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                     linkAccessCount={postInfo.linkAccessCount} />
             </Flex>
         </Card>
-    )
+    );
 }

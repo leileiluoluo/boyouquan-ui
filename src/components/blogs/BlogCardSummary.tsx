@@ -1,47 +1,63 @@
 import React from 'react';
-import { Box, Flex, Text } from '@radix-ui/themes';
+import { Row, Col, Typography } from 'antd';
 import { formatDateStr } from '../../utils/DateUtil';
 
-const highlightStyle = { color: '#cb2e58' };
+const { Text } = Typography;
 
-export default function BlogCardSummary({ postCount, accessCount, collectedAt, domainRegisteredAt, latestPublishedAt, publishedAtHighlight, accessCountHighlight, createTimeHighlight }) {
+export default function BlogCardSummary({ 
+    postCount, 
+    accessCount, 
+    collectedAt, 
+    domainRegisteredAt, 
+    latestPublishedAt, 
+    publishedAtHighlight, 
+    accessCountHighlight, 
+    createTimeHighlight 
+}) {
     const latestPublishedAtFormatted = formatDateStr(latestPublishedAt);
     const collectedAtFormatted = formatDateStr(collectedAt);
     const domainRegisteredAtFormatted = formatDateStr(domainRegisteredAt, true);
 
-    return (
-        <Box>
-            <Flex gap="2" justify="between">
-                <Box>
-                    <Flex direction="column">
-                        <Text size="2" color="gray">文章收录</Text>
-                        <Text size="2">{postCount}</Text>
-                    </Flex>
-                </Box>
-                <Box>
-                    <Flex direction="column">
-                        <Text size="2" color="gray">文章浏览</Text>
-                        <Text size="2" color={accessCountHighlight ? "crimson" : ""}>{accessCount}</Text>
-                    </Flex>
-                </Box>
-                <Box>
-                    <Flex direction="column">
-                        <Text size="2" color="gray">最近更新</Text>
-                        <Text size="2">{latestPublishedAtFormatted}</Text>
-                    </Flex>
-                </Box>
+    const summaryItems = [
+        {
+            label: '文章收录',
+            value: postCount,
+            highlight: false
+        },
+        {
+            label: '文章浏览',
+            value: accessCount,
+            highlight: accessCountHighlight
+        },
+        {
+            label: '最近更新',
+            value: latestPublishedAtFormatted,
+            highlight: false
+        },
+        {
+            label: createTimeHighlight ? '建博时间' : '收录时间',
+            value: createTimeHighlight ? domainRegisteredAtFormatted : collectedAtFormatted,
+            highlight: publishedAtHighlight || createTimeHighlight
+        }
+    ];
 
-                <Box>
-                    <Flex direction="column">
-                        <Text size="2" color="gray">{createTimeHighlight ? '建博时间' :
-                            '收录时间'
-                        }</Text>
-                        <Text size="2" color={publishedAtHighlight || createTimeHighlight ? "crimson" : ""}>{createTimeHighlight ? domainRegisteredAtFormatted :
-                            collectedAtFormatted
-                        }</Text>
-                    </Flex>
-                </Box>
-            </Flex>
-        </Box>
-    )
+    return (
+        <Row gutter={[8, 8]} justify="space-between">
+            {summaryItems.map((item, index) => (
+                <Col key={index}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <Text type="secondary" style={{ fontSize: 14 }}>{item.label}</Text>
+                        <Text 
+                            style={{ 
+                                fontSize: 14,
+                                color: item.highlight ? '#cb2e58' : undefined
+                            }}
+                        >
+                            {item.value}
+                        </Text>
+                    </div>
+                </Col>
+            ))}
+        </Row>
+    );
 }

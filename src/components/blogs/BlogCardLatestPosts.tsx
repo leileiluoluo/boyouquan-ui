@@ -1,36 +1,45 @@
 import React from 'react';
-import { Box, Flex, Text, Table, Link } from '@radix-ui/themes';
+import { Flex, Typography, List } from 'antd';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 
-const marginRightStyle = { marginRight: '6px', color: 'var(--secondary)' };
+const { Text, Link, Paragraph } = Typography;
 
 export default function BlogCardLatestPosts({ statusOk, posts }) {
     return (
-        <Box mt="1" mb="2">
-            <Flex direction="column">
-                <Text size="2" color="gray">最新文章</Text>
-                <Flex direction="column">
-                    {
-                        posts.map(
-                            (post, index) => (
-                                <Flex gap="2" key={index}>
-                                    <Text size="2" color="gray">{formatDateStr(post.publishedAt, true)}</Text>
-                                    <Text size="2" style={{
-                                        display: '-webkit-box',
-                                        WebkitLineClamp: 1,
-                                        WebkitBoxOrient: 'vertical',
-                                        overflow: 'hidden'
-                                    }}>
-                                        {statusOk ? <Link target="_blank" href={getGoAddress(post.link)}>{post.title}</Link>
-                                            : <Link href={getAbstractAddress(post.link)}>{post.title}</Link>}
-                                    </Text>
-                                </Flex>
-                            )
-                        )
-                    }
-                </Flex>
-            </Flex>
-        </Box>
-    )
+        <div style={{ marginTop: 4, marginBottom: 8 }}>
+            <Text type="secondary" style={{ fontSize: 14 }}>最新文章</Text>
+            <List
+                size="small"
+                dataSource={posts}
+                renderItem={(post, index) => (
+                    <List.Item style={{ padding: '4px 0' }}>
+                        <Flex gap={8} align="center" style={{ width: '100%' }}>
+                            <Text type="secondary" style={{ fontSize: 14, flexShrink: 0 }}>
+                                {formatDateStr(post.publishedAt, true)}
+                            </Text>
+                            <Paragraph
+                                ellipsis={{ rows: 1, expandable: false }}
+                                style={{
+                                    fontSize: 14,
+                                    marginBottom: 0,
+                                    flex: 1
+                                }}
+                            >
+                                {statusOk ? (
+                                    <Link href={getGoAddress(post.link)} target="_blank">
+                                        {post.title}
+                                    </Link>
+                                ) : (
+                                    <Link href={getAbstractAddress(post.link)}>
+                                        {post.title}
+                                    </Link>
+                                )}
+                            </Paragraph>
+                        </Flex>
+                    </List.Item>
+                )}
+            />
+        </div>
+    );
 }

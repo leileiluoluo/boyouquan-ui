@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Button } from '@radix-ui/themes';
+import { Flex, Button } from 'antd';
 
 interface PaginationProps {
     pageNo: number;
@@ -13,10 +13,19 @@ export default function Pagination({ pageNo, pageSize, total, setCurrectPage }: 
     const hasNext = total > pageNo * pageSize;
 
     return (
-        <Flex justify="between">
-            <Button onClick={() => setCurrectPage(pageNo - 1)} disabled={!hasPre}>« 上一页</Button>
-            <Button onClick={() => setCurrectPage(pageNo + 1)} disabled={!hasNext}>下一页 »</Button>
+        <Flex justify="space-between">
+            <Button 
+                onClick={() => setCurrectPage(pageNo - 1)} 
+                disabled={!hasPre}
+            >
+                « 上一页
+            </Button>
+            <Button 
+                onClick={() => setCurrectPage(pageNo + 1)} 
+                disabled={!hasNext}
+            >
+                下一页 »
+            </Button>
         </Flex>
     );
 }
-

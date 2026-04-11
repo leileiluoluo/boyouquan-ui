@@ -1,21 +1,28 @@
 import React from 'react';
-import { Box, Text } from "@radix-ui/themes";
+import { Typography } from 'antd';
+
+const { Paragraph } = Typography;
 
 export default function BlogCardDescription({ description }) {
     return (
-        <Box p="1" radius="large" mt="1" mb="1"
+        <div
             style={{
-                backgroundColor: 'rgb(245, 245, 245)'
-            }}>
-            <Text size="2"
+                padding: 4,
+                marginTop: 4,
+                marginBottom: 4,
+                backgroundColor: '#f5f5f5',
+                borderRadius: 8
+            }}
+        >
+            <Paragraph
+                ellipsis={{ rows: 1, expandable: false }}
                 style={{
-                    display: '-webkit-box',
-                    WebkitLineClamp: 1,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                }}>
+                    fontSize: 14,
+                    marginBottom: 0
+                }}
+            >
                 {description}
-            </Text>
-        </Box>
-    )
+            </Paragraph>
+        </div>
+    );
 }

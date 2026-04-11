@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import MonthlySelectedCard from './MonthlySelectedCard';
 import Pagination from '../pagination/Pagination';
-import { Box, Flex, Skeleton, Text, Heading, Grid, Card } from '@radix-ui/themes';
+import { Flex, Skeleton, Typography, Card, Row, Col, Spin } from 'antd';
+
+const { Title, Text } = Typography;
 
 function formatDateToChinese(dateStr) {
     const [year, month] = dateStr.split('/');
@@ -50,75 +52,61 @@ export default function MonthlySelectedCardList() {
 
     const setCurrectPage = (pageNo) => {
         setPageNo(pageNo);
-
         document.getElementById('monthly-selected-container').scrollIntoView();
     }
 
     if (!dataReady) {
         return (
-            <Flex direction="column" gap="3">
-                <Box id="monthly-selected-container">
-                    <Box mb="2">
-                        <Skeleton><Text>2025 年 8 月精选</Text></Skeleton>
-                    </Box>
-                    <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
-                        {
-                            Array.from({ length: 4 }).map((_, index) => (
-                                <Card key={`part1-${index}`}>
-                                    <Flex direction="column" gap="2">
-                                        <Box>
-                                            <Skeleton height="176px"></Skeleton>
-                                        </Box>
-
-                                        <Flex direction="column" gap="1">
-                                            <Box>
-                                                <Skeleton width="240px" height="20px" />
-                                            </Box>
-                                            <Box>
-                                                <Skeleton width="100%" height="40px" />
-                                            </Box>
-                                            <Box>
-                                                <Flex gap="1" align="center">
-                                                    <Skeleton width="20px" height="20px" style={{ borderRadius: '50%' }} />
-                                                    <Skeleton width="80px" height="20px" />
-                                                    <Skeleton width="50px" height="20px" />
-                                                    <Skeleton width="50px" height="20px" />
-                                                    <Skeleton width="20px" height="20px" />
-                                                </Flex>
-                                            </Box>
+            <Flex vertical gap={12}>
+                <div id="monthly-selected-container">
+                    <div style={{ marginBottom: 8 }}>
+                        <Skeleton.Input active size="small" style={{ width: 200 }} />
+                    </div>
+                    <Row gutter={[12, 12]}>
+                        {/* 带图片的卡片骨架 */}
+                        {Array.from({ length: 4 }).map((_, index) => (
+                            <Col xs={24} md={12} key={`part1-${index}`}>
+                                <Card style={{ width: '100%' }}>
+                                    <Flex vertical gap={8}>
+                                        <Skeleton.Image active style={{ width: '100%', height: 176 }} />
+                                        <Flex vertical gap={4}>
+                                            <Skeleton.Input active size="small" style={{ width: 240 }} />
+                                            <Skeleton.Input active size="default" style={{ width: '100%' }} />
+                                            <Flex gap={4} align="center">
+                                                <Skeleton.Avatar active size="small" />
+                                                <Skeleton.Input active size="small" style={{ width: 80 }} />
+                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
+                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
+                                                <Skeleton.Button active size="small" shape="circle" />
+                                            </Flex>
                                         </Flex>
                                     </Flex>
                                 </Card>
-                            ))
-                        }
+                            </Col>
+                        ))}
 
-                        {
-                            Array.from({ length: 6 }).map((_, index) => (
-                                <Card key={`part2-${index}`}>
-                                    <Flex direction="column" gap="2">
-                                        <Flex direction="column" gap="1">
-                                            <Box>
-                                                <Skeleton width="240px" height="20px" />
-                                            </Box>
-                                            <Box>
-                                                <Skeleton width="100%" height="48px" />
-                                            </Box>
-                                            <Box>
-                                                <Flex gap="1" align="center">
-                                                    <Skeleton width="20px" height="20px" style={{ borderRadius: '50%' }} />
-                                                    <Skeleton width="80px" height="20px" />
-                                                    <Skeleton width="50px" height="20px" />
-                                                    <Skeleton width="50px" height="20px" />
-                                                    <Skeleton width="20px" height="20px" />
-                                                </Flex>
-                                            </Box>
+                        {/* 不带图片的卡片骨架 */}
+                        {Array.from({ length: 6 }).map((_, index) => (
+                            <Col xs={24} md={12} key={`part2-${index}`}>
+                                <Card style={{ width: '100%' }}>
+                                    <Flex vertical gap={8}>
+                                        <Flex vertical gap={4}>
+                                            <Skeleton.Input active size="small" style={{ width: 240 }} />
+                                            <Skeleton.Input active size="default" style={{ width: '100%' }} />
+                                            <Flex gap={4} align="center">
+                                                <Skeleton.Avatar active size="small" />
+                                                <Skeleton.Input active size="small" style={{ width: 80 }} />
+                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
+                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
+                                                <Skeleton.Button active size="small" shape="circle" />
+                                            </Flex>
                                         </Flex>
                                     </Flex>
                                 </Card>
-                            ))
-                        }
-                    </Grid>
-                </Box>
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
                 <Pagination
                     pageNo={pageNo}
                     pageSize={pageSize}
@@ -129,29 +117,30 @@ export default function MonthlySelectedCardList() {
     }
 
     return (
-        <Flex direction="column" gap="3">
-            <Box id="monthly-selected-container">
-                <Box mb="2">
-                    <Heading size="3" weight="bold">{formatDateToChinese(yearMonthStr)}</Heading>
-                </Box>
+        <Flex vertical gap={12}>
+            <div id="monthly-selected-container">
+                <div style={{ marginBottom: 8 }}>
+                    <Title level={4} style={{ fontWeight: 'bold', marginBottom: 0 }}>
+                        {formatDateToChinese(yearMonthStr)}
+                    </Title>
+                </div>
 
-                <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
-                    {
-                        postInfos.map(
-                            (postInfo, index) => (
-                                <MonthlySelectedCard
-                                    key={index}
-                                    postInfo={postInfo}
-                                    showImage={index < imageCount} />
-                            ))
-                    }
-                </Grid>
-            </Box>
+                <Row gutter={[12, 12]}>
+                    {postInfos.map((postInfo, index) => (
+                        <Col xs={24} md={12} key={index}>
+                            <MonthlySelectedCard
+                                postInfo={postInfo}
+                                showImage={index < imageCount}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+            </div>
             <Pagination
                 pageNo={pageNo}
                 pageSize={pageSize}
                 total={total}
                 setCurrectPage={setCurrectPage} />
         </Flex>
-    )
+    );
 }

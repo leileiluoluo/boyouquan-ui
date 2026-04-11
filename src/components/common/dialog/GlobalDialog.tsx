@@ -1,23 +1,26 @@
 import React from 'react';
-import { Dialog, Button, Flex } from '@radix-ui/themes';
+import { Modal, Button, Flex } from 'antd';
 
 export default function GlobalDialog({ title, titleColor, message, closeButtonName, dialogOpen, setDialogOpen }) {
-    return <>
-        <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
-            <Dialog.Content maxWidth="450px">
-                <Dialog.Title color={titleColor}>{title}</Dialog.Title>
-                <Dialog.Description size="2" mb="4">
-                    {message}
-                </Dialog.Description>
+    const handleClose = () => {
+        setDialogOpen(false);
+    };
 
-                <Flex gap="3" mt="4" justify="end">
-                    <Dialog.Close>
-                        <Button variant="soft" color="gray">
-                            {closeButtonName}
-                        </Button>
-                    </Dialog.Close>
+    return (
+        <Modal
+            title={<span style={{ color: titleColor || undefined }}>{title}</span>}
+            open={dialogOpen}
+            onCancel={handleClose}
+            footer={
+                <Flex justify="flex-end">
+                    <Button onClick={handleClose}>
+                        {closeButtonName}
+                    </Button>
                 </Flex>
-            </Dialog.Content>
-        </Dialog.Root>
-    </>;
+            }
+            width={450}
+        >
+            <div>{message}</div>
+        </Modal>
+    );
 }

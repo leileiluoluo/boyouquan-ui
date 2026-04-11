@@ -1,8 +1,8 @@
-import { Button, Flex, Tooltip } from '@radix-ui/themes';
+import { Button, Flex, Tooltip, AutoComplete, Space } from 'antd';
 import { useState, useEffect } from 'react';
 import LinkGraphNotes from './LinkGraphNotes';
 import LinkGraphBlogInput from './LinkGraphBlogInput';
-import { ArrowUpDown } from 'lucide-react';
+import { SwapOutlined } from '@ant-design/icons';
 import GlobalDialog from '../common/dialog/GlobalDialog';
 
 export default function LinkGraphInput({
@@ -47,8 +47,7 @@ export default function LinkGraphInput({
                     item.domainName.toLowerCase().includes(value.toLowerCase())
             )
             .map(item => ({
-                display: `${item.blogName} - ${item.domainName}`,
-                blogName: item.blogName,
+                label: `${item.blogName} - ${item.domainName}`,
                 value: item.domainName
             }));
 
@@ -61,7 +60,10 @@ export default function LinkGraphInput({
     };
 
     const handleSwap = () => {
-        [setSourceDomainName(target), setTargetDomainName(source)];
+        setSourceDomainName(target);
+        setTargetDomainName(source);
+        setSource(target);
+        setTarget(source);
     };
 
     const handleSubmit = () => {
@@ -75,8 +77,8 @@ export default function LinkGraphInput({
     };
 
     return (
-        <Flex gap="1" direction="column">
-            <Flex justify="between" gap="2" align="center">
+        <Flex vertical gap={4}>
+            <Flex justify="space-between" gap={8} align="center" wrap="wrap">
                 <LinkGraphBlogInput
                     type="source"
                     placeholder="源博客域名或名称"
@@ -87,8 +89,11 @@ export default function LinkGraphInput({
                     handleInputChange={handleInputChange}
                     handleSelectSuggestion={handleSelectSuggestion} />
 
-                <Tooltip content="对调">
-                    <ArrowUpDown style={{ transform: 'rotate(90deg)' }} onClick={handleSwap} />
+                <Tooltip title="对调">
+                    <SwapOutlined 
+                        style={{ fontSize: 20, cursor: 'pointer' }} 
+                        onClick={handleSwap} 
+                    />
                 </Tooltip>
 
                 <LinkGraphBlogInput
@@ -101,10 +106,11 @@ export default function LinkGraphInput({
                     handleInputChange={handleInputChange}
                     handleSelectSuggestion={handleSelectSuggestion} />
 
-                <Button
-                    size="2"
+                <Button 
+                    type="primary"
                     onClick={handleSubmit}
-                    disabled={loading}>
+                    disabled={loading}
+                >
                     探索
                 </Button>
             </Flex>

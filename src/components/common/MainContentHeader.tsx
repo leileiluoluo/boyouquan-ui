@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography } from 'antd';
 
 const { Text } = Typography;
@@ -9,7 +8,7 @@ interface MainContentHeaderProps {
 
 export default function MainContentHeader({ content }: MainContentHeaderProps) {
     return (
-        <div style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: 2 }}>
             <Text type="secondary" style={{ fontSize: 14 }}>
                 {content}
             </Text>

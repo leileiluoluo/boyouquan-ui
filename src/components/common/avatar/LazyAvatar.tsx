@@ -1,9 +1,10 @@
 import React from 'react';
-import { Avatar } from '@radix-ui/themes';
+import { Avatar, Skeleton } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 
-export default function LazyAvatar({ style, src, radius }) {
+export default function LazyAvatar({ style, src, shape = 'circle', size = 28 }) {
     const [visible, setVisible] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const ref = useRef(null);
 
     useEffect(() => {
@@ -24,12 +25,12 @@ export default function LazyAvatar({ style, src, radius }) {
                 <Avatar
                     style={style}
                     src={src}
-                    radius={radius}
+                    shape={shape}
+                    size={size}
+                    onLoad={() => setLoaded(true)}
                 />
             ) : (
-                <Avatar
-                    style={style}
-                    radius={radius} />
+                <div style={{ ...style, backgroundColor: '#f0f0f0', borderRadius: '50%' }} />
             )}
         </div>
     )

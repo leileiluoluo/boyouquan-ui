@@ -1,18 +1,14 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { Flex, Skeleton, Typography, Row, Col, Card, Spin, Empty, message, Grid } from 'antd';
+import { Flex, Skeleton, Typography, Row, Col, Card, Spin, Empty, message } from 'antd';
 import RequestUtil from '../../utils/APIRequestUtil';
 import MomentsCard from './MomentsCard';
 
 const { Title } = Typography;
-const { useBreakpoint } = Grid;
 
-// 根据屏幕断点获取每行列数
-const getColumnsCount = (screens) => {
-    if (screens.xxl) return 4;      // ≥1600px: 4列
-    if (screens.xl) return 3;       // ≥1200px: 3列
-    if (screens.lg) return 3;       // ≥992px: 3列
-    if (screens.md) return 2;       // ≥768px: 2列
-    return 1;                        // <768px: 1列
+// 根据屏幕断点获取每行列数（最多2列）
+const getColumnsCount = (width) => {
+    if (width >= 992) return 2;  // ≥992px: 2列
+    return 1;                     // <992px: 1列
 };
 
 // 根据每行列数计算每次请求的数量
@@ -22,21 +18,31 @@ const getPageSizeByColumns = (columnsCount) => {
 };
 
 export default function MomentsCardList() {
-    const screens = useBreakpoint();
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [pageNo, setPageNo] = useState(1);
     const [total, setTotal] = useState(0);
     const [moments, setMoments] = useState([]);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [initialLoading, setInitialLoading] = useState(true);
-    const [dynamicPageSize, setDynamicPageSize] = useState(9);
+    const [dynamicPageSize, setDynamicPageSize] = useState(6);
     
     const observerRef = useRef(null);
     const loadingRef = useRef(null);
 
+    // 监听窗口尺寸变化
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     // 监听屏幕尺寸变化，重新计算 pageSize
     useEffect(() => {
-        const columnsCount = getColumnsCount(screens);
+        const columnsCount = getColumnsCount(windowWidth);
         const newPageSize = getPageSizeByColumns(columnsCount);
         setDynamicPageSize(newPageSize);
         
@@ -47,7 +53,7 @@ export default function MomentsCardList() {
             setHasMore(true);
             fetchData(1, false, newPageSize);
         }
-    }, [screens]);
+    }, [windowWidth]);
 
     const fetchData = async (page: number, isLoadMore = false, customPageSize?: number) => {
         if (loading) return;
@@ -69,7 +75,7 @@ export default function MomentsCardList() {
             
             setTotal(currentTotal);
             
-            // 修复：正确判断是否还有更多数据
+            // 判断是否还有更多数据
             const loadedCount = page === 1 ? newResults.length : moments.length + newResults.length;
             setHasMore(loadedCount < currentTotal);
             
@@ -83,7 +89,7 @@ export default function MomentsCardList() {
 
     // 初始加载
     useEffect(() => {
-        const columnsCount = getColumnsCount(screens);
+        const columnsCount = getColumnsCount(windowWidth);
         const initialSize = getPageSizeByColumns(columnsCount);
         setDynamicPageSize(initialSize);
         fetchData(1, false, initialSize);
@@ -123,20 +129,13 @@ export default function MomentsCardList() {
 
     const renderSkeleton = () => {
         const skeletonCount = dynamicPageSize;
+        const columnsCount = getColumnsCount(windowWidth);
         
         return (
             <Row gutter={[16, 16]}>
                 {Array.from({ length: skeletonCount }).map((_, index) => (
-                    <Col 
-                        xs={24}
-                        sm={12}
-                        md={8}
-                        lg={8}
-                        xl={8}
-                        xxl={6}
-                        key={index}
-                    >
-                        <Card style={{ borderRadius: '12px' }}>
+                    <Col xs={24} md={12} key={index}>
+                        <Card style={{ borderRadius: '12px', height: '100%' }}>
                             <Flex vertical gap={12}>
                                 <Skeleton.Image active style={{ width: '100%', height: 176 }} />
                                 <Flex vertical gap={8}>
@@ -202,15 +201,7 @@ export default function MomentsCardList() {
                     <>
                         <Row gutter={[16, 16]}>
                             {moments.map((moment) => (
-                                <Col 
-                                    xs={24}
-                                    sm={12}
-                                    md={8}
-                                    lg={8}
-                                    xl={8}
-                                    xxl={6}
-                                    key={moment.id}
-                                >
+                                <Col xs={24} md={12} key={moment.id}>
                                     <MomentsCard moment={moment} />
                                 </Col>
                             ))}

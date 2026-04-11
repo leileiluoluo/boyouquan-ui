@@ -1,4 +1,4 @@
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 
 import { Meta } from '@components/common';
 import BlogRequestAddMainContentHeader from '@components/blog-request/BlogRequestAddMainContentHeader';
@@ -15,7 +15,7 @@ export default function BlogRequestEmailValidationPage() {
     return (
         <>
             <Meta meta={meta} />
-            <Flex direction="column" gap="4">
+            <Flex vertical gap={16}>
                 <BlogRequestAddMainContentHeader />
                 <BlogRequestEmailValidation />
             </Flex>

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Table, Link, Text, Badge } from '@radix-ui/themes';
-
+import { Table, Typography, Tag, Space } from 'antd';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAdminBlogRequestAddress, getBlogRequestAddress } from '../../utils/PageAddressUtil';
 import { BlogRequest } from '../../types';
+
+const { Text, Link } = Typography;
 
 interface BlogRequestsTableProps {
     requests: BlogRequest[];
@@ -11,41 +12,68 @@ interface BlogRequestsTableProps {
 }
 
 export default function BlogRequestsTable({ requests, adminPage }: BlogRequestsTableProps): React.JSX.Element {
-    return (
-        <Table.Root variant="surface">
-            <Table.Header>
-                <Table.Row>
-                    <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>博主邮箱</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>提交时间</Table.ColumnHeaderCell>
-                    {adminPage ? <Table.ColumnHeaderCell>自行提交</Table.ColumnHeaderCell> : ''}
-                    <Table.ColumnHeaderCell>审核状态</Table.ColumnHeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                {
-                    requests.map((request, index) => (
-                        <Table.Row key={index}>
-                            <Table.RowHeaderCell>
-                                <Text weight="bold" style={{
-                                    display: '-webkit-box',
-                                    WebkitLineClamp: 1,
-                                    WebkitBoxOrient: 'vertical',
-                                    overflow: 'hidden'
-                                }}>
-                                    <Link href={adminPage ? getAdminBlogRequestAddress(request.id) : getBlogRequestAddress(request.id)}>{request.name}</Link>
-                                </Text>
-                            </Table.RowHeaderCell>
-                            <Table.Cell>{request.adminEmail}</Table.Cell>
-                            <Table.Cell>{formatDateStr(request.requestedAt, true)}</Table.Cell>
-                            {adminPage ? <Table.Cell>{request.selfSubmitted ? '是' : '否'}</Table.Cell> : ''}
-                            <Table.Cell>
-                                <Badge size="2" color={request.approved ? "green" : (request.failed ? "crimson" : "orange")}>{request.statusInfo}</Badge>
-                            </Table.Cell>
-                        </Table.Row>
-                    ))
+    // 定义表格列
+    const columns = [
+        {
+            title: '博客名称',
+            dataIndex: 'name',
+            key: 'name',
+            render: (text: string, record: BlogRequest) => (
+                <Link 
+                    href={adminPage ? getAdminBlogRequestAddress(record.id) : getBlogRequestAddress(record.id)}
+                    style={{
+                        fontWeight: 'bold',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}
+                >
+                    {text}
+                </Link>
+            ),
+        },
+        {
+            title: '博主邮箱',
+            dataIndex: 'adminEmail',
+            key: 'adminEmail',
+        },
+        {
+            title: '提交时间',
+            dataIndex: 'requestedAt',
+            key: 'requestedAt',
+            render: (requestedAt: string) => formatDateStr(requestedAt, true),
+        },
+        ...(adminPage ? [{
+            title: '自行提交',
+            dataIndex: 'selfSubmitted',
+            key: 'selfSubmitted',
+            render: (selfSubmitted: boolean) => selfSubmitted ? '是' : '否',
+        }] : []),
+        {
+            title: '审核状态',
+            dataIndex: 'statusInfo',
+            key: 'statusInfo',
+            render: (statusInfo: string, record: BlogRequest) => {
+                let color = 'orange';
+                if (record.approved) {
+                    color = 'green';
+                } else if (record.failed) {
+                    color = 'red';
                 }
-            </Table.Body>
-        </Table.Root>
-    )
+                return <Tag color={color}>{statusInfo}</Tag>;
+            },
+        },
+    ];
+
+    return (
+        <Table 
+            dataSource={requests}
+            columns={columns}
+            rowKey={(record) => record.id}
+            pagination={false}
+            bordered={false}
+            size="middle"
+        />
+    );
 }

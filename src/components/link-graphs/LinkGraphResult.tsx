@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 
 import RequestUtil from "../../utils/APIRequestUtil";
-import { Box, Card, Flex, Link, ScrollArea, Text } from "@radix-ui/themes";
+import { Card, Flex, Typography, Spin, Image } from "antd";
 import LinkGraphRelationResult from "./LinkGraphRelationResult";
 import GlobalDialog from "../common/dialog/GlobalDialog";
 import { ApiResponse } from "@/types";
+
+const { Text, Link } = Typography;
 
 function computeScore(newPath) {
   const maxSteps = 10;
   return newPath.length === 0
     ? 0
     : Math.max(
-      0,
-      Math.round(((maxSteps - newPath.length + 1) / maxSteps) * 100)
-    );
+        0,
+        Math.round(((maxSteps - newPath.length + 1) / maxSteps) * 100)
+      );
 }
 
 export default function LinkGraphResult({
@@ -34,7 +36,7 @@ export default function LinkGraphResult({
 
   const nodeRefs = useRef([]);
   const svgRef = useRef(null);
-  const scrollRef = useRef(null);
+  const scrollContainerRef = useRef(null);
 
   const fetchData = async () => {
     if (!sourceDomainName || !targetDomainName) return;
@@ -131,12 +133,9 @@ export default function LinkGraphResult({
     const timer = setTimeout(() => {
       computeLayout();
 
-      // ✅ 自动滚动到最左侧
-      if (scrollRef.current) {
-        const scrollEl = scrollRef.current.querySelector(
-          "[data-radix-scroll-area-viewport]"
-        );
-        if (scrollEl) scrollEl.scrollLeft = 0;
+      // 自动滚动到最左侧
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollLeft = 0;
       }
     }, 50);
 
@@ -152,73 +151,82 @@ export default function LinkGraphResult({
       ? [path[0]?.sourceBlog, ...path.map((item) => item.targetBlog)]
       : [];
 
+  const renderContent = () => {
+    if (!sourceBlog || !targetBlog) {
+      return (
+        <Image
+          src="/assets/images/sites/link-graph/spherical_network_25_nodes_static.svg"
+          alt="No Data"
+          preview={false}
+          style={{ width: 300, marginTop: 40 }}
+        />
+      );
+    }
+
+    if (searching) {
+      return (
+        <div style={{ textAlign: "center", marginTop: 40 }}>
+          <Spin size="large" />
+        </div>
+      );
+    }
+
+    return (
+      <div
+        ref={scrollContainerRef}
+        style={{
+          width: "100%",
+          overflowX: "auto",
+          overflowY: "hidden",
+        }}
+      >
+        <LinkGraphRelationResult
+          contentWidth={contentWidth}
+          lines={lines}
+          nodes={nodes}
+          svgRef={svgRef}
+          nodeRefs={nodeRefs}
+        />
+      </div>
+    );
+  };
+
   return (
-    <Card>
-      <Flex direction="column" align="center">
-        <Box>
+    <Card style={{ width: "100%" }}>
+      <Flex vertical align="center" gap={16}>
+        <div>
           {!sourceBlog || !targetBlog ? (
-            <Text size="2" color="gray">
+            <Text type="secondary" style={{ fontSize: 14 }}>
               填入源博客域名和目的博客域名，然后检索源博客到目的博客的连接系数
             </Text>
           ) : searching ? (
-            <Text size="2" color="gray">
+            <Text type="secondary" style={{ fontSize: 14 }}>
               正在搜索源博客到目的博客的连接系数...
             </Text>
           ) : (
-            <Text size="2" color="gray">
+            <Text type="secondary" style={{ fontSize: 14 }}>
               「
               <Link
                 href={`/blogs/${sourceDomainName}`}
-                color="indigo"
                 target="_blank"
+                style={{ color: "#1677ff" }}
               >
                 {sourceBlog.name}
               </Link>
               」到「
               <Link
                 href={`/blogs/${targetDomainName}`}
-                color="indigo"
                 target="_blank"
+                style={{ color: "#1677ff" }}
               >
                 {targetBlog.name}
               </Link>
               」的连接系数为 {path.length === 0 ? 0 : score}{" "}
             </Text>
           )}
-        </Box>
+        </div>
 
-        {!sourceBlog || !targetBlog ? (
-          <Box>
-            <img
-              src="/assets/images/sites/link-graph/spherical_network_25_nodes_static.svg"
-              alt="No Data"
-              style={{ width: "300px", marginTop: "40px" }}
-            />
-          </Box>
-        ) : searching ? (
-          <Box>
-            <img
-              src="/assets/images/sites/link-graph/spherical_network_25_nodes.svg"
-              alt="Searching"
-              style={{ width: "300px", marginTop: "40px" }}
-            />
-          </Box>
-        ) : (
-          <ScrollArea
-            type="always"
-            ref={scrollRef}
-            scrollbars="horizontal"
-            style={{ width: "100%", overflowX: "auto" }}
-          >
-            <LinkGraphRelationResult
-              contentWidth={contentWidth}
-              lines={lines}
-              nodes={nodes}
-              svgRef={svgRef}
-              nodeRefs={nodeRefs}
-            />
-          </ScrollArea>
-        )}
+        {renderContent()}
       </Flex>
 
       <GlobalDialog

@@ -1,43 +1,48 @@
 import React from 'react';
-import { Box, DataList, Flex, TextField, Card, ScrollArea, Text } from '@radix-ui/themes';
+import { Flex, AutoComplete } from 'antd';
 
-export default function LinkGraphBlogInput({ type, placeholder, value, setValue, suggestions, setSuggestions, handleInputChange, handleSelectSuggestion }) {
+export default function LinkGraphBlogInput({ 
+    type, 
+    placeholder, 
+    value, 
+    setValue, 
+    suggestions, 
+    setSuggestions, 
+    handleInputChange, 
+    handleSelectSuggestion 
+}) {
+    // 转换 suggestions 格式为 AutoComplete 需要的格式
+    const options = suggestions.map(suggestion => ({
+        label: (
+            <Flex justify="space-between" gap={8}>
+                <span style={{ color: '#1677ff', fontSize: 12 }}>{suggestion.blogName}</span>
+                <span style={{ color: '#faad14', fontSize: 12 }}>{suggestion.value}</span>
+            </Flex>
+        ),
+        value: suggestion.value
+    }));
+
+    const handleSearch = (searchText) => {
+        handleInputChange(type, searchText, setValue, setSuggestions);
+    };
+
+    const handleSelect = (selectedValue) => {
+        handleSelectSuggestion(selectedValue, setValue, setSuggestions);
+    };
+
     return (
-        <Flex width="100%" direction="column" gap="1">
-            <Box>
-                <TextField.Root
-                    value={value}
-                    onChange={e => handleInputChange(type, e.target.value, setValue, setSuggestions)}
-                    placeholder={placeholder}
-                />
-            </Box>
-
-            <Box position="fixed" zIndex="10" minWidth="200px" maxWidth="300px" mt="6">
-                {
-                    suggestions.length > 0 && (
-                        <Card>
-                            <ScrollArea type="always" scrollbars="vertical" style={{ height: '100px', overflowY: 'auto' }}>
-                                <DataList.Root>
-                                    {
-                                        suggestions.map((suggestion, index) => (
-                                            <DataList.Item
-                                                key={index}
-                                                onClick={() => handleSelectSuggestion(suggestion.value, setValue, setSuggestions)}>
-                                                <DataList.Value>
-                                                    <Flex justify="end" gap="2">
-                                                        <Text size="1" color="blue">{suggestion.blogName}</Text>
-                                                        <Text size="1" color="amber">{suggestion.value}</Text>
-                                                    </Flex>
-                                                </DataList.Value>
-                                            </DataList.Item>
-                                        ))
-                                    }
-                                </DataList.Root>
-                            </ScrollArea>
-                        </Card>
-                    )
-                }
-            </Box>
+        <Flex style={{ width: '100%' }}>
+            <AutoComplete
+                style={{ width: '100%' }}
+                placeholder={placeholder}
+                value={value}
+                onChange={setValue}
+                onSearch={handleSearch}
+                onSelect={handleSelect}
+                options={options}
+                allowClear
+                filterOption={false} // 禁用内置过滤，使用自定义过滤
+            />
         </Flex>
     );
 }

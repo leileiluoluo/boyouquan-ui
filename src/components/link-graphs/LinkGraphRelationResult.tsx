@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from '@radix-ui/themes';
+import { Typography } from 'antd';
+
+const { Link } = Typography;
 
 export default function LinkGraphRelationResult({ contentWidth, lines, nodes, svgRef, nodeRefs }) {
   return (
@@ -52,7 +54,7 @@ export default function LinkGraphRelationResult({ contentWidth, lines, nodes, sv
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 0.6, delay: idx * 0.08 }}
                 />
-                <a href={ln.pageUrl} target="_blank" rel="noreferrer">
+                <a href={ln.pageUrl} target="_blank" rel="noopener noreferrer">
                   <text
                     x={midX}
                     y={midY}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 
 import { MainContentHeader, Meta } from '@components/common';
 import LinkGraphInput from '@components/link-graphs/LinkGraphInput';
@@ -47,7 +47,7 @@ export default function LinkGraphPage() {
     return (
         <>
             <Meta meta={meta} />
-            <Flex direction="column" gap="4">
+            <Flex vertical gap={16}>
                 <MainContentHeader content="一个友链连向另一个友链，形成了友链的海洋。一个博客与另一个博客的「赛博距离」有多远？欢迎使用「连接系数」来探索博客间的连接度！" />
                 <LinkGraphInput
                     allSourceBlogs={allSourceBlogs}

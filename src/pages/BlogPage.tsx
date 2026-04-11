@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Flex } from '@radix-ui/themes';
+import { Flex } from 'antd';
 
 import BlogDetail from '@components/blog/BlogDetail';
 import { redirectTo } from '@utils/CommonUtil';
@@ -32,12 +32,11 @@ export default function BlogPage() {
 
     return (
         <>
-            {
-                loaded ? <Flex direction="column" gap="4">
+            {loaded && (
+                <Flex vertical gap={16}>
                     <BlogDetail domain={domain || ''} />
-                </Flex> : null
-            }
+                </Flex>
+            )}
         </>
     );
 }
-

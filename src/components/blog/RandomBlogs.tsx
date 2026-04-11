@@ -1,9 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Grid, Card, Flex, Box, Text } from '@radix-ui/themes';
+import { Card, Flex, Typography, Row, Col } from 'antd';
 import BlogCardHeader from '../blogs/BlogCardHeader';
 import BlogCardDescription from '../blogs/BlogCardDescription';
+
+const { Text } = Typography;
 
 export default function RandomBlogs({ domain }) {
     const [blogs, setBlogs] = useState([]);
@@ -19,34 +21,33 @@ export default function RandomBlogs({ domain }) {
         fetchData(domain);
     }, [domain]);
 
+    if (blogs.length === 0) {
+        return null;
+    }
+
     return (
-        <Card style={{ padding: 'var(--space-4)' }}>
-            <Flex direction="column" gap="2">
-                <Text size="2" color="gray">随机链接</Text>
-                <Flex direction="column">
-                    <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
-                        {
-                            blogs.map(
-                                (blog, index) => (
-                                    <Box key={index}>
-                                        <Card style={{ padding: 'var(--space-4)' }}>
-                                            <Flex direction="column" gap="1">
-                                                <BlogCardHeader
-                                                    name={blog.name}
-                                                    domainName={blog.domainName}
-                                                    address={blog.address}
-                                                    blogAdminLargeImageURL={blog.blogAdminLargeImageURL}
-                                                    nameSize="2"
-                                                />
-                                                <BlogCardDescription description={blog.description} />
-                                            </Flex>
-                                        </Card>
-                                    </Box>
-                                ))
-                        }
-                    </Grid>
-                </Flex>
+        <Card style={{ padding: 16, width: '100%' }}>
+            <Flex vertical gap={8}>
+                <Text type="secondary" style={{ fontSize: 14 }}>随机链接</Text>
+                <Row gutter={[12, 12]}>
+                    {blogs.map((blog, index) => (
+                        <Col xs={24} md={12} key={index}>
+                            <Card style={{ padding: 16, width: '100%' }}>
+                                <Flex vertical gap={4}>
+                                    <BlogCardHeader
+                                        name={blog.name}
+                                        domainName={blog.domainName}
+                                        address={blog.address}
+                                        blogAdminLargeImageURL={blog.blogAdminLargeImageURL}
+                                        nameSize="2"
+                                    />
+                                    <BlogCardDescription description={blog.description} />
+                                </Flex>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </Flex>
         </Card>
-    )
+    );
 }

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Box, Text, Link, ScrollArea, Separator, Tooltip } from '@radix-ui/themes';
+import { Card, Flex, Typography, Tooltip, Spin } from 'antd';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 import { Timeline } from 'antd';
 import { Rss } from 'lucide-react';
+
+const { Text, Link } = Typography;
 
 export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const [page, setPage] = useState(1);
@@ -11,6 +13,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const [total, setTotal] = useState(0);
     const [groupedPosts, setGroupedPosts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
+    const [loading, setLoading] = useState(false);
     const scrollRef = useRef(null);
     const isFetchingRef = useRef(false);
 
@@ -47,6 +50,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const fetchData = async (domain, page, size) => {
         if (isFetchingRef.current || !hasMore) return;
         isFetchingRef.current = true;
+        setLoading(true);
 
         const resp = await RequestUtil.get(`/api/blogs/posts?domainName=${domain}&page=${page}&size=${size}`);
         const respBody = await resp.json();
@@ -63,6 +67,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
         if (newPosts.length === 0) {
             setHasMore(false);
             isFetchingRef.current = false;
+            setLoading(false);
             return;
         }
 
@@ -82,10 +87,10 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
         });
 
         isFetchingRef.current = false;
+        setLoading(false);
     };
 
     useEffect(() => {
-        // domain 改变时重置
         setGroupedPosts([]);
         setPage(1);
         setHasMore(true);
@@ -111,67 +116,96 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     }, [hasMore]);
 
     return (
-        <Card style={{ padding: 'var(--space-4)' }}>
-            <Flex direction="column" gap="1">
-                <Flex justify="between">
-                    <Text size="2" color="gray">收录文章</Text>
-                    <Tooltip content="文章 RSS 地址">
-                        <Link href={rssAddress} target="_blank"><Rss width="14" height="14" /></Link>
+        <Card style={{ padding: 16, width: '100%' }}>
+            <Flex vertical gap={4}>
+                <Flex justify="space-between" align="center">
+                    <Text type="secondary" style={{ fontSize: 14 }}>收录文章</Text>
+                    <Tooltip title="文章 RSS 地址">
+                        <Link href={rssAddress} target="_blank">
+                            <Rss style={{ fontSize: 14 }} />
+                        </Link>
                     </Tooltip>
                 </Flex>
 
-                <Box mt="2">
-                    <ScrollArea
-                        ref={scrollRef}
-                        type="always"
-                        scrollbars="vertical"
-                        style={{ maxHeight: '480px' }}
+                <div 
+                    ref={scrollRef}
+                    style={{ 
+                        marginTop: 8,
+                        maxHeight: 480, 
+                        overflowY: 'auto',
+                        overflowX: 'hidden'
+                    }}
+                >
+                    <Timeline 
+                        style={{ marginLeft: 16, marginBottom: 0 }}
+                        className="compact-timeline"
                     >
-                        <Timeline style={{ marginLeft: '16px', marginBottom: '0px' }}>
-                            {groupedPosts.map((groupedPost) => (
-                                <>
-                                    <Timeline.Item
-                                        key={groupedPost.year}
-                                        style={{ marginTop: '2px', marginBottom: '6px' }}
-                                        dot={<Text size="2" weight="bold" color="indigo">{groupedPost.year}</Text>}
-                                    />
-                                    {groupedPost.posts.map((post, index) => (
-                                        <Timeline.Item color="gray" key={`${groupedPost.year}-${index}`} style={{ paddingBottom: '2px' }}>
-                                            <Flex gap="2">
-                                                <Box minWidth="42px">
-                                                    <Text size="2" color="gray">{post.publishedAt}</Text>
-                                                </Box>
-                                                <Text size="2" style={{
-                                                    display: '-webkit-box',
-                                                    WebkitLineClamp: 1,
-                                                    WebkitBoxOrient: 'vertical',
-                                                    overflow: 'hidden'
-                                                }}>
-                                                    {blogStatusOk
-                                                        ? <Link target="_blank" href={getGoAddress(post.link)}>{post.title}</Link>
-                                                        : <Link href={getAbstractAddress(post.link)}>{post.title}</Link>}
-                                                </Text>
-                                            </Flex>
-                                        </Timeline.Item>
-                                    ))}
-                                </>
-                            ))}
-                        </Timeline>
+                        {groupedPosts.flatMap((groupedPost) => [
+                            <Timeline.Item 
+                                key={`year-${groupedPost.year}`}
+                                dot={<Text strong style={{ color: '#1677ff', fontSize: 14 }}>{groupedPost.year}</Text>}
+                                style={{ paddingBottom: 0 }}
+                            />,
+                            ...groupedPost.posts.map((post, index) => (
+                                <Timeline.Item 
+                                    color="gray" 
+                                    key={`${groupedPost.year}-${index}`}
+                                    style={{ paddingBottom: 0, paddingTop: 0 }}
+                                >
+                                    <Flex gap={8} style={{ marginTop: 0 }}>
+                                        <div style={{ minWidth: 42 }}>
+                                            <Text type="secondary" style={{ fontSize: 14 }}>
+                                                {post.publishedAt}
+                                            </Text>
+                                        </div>
+                                        <Text
+                                            style={{
+                                                fontSize: 14,
+                                                flex: 1,
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 1,
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden'
+                                            }}
+                                        >
+                                            {blogStatusOk
+                                                ? <Link href={getGoAddress(post.link)} target="_blank">{post.title}</Link>
+                                                : <Link href={getAbstractAddress(post.link)}>{post.title}</Link>}
+                                        </Text>
+                                    </Flex>
+                                </Timeline.Item>
+                            ))
+                        ])}
+                    </Timeline>
 
-                        <Box align="center" mt="2" mb="2">
-                            {hasMore ? (
-                                <Text size="1" color="gray">正在加载更多...</Text>
-                            ) : (
-                                <Flex align="center" justify="center" gap="2">
-                                    <Separator size="2" orientation="horizontal" />
-                                    <Text size="1" color="gray">以上就是收录的全部文章，没有更多了</Text>
-                                    <Separator size="2" orientation="horizontal" />
-                                </Flex>
-                            )}
-                        </Box>
-                    </ScrollArea>
-                </Box>
+                    <div style={{ textAlign: 'center', marginTop: 8, marginBottom: 8 }}>
+                        {loading ? (
+                            <Spin size="small" />
+                        ) : hasMore ? (
+                            <Text type="secondary" style={{ fontSize: 12 }}>正在加载更多...</Text>
+                        ) : (
+                            <Flex align="center" justify="center" gap={8}>
+                                <div style={{ flex: 1, height: 1, backgroundColor: '#e8e8e8' }} />
+                                <Text type="secondary" style={{ fontSize: 12 }}>以上就是收录的全部文章，没有更多了</Text>
+                                <div style={{ flex: 1, height: 1, backgroundColor: '#e8e8e8' }} />
+                            </Flex>
+                        )}
+                    </div>
+                </div>
             </Flex>
+
+            {/* 添加全局样式覆盖 Timeline 默认间距 */}
+            <style>{`
+                .compact-timeline .ant-timeline-item {
+                    padding-bottom: 4px;
+                }
+                .compact-timeline .ant-timeline-item-head {
+                    margin-top: 0;
+                }
+                .compact-timeline .ant-timeline-item-content {
+                    min-height: auto;
+                }
+            `}</style>
         </Card>
     );
 }

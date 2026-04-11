@@ -1,8 +1,10 @@
 import React from 'react';
-import { Box, Flex, Link, Skeleton, Text } from '@radix-ui/themes';
+import { Flex, Typography, Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { formatDateStr } from '../../utils/DateUtil';
+
+const { Text, Link } = Typography;
 
 export default function LinkGraphNotes() {
     const [loading, setLoading] = useState(true);
@@ -23,22 +25,30 @@ export default function LinkGraphNotes() {
     }, []);
 
     return (
-        <Flex direction="column" mt="2">
-            <Box>
-                <Text size="1" color="gray">
+        <Flex vertical style={{ marginTop: 8 }}>
+            <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>
                     * 友链数据从博客首页中含有「Link」、「友链」、「圈子」、「关于」等字样的内部页面抓取。
                 </Text>
-            </Box>
-            <Box>
-                <Text size="1" color="gray">
-                    * 该数据集每周末采集一次，这个频率不会对您的博客造成太大的压力，当前数据集采集于 {loading ? <Skeleton width="40px" height="12px" /> : datasetCreatedAt}。
+            </div>
+            <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                    * 该数据集每周末采集一次，这个频率不会对您的博客造成太大的压力，当前数据集采集于{' '}
+                    {loading ? <Skeleton.Input active size="small" style={{ width: 40 }} /> : datasetCreatedAt}。
                 </Text>
-            </Box>
-            <Box>
-                <Text size="1" color="gray">
-                    * 若您不想您的友链数据被采集，可以「<Link color="indigo" href="mailto:support@boyouquan.com?subject=请将我移出友链抓取名单&body=我的博客地址：%0d%0a">联系站长</Link>」将您的博客加入免采集名单。
+            </div>
+            <div>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                    * 若您不想您的友链数据被采集，可以「
+                    <Link 
+                        href="mailto:support@boyouquan.com?subject=请将我移出友链抓取名单&body=我的博客地址：%0d%0a"
+                        style={{ color: '#1677ff' }}
+                    >
+                        联系站长
+                    </Link>
+                    」将您的博客加入免采集名单。
                 </Text>
-            </Box>
+            </div>
         </Flex>
-    )
+    );
 }

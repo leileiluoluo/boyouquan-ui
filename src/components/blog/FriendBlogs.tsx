@@ -1,7 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Box, Text, Link, ScrollArea, Badge, Tooltip } from '@radix-ui/themes';
+import { Card, Flex, Typography, Tag, Tooltip, Space } from 'antd';
+
+const { Text, Link } = Typography;
 
 export default function FriendBlogs({ domain }) {
     const [linksFromMe, setLinksFromMe] = useState([]);
@@ -22,20 +24,17 @@ export default function FriendBlogs({ domain }) {
     // 渲染链接列表的函数
     const renderLinks = (links) => {
         if (links.length === 0) {
-            return <Text size="2" color="gray">无</Text>;
+            return <Text type="secondary" style={{ fontSize: 14 }}>无</Text>;
         }
 
         return (
-            <>
+            <Space size={4} wrap>
                 {links.map((blog, index) => (
-                    <span key={blog.domainName}>
-                        <Link size="2" href={`/blogs/${blog.domainName}`}>
-                            <Badge>{blog.name}</Badge>
-                        </Link>
-                        {index < links.length - 1 && <Text size="2" as="span">、</Text>}
-                    </span>
+                    <Link key={blog.domainName} href={`/blogs/${blog.domainName}`} style={{ fontSize: 14 }}>
+                        <Tag color="blue">{blog.name}</Tag>
+                    </Link>
                 ))}
-            </>
+            </Space>
         );
     };
 
@@ -44,29 +43,29 @@ export default function FriendBlogs({ domain }) {
     }
 
     return (
-        <Card style={{ padding: 'var(--space-4)' }}>
-            <Flex direction="column" gap="2">
-                <Tooltip content="连接系数采集自博客的友链数据，每个月初更新一次">
-                    <Text size="2" color="gray">连接系数</Text>
+        <Card style={{ padding: 16, width: '100%' }}>
+            <Flex vertical gap={8}>
+                <Tooltip title="连接系数采集自博客的友链数据，每个月初更新一次">
+                    <Text type="secondary" style={{ fontSize: 14 }}>连接系数</Text>
                 </Tooltip>
-                <Flex direction="column" gap="2">
-                    <Box>
-                        <ScrollArea scrollbars="horizontal">
-                            <Flex align="center" gap="0" style={{ whiteSpace: 'nowrap' }}>
-                                <Text size="2" color="gray" mr="1">链出 (<Link color="gray">{linksFromMe.length}</Link>) → </Text>
-                                {renderLinks(linksFromMe)}
-                            </Flex>
-                        </ScrollArea>
-                    </Box>
+                <Flex vertical gap={8}>
+                    <div style={{ overflowX: 'auto' }}>
+                        <Space align="center" size={4} wrap>
+                            <Text type="secondary" style={{ fontSize: 14 }}>
+                                链出 (<Link style={{ color: '#8c8c8c' }}>{linksFromMe.length}</Link>) →
+                            </Text>
+                            {renderLinks(linksFromMe)}
+                        </Space>
+                    </div>
 
-                    <Box>
-                        <ScrollArea scrollbars="horizontal">
-                            <Flex align="center" gap="0" style={{ whiteSpace: 'nowrap' }}>
-                                <Text size="2" color="gray" mr="1">链入 (<Link color="gray">{linksToMe.length}</Link>) ← </Text>
-                                {renderLinks(linksToMe)}
-                            </Flex>
-                        </ScrollArea>
-                    </Box>
+                    <div style={{ overflowX: 'auto' }}>
+                        <Space align="center" size={4} wrap>
+                            <Text type="secondary" style={{ fontSize: 14 }}>
+                                链入 (<Link style={{ color: '#8c8c8c' }}>{linksToMe.length}</Link>) ←
+                            </Text>
+                            {renderLinks(linksToMe)}
+                        </Space>
+                    </div>
                 </Flex>
             </Flex>
         </Card>

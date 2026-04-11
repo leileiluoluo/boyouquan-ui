@@ -3,7 +3,9 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import BlogRequestsTable from './BlogRequestsTable';
 import Pagination from '../pagination/Pagination';
 import { getURLParameter } from '../../utils/CommonUtil';
-import { Flex, Box, Skeleton, Table, Text } from '@radix-ui/themes';
+import { Flex, Table, Typography, Skeleton, Empty } from 'antd';
+
+const { Text } = Typography;
 
 export default function BlogRequests() {
     const [keyword, setKeyword] = useState('');
@@ -37,70 +39,62 @@ export default function BlogRequests() {
     }
 
     if (!dataReady) {
-        return (
-            <Box id="blog-requests">
-                <Flex direction="column" gap="3">
-                    <Table.Root variant="surface">
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.ColumnHeaderCell><Skeleton width="30%" /></Table.ColumnHeaderCell>
-                                <Table.ColumnHeaderCell><Skeleton width="30%" /></Table.ColumnHeaderCell>
-                                <Table.ColumnHeaderCell><Skeleton width="30%" /></Table.ColumnHeaderCell>
-                                <Table.ColumnHeaderCell><Skeleton width="30%" /></Table.ColumnHeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            {
-                                Array.from({ length: 10 }).map((_, index) => (
-                                    <Table.Row key={index}>
-                                        <Table.RowHeaderCell>
-                                            <Skeleton maxWidth="100%" height="14px" />
-                                        </Table.RowHeaderCell>
-                                        <Table.Cell><Skeleton maxWidth="100%" height="14px" /></Table.Cell>
-                                        <Table.Cell><Skeleton maxWidth="80%" height="14px" /></Table.Cell>
-                                        <Table.Cell>
-                                            <Skeleton maxWidth="40%" height="14px" />
-                                        </Table.Cell>
-                                    </Table.Row>
-                                ))
-                            }
-                        </Table.Body>
-                    </Table.Root>
+        // 骨架屏列定义
+        const columns = [
+            { title: <Skeleton.Input active size="small" style={{ width: '30%' }} />, dataIndex: 'col1', key: 'col1' },
+            { title: <Skeleton.Input active size="small" style={{ width: '30%' }} />, dataIndex: 'col2', key: 'col2' },
+            { title: <Skeleton.Input active size="small" style={{ width: '30%' }} />, dataIndex: 'col3', key: 'col3' },
+            { title: <Skeleton.Input active size="small" style={{ width: '30%' }} />, dataIndex: 'col4', key: 'col4' },
+        ];
 
+        const skeletonData = Array.from({ length: 10 }).map((_, index) => ({
+            key: index,
+            col1: <Skeleton.Input active size="small" style={{ width: '100%' }} />,
+            col2: <Skeleton.Input active size="small" style={{ width: '100%' }} />,
+            col3: <Skeleton.Input active size="small" style={{ width: '80%' }} />,
+            col4: <Skeleton.Input active size="small" style={{ width: '40%' }} />,
+        }));
+
+        return (
+            <div id="blog-requests">
+                <Flex vertical gap={12}>
+                    <Table 
+                        columns={columns} 
+                        dataSource={skeletonData} 
+                        pagination={false}
+                        bordered={false}
+                    />
                     <Pagination
                         pageNo={pageNo}
                         pageSize={pageSize}
                         total={total}
                         setCurrectPage={setCurrectPage} />
-
                 </Flex>
-            </Box>
+            </div>
         );
     }
 
     if (null !== keyword && '' !== keyword && 0 === total) {
         return (
-            <Box id="blog-requests">
-                <Flex direction="column" gap="3">
-                    <Box mt="5" mb="5" width="100%" height="100px" align="center">
-                        <Text size="2">
-                            未找到相关的博客收录申请，试试更换关键词吧！
-                        </Text>
-                    </Box>
-
+            <div id="blog-requests">
+                <Flex vertical gap={12}>
+                    <Empty 
+                        description="未找到相关的博客收录申请，试试更换关键词吧！"
+                        style={{ marginTop: 40, marginBottom: 40 }}
+                    />
                     <Pagination
                         pageNo={pageNo}
                         pageSize={pageSize}
                         total={total}
                         setCurrectPage={setCurrectPage} />
                 </Flex>
-            </Box>
+            </div>
         );
     }
 
     return (
-        <Box id="blog-requests">
-            <Flex direction="column" gap="3">
+        <div id="blog-requests">
+            <Flex vertical gap={12}>
                 <BlogRequestsTable requests={blogRequests} />
                 <Pagination
                     pageNo={pageNo}
@@ -108,6 +102,6 @@ export default function BlogRequests() {
                     total={total}
                     setCurrectPage={setCurrectPage} />
             </Flex>
-        </Box>
+        </div>
     )
 }

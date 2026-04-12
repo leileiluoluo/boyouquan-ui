@@ -151,7 +151,7 @@ const CommonFooter: React.FC = () => {
 
             {/* 移动端：菜单按钮 */}
             <MobileOnly>
-                <Text style={{ color: '#6c757d', fontSize: 12 }}>@博友圈</Text>
+                <Text style={{ color: '#6c757d', fontSize: 12 }}>Copyright © 2023-2026</Text>
             </MobileOnly>
 
             <Button type="text" icon={<ArrowUp size={16} />} onClick={scrollToTop} style={{

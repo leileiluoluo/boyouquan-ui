@@ -77,7 +77,7 @@ const CommonHeader: React.FC = () => {
                         type="text"
                         icon={<MenuOutlined />}
                         onClick={() => setOpen(true)}
-                        style={{ color: '#fff', fontSize: 18 }}
+                        style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 18 }}
                     />
                 </MobileOnly>
             </Flex>
@@ -92,10 +92,10 @@ const CommonHeader: React.FC = () => {
                 keyboard={true}
                 rootStyle={{ position: 'fixed' }}
                 getContainer={false}
-                closeIcon={<span style={{ color: '#fff', fontSize: 16 }}>✕</span>}
+                closeIcon={<span style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 16 }}>✕</span>}
                 headerStyle={{
                     background: '#092640',
-                    color: '#fff',
+                    color: 'rgba(255, 255, 255, 0.65)',
                     // borderBottom: '1px solid rgba(255,255,255,0.1)',
                 }}
                 styles={{

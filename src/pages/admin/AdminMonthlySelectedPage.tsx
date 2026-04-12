@@ -13,17 +13,6 @@ const meta = {
 
 export default function AdminMonthlySelectedPage() {
     return (
-        <>
-            <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <AdminMonthlySelected />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
-        </>
+        <AdminMonthlySelected />
     )
 }

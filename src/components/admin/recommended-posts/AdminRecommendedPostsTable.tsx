@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Table, Link, Text, Button, Flex } from '@radix-ui/themes';
+import { Table, Typography, Button, Space, message } from 'antd';
+import { PushpinOutlined, PushpinFilled, PictureOutlined } from '@ant-design/icons';
 
 import { redirectTo } from '../../../utils/CommonUtil';
 import { getCookie } from '../../../utils/CookieUtil';
@@ -9,34 +10,44 @@ import { ADMIN_RECOMMENDED_POSTS_ADDRESS, ADMIN_POST_IMAGE_ADD_ADDRESS } from '.
 import RequestUtil from '../../../utils/APIRequestUtil';
 import { Post } from '../../../types';
 
-const unpin = (link: string): void => {
+const { Link, Text } = Typography;
+
+const unpin = async (link: string): Promise<void> => {
     const username = getCookie('username');
     const sessionId = getCookie('sessionId');
     
     if (!username || !sessionId) return;
 
-    RequestUtil.patch('/api/admin/recommended-posts/unpin', JSON.stringify({ link: link }), {
-        'Content-Type': 'application/json',
-        'username': username,
-        'sessionId': sessionId
-    });
-
-    redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS, 3);
+    try {
+        await RequestUtil.patch('/api/admin/recommended-posts/unpin', JSON.stringify({ link: link }), {
+            'Content-Type': 'application/json',
+            'username': username,
+            'sessionId': sessionId
+        });
+        message.success('已取消置顶');
+        redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS, 3);
+    } catch (error) {
+        message.error('操作失败，请重试');
+    }
 };
 
-const pin = (link: string): void => {
+const pin = async (link: string): Promise<void> => {
     const username = getCookie('username');
     const sessionId = getCookie('sessionId');
     
     if (!username || !sessionId) return;
 
-    RequestUtil.patch('/api/admin/recommended-posts/pin', JSON.stringify({ link: link }), {
-        'Content-Type': 'application/json',
-        'username': username,
-        'sessionId': sessionId
-    });
-
-    redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS, 3);
+    try {
+        await RequestUtil.patch('/api/admin/recommended-posts/pin', JSON.stringify({ link: link }), {
+            'Content-Type': 'application/json',
+            'username': username,
+            'sessionId': sessionId
+        });
+        message.success('已置顶');
+        redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS, 3);
+    } catch (error) {
+        message.error('操作失败，请重试');
+    }
 };
 
 const addPostImage = (link: string): void => {
@@ -48,52 +59,83 @@ interface AdminRecommendedPostsTableProps {
 }
 
 export default function AdminRecommendedPostsTable({ posts }: AdminRecommendedPostsTableProps): React.JSX.Element {
-    return (
-        <Box id="recommended-posts">
-            <Table.Root variant="surface">
-                <Table.Header>
-                    <Table.Row>
-                        <Table.ColumnHeaderCell>文章标题</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>博客名称</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>发布时间</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>操作</Table.ColumnHeaderCell>
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                    {
-                        posts.map((post, index) => (
-                            <Table.Row key={index}>
-                                <Table.RowHeaderCell>
-                                    <Text style={{
-                                        display: '-webkit-box',
-                                        WebkitLineClamp: 1,
-                                        WebkitBoxOrient: 'vertical',
-                                        overflow: 'hidden'
-                                    }}>
-                                        <Link href={post.link}>{post.title}</Link>
-                                    </Text>
-                                </Table.RowHeaderCell>
-                                <Table.Cell><Link href={getBlogAddress(post.blogDomainName)}>{post.blogName}</Link></Table.Cell>
-                                <Table.Cell>{formatDateStr(post.publishedAt, true)}</Table.Cell>
-                                <Table.Cell>
-                                    <Flex gap="2">
-                                        <Box>
-                                            {
-                                                post.pinned ? <Button size="1" color="crimson" onClick={() => unpin(post.link)}>取消置顶</Button>
-                                                    : <Button size="1" color="cyan" onClick={() => pin(post.link)}>置顶</Button>
-                                            }
-                                        </Box>
+    const columns = [
+        {
+            title: '文章标题',
+            dataIndex: 'title',
+            key: 'title',
+            render: (text: string, record: Post) => (
+                <Text style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                }}>
+                    <Link href={record.link} target="_blank">{record.title}</Link>
+                </Text>
+            )
+        },
+        {
+            title: '博客名称',
+            dataIndex: 'blogName',
+            key: 'blogName',
+            render: (text: string, record: Post) => (
+                <Link href={getBlogAddress(record.blogDomainName)} target="_blank">
+                    {record.blogName}
+                </Link>
+            )
+        },
+        {
+            title: '发布时间',
+            dataIndex: 'publishedAt',
+            key: 'publishedAt',
+            render: (text: string) => formatDateStr(text, true)
+        },
+        {
+            title: '操作',
+            key: 'actions',
+            render: (_: any, record: Post) => (
+                <Space size="small">
+                    {record.pinned ? (
+                        <Button 
+                            size="small"
+                            danger
+                            icon={<PushpinFilled />}
+                            onClick={() => unpin(record.link)}
+                        >
+                            取消置顶
+                        </Button>
+                    ) : (
+                        <Button 
+                            size="small"
+                            icon={<PushpinOutlined />}
+                            onClick={() => pin(record.link)}
+                        >
+                            置顶
+                        </Button>
+                    )}
+                    <Button 
+                        size="small"
+                        icon={<PictureOutlined />}
+                        onClick={() => addPostImage(record.link)}
+                    >
+                        配图
+                    </Button>
+                </Space>
+            )
+        }
+    ];
 
-                                        <Box>
-                                            <Button size="1" color="amber" onClick={() => addPostImage(post.link)}>配图</Button>
-                                        </Box>
-                                    </Flex>
-                                </Table.Cell>
-                            </Table.Row>
-                        ))
-                    }
-                </Table.Body>
-            </Table.Root>
-        </Box>
+    return (
+        <div id="recommended-posts">
+            <Table
+                dataSource={posts}
+                columns={columns}
+                rowKey="link"
+                pagination={false}
+                bordered
+                size="middle"
+            />
+        </div>
     )
 }

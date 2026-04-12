@@ -15,15 +15,7 @@ export default function AdminPostImageAddPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <AdminPostImageAdd />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <AdminPostImageAdd />
         </>
     )
 }

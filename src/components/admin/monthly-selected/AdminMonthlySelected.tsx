@@ -5,10 +5,14 @@ import MonthlySelectedCard from '../../monthly-selected/MonthlySelectedCard';
 import RequestUtil from '../../../utils/APIRequestUtil';
 import Pagination from '../../pagination/Pagination';
 import AdminMenu from '../AdminMenu';
-import { Box, Button, Flex, Heading, Grid } from '@radix-ui/themes';
+import { Layout, Row, Col, Button, Typography, Space, Spin, Card } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { ADMIN_LOGIN_ADDRESS, ADMIN_POST_IMAGE_ADD_ADDRESS } from '../../../utils/PageAddressUtil';
 import { getCookie } from '../../../utils/CookieUtil';
 import { redirectTo } from '../../../utils/CommonUtil';
+
+const { Title } = Typography;
+const { Content } = Layout;
 
 interface MonthlySelectedItem {
     yearMonthStr?: string;
@@ -25,6 +29,7 @@ export default function AdminMonthlySelected(): React.JSX.Element {
     const [total, setTotal] = useState<number>(0);
     const [item, setItem] = useState<MonthlySelectedItem>({});
     const [dataReady, setDataReady] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const permissionCheck = async (): Promise<void> => {
         const username = getCookie('username');
@@ -46,6 +51,7 @@ export default function AdminMonthlySelected(): React.JSX.Element {
     };
 
     const fetchData = async (pageNoParam: number): Promise<void> => {
+        setLoading(true);
         const username = getCookie('username');
         const sessionId = getCookie('sessionId');
 
@@ -67,6 +73,7 @@ export default function AdminMonthlySelected(): React.JSX.Element {
         const resp = await RequestUtil.get(`/api/monthly-selected?page=${pageNoParam}&includeCurrentMonth=true`);
 
         if (typeof resp === 'string') {
+            setLoading(false);
             return;
         }
 
@@ -75,6 +82,7 @@ export default function AdminMonthlySelected(): React.JSX.Element {
         setPageSize(respBody.pageSize);
         setTotal(respBody.total);
         setItem(respBody.results[0]);
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -96,40 +104,58 @@ export default function AdminMonthlySelected(): React.JSX.Element {
         window.open(url);
     };
 
-    return (
-        <>
-            {
-                dataReady ? <><AdminMenuHeader title='每月精选 - 管理页面' />
-                    <AdminMenu />
-                    <Box id="monthly-selected-container" mb="2">
-                        <Box mb="2">
-                            <Heading size="3" weight="bold">{item.yearMonthStr}</Heading>
-                        </Box>
+    if (!dataReady || loading) {
+        return (
+            <Layout>
+                <Content style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+                    <Spin size="large" />
+                </Content>
+            </Layout>
+        );
+    }
 
-                        <Flex direction="column" gap="3">
-                            <Grid columns={{ initial: "1", md: "2" }} gap="3" width="auto">
-                                {
-                                    (item.postInfos || []).map(
-                                        (postInfo, index) => (
-                                            <Flex gap="2" key={index}>
+    return (
+        <Layout>
+            <Content>
+                <AdminMenuHeader title='每月精选 - 管理页面' />
+                <AdminMenu />
+                <div id="monthly-selected-container" style={{ marginBottom: '8px' }}>
+                    <Card style={{ marginBottom: '16px' }}>
+                        <Title level={3} style={{ fontWeight: 'bold', marginBottom: '16px' }}>
+                            {item.yearMonthStr}
+                        </Title>
+
+                        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+                            <Row gutter={[16, 16]}>
+                                {(item.postInfos || []).map((postInfo, index) => (
+                                    <Col xs={24} md={12} key={index}>
+                                        <Space size="small" style={{ width: '100%' }}>
+                                            <div style={{ flex: 1 }}>
                                                 <MonthlySelectedCard
                                                     postInfo={postInfo}
                                                     showImage="true" />
-
-                                                <Button size="1" color="amber" onClick={() => addPostImage(postInfo.link)}>配图</Button>
-                                            </Flex>
-                                        ))
-                                }
-                            </Grid>
+                                            </div>
+                                            <Button 
+                                                size="small"
+                                                icon={<PlusOutlined />}
+                                                onClick={() => addPostImage(postInfo.link)}
+                                            >
+                                                配图
+                                            </Button>
+                                        </Space>
+                                    </Col>
+                                ))}
+                            </Row>
 
                             <Pagination
                                 pageNo={pageNo}
                                 pageSize={pageSize}
                                 total={total}
                                 setCurrectPage={setCurrectPage} />
-                        </Flex>
-                    </Box></> : ''
-            }
-        </>
+                        </Space>
+                    </Card>
+                </div>
+            </Content>
+        </Layout>
     )
 }

@@ -13,17 +13,6 @@ const meta = {
 
 export default function AdminBlogRequestAddPage() {
     return (
-        <>
-            <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <AdminBlogRequestAdd />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
-        </>
+        <AdminBlogRequestAdd />
     )
 }

@@ -15,15 +15,7 @@ export default function AdminRecommendedPostsPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <AdminRecommendedPosts />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <AdminRecommendedPosts />
         </>
     )
 }

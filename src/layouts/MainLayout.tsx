@@ -5,6 +5,8 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 import MainHeader from '@layouts/header/MainHeader';
 import MainFooter from '@layouts/footer/MainFooter';
+import Header from './header/CommonHeader';
+import CommonHeader from './header/CommonHeader';
 
 const SpecialThanks = lazy(() => import('@components/common/special-thanks/SpecialThanks'));
 
@@ -24,33 +26,32 @@ const MainLayout: React.FC = () => {
 
     return (
         <Layout>
-            <MainHeader />
-            <Content>
+            <CommonHeader />
+            <Content
+                style={{
+                    padding: 24,
+                    background: '#f0f2f5', // AntD 官方标准背景色
+                    minHeight: 'calc(100vh - 64px)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'flex-start',
+                }}
+            >
                 <div
                     style={{
-                        marginTop: '10px',
-                        backgroundColor: '#f5f5f5',
-                        minHeight: '400px',
-                        display: 'flex',
-                        justifyContent: 'center',
+                        width: '100%',
+                        maxWidth: 1000,
+                        background: '#fff',    // 内容区白色背景
+                        borderRadius: 8,       // 圆角更美观
+                        padding: '24px',       // 内边距
+                        boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)', // 极轻阴影
                     }}
                 >
-                    <div
-                        style={{
-                            width: '100%',
-                            maxWidth: '900px',  // 固定最大宽度
-                            margin: '0 auto',     // 水平居中
-                            padding: '40px 24px',
-                            backgroundColor: '#fff',
-                            minHeight: '400px',
-                        }}
-                    >
-                        <Outlet />
-                    </div>
+                    <Outlet />
                 </div>
             </Content>
             <Suspense>
-                <SpecialThanks isHome={true} />
+                {/* <SpecialThanks isHome={true} /> */}
             </Suspense>
             <MainFooter />
         </Layout>

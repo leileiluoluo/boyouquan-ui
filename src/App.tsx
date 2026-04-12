@@ -33,6 +33,7 @@ import AdminMonthlySelectedPage from '@pages/admin/AdminMonthlySelectedPage';
 import MomentsPage from '@pages/MomentsPage';
 import CertificatePage from '@pages/CertificatePage';
 import LinkGraphPage from '@pages/LinkGraphPage';
+import TestPage from '@pages/TestPage';
 
 const App: React.FC = () => {
     return (
@@ -73,6 +74,7 @@ const App: React.FC = () => {
                     <Route path="/release-notes/:version" element={<ReleaseNotePage />} />
                     <Route path="/annual-reports" element={<AnnualReportsPage />} />
                     <Route path="/annual-reports/:year" element={<AnnualReportPage />} />
+                    <Route path="/test" element={<TestPage />} />
                     <Route path="/404-not-found" element={<NotFoundPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>

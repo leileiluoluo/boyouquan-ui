@@ -42,7 +42,7 @@ const MainHeader: React.FC = () => {
                 position: 'sticky',
                 top: 0,
                 zIndex: 100,
-                boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
                 borderBottom: '1px solid #f0f0f0',
             }}>
                 <Flex justify="space-between" align="center" style={{ width: '100%' }} gap={16}>

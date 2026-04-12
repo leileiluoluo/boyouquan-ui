@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import type { MenuProps } from 'antd';
 import { Rss, Github, Cloud, Mail, ArrowUp, Users, FileText, Eye, BarChart3, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import { Layout, Divider, Typography, Flex, Button, Spin, Grid, Dropdown, Tooltip } from 'antd';
@@ -7,6 +7,7 @@ import CountUp from 'react-countup';
 import RequestUtil from '@utils/APIRequestUtil';
 import { MobileOnly, PCOnly } from '@components/common/Responsive';
 
+const Statistics = lazy(() => import('./Statistics'));
 const { Footer } = Layout;
 const { Link, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -96,34 +97,15 @@ const CommonFooter: React.FC = () => {
                                 </Flex>
                             </Flex>
 
+                            {/* statistics */}
                             <Flex vertical gap={8}>
                                 <Flex align="center" gap={8} style={{ marginBottom: 4 }}>
                                     <BarChart3 size={16} style={{ color: 'rgba(255, 255, 255, 0.65)' }} />
                                     <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 14, fontWeight: 500 }}>统计</Text>
                                 </Flex>
-                                <Flex vertical gap={4}>
-                                    <Flex align="center" gap={4} style={{ height: 22 }}>
-                                        <Users size={13} style={{ color: 'rgba(255, 255, 255, 0.65)', flexShrink: 0 }} />
-                                        <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13, width: 60 }}>收录博客</Text>
-                                        <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13 }}>
-                                            <CountUp end={1056} duration={1} separator="," />
-                                        </Text>
-                                    </Flex>
-                                    <Flex align="center" gap={4} style={{ height: 22 }}>
-                                        <FileText size={13} style={{ color: 'rgba(255, 255, 255, 0.65)', flexShrink: 0 }} />
-                                        <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13, width: 60 }}>收录文章</Text>
-                                        <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13 }}>
-                                            <CountUp end={71106} duration={1} separator="," />
-                                        </Text>
-                                    </Flex>
-                                    <Flex align="center" gap={4} style={{ height: 22 }}>
-                                        <Eye size={13} style={{ color: 'rgba(255, 255, 255, 0.65)', flexShrink: 0 }} />
-                                        <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13, width: 60 }}>浏览文章</Text>
-                                        <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13 }}>
-                                            <CountUp end={903413} duration={1} separator="," />
-                                        </Text>
-                                    </Flex>
-                                </Flex>
+                                <Suspense fallback={<Spin size="small" />}>
+                                    <Statistics />
+                                </Suspense>
                             </Flex>
 
                             <Flex vertical gap={8}>

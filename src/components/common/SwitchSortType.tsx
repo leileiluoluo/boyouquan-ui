@@ -49,7 +49,6 @@ export default function SwitchSortType({ types }) {
                 activeKey={activeKey}
                 onChange={handleTabChange}
                 items={tabItems}
-                tabBarStyle={{ fontWeight: 'bold' }}
             />
         </Flex>
     );

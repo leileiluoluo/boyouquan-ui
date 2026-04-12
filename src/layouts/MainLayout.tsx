@@ -7,6 +7,7 @@ import MainHeader from '@layouts/header/MainHeader';
 import MainFooter from '@layouts/footer/MainFooter';
 import Header from './header/CommonHeader';
 import CommonHeader from './header/CommonHeader';
+import CommonFooter from './footer/CommonFooter';
 
 const SpecialThanks = lazy(() => import('@components/common/special-thanks/SpecialThanks'));
 
@@ -53,7 +54,7 @@ const MainLayout: React.FC = () => {
             <Suspense>
                 {/* <SpecialThanks isHome={true} /> */}
             </Suspense>
-            <MainFooter />
+            <CommonFooter />
         </Layout>
     );
 };

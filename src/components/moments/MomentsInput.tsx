@@ -118,21 +118,29 @@ export default function MomentsInput() {
         });
     };
 
-    const handleFileChange = ({ file: uploadFile, fileList: newFileList }) => {
-        if (uploadFile.status === 'removed') {
-            setFile(null);
-            setFileList([]);
-            return;
-        }
+    const handleFileChange = ({ file, fileList: newFileList }) => {
+    // 如果是移除操作
+    if (!file || file.status === 'removed') {
+        setFile(null);
+        setFileList([]);
+        return;
+    }
 
-        if (uploadFile.size > 10 * 1024 * 1024) {
-            message.error('文件不能大于 10 M');
-            return;
-        }
+    // 获取文件对象
+    const selectedFile = file.originFileObj || file;
+    
+    // 验证文件大小
+    if (selectedFile.size > 10 * 1024 * 1024) {
+        message.error('文件不能大于 10 M');
+        setFile(null);
+        setFileList([]);
+        return;
+    }
 
-        setFile(uploadFile.originFileObj);
-        setFileList(newFileList);
-    };
+    // 设置文件
+    setFile(selectedFile);
+    setFileList(newFileList);
+};
 
     useEffect(() => {
         if (email) {

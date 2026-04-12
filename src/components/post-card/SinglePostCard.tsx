@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
+    Flex,
     Avatar,
     Typography,
     Space,
@@ -36,7 +37,7 @@ import 'dayjs/locale/zh-cn';
 dayjs.extend(relativeTime);
 dayjs.locale('zh-cn');
 
-const { Text, Title, Paragraph } = Typography;
+const { Text, Title, Link, Paragraph } = Typography;
 const { useToken } = theme;
 
 // 组件内部使用的博客文章数据结构
@@ -101,15 +102,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
     };
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                gap: token.marginMD,
-                marginBottom: token.marginXL,
-                position: 'relative',
-            }}
-        >
-            {/* 左侧：独立的头像区 */}
+        <Flex gap={14}>
             <div
                 style={{
                     flexShrink: 0,
@@ -118,63 +111,23 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                     paddingTop: token.paddingSM,
                 }}
             >
-                <a href={post.blogAddress} target="_blank" rel="noopener noreferrer">
-                    <Avatar
-                        src={post.blogAdminLargeImageURL}
-                        icon={<UserOutlined />}
-                        size={48}
-                        style={{
-                            marginBottom: token.marginSM,
-                            border: `3px solid ${token.colorPrimaryBgHover}`,
-                            boxShadow: token.boxShadowTertiary,
-                            cursor: 'pointer',
-                        }}
-                        onError={handleAvatarError}
-                    />
-                </a>
-                <div>
-                    <Space align="center" wrap size={4} style={{ justifyContent: 'center' }}>
-                        <a
-                            href={post.blogAddress}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                            <Text strong style={{ fontSize: token.fontSize, display: 'block' }}>
-                                {post.blogName}
-                            </Text>
-                        </a>
-                        <Tooltip title="博客状态正常">
-                            {/* <Badge
-                                status="processing"
-                                color="#1f4f07"
-                                style={{
-                                    backgroundColor: '#256206',
-                                    borderRadius: '50%',
-                                    width: 14,
-                                    height: 14,
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <span style={{ fontSize: 9, color: '#090808' }}>✓</span>
-                            </Badge> */}
-                            <Badge status="success"
-                                style={{
-                                    width: 14,
-                                    height: 14,
-                                }} />
-                        </Tooltip>
-                    </Space>
-                </div>
-                <div style={{ marginTop: token.marginXS }}>
-                    <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                        <StarOutlined style={{ marginRight: 4, color: '#faad14' }} />
-                        履约 2 年
-                    </Text>
-                    <div style={{ marginTop: 4 }}>
-                        <Tooltip title="总浏览次数">
+                {/* 左侧：独立的头像区 */}
+                <Flex vertical align="center" gap={4}>
+                    <Link href={post.blogAddress}>
+                        <Avatar
+                            src={post.blogAdminLargeImageURL}
+                            icon={<UserOutlined />}
+                            size={48} />
+                    </Link>
+                    <Link>
+                        {post.blogName}
+                    </Link>
+                    <Flex vertical gap={4}>
+                        <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+                            <StarOutlined style={{ marginRight: 4, color: '#faad14' }} />
+                            履约 2 年
+                        </Text>
+                        <Tooltip title="总浏览数">
                             <Space size={4}>
                                 <EyeOutlined style={{ color: token.colorTextSecondary, fontSize: 12 }} />
                                 <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
@@ -182,18 +135,13 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                                 </Text>
                             </Space>
                         </Tooltip>
-                    </div>
-                </div>
+                    </Flex>
+                </Flex>
             </div>
 
+
             {/* 右侧：内容区 - 带虚线框和左侧尖角 */}
-            <div
-                style={{
-                    flex: 1,
-                    minWidth: 0,
-                    position: 'relative',
-                }}
-            >
+            <Flex>
                 <div
                     style={{
                         position: 'absolute',
@@ -332,25 +280,15 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                         </Space>
 
                         <Space>
-                            <Button
-                                type="text"
-                                size="small"
-                                icon={<ShareAltOutlined />}
-                                onClick={() => {
-                                    navigator.clipboard.writeText(post.link);
-                                    message.success('链接已复制');
-                                }}
-                            >
-                                分享
-                            </Button>
+                            <ShareAltOutlined />
                             <Dropdown menu={{ items: actionItems }} trigger={['click']} placement="bottomRight">
                                 <Button type="text" size="small" icon={<MoreOutlined />} />
                             </Dropdown>
                         </Space>
                     </div>
                 </div>
-            </div>
-        </div>
+            </Flex>
+        </Flex>
     );
 };
 

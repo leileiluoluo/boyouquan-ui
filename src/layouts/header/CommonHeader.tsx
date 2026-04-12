@@ -109,7 +109,9 @@ const CommonHeader: React.FC = () => {
                 <Menu
                     mode="vertical"
                     theme="dark"
-
+                    style={{
+                        fontWeight: 500,
+                    }}
                     selectedKeys={[getSelectedKey()]}
                     onClick={() => setOpen(false)}
                     items={MENU_ITEMS.map(item => ({

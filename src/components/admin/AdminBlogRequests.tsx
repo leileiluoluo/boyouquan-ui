@@ -8,7 +8,9 @@ import Pagination from '../pagination/Pagination';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 import AdminMenuHeader from './AdminMenuHeader';
-import { Flex, Box } from '@radix-ui/themes';
+import { Layout, Space } from 'antd';
+
+const { Content } = Layout;
 
 export default function AdminBlogRequests() {
     const [pageNo, setPageNo] = useState(1);
@@ -65,19 +67,19 @@ export default function AdminBlogRequests() {
         <>
             <AdminMenuHeader title='博客审核 - 管理页面' />
             <AdminMenu />
-            <Box mt="2">
+            <div style={{ marginTop: '8px' }}>
                 <SearchBox placeholder='搜索已提交的博客 ↵' gotoPage='/admin/blog-requests' />
-            </Box>
-            <Box mt="2" id="blog-requests">
-                <Flex direction="column" gap="3">
+            </div>
+            <div style={{ marginTop: '8px' }} id="blog-requests">
+                <Space direction="vertical" size="middle" style={{ width: '100%' }}>
                     <BlogRequestsTable adminPage='true' requests={blogRequests} />
                     <Pagination
                         pageNo={pageNo}
                         pageSize={pageSize}
                         total={total}
                         setCurrectPage={setCurrectPage} />
-                </Flex>
-            </Box>
+                </Space>
+            </div>
         </>
     )
 }

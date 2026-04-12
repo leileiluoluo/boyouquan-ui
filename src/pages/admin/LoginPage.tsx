@@ -15,15 +15,7 @@ export default function LoginPage() {
     return (
         <>
             <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <Login />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <Login />
         </>
     )
 }

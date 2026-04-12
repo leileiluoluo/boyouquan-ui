@@ -3,9 +3,12 @@ import { getCookie, setCookie } from '../../utils/CookieUtil';
 import { ADMIN_LOGIN_ADDRESS } from '../../utils/PageAddressUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
 
-import { Flex, Box, Text, Button, TabNav } from '@radix-ui/themes';
-import { ScrollArea } from '@radix-ui/react-scroll-area';
+import { Layout, Space, Typography, Button, Menu } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
+
+const { Text } = Typography;
+const { Header } = Layout;
 
 const sendLogout = async (): Promise<void> => {
     const username = getCookie('username');
@@ -35,26 +38,68 @@ export default function AdminMenu() {
         setPathname(window.location.pathname);
     });
 
+    // Determine selected menu key based on current path
+    const getSelectedKey = () => {
+        if (pathname === "/admin/blog-requests") return "blog-requests";
+        if (pathname === "/admin/blog-requests/add") return "blog-requests-add";
+        if (pathname === "/admin/monthly-selected") return "monthly-selected";
+        if (pathname === "/admin/recommended-posts") return "recommended-posts";
+        if (pathname === "/admin/recommended-posts/add") return "recommended-posts-add";
+        return "blog-requests";
+    };
+
+    const menuItems = [
+        {
+            key: "blog-requests",
+            label: "博客审核",
+            onClick: () => window.location.href = "/admin/blog-requests"
+        },
+        {
+            key: "blog-requests-add",
+            label: "提交博客",
+            onClick: () => window.location.href = "/admin/blog-requests/add"
+        },
+        {
+            key: "monthly-selected",
+            label: "每月精选",
+            onClick: () => window.location.href = "/admin/monthly-selected"
+        },
+        {
+            key: "recommended-posts",
+            label: "推荐文章管理",
+            onClick: () => window.location.href = "/admin/recommended-posts"
+        },
+        {
+            key: "recommended-posts-add",
+            label: "推荐文章",
+            onClick: () => window.location.href = "/admin/recommended-posts/add"
+        }
+    ];
+
     return (
-        <Box mb="2">
-            <Flex gap="1" direction="column">
-                <Box mt="2">
-                    <Flex gap="2">
+        <div style={{ marginBottom: '8px' }}>
+            <Space direction="vertical" size="small" style={{ width: '100%' }}>
+                <div style={{ marginTop: '8px' }}>
+                    <Space size="middle">
                         <Text>{getCookie('username')}</Text>
                         <Text> | </Text>
-                        <Button size="1" color="crimson" onClick={() => logout()}>退出登录</Button>
-                    </Flex>
-                </Box>
-                <ScrollArea>
-                    <TabNav.Root size="2" color="crimson">
-                        <TabNav.Link href="/admin/blog-requests" active={pathname === "/admin/blog-requests"}>博客审核</TabNav.Link>
-                        <TabNav.Link href="/admin/blog-requests/add" active={pathname === "/admin/blog-requests/add"}>提交博客</TabNav.Link>
-                        <TabNav.Link href="/admin/monthly-selected" active={pathname === "/admin/monthly-selected"}>每月精选</TabNav.Link>
-                        <TabNav.Link href="/admin/recommended-posts" active={pathname === "/admin/recommended-posts"}>推荐文章管理</TabNav.Link>
-                        <TabNav.Link href="/admin/recommended-posts/add" active={pathname === "/admin/recommended-posts/add"}>推荐文章</TabNav.Link>
-                    </TabNav.Root>
-                </ScrollArea>
-            </Flex>
-        </Box>
+                        <Button 
+                            size="small" 
+                            danger 
+                            icon={<LogoutOutlined />}
+                            onClick={() => logout()}
+                        >
+                            退出登录
+                        </Button>
+                    </Space>
+                </div>
+                <Menu
+                    mode="horizontal"
+                    selectedKeys={[getSelectedKey()]}
+                    items={menuItems}
+                    style={{ borderBottom: 'none' }}
+                />
+            </Space>
+        </div>
     )
 }

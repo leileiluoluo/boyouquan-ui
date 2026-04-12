@@ -14,16 +14,7 @@ const meta = {
 export default function AdminBlogRequestsPage() {
     return (
         <>
-            <Meta meta={meta} />
-            <CommonHeader />
-            <main className="main">
-                <Box>
-                    <Container size="2">
-                        <AdminBlogRequests />
-                    </Container>
-                </Box>
-            </main>
-            <CommonFooter />
+            <AdminBlogRequests />
         </>
     )
 }

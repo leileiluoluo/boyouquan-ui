@@ -1,5 +1,7 @@
 import React from 'react';
-import { Heading } from '@radix-ui/themes';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 interface AdminMenuHeaderProps {
     title: string;
@@ -7,8 +9,8 @@ interface AdminMenuHeaderProps {
 
 export default function AdminMenuHeader({ title }: AdminMenuHeaderProps): React.JSX.Element {
     return (
-        <Heading size="3" weight="bold">
+        <Title level={3} style={{ fontWeight: 'bold' }}>
             {title}
-        </Heading>
+        </Title>
     )
 }

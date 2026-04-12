@@ -1,16 +1,19 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Form } from '@radix-ui/react-form';
-import { Card, Box, Button, Flex, Text, TextField } from '@radix-ui/themes';
+import { Card, Form, Input, Button, Space, Typography, message } from 'antd';
+import { LinkOutlined } from '@ant-design/icons';
 
 import { redirectTo } from '../../../utils/CommonUtil';
 import { getCookie } from '../../../utils/CookieUtil';
 import { ADMIN_LOGIN_ADDRESS, ADMIN_RECOMMENDED_POSTS_ADDRESS } from '../../../utils/PageAddressUtil';
 import RequestUtil from '../../../utils/APIRequestUtil';
 
+const { Text } = Typography;
+
 export default function AdminRecommendedPostAdd(): React.JSX.Element {
     const [formData, setFormData] = useState<Record<string, string>>({});
     const [error, setError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
@@ -39,6 +42,12 @@ export default function AdminRecommendedPostAdd(): React.JSX.Element {
     const recommend = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         e.preventDefault();
 
+        if (!formData.link || formData.link.trim() === '') {
+            setError('请填写文章链接');
+            return;
+        }
+
+        setLoading(true);
         const username = getCookie('username');
         const sessionId = getCookie('sessionId');
         
@@ -47,22 +56,35 @@ export default function AdminRecommendedPostAdd(): React.JSX.Element {
             return;
         }
 
-        const resp = await RequestUtil.post('/api/admin/recommended-posts', JSON.stringify(formData), {
-            'Content-Type': 'application/json',
-            'username': username,
-            'sessionId': sessionId
-        });
+        try {
+            const resp = await RequestUtil.post('/api/admin/recommended-posts', JSON.stringify(formData), {
+                'Content-Type': 'application/json',
+                'username': username,
+                'sessionId': sessionId
+            });
 
-        if (typeof resp === 'string' || resp.status !== 201) {
-            if (typeof resp !== 'string') {
-                const respBody = await resp.json();
-                const errorObj = respBody as { message?: string };
-                setError(errorObj.message || '提交失败');
+            if (typeof resp === 'string' || resp.status !== 201) {
+                if (typeof resp !== 'string') {
+                    const respBody = await resp.json();
+                    const errorObj = respBody as { message?: string };
+                    const errorMsg = errorObj.message || '提交失败';
+                    setError(errorMsg);
+                    message.error(errorMsg);
+                } else {
+                    const errorMsg = '提交失败';
+                    setError(errorMsg);
+                    message.error(errorMsg);
+                }
             } else {
-                setError('提交失败');
+                message.success('推荐成功');
+                redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS);
             }
-        } else {
-            redirectTo(ADMIN_RECOMMENDED_POSTS_ADDRESS);
+        } catch (error) {
+            const errorMsg = '网络错误，请重试';
+            setError(errorMsg);
+            message.error(errorMsg);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -71,22 +93,40 @@ export default function AdminRecommendedPostAdd(): React.JSX.Element {
     }, []);
 
     return (
-        <Card>
-            <Form>
-                <Flex direction="column" gap="2">
-                    <Box>
-                        <Flex gap="2" align="center">
-                            <Text size="2">文章链接 *</Text>
-                            <Text size="2" color="red">{error ? error.message : ''}</Text>
-                        </Flex>
+        <Card style={{ marginBottom: '16px' }}>
+            <Form layout="vertical">
+                <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+                    <div>
+                        <Space align="center" size="small">
+                            <Text strong>文章链接 *</Text>
+                            {error && (
+                                <Text type="danger">{error}</Text>
+                            )}
+                        </Space>
+                        <div style={{ marginTop: '8px' }}>
+                            <Input 
+                                name="link"
+                                id="link"
+                                onChange={handleChange}
+                                placeholder="请输入文章链接"
+                                prefix={<LinkOutlined />}
+                                status={error ? "error" : ""}
+                                allowClear
+                            />
+                        </div>
+                    </div>
 
-                        <TextField.Root mt="2" name="link" id="link" onChange={handleChange} />
-                    </Box>
-
-                    <Box mt="2">
-                        <Button type="submit" onClick={recommend}>提交</Button>
-                    </Box>
-                </Flex>
+                    <div style={{ marginTop: '8px' }}>
+                        <Button 
+                            type="primary" 
+                            onClick={recommend}
+                            loading={loading}
+                            htmlType="submit"
+                        >
+                            提交
+                        </Button>
+                    </div>
+                </Space>
             </Form>
         </Card>
     )

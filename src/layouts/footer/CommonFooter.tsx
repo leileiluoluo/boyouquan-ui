@@ -65,11 +65,9 @@ const CommonFooter: React.FC = () => {
             }}
         >
             <PCOnly>
-
-
                 <Flex vertical gap={16}>
                     <div style={{ color: 'rgba(255, 255, 255, 0.65)' }}>
-                        <Flex justify="space-between" gap={16}>
+                        <Flex justify="space-between" gap={16} wrap="wrap">
                             <Flex vertical gap={16}>
                                 <Text style={{ fontSize: 18, color: 'rgba(255, 255, 255, 0.65)' }}>博友圈</Text>
                                 <Text style={{ fontSize: 13, color: 'rgba(255, 255, 255, 0.65)', lineHeight: 2.5 }}>将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！</Text>

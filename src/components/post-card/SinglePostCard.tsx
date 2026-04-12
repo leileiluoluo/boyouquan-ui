@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { formatDateStr } from '../../utils/DateUtil';
+import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
+import PostCardFooter from './PostCardFooter';
 import {
     Flex,
     Avatar,
@@ -55,6 +58,8 @@ interface BlogPost {
     publishedAt: string;
     recommended: boolean;
     title: string;
+    blogTotalAccessCount: number;
+    blogJoinYears: number;
 }
 
 // ==================== 博客卡片组件（响应式优化） ====================
@@ -65,6 +70,11 @@ interface BlogCardProps {
 const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
     const { token } = useToken();
     const [isMobile, setIsMobile] = useState(false);
+
+    const blogURL = getBlogAddress(post.blogDomainName);
+    const linkURL = getGoAddress(post.link);
+    const abstractURL = getAbstractAddress(post.link);
+    const publishedAtFormatted = formatDateStr(post.publishedAt);
 
     // 检测屏幕宽度
     useEffect(() => {
@@ -97,10 +107,6 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
         },
     ];
 
-    const handleAvatarError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-        e.currentTarget.src = 'https://api.dicebear.com/7.x/initials/svg?seed=' + post.author.name;
-    };
-
     return (
         <Flex gap={14}>
             <div
@@ -113,7 +119,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
             >
                 {/* 左侧：独立的头像区 */}
                 <Flex vertical align="center" gap={4}>
-                    <Link href={post.blogAddress}>
+                    <Link href={blogURL}>
                         <Avatar
                             src={post.blogAdminLargeImageURL}
                             icon={<UserOutlined />}
@@ -125,20 +131,19 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                     <Flex vertical gap={4}>
                         <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
                             <StarOutlined style={{ marginRight: 4, color: '#faad14' }} />
-                            履约 2 年
+                            履约 {post.blogJoinYears} 年
                         </Text>
                         <Tooltip title="总浏览数">
                             <Space size={4}>
                                 <EyeOutlined style={{ color: token.colorTextSecondary, fontSize: 12 }} />
                                 <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                                    10000
+                                    {post.blogTotalAccessCount}
                                 </Text>
                             </Space>
                         </Tooltip>
                     </Flex>
                 </Flex>
             </div>
-
 
             {/* 右侧：内容区 - 带虚线框和左侧尖角 */}
             <Flex>
@@ -207,7 +212,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                             <FireOutlined /> 置顶
                         </Tag> */}
                         <a
-                            href={post.link}
+                            href={linkURL}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{ textDecoration: 'none', flex: 1 }}
@@ -256,7 +261,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                                 <Space size={4}>
                                     <ClockCircleOutlined style={{ color: token.colorTextSecondary }} />
                                     <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                                        {dayjs(post.publishedAt).fromNow()}
+                                        {publishedAtFormatted}
                                     </Text>
                                 </Space>
                             </Tooltip>
@@ -288,7 +293,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                     </div>
                 </div>
             </Flex>
-        </Flex>
+        </Flex >
     );
 };
 

@@ -19,6 +19,7 @@ import {
 import {
     EyeOutlined,
     LikeOutlined,
+    StarOutlined,
     ShareAltOutlined,
     MoreOutlined,
     UserOutlined,
@@ -60,7 +61,7 @@ interface BlogCardProps {
     post: BlogPost;
 }
 
-const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
+const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
     const { token } = useToken();
     const [isMobile, setIsMobile] = useState(false);
 
@@ -112,7 +113,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
             <div
                 style={{
                     flexShrink: 0,
-                    width: 100,
+                    width: 80,
                     textAlign: 'center',
                     paddingTop: token.paddingSM,
                 }}
@@ -121,7 +122,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
                     <Avatar
                         src={post.blogAdminLargeImageURL}
                         icon={<UserOutlined />}
-                        size={64}
+                        size={48}
                         style={{
                             marginBottom: token.marginSM,
                             border: `3px solid ${token.colorPrimaryBgHover}`,
@@ -144,35 +145,40 @@ const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
                             </Text>
                         </a>
                         <Tooltip title="博客状态正常">
-                                <Badge
-                                    status="processing"
-                                    color="#52c41a"
-                                    style={{
-                                        backgroundColor: '#52c41a',
-                                        borderRadius: '50%',
-                                        width: 14,
-                                        height: 14,
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    <span style={{ fontSize: 9, color: '#fff' }}>✓</span>
-                                </Badge>
-                            </Tooltip>
+                            {/* <Badge
+                                status="processing"
+                                color="#1f4f07"
+                                style={{
+                                    backgroundColor: '#256206',
+                                    borderRadius: '50%',
+                                    width: 14,
+                                    height: 14,
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <span style={{ fontSize: 9, color: '#090808' }}>✓</span>
+                            </Badge> */}
+                            <Badge status="success"
+                                style={{
+                                    width: 14,
+                                    height: 14,
+                                }} />
+                        </Tooltip>
                     </Space>
                 </div>
                 <div style={{ marginTop: token.marginXS }}>
                     <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                        <ClockCircleOutlined style={{ marginRight: 4 }} />
-                        {dayjs(post.publishedAt).fromNow()}
+                        <StarOutlined style={{ marginRight: 4, color: '#faad14' }} />
+                        履约 2 年
                     </Text>
                     <div style={{ marginTop: 4 }}>
-                        <Tooltip title="浏览次数">
+                        <Tooltip title="总浏览次数">
                             <Space size={4}>
                                 <EyeOutlined style={{ color: token.colorTextSecondary, fontSize: 12 }} />
                                 <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                                    100
+                                    10000
                                 </Text>
                             </Space>
                         </Tooltip>
@@ -249,9 +255,9 @@ const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
                     }}
                 >
                     <div style={{ marginBottom: token.marginSM, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                        <Tag color="gold" style={{ borderRadius: token.borderRadiusSM, fontWeight: 500 }}>
-                                <FireOutlined /> 置顶
-                            </Tag>
+                        {/* <Tag color="gold" style={{ borderRadius: token.borderRadiusSM, fontWeight: 500 }}>
+                            <FireOutlined /> 置顶
+                        </Tag> */}
                         <a
                             href={post.link}
                             target="_blank"
@@ -259,11 +265,10 @@ const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
                             style={{ textDecoration: 'none', flex: 1 }}
                         >
                             <Title
-                                level={4}
+                                level={5}
                                 style={{
                                     margin: 0,
                                     lineHeight: 1.4,
-                                    color: token.colorTextHeading,
                                     transition: 'color 0.2s',
                                     cursor: 'pointer',
                                 }}
@@ -286,8 +291,6 @@ const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
                         {post.description}
                     </Paragraph>
 
-            
-
                     <div
                         style={{
                             display: 'flex',
@@ -301,22 +304,31 @@ const SinglePostCard: React.FC<BlogCardProps> = ({post}) => {
                         }}
                     >
                         <Space size="middle">
-                            <Tooltip title="点赞数">
+                            <Tooltip title="发布时间">
                                 <Space size={4}>
-                                    <LikeOutlined style={{ color: token.colorTextSecondary }} />
+                                    <ClockCircleOutlined style={{ color: token.colorTextSecondary }} />
                                     <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                                        100
+                                        {dayjs(post.publishedAt).fromNow()}
+                                    </Text>
+                                </Space>
+                            </Tooltip>
+
+                            <Tooltip title="浏览次数">
+                                <Space size={4}>
+                                    <EyeOutlined style={{ color: token.colorTextSecondary }} />
+                                    <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+                                        {post.linkAccessCount}
                                     </Text>
                                 </Space>
                             </Tooltip>
                             <Tooltip title="预计阅读时长">
-                                    <Space size={4}>
-                                        <ReadOutlined style={{ color: token.colorTextSecondary }} />
-                                        <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                                            1 分钟
-                                        </Text>
-                                    </Space>
-                                </Tooltip>
+                                <Space size={4}>
+                                    <ReadOutlined style={{ color: token.colorTextSecondary }} />
+                                    <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+                                        1 分钟
+                                    </Text>
+                                </Space>
+                            </Tooltip>
                         </Space>
 
                         <Space>

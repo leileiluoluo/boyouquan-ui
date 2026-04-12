@@ -108,7 +108,8 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
     ];
 
     return (
-        <Flex gap={14}>
+        <Flex gap={14} style={{ position: 'relative', width: '100%' }}>
+            {/* 左侧：独立的头像区 */}
             <div
                 style={{
                     flexShrink: 0,
@@ -117,7 +118,6 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                     paddingTop: token.paddingSM,
                 }}
             >
-                {/* 左侧：独立的头像区 */}
                 <Flex vertical align="center" gap={4}>
                     <Link href={blogURL}>
                         <Avatar
@@ -125,7 +125,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                             icon={<UserOutlined />}
                             size={48} />
                     </Link>
-                    <Link>
+                    <Link href={blogURL}>
                         {post.blogName}
                     </Link>
                     <Flex vertical gap={4}>
@@ -146,7 +146,8 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
             </div>
 
             {/* 右侧：内容区 - 带虚线框和左侧尖角 */}
-            <Flex>
+            <div style={{ position: 'relative', flex: 1, minWidth: 0 }}>
+                {/* 左侧尖角装饰 */}
                 <div
                     style={{
                         position: 'absolute',
@@ -174,6 +175,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                     }}
                 />
 
+                {/* 主要内容卡片 */}
                 <div
                     style={{
                         border: `2px dashed ${token.colorBorder}`,
@@ -181,16 +183,18 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                         padding: `${token.paddingLG}px`,
                         background: token.colorBgContainer,
                         transition: 'all 0.3s ease',
+                        width: '100%',
                     }}
                     onMouseEnter={(e) => {
                         e.currentTarget.style.borderColor = token.colorPrimary;
                         e.currentTarget.style.boxShadow = token.boxShadowSecondary;
                         e.currentTarget.style.transform = 'translateY(-2px)';
+                        // 修改尖角颜色
                         const parent = e.currentTarget.parentElement;
                         if (parent) {
-                            const triangle = parent.children[0] as HTMLDivElement;
-                            if (triangle) {
-                                triangle.style.borderRightColor = token.colorPrimary;
+                            const triangles = parent.getElementsByTagName('div');
+                            if (triangles[0]) {
+                                triangles[0].style.borderRightColor = token.colorPrimary;
                             }
                         }
                     }}
@@ -200,22 +204,20 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                         e.currentTarget.style.transform = 'translateY(0)';
                         const parent = e.currentTarget.parentElement;
                         if (parent) {
-                            const triangle = parent.children[0] as HTMLDivElement;
-                            if (triangle) {
-                                triangle.style.borderRightColor = token.colorBorder;
+                            const triangles = parent.getElementsByTagName('div');
+                            if (triangles[0]) {
+                                triangles[0].style.borderRightColor = token.colorBorder;
                             }
                         }
                     }}
                 >
+                    {/* 标题区域 */}
                     <div style={{ marginBottom: token.marginSM, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                        {/* <Tag color="gold" style={{ borderRadius: token.borderRadiusSM, fontWeight: 500 }}>
-                            <FireOutlined /> 置顶
-                        </Tag> */}
                         <a
                             href={linkURL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ textDecoration: 'none', flex: 1 }}
+                            style={{ textDecoration: 'none', flex: 1, minWidth: 0 }}
                         >
                             <Title
                                 level={5}
@@ -225,13 +227,14 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                                     transition: 'color 0.2s',
                                     cursor: 'pointer',
                                 }}
-                                ellipsis={{ rows: 2, expandable: false }}
+                                ellipsis={{ rows: 2, expandable: false, tooltip: post.title }}
                             >
                                 {post.title}
                             </Title>
                         </a>
                     </div>
 
+                    {/* 描述区域 - 完全展开 */}
                     <Paragraph
                         type="secondary"
                         ellipsis={{ rows: 3, expandable: false }}
@@ -239,11 +242,14 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                             marginBottom: token.marginMD,
                             fontSize: token.fontSize,
                             lineHeight: 1.5,
+                            whiteSpace: 'pre-wrap',
+                            wordBreak: 'break-word',
                         }}
                     >
                         {post.description}
                     </Paragraph>
 
+                    {/* 底部信息栏 */}
                     <div
                         style={{
                             display: 'flex',
@@ -256,7 +262,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                             borderTop: `1px solid ${token.colorBorderSecondary}`,
                         }}
                     >
-                        <Space size="middle">
+                        <Space size="middle" wrap>
                             <Tooltip title="发布时间">
                                 <Space size={4}>
                                     <ClockCircleOutlined style={{ color: token.colorTextSecondary }} />
@@ -274,6 +280,7 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                                     </Text>
                                 </Space>
                             </Tooltip>
+
                             <Tooltip title="预计阅读时长">
                                 <Space size={4}>
                                     <ReadOutlined style={{ color: token.colorTextSecondary }} />
@@ -285,15 +292,17 @@ const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {
                         </Space>
 
                         <Space>
-                            <ShareAltOutlined />
+                            <Link href={abstractURL}>
+                                <ShareAltOutlined style={{ color: token.colorTextSecondary }} />
+                            </Link>
                             <Dropdown menu={{ items: actionItems }} trigger={['click']} placement="bottomRight">
                                 <Button type="text" size="small" icon={<MoreOutlined />} />
                             </Dropdown>
                         </Space>
                     </div>
                 </div>
-            </Flex>
-        </Flex >
+            </div>
+        </Flex>
     );
 };
 

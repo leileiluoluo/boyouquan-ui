@@ -100,6 +100,7 @@ module.exports = {
             '@pages': path.resolve(__dirname, 'src/pages'),
             '@layouts': path.resolve(__dirname, 'src/layouts'),
             '@components': path.resolve(__dirname, 'src/components'),
+            '@constants': path.resolve(__dirname, 'src/constants'),
             '@hooks': path.resolve(__dirname, 'src/hooks'),
             '@services': path.resolve(__dirname, 'src/services'),
             '@types': path.resolve(__dirname, 'src/types'),

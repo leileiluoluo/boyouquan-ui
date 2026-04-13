@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Flex, Card } from 'antd';
+import { Flex } from 'antd';
 import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
-import RequestUtil from '../../utils/APIRequestUtil';
-import SinglePostCard from './SinglePostCard';
+import { getPosts } from '@services/postService';
+import { PostData, PostDataList, PostDataListParams } from '@types/post';
 
 interface PostCardListProps {
     sort: string,
@@ -16,23 +16,23 @@ const PostCardList: React.FC<PostCardListProps> = ({ sort, keyword, showPinned }
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<PostData[]>([]);
     const [dataReady, setDataReady] = useState(false);
 
-    const fetchData = async (sortType, keyword, pageNo) => {
-        const resp = await RequestUtil.get(`/api/posts?sort=${sortType}&keyword=${keyword}&page=${pageNo}`);
+    const fetchData = async (params: PostDataListParams) => {
+        const resp: PostDataList = await getPosts(params);
 
-        const respBody = await resp.json();
         setDataReady(true);
-        setPageSize(respBody.pageSize);
-        setTotal(respBody.total);
-        setPosts(respBody.results);
+        setPageSize(resp.pageSize);
+        setTotal(resp.total);
+        setPosts(resp.results);
 
         scrollToHash();
     };
 
     useEffect(() => {
-        fetchData(sort, keyword, pageNo);
+        const params: PostDataListParams = { sortType: sort, keyword, pageNo };
+        fetchData(params);
     }, [sort, keyword, pageNo]);
 
     const setCurrectPage = (pageNo) => {
@@ -46,7 +46,7 @@ const PostCardList: React.FC<PostCardListProps> = ({ sort, keyword, showPinned }
             <Flex vertical gap={8}>
                 {posts.map(
                     (post, index) => (
-                        <SinglePostCard post={post}/>
+                        <PostCard showPinned={showPinned} post={post} />
                     )
                 )}
             </Flex>

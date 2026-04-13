@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Divider, Typography, Flex, Button, Spin, Grid, Dropdown, Tooltip } from 'antd';
-const { Link, Text } = Typography;
+import { theme, Typography, Flex, Spin } from 'antd';
 import CountUp from 'react-countup';
-import { Rss, Github, Cloud, Mail, ArrowUp, Users, FileText, Eye, BarChart3, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { Users, FileText, Eye } from 'lucide-react';
 import { getStatistics } from '@services/statisticsService';
 import { StatData } from '@types/statistics';
+
+const { Text } = Typography;
+const { useToken } = theme;
 
 const Statistics: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [data, setData] = useState<StatData>();
+
+    const { token } = useToken();
 
     const fetchData = async (): Promise<void> => {
         const stats: StatData = await getStatistics();
@@ -25,27 +29,33 @@ const Statistics: React.FC = () => {
     }
 
     return (
-        <Flex vertical gap={4}>
-            <Flex align="center" gap={4}>
-                <Users size={13} style={{ color: 'rgba(255, 255, 255, 0.65)', flexShrink: 0 }} />
-                <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13, width: 60 }}>收录博客</Text>
-                <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13 }}>
-                    <CountUp end={data?.totalBlogs} duration={1} separator="," />
-                </Text>
+        <Flex vertical gap={token.paddingXXS}>
+            <Flex align="center" gap={token.paddingXXS}>
+                <Users size={13} style={{ color: token.colorTextQuaternary, flexShrink: 0 }} />
+                <Flex gap={token.paddingXS}>
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>收录博客</Text>
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>
+                        <CountUp end={data?.totalBlogs} duration={1} separator="," />
+                    </Text>
+                </Flex>
             </Flex>
-            <Flex align="center" gap={4}>
-                <FileText size={13} style={{ color: 'rgba(255, 255, 255, 0.65)', flexShrink: 0 }} />
-                <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13, width: 60 }}>收录文章</Text>
-                <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13 }}>
-                    <CountUp end={data?.totalPosts} duration={1} separator="," />
-                </Text>
+            <Flex align="center" gap={token.paddingXXS}>
+                <FileText size={13} style={{ color: token.colorTextQuaternary, flexShrink: 0 }} />
+                <Flex gap={token.paddingXS}>
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>收录文章</Text>
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>
+                        <CountUp end={data?.totalPosts} duration={1} separator="," />
+                    </Text>
+                </Flex>
             </Flex>
-            <Flex align="center" gap={4}>
-                <Eye size={13} style={{ color: 'rgba(255, 255, 255, 0.65)', flexShrink: 0 }} />
-                <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13, width: 60 }}>浏览文章</Text>
-                <Text style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 13 }}>
-                    <CountUp end={data?.totalAccesses} duration={1} separator="," />
-                </Text>
+            <Flex align="center" gap={token.paddingXXS}>
+                <Eye size={13} style={{ color: token.colorTextQuaternary, flexShrink: 0 }} />
+                <Flex gap={token.paddingXS}>
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>浏览文章</Text>
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>
+                        <CountUp end={data?.totalAccesses} duration={1} separator="," />
+                    </Text>
+                </Flex>
             </Flex>
         </Flex>
     );

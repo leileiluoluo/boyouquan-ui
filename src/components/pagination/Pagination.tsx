@@ -14,14 +14,16 @@ export default function Pagination({ pageNo, pageSize, total, setCurrectPage }: 
 
     return (
         <Flex justify="space-between">
-            <Button 
-                onClick={() => setCurrectPage(pageNo - 1)} 
+            <Button
+                type="primary"
+                onClick={() => setCurrectPage(pageNo - 1)}
                 disabled={!hasPre}
             >
                 « 上一页
             </Button>
-            <Button 
-                onClick={() => setCurrectPage(pageNo + 1)} 
+            <Button
+                type="primary"
+                onClick={() => setCurrectPage(pageNo + 1)}
                 disabled={!hasNext}
             >
                 下一页 »

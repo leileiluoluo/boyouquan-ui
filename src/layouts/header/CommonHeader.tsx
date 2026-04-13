@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import {
-    Layout, Flex, Menu, Typography, Drawer, Button,
+    theme, Layout, Flex, Menu, Typography, Drawer, Button,
 } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { MobileOnly, PCOnly } from '@components/common/Responsive';
 
 const { Header } = Layout;
 const { Link } = Typography;
+const { useToken } = theme;
 
 const MENU_ITEMS = [
     { key: '0', label: '首页', href: '/home' },
@@ -22,6 +23,8 @@ const MENU_ITEMS = [
 const CommonHeader: React.FC = () => {
     const [open, setOpen] = useState(false);
 
+    const { token } = useToken();
+
     const getSelectedKey = () => {
         const currentItem = MENU_ITEMS.find(item => location.pathname.includes(item.href));
         return currentItem ? currentItem.key : '0';
@@ -30,10 +33,8 @@ const CommonHeader: React.FC = () => {
     return (
         <Header
             style={{
-                background: '#092640',
-                color: '#fff',
-                padding: '0 24px',
-                height: 64,
+                background: token.colorBgLayout,
+                padding: `0 ${token.paddingXL}`,
             }}
         >
             <Flex justify="space-between" align="center" style={{ height: '100%' }}>
@@ -77,7 +78,7 @@ const CommonHeader: React.FC = () => {
                         type="text"
                         icon={<MenuOutlined />}
                         onClick={() => setOpen(true)}
-                        style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 18 }}
+                        style={{ color: token.colorTextQuaternary, fontSize: 18 }}
                     />
                 </MobileOnly>
             </Flex>
@@ -92,16 +93,15 @@ const CommonHeader: React.FC = () => {
                 keyboard={true}
                 rootStyle={{ position: 'fixed' }}
                 getContainer={false}
-                closeIcon={<span style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: 16 }}>✕</span>}
+                closeIcon={<span style={{ color: token.colorTextQuaternary, fontSize: 16 }}>✕</span>}
                 headerStyle={{
-                    background: '#092640',
-                    color: 'rgba(255, 255, 255, 0.65)',
-                    // borderBottom: '1px solid rgba(255,255,255,0.1)',
+                    background: token.colorBgLayout,
+                    color: token.colorTextQuaternary,
                 }}
                 styles={{
                     body: {
                         padding: 0,
-                        background: '#092640',
+                        background: token.colorBgLayout,
                     },
                     wrapper: { position: 'fixed' },
                 }}

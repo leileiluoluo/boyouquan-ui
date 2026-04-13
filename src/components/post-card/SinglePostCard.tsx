@@ -35,6 +35,7 @@ import {
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-cn';
+import { PostData } from '@types/post';
 
 // 配置dayjs
 dayjs.extend(relativeTime);
@@ -43,28 +44,9 @@ dayjs.locale('zh-cn');
 const { Text, Title, Link, Paragraph } = Typography;
 const { useToken } = theme;
 
-// 组件内部使用的博客文章数据结构
-interface BlogPost {
-    blogAddress: string;
-    blogAdminLargeImageURL: string;
-    blogDomainName: string;
-    blogName: string;
-    blogStatusOk: boolean;
-    description: string;
-    draft: boolean;
-    link: string;
-    linkAccessCount: number;
-    pinned: boolean;
-    publishedAt: string;
-    recommended: boolean;
-    title: string;
-    blogTotalAccessCount: number;
-    blogJoinYears: number;
-}
-
 // ==================== 博客卡片组件（响应式优化） ====================
 interface BlogCardProps {
-    post: BlogPost;
+    post: PostData;
 }
 
 const SinglePostCard: React.FC<BlogCardProps> = ({ post }) => {

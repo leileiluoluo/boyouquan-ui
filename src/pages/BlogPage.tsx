@@ -33,9 +33,7 @@ export default function BlogPage() {
     return (
         <>
             {loaded && (
-                <Flex vertical gap={16}>
-                    <BlogDetail domain={domain || ''} />
-                </Flex>
+                <BlogDetail domain={domain || ''} />
             )}
         </>
     );

@@ -55,8 +55,8 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                     <Flex vertical align="center" gap={4}>
                         <Link href={blogURL}>
                             <Avatar
-                                shape="square"
-                                size={40}
+                                shape="circle"
+                                size={36}
                                 icon={<UserOutlined />}
                                 src={post.blogAdminLargeImageURL}
                                 alt={post.blogName}
@@ -169,10 +169,16 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                                     <div style={{
                                         flexShrink: 0,  /* 优先显示，不压缩 */
                                     }}>
-                                        <Link href={blogURL}>
-                                            <Text style={{ fontSize: 14, fontWeight: 500 }}>
-                                                {post.blogName}
-                                            </Text>
+                                        <Link
+                                            href={blogURL}
+                                            ellipsis
+                                            style={{
+                                                display: 'block',
+                                                textAlign: 'center',
+                                                fontWeight: token.fontWeightStrong,
+                                            }}
+                                        >
+                                            {post.blogName}
                                         </Link>
                                     </div>
                                 </MobileOnly>

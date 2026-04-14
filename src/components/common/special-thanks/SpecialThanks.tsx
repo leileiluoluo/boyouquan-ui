@@ -13,14 +13,7 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
     if (!isHome) return null;
 
     return (
-        <Card
-            style={{
-                marginTop: 16,
-                borderRadius: 12,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-            }}
-            bodyStyle={{ padding: '20px 16px' }}
-        >
+        <Card style={{ marginTop: 20 }}>
             <Flex vertical align="center" gap={16}>
                 <Title
                     level={5}

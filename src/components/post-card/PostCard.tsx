@@ -1,6 +1,6 @@
 import React from 'react';
 import { theme, Flex, Typography, Avatar, Space, Divider, Tooltip } from 'antd';
-import { ClockCircleOutlined, EyeOutlined, MoreOutlined, ShareAltOutlined, StarOutlined, UserOutlined } from '@ant-design/icons';
+import { PushpinOutlined, ClockCircleOutlined, EyeOutlined, MoreOutlined, ShareAltOutlined, StarOutlined, UserOutlined } from '@ant-design/icons';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
 import { PostData } from '@types/post';
@@ -15,7 +15,7 @@ interface PostDataProps {
 }
 
 const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
-    const gravatarURL = getGravatarImageFullURL(post.blogAdminLargeImageURL || '');
+    const gravatarURL = getGravatarImageFullURL(post.blogAdminLargeImageURL || post.blogAdminMediumImageURL || '');
     const blogURL = getBlogAddress(post.blogDomainName);
     const linkURL = getGoAddress(post.link);
     const abstractURL = getAbstractAddress(post.link);
@@ -36,7 +36,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                 maxWidth: '100%',
                 boxSizing: 'border-box',
                 // 仅PC端保留箭头内边距，移动端移除
-                paddingLeft: window.innerWidth > 768 ? ARROW_SIZE : 0
+                // paddingLeft: window.innerWidth > 768 ? ARROW_SIZE : 0
             }}
         >
             {/* 左侧用户头像区（仅PC端） */}
@@ -58,7 +58,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                                 shape="circle"
                                 size={36}
                                 icon={<UserOutlined />}
-                                src={post.blogAdminLargeImageURL}
+                                src={gravatarURL}
                                 alt={post.blogName}
                                 style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
                             />
@@ -114,7 +114,26 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                     }}
                 >
                     <Flex vertical gap={4} style={{ width: '100%' }}>
-                        <Link href={linkURL} style={{ marginBottom: 2 }}>
+                        <Link
+                            href={linkURL}
+                            target="_blank"
+                            style={{
+                                marginBottom: 2,
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 4
+                            }}>
+                            {/* 置顶图标：showPinned 为 true 时显示 */}
+                            {showPinned && post.pinned && (
+                                <PushpinOutlined
+                                    style={{
+                                        color: '#faad14',
+                                        fontSize: 16,
+                                        flexShrink: 0 // 防止图标被挤压
+                                    }}
+                                />
+                            )}
+
                             <Title
                                 level={5}
                                 style={{
@@ -123,7 +142,8 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                                     wordBreak: 'break-word',
                                     overflow: 'hidden',
                                     textOverflow: 'ellipsis',
-                                    whiteSpace: 'nowrap'
+                                    whiteSpace: 'nowrap',
+                                    flex: 1
                                 }}
                             >
                                 {post.title}

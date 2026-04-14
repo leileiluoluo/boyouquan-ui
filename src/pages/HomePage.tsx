@@ -1,8 +1,7 @@
 import React, { lazy, Suspense } from 'react';
-import { Flex } from 'antd';
+import { Card, Flex } from 'antd';
 
-import { MainContentHeader, Meta, SearchBox, HotSearch, SwitchSortType } from '@components/common';
-import { HomeLatestNews, HomePopularBlogsHeader } from '@components/home';
+import { Meta, SearchBox, SwitchSortType } from '@components/common';
 import PostCardList from '@components/post-card/PostCardList';
 
 import { SwitchType } from '@types';
@@ -41,27 +40,17 @@ const HomePage: React.FC = () => {
     return (
         <>
             <Meta />
-            <Flex vertical gap={20}>
-                <div
-                    style={{
-                        width: '100%',
-                        background: '#fff',    // 内容区白色背景
-                        borderRadius: 8,       // 圆角更美观
-                        padding: '24px',       // 内边距
-                        boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)', // 极轻阴影
-                    }}
-                >
-                    <Flex vertical gap={16}>
-                        <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
-                        <SwitchSortType types={SWITCH_TYPES} />
-                        <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
-                    </Flex>
-                </div>
+            <Card>
+                <Flex vertical gap={16}>
+                    <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
+                    <SwitchSortType types={SWITCH_TYPES} />
+                    <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
+                </Flex>
+            </Card>
 
-                <Suspense>
-                    <SpecialThanks isHome={true} />
-                </Suspense>
-            </Flex>
+            <Suspense>
+                <SpecialThanks isHome={true} />
+            </Suspense>
         </>
     );
 };

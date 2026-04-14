@@ -12,7 +12,8 @@ export interface PostDataList {
 
 export interface PostData {
   blogAddress: string;
-  blogAdminLargeImageURL: string;
+  blogAdminLargeImageURL: string | null | undefined;
+  blogAdminMediumImageURL: string | null | undefined;
   blogDomainName: string;
   blogName: string;
   blogStatusOk: boolean;

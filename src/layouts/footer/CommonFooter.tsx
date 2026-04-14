@@ -102,7 +102,7 @@ const CommonFooter: React.FC = () => {
                         <Flex vertical gap={token.paddingXS}>
                             <Flex align="center" gap={token.paddingXS} style={{ marginBottom: token.marginXXS }}>
                                 <BarChart3 size={16} style={{ color: token.colorTextQuaternary }} />
-                                <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSizeLG }}>统计</Text>
+                                <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>统计</Text>
                             </Flex>
                             <Suspense fallback={<Spin size="small" />}>
                                 <Statistics />
@@ -112,7 +112,7 @@ const CommonFooter: React.FC = () => {
                         <Flex vertical gap={token.paddingXS}>
                             <Flex align="center" gap={token.paddingXS} style={{ marginBottom: token.marginXXS }}>
                                 <ExternalLink size={16} style={{ color: token.colorTextQuaternary }} />
-                                <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSizeLG }}>支持</Text>
+                                <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>支持</Text>
                             </Flex>
                             <Flex vertical gap={token.paddingXXS}>
                                 <Link href="/sponsor" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>赞助本站</Link>
@@ -125,7 +125,7 @@ const CommonFooter: React.FC = () => {
                         <Flex vertical gap={token.paddingXS}>
                             <Flex align="center" gap={token.paddingXS} style={{ marginBottom: token.marginXXS }}>
                                 <ExternalLink size={16} style={{ color: token.colorTextQuaternary }} />
-                                <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSizeLG }}>关于</Text>
+                                <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>关于</Text>
                             </Flex>
                             <Flex vertical gap={token.paddingXXS}>
                                 <Link href="/about" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>关于本站</Link>

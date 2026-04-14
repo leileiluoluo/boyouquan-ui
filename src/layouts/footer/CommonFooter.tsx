@@ -13,6 +13,7 @@ const { useToken } = theme;
 const CommonFooter: React.FC = () => {
     const { token } = useToken();
 
+    const linkFontSize: number = 13;
     const colorBottomText: string = '#6c757d';
     const colorDividerBackground: string = 'rgba(255, 255, 255, 0.15)';
     const colorArrowUp: string = token.colorTextLightSolid;      // 纯白（柔和）
@@ -65,7 +66,7 @@ const CommonFooter: React.FC = () => {
             style={{
                 background: token.colorBgLayout, // 与 Header 同色
                 color: token.colorTextQuaternary,
-                padding: `${token.paddingXL} ${token.paddingXL}`,
+                padding: '16px 32px',
             }}
         >
             <PCOnly>
@@ -73,26 +74,34 @@ const CommonFooter: React.FC = () => {
                     <Flex justify="space-between" gap={token.padding} wrap="wrap">
                         <Flex vertical gap={token.paddingSM}>
                             <Text style={{ fontSize: token.fontSizeXL, color: token.colorTextQuaternary }}>博友圈</Text>
-                            <Text style={{ fontSize: token.fontSize, color: token.colorTextQuaternary, lineHeight: 2.5 }}>将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！</Text>
+                            <Text style={{ fontSize: linkFontSize, color: token.colorTextQuaternary, lineHeight: 2 }}>将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！</Text>
                             <Flex gap={token.paddingSM}>
-                                <Dropdown menu={{ items: rssItems }}>
+                                <Dropdown placement="topRight" menu={{ items: rssItems }}>
                                     <Rss color={token.colorTextQuaternary} size={16} />
                                 </Dropdown>
-                                <Dropdown menu={{ items: githubItems }}>
+                                <Dropdown placement="topLeft" menu={{ items: githubItems }}>
                                     <Github size={16} />
                                 </Dropdown>
-                                <Tooltip placement="rightTop" title="本站使用腾讯云主机提供服务" styles={{ // 使用 styles 属性
-                                    root: {
-                                        fontSize: token.fontSize,
-                                    }
-                                }}>
+                                <Tooltip title="本站使用腾讯云主机提供服务"
+                                    placement="topRight"
+                                    color={token.colorBgElevated}
+                                    styles={{
+                                        root: {
+                                            color: token.colorText,
+                                            fontSize: token.fontSize,
+                                        }
+                                    }}>
                                     <Link target="_blank" href="https://cloud.tencent.com/act/cps/redirect?redirect=5990&cps_key=b47473307f5d83202fb2d8a72cd303d7&from=console"><Cloud color="rgba(255, 255, 255, 0.65)" size={16} /></Link>
                                 </Tooltip>
-                                <Tooltip placement="rightTop" title="站长信箱" styles={{ // 使用 styles 属性
-                                    root: {
-                                        fontSize: token.fontSize,
-                                    }
-                                }}>
+                                <Tooltip title="站长信箱"
+                                    placement="topLeft"
+                                    color={token.colorBgElevated}
+                                    styles={{
+                                        root: {
+                                            color: token.colorText,
+                                            fontSize: token.fontSize,
+                                        }
+                                    }}>
                                     <Link target="_blank" href="mailto:support@boyouquan.com"><Mail color={token.colorTextQuaternary} size={16} /></Link>
                                 </Tooltip>
                             </Flex>
@@ -115,9 +124,9 @@ const CommonFooter: React.FC = () => {
                                 <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>支持</Text>
                             </Flex>
                             <Flex vertical gap={token.paddingXXS}>
-                                <Link href="/sponsor" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>赞助本站</Link>
-                                <Link href="/about#add-link" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>添加链接</Link>
-                                <Link href="/similar-sites" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>同类网站</Link>
+                                <Link href="/sponsor" style={{ color: token.colorTextQuaternary, fontSize: linkFontSize }}>赞助本站</Link>
+                                <Link href="/about#add-link" style={{ color: token.colorTextQuaternary, fontSize: linkFontSize }}>添加链接</Link>
+                                <Link href="/similar-sites" style={{ color: token.colorTextQuaternary, fontSize: linkFontSize }}>同类网站</Link>
                             </Flex>
                         </Flex>
 
@@ -128,9 +137,9 @@ const CommonFooter: React.FC = () => {
                                 <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>关于</Text>
                             </Flex>
                             <Flex vertical gap={token.paddingXXS}>
-                                <Link href="/about" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>关于本站</Link>
-                                <Link href="/release-notes" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>发布历史</Link>
-                                <Link href="/annual-reports" style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>年度报告</Link>
+                                <Link href="/about" style={{ color: token.colorTextQuaternary, fontSize: linkFontSize }}>关于本站</Link>
+                                <Link href="/release-notes" style={{ color: token.colorTextQuaternary, fontSize: linkFontSize }}>发布历史</Link>
+                                <Link href="/annual-reports" style={{ color: token.colorTextQuaternary, fontSize: linkFontSize }}>年度报告</Link>
                             </Flex>
                         </Flex>
                     </Flex>

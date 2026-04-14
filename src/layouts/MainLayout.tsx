@@ -24,7 +24,7 @@ const MainLayout: React.FC = () => {
             <CommonHeader />
             <Content
                 style={{
-                    padding: '24px 0',
+                    padding: '24px 32px',
                     background: '#f0f2f5',
                     minHeight: 'calc(100vh - 64px)',
                     display: 'flex',

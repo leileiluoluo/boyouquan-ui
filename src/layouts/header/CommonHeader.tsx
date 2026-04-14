@@ -34,7 +34,7 @@ const CommonHeader: React.FC = () => {
         <Header
             style={{
                 background: token.colorBgLayout,
-                padding: `0 ${token.paddingXL}`,
+                padding: '0 32px',
             }}
         >
             <Flex justify="space-between" align="center" style={{ height: '100%' }}>

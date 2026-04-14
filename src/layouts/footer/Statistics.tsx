@@ -14,6 +14,10 @@ const Statistics: React.FC = () => {
 
     const { token } = useToken();
 
+    const countColor: string = '#E0F7FF';
+    const countFontSize: number = 13;
+    const countDisplayDuration: number = 1.5;
+
     const fetchData = async (): Promise<void> => {
         const stats: StatData = await getStatistics();
         setData(stats);
@@ -33,27 +37,27 @@ const Statistics: React.FC = () => {
             <Flex align="center" gap={token.paddingXXS}>
                 <Users size={13} style={{ color: token.colorTextQuaternary, flexShrink: 0 }} />
                 <Flex gap={token.paddingXS}>
-                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>收录博客</Text>
-                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>
-                        <CountUp end={data?.totalBlogs} duration={1} separator="," />
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: countFontSize }}>收录博客</Text>
+                    <Text style={{ color: countColor, fontSize: countFontSize }}>
+                        <CountUp end={data?.totalBlogs} duration={countDisplayDuration} separator="," />
                     </Text>
                 </Flex>
             </Flex>
             <Flex align="center" gap={token.paddingXXS}>
                 <FileText size={13} style={{ color: token.colorTextQuaternary, flexShrink: 0 }} />
                 <Flex gap={token.paddingXS}>
-                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>收录文章</Text>
-                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>
-                        <CountUp end={data?.totalPosts} duration={1} separator="," />
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: countFontSize }}>收录文章</Text>
+                    <Text style={{ color: countColor, fontSize: countFontSize }}>
+                        <CountUp end={data?.totalPosts} duration={countDisplayDuration} separator="," />
                     </Text>
                 </Flex>
             </Flex>
             <Flex align="center" gap={token.paddingXXS}>
                 <Eye size={13} style={{ color: token.colorTextQuaternary, flexShrink: 0 }} />
                 <Flex gap={token.paddingXS}>
-                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>浏览文章</Text>
-                    <Text style={{ color: token.colorTextQuaternary, fontSize: token.fontSize }}>
-                        <CountUp end={data?.totalAccesses} duration={1} separator="," />
+                    <Text style={{ color: token.colorTextQuaternary, fontSize: countFontSize }}>浏览文章</Text>
+                    <Text style={{ color: countColor, fontSize: countFontSize }}>
+                        <CountUp end={data?.totalAccesses} duration={countDisplayDuration} separator="," />
                     </Text>
                 </Flex>
             </Flex>

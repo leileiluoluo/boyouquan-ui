@@ -43,16 +43,7 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                     </div>
                 )}
 
-                <PostCard
-                    blogDomainName={postInfo.blogDomainName}
-                    blogName={postInfo.blogName}
-                    blogStatusOk={postInfo.blogStatusOk}
-                    blogAdminMediumImageURL={postInfo.blogAdminMediumImageURL}
-                    link={postInfo.link}
-                    title={postInfo.title}
-                    description={postInfo.description}
-                    publishedAt={postInfo.publishedAt}
-                    linkAccessCount={postInfo.linkAccessCount} />
+                <PostCard showPinned={false} post={postInfo} />
             </Flex>
         </Card>
     );

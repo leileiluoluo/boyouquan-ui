@@ -42,7 +42,7 @@ export default function SearchBox({ placeholder, gotoPage, sortType }: SearchBox
     };
 
     return (
-        <Flex align="center" justify="start" gap={8} style={{ width: '100%' }}>
+        <Flex align="center" justify="start" gap={8} style={{ width: '100%', background: 'transparent' }}>
             <Input
                 placeholder={placeholder}
                 value={searchTerm}

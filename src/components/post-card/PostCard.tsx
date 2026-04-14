@@ -54,18 +54,25 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                 >
                     <Flex vertical align="center" gap={4}>
                         <Link href={blogURL}>
-                            <Avatar shape="square" size={40} icon={<UserOutlined />} src={post.blogAdminLargeImageURL} alt={post.blogName} />
+                            <Avatar
+                                shape="square"
+                                size={40}
+                                icon={<UserOutlined />}
+                                src={post.blogAdminLargeImageURL}
+                                alt={post.blogName}
+                                style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
+                            />
                         </Link>
-                        <Link href={blogURL}>
-                            <Text
-                                ellipsis
-                                style={{
-                                    display: 'block',
-                                    maxWidth: LEFT_BAR_WIDTH - 8,
-                                    textAlign: 'center'
-                                }}>
-                                {post.blogName}
-                            </Text>
+                        <Link
+                            ellipsis
+                            style={{
+                                display: 'block',
+                                maxWidth: LEFT_BAR_WIDTH - 8,
+                                textAlign: 'center',
+                                fontWeight: token.fontWeightStrong,
+                            }}
+                            href={blogURL}>
+                            {post.blogName}
                         </Link>
                     </Flex>
                     <Flex vertical gap={4} align="center">
@@ -97,7 +104,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
             >
                 <div
                     style={{
-                        padding: '20px 24px',
+                        padding: '16px 20px',
                         border: `1px solid ${token.colorBorder}`,
                         borderRadius: 12,
                         backgroundColor: token.colorBgContainer,
@@ -106,8 +113,8 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                         overflow: 'hidden'
                     }}
                 >
-                    <Flex vertical gap={8} style={{ width: '100%' }}>
-                        <Link href={linkURL}>
+                    <Flex vertical gap={4} style={{ width: '100%' }}>
+                        <Link href={linkURL} style={{ marginBottom: 2 }}>
                             <Title
                                 level={5}
                                 style={{
@@ -124,7 +131,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                         </Link>
 
                         <Paragraph
-                            ellipsis={{ rows: 3 }}
+                            ellipsis={{ rows: 2 }}
                             style={{
                                 lineHeight: 1.7,
                                 color: token.colorTextTertiary,
@@ -136,7 +143,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                             {post.description}
                         </Paragraph>
 
-                        <Divider style={{ margin: '8px 0' }} />
+                        <Divider dashed style={{ margin: '2px 0' }} />
 
                         {/* 底部操作栏：核心修复，支持移动端换行 */}
                         <Flex

@@ -114,7 +114,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                     }}
                 >
                     <Flex vertical gap={4} style={{ width: '100%' }}>
-                        <Link href={linkURL} style={{marginBottom: 2}}>
+                        <Link href={linkURL} style={{ marginBottom: 2 }}>
                             <Title
                                 level={5}
                                 style={{

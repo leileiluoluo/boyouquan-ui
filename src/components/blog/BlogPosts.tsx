@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Typography, Tooltip, Spin, Timeline, Space, Divider } from 'antd';
+import { Card, Flex, Typography, Tooltip, Spin, Divider, Tag, Space } from 'antd';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
-import { Rss } from 'lucide-react';
+import { Rss, BookText } from 'lucide-react';
 
-const { Text, Link } = Typography;
+const { Title, Text, Link } = Typography;
 
 export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const [page, setPage] = useState(1);
@@ -16,6 +16,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const scrollRef = useRef(null);
     const isFetchingRef = useRef(false);
 
+    // 按年份分组 + 排序
     const groupedByYear = (posts) => {
         const grouped = posts.reduce((acc, item) => {
             const [datePart] = item.publishedAt.split(' ');
@@ -34,12 +35,11 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
             return acc;
         }, {});
 
-        Object.values(grouped).forEach(yearData => {
-            yearData.posts.sort((a, b) => b._timestamp - a._timestamp);
-        });
+        Object.values(grouped).forEach(y => y.posts.sort((a, b) => b._timestamp - a._timestamp));
         return Object.values(grouped).sort((a, b) => b.year - a.year);
     };
 
+    // 加载数据
     const fetchData = async (domain, page, size) => {
         if (isFetchingRef.current || !hasMore) return;
         isFetchingRef.current = true;
@@ -75,6 +75,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
         setLoading(false);
     };
 
+    // 域名变化重置
     useEffect(() => {
         setGroupedPosts([]);
         setPage(1);
@@ -85,12 +86,13 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
         if (domain) fetchData(domain, page, size);
     }, [domain, page, size]);
 
+    // 滚动加载
     useEffect(() => {
         const el = scrollRef.current;
         if (!el) return;
         const onScroll = () => {
             const { scrollTop, scrollHeight, clientHeight } = el;
-            if (scrollHeight - scrollTop - clientHeight < 50 && !isFetchingRef.current && hasMore) {
+            if (scrollHeight - scrollTop - clientHeight < 80 && !isFetchingRef.current && hasMore) {
                 setPage(p => p + 1);
             }
         };
@@ -99,82 +101,106 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     }, [hasMore]);
 
     return (
-        <Card bodyStyle={{ padding: '16px' }}>
-            <Flex vertical gap={12}>
-                {/* 头部 */}
+        <Card hoverable>
+            <Flex vertical gap={16}>
+                {/* 标题区：大气、简洁、高级 */}
                 <Flex justify="space-between" align="center">
-                    <Text type="secondary" style={{ fontSize: 14 }}>收录文章</Text>
-                    <Tooltip title="文章 RSS 地址">
-                        <Link href={rssAddress} target="_blank">
-                            <Rss size={16} />
+                    <Flex align="center" gap={8}>
+                        <Title level={5} style={{ margin: 0 }}>收录文章</Title>
+                    </Flex>
+
+                    <Tooltip title="订阅 RSS">
+                        <Link href={rssAddress} target="_blank" style={{ fontSize: 16 }}>
+                            <Rss size={18} color="#faad14" />
                         </Link>
                     </Tooltip>
                 </Flex>
 
-                {/* 时间轴区域 */}
+                {/* 滚动列表区域 */}
                 <div
                     ref={scrollRef}
                     style={{
-                        maxHeight: 480,
+                        maxHeight: 580,
                         overflowY: 'auto',
-                        overflowX: 'hidden',
-                        paddingRight: 8
+                        paddingRight: 4,
+                        scrollbarWidth: 'thin',
                     }}
                 >
-                    <Timeline
-                        style={{ paddingLeft: 12 }}
-                        items={groupedPosts.flatMap(group => [
-                            {
-                                dot: (
-                                    <div style={{
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        whiteSpace: 'nowrap',
-                                    }}>
-                                        <Text strong style={{ color: '#1677ff', fontSize: 14 }}>
-                                            {group.year}
-                                        </Text>
-                                    </div>
-                                ),
-                                children: null,
-                                key: `y-${group.year}`
-                            },
-                            ...group.posts.map((post, i) => ({
-                                color: 'gray',
-                                // 关键：缩小上下间距
-                                style: { padding: '0 0', margin: 0 },
-                                children: (
-                                    <Flex gap={8} align="center" style={{ padding: '1px 0' }}>
-                                        <Text type="secondary" style={{ minWidth: 42, fontSize: 13 }}>
-                                            {post.publishedAt}
-                                        </Text>
-                                        <Text ellipsis style={{ fontSize: 14, flex: 1 }}>
-                                            {blogStatusOk ? (
-                                                <Link href={getGoAddress(post.link)} target="_blank">{post.title}</Link>
-                                            ) : (
-                                                <Link href={getAbstractAddress(post.link)}>{post.title}</Link>
-                                            )}
-                                        </Text>
-                                    </Flex>
-                                ),
-                                key: `p-${group.year}-${i}`
-                            }))
-                        ])}
-                    />
+                    <Flex vertical gap={20}>
+                        {groupedPosts.map((yearGroup) => (
+                            <Flex vertical gap={10} key={yearGroup.year}>
+                                <Space size={2}>  {/* 4px 间距，你可以改成 6 / 8 / 10 随意 */}
+                                    <Text
+                                        strong
+                                        style={{
+                                            fontSize: 15,
+                                            color: '#000',
+                                            borderLeft: '4px solid #1677ff',
+                                            paddingLeft: 10,
+                                            lineHeight: '16px'
+                                        }}
+                                    >
+                                        {yearGroup.year} 年
+                                    </Text>
+                                    <Text>（{yearGroup.posts.length} 篇）</Text>
+                                </Space>
 
-                    {/* 加载/底部提示 */}
-                    <Space direction="vertical" style={{ width: '100%', marginTop: 16 }} align="center">
+                                {/* 文章列表 */}
+                                <Flex vertical gap={2}>
+                                    {yearGroup.posts.map((post, idx) => (
+                                        <div
+                                            key={idx}
+                                            style={{
+                                                padding: '8px 12px',
+                                                borderRadius: 8,
+                                                transition: 'all 0.2s',
+                                            }}
+                                            onMouseEnter={(e) => e.target.style.background = '#f7f8fa'}
+                                            onMouseLeave={(e) => e.target.style.background = 'transparent'}
+                                        >
+                                            <Flex align="center" justify="space-between">
+                                                <Text ellipsis style={{ flex: 1, fontSize: 14 }}>
+                                                    {blogStatusOk ? (
+                                                        <Link
+                                                            href={getGoAddress(post.link)}
+                                                            target="_blank"
+                                                            style={{ color: '#252933' }}
+                                                        >
+                                                            {post.title}
+                                                        </Link>
+                                                    ) : (
+                                                        <Link
+                                                            href={getAbstractAddress(post.link)}
+                                                            style={{ color: '#252933' }}
+                                                        >
+                                                            {post.title}
+                                                        </Link>
+                                                    )}
+                                                </Text>
+
+                                                <Text type="secondary" style={{ fontSize: 12, minWidth: 40, textAlign: 'right' }}>
+                                                    {post.publishedAt}
+                                                </Text>
+                                            </Flex>
+                                        </div>
+                                    ))}
+                                </Flex>
+                            </Flex>
+                        ))}
+                    </Flex>
+
+                    {/* 底部加载状态 */}
+                    <div style={{ textAlign: 'center', padding: '16px 0' }}>
                         {loading ? (
                             <Spin size="small" />
                         ) : hasMore ? (
-                            <Text type="secondary" style={{ fontSize: 12 }}>加载更多中...</Text>
+                            <Text type="secondary" style={{ fontSize: 12 }}>向下滚动加载更多</Text>
                         ) : (
                             <Divider plain style={{ margin: 0 }}>
-                                <Text type="secondary" style={{ fontSize: 12 }}>已加载全部文章</Text>
+                                <Text type="secondary" style={{ fontSize: 12 }}>— 已显示全部文章 —</Text>
                             </Divider>
                         )}
-                    </Space>
+                    </div>
                 </div>
             </Flex>
         </Card>

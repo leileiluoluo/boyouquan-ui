@@ -4,7 +4,7 @@ import { Chart } from 'frappe-charts';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { Card, Flex, Tabs, Typography } from 'antd';
 
-const { Text } = Typography;
+const { Title, Text } = Typography;
 
 export default function BlogCharts({ domain }) {
     const [activeTab, setActiveTab] = useState('access-charts');
@@ -60,9 +60,9 @@ export default function BlogCharts({ domain }) {
     ];
 
     return (
-        <Card style={{ padding: 16, width: '100%' }}>
+        <Card hoverable>
             <Flex vertical gap={4}>
-                <Text type="secondary" style={{ fontSize: 14 }}>数据统计</Text>
+                <Title level={5}>数据统计</Title>
                 <Tabs
                     activeKey={activeTab}
                     onChange={handleTabChange}

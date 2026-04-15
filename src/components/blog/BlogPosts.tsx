@@ -122,15 +122,15 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                     }}
                 >
                     <Timeline
+                        style={{ paddingLeft: 12 }}
                         items={groupedPosts.flatMap(group => [
-                            // 年份节点（关键：横向显示、不旋转、正常排版）
                             {
                                 dot: (
                                     <div style={{
                                         display: 'inline-flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        whiteSpace: 'nowrap'
+                                        whiteSpace: 'nowrap',
                                     }}>
                                         <Text strong style={{ color: '#1677ff', fontSize: 14 }}>
                                             {group.year}
@@ -140,11 +140,12 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                                 children: null,
                                 key: `y-${group.year}`
                             },
-                            // 文章列表
                             ...group.posts.map((post, i) => ({
                                 color: 'gray',
+                                // 关键：缩小上下间距
+                                style: { padding: '0 0', margin: 0 },
                                 children: (
-                                    <Flex gap={8} align="center">
+                                    <Flex gap={8} align="center" style={{ padding: '1px 0' }}>
                                         <Text type="secondary" style={{ minWidth: 42, fontSize: 13 }}>
                                             {post.publishedAt}
                                         </Text>

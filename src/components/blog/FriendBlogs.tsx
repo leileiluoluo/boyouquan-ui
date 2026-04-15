@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import { Card, Flex, Typography, Tag, Tooltip, Space } from 'antd';
 
-const { Text, Link } = Typography;
+const { Title, Text, Link } = Typography;
 
 export default function FriendBlogs({ domain }) {
     const [linksFromMe, setLinksFromMe] = useState([]);
@@ -43,10 +43,10 @@ export default function FriendBlogs({ domain }) {
     }
 
     return (
-        <Card style={{ padding: 16, width: '100%' }}>
+        <Card hoverable>
             <Flex vertical gap={8}>
-                <Tooltip title="连接系数采集自博客的友链数据，每个月初更新一次">
-                    <Text type="secondary" style={{ fontSize: 14 }}>连接系数</Text>
+                <Tooltip title="连接系数采集自博客的友链数据，每个月初更新一次" placement="top">
+                    <Title level={5}>连接系数</Title>
                 </Tooltip>
                 <Flex vertical gap={8}>
                     <div style={{ overflowX: 'auto' }}>

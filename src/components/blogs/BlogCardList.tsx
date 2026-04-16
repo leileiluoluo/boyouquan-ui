@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Flex, Row, Col, Card, Skeleton, Typography, Empty } from 'antd';
+import { Flex, Row, Col, Card, Skeleton, Typography, Empty, Spin } from 'antd';
 import Pagination from '../pagination/Pagination';
 import RequestUtil from '../../utils/APIRequestUtil';
 import BlogCard from './BlogCard';
@@ -57,90 +57,7 @@ export default function BlogCardList() {
 
     if (!dataReady) {
         return (
-            <div className='blogs-container'>
-                <Flex vertical gap={12}>
-                    <Row gutter={[12, 12]}>
-                        {Array.from({ length: 10 }).map((_, index) => (
-                            <Col xs={24} md={12} key={index}>
-                                <Card style={{ padding: 16, width: '100%' }}>
-                                    <Flex vertical gap={4}>
-                                        <div style={{ marginTop: 8 }}>
-                                            <Flex gap={8} align="center">
-                                                <Skeleton.Avatar active size="large" />
-                                                <Flex vertical gap={8}>
-                                                    <Skeleton.Input active size="small" style={{ width: 88 }} />
-                                                    <Flex gap={4} align="center">
-                                                        <Skeleton.Input active size="small" style={{ width: 72 }} />
-                                                        <Skeleton.Button active size="small" shape="circle" />
-                                                    </Flex>
-                                                </Flex>
-                                            </Flex>
-                                        </div>
-
-                                        <div style={{ padding: 4, marginTop: 8, backgroundColor: '#f5f5f5', borderRadius: 8 }}>
-                                            <Skeleton.Input active size="small" style={{ width: '100%' }} />
-                                        </div>
-
-                                        <div style={{ marginTop: 8 }}>
-                                            <Flex gap={8} justify="space-between">
-                                                <Flex vertical gap={4}>
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                </Flex>
-                                                <Flex vertical gap={4}>
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                </Flex>
-                                                <Flex vertical gap={4}>
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                </Flex>
-                                                <Flex vertical gap={4}>
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                    <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                </Flex>
-                                            </Flex>
-                                        </div>
-
-                                        <div style={{ marginTop: 8 }}>
-                                            <Flex vertical gap={4}>
-                                                <Skeleton.Input active size="small" style={{ width: 62 }} />
-                                                <Flex vertical gap={8}>
-                                                    {[1, 2, 3].map((_, i) => (
-                                                        <Flex gap={8} key={i}>
-                                                            <Skeleton.Input active size="small" style={{ width: '20%' }} />
-                                                            <Skeleton.Input active size="small" style={{ width: '80%' }} />
-                                                        </Flex>
-                                                    ))}
-                                                </Flex>
-                                            </Flex>
-                                        </div>
-
-                                        <div style={{ marginTop: 8, marginBottom: 4 }}>
-                                            <Flex justify="space-between">
-                                                <Flex align="center" gap={4}>
-                                                    <Skeleton.Avatar active size="small" />
-                                                    <Skeleton.Input active size="small" style={{ width: 40 }} />
-                                                </Flex>
-                                                <Flex align="center" gap={4}>
-                                                    <Skeleton.Avatar active size="small" />
-                                                    <Skeleton.Input active size="small" style={{ width: 40 }} />
-                                                </Flex>
-                                            </Flex>
-                                        </div>
-                                    </Flex>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-
-                    <Pagination
-                        pageNo={pageNo}
-                        pageSize={pageSize}
-                        total={total}
-                        setCurrectPage={setCurrectPage} />
-                </Flex>
-            </div>
+            <Spin />
         );
     }
 

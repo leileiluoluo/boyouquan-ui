@@ -1,4 +1,4 @@
-import { Flex } from 'antd';
+import { Card, Flex } from 'antd';
 
 import { SearchBox, SwitchSortType, Meta, HotSearch } from '@components/common';
 import { BlogsMainContentHeader, BlogCardList } from '@components/blogs';
@@ -22,10 +22,12 @@ export default function BlogsPage() {
             <Meta meta={meta} />
             <Flex vertical gap={16}>
                 <BlogsMainContentHeader />
-                <SearchBox placeholder="搜索博客 ↵" gotoPage="/blogs" />
-                <HotSearch label="大家在找啥" title="2025 年度报告" link="/annual-reports/2025" />
-                <SwitchSortType types={SWITCH_TYPES} />
-                <BlogCardList />
+                <Flex vertical gap={16}>
+                        <SearchBox placeholder="搜索博客 ↵" gotoPage="/blogs" />
+                        {/* <HotSearch label="大家在找啥" title="2025 年度报告" link="/annual-reports/2025" /> */}
+                        <SwitchSortType types={SWITCH_TYPES} />
+                        <BlogCardList />
+                    </Flex>
             </Flex>
         </>
     );

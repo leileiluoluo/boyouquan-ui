@@ -1,109 +1,220 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Card, Typography, Space, Skeleton, Avatar } from 'antd';
 import {
-  Layout, Card, Avatar, Typography, Tag, Divider, Button,
-  Space, Row, Col, Statistic, Image
-} from 'antd';
-import {
-  LikeOutlined, StarOutlined, ShareAltOutlined,
-  EyeOutlined, CalendarOutlined, UserOutlined
+  GlobalOutlined,
+  FileTextOutlined,
+  EyeOutlined,
+  CalendarOutlined,  // 修复：正确图标
 } from '@ant-design/icons';
-import 'antd/dist/reset.css';
 
-const { Header, Content } = Layout;
-const { Title, Paragraph } = Typography;
+const { Text, Paragraph } = Typography;
 
-const TestPage = () => {
-  const blogData = {
-    author: {
-      name: '前端架构师',
-      avatar: 'https://picsum.photos/seed/avatar/120/120',
-      desc: '专注前端开发、架构设计与技术分享',
-      fans: 1258,
-      articles: 86,
-      likes: 5268
-    },
-    article: {
-      title: '深入理解 React 状态管理与性能优化最佳实践',
-      cover: 'https://picsum.photos/seed/blogcover/1200/400',
-      date: '2025-01-15',
-      views: 12580,
-      tags: ['React', '前端架构', '性能优化', '状态管理'],
-      content: `
-React 作为目前最流行的前端框架之一，状态管理是其核心灵魂。在大型项目中，合理的状态管理方案不仅能提升开发效率，更能直接决定应用的性能表现。
+interface BlogItem {
+  name: string;
+  domain: string;
+  description: string;
+  postCount: number;
+  accessCount: number;
+  latestPublishedAt: string;
+  collectedAt: string;
+  latestPosts: { date: string; title: string }[];
+  statusOk: boolean;
+  avatar: string;
+}
 
-本文将从基础的 useState/useReducer 出发，深入剖析 Redux、Zustand、Jotai 等主流状态库的适用场景，并结合实际项目案例，讲解如何避免不必要的重渲染、实现组件精准更新，让你的 React 应用达到极致性能。
+// 样例数据
+const blogList: BlogItem[] = [
+  {
+    name: '拾光杂货铺',
+    domain: 'blog.example.com',
+    description: '以文字记录生活，以代码丈量世界，热爱开源、热爱生活、热爱自由。',
+    postCount: 128,
+    accessCount: 9652,
+    latestPublishedAt: '2026-04-12',
+    collectedAt: '2025-06-10',
+    latestPosts: [],
+    statusOk: true,
+    avatar: 'https://picsum.photos/seed/blog1/200/200'
+  },
+  {
+    name: '星途技术笔记',
+    domain: 'tech.starpath.cn',
+    description: '专注前端架构、云原生、效率工具分享，做有深度的技术内容。',
+    postCount: 206,
+    accessCount: 18690,
+    latestPublishedAt: '2026-04-14',
+    collectedAt: '2025-05-20',
+    latestPosts: [],
+    statusOk: true,
+    avatar: 'https://picsum.photos/seed/blog2/200/200'
+  },
+  {
+    name: '远山生活集',
+    domain: 'life.yuanshan.me',
+    description: '生活随笔、旅行游记、读书感悟，慢下来，感受生活本身。',
+    postCount: 95,
+    accessCount: 6240,
+    latestPublishedAt: '2026-04-10',
+    collectedAt: '2025-07-02',
+    latestPosts: [],
+    statusOk: true,
+    avatar: 'https://picsum.photos/seed/blog3/200/200'
+  },
+  {
+    name: '云起开发日志',
+    domain: 'dev.cloudrise.top',
+    description: '全栈开发日常、踩坑记录、技术复盘，持续学习，持续进步。',
+    postCount: 167,
+    accessCount: 12360,
+    latestPublishedAt: '2026-04-15',
+    collectedAt: '2025-04-15',
+    latestPosts: [],
+    statusOk: true,
+    avatar: 'https://picsum.photos/seed/blog4/200/200'
+  }
+];
 
-## 一、React 状态设计原则
-1. 单一数据源：优先提升状态层级，避免状态冗余
-2. 状态扁平化：减少嵌套数据结构，提升读写性能
-3. 不可变数据：遵循 React 数据不可变原则，保证状态可预测
-
-## 二、性能优化核心手段
-- 使用 memo、useMemo、useCallback 缓存组件与计算值
-- 状态分片：将大状态拆分为独立小状态，减少渲染范围
-- 虚拟列表：处理长列表渲染，降低 DOM 节点压力
-- 懒加载与代码分割：按需加载资源，提升首屏速度
-
-真正的高性能应用，不是靠优化技巧堆砌，而是源于合理的架构设计与状态规划。掌握这些核心思想，无论面对多复杂的项目，都能轻松应对。
-      `
-    }
-  };
-
+const BlogCard: React.FC<{ item: BlogItem }> = ({ item }) => {
   return (
-    <Content style={{ width: '100%', margin: '30px auto', padding: '0 16px' }}>
-        <Row gutter={32}>
-          {/* 左侧个人信息 */}
-          <Col xs={24} md={6}>
-            <Card 
-              bordered={false} 
-              style={{ 
-                borderRadius: 12, 
-                boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                position: 'sticky',
-                top: 30
-              }}
-            >
-              <div style={{ textAlign: 'center', marginBottom: 16 }}>
-                <Avatar 
-                  size={100} 
-                  src={blogData.author.avatar}
-                  style={{ border: '4px solid #e6f7ff' }}
-                />
-                <Title level={4} style={{ marginTop: 12, marginBottom: 4 }}>
-                  {blogData.author.name}
-                </Title>
-                <Paragraph type="secondary" style={{ fontSize: 13 }}>
-                  {blogData.author.desc}
-                </Paragraph>
-              </div>
+    <Card
+      hoverable
+      bordered={false}
+      style={{
+        borderRadius: 20,
+        background: '#ffffff',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        overflow: 'hidden',
+        height: '100%'
+      }}
+      bodyStyle={{ padding: 32 }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-6px)';
+        e.currentTarget.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.1)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.06)';
+      }}
+    >
+      {/* 头部：头像 + 名称 */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 24 }}>
+        <Avatar
+          size={70}
+          src={item.avatar}
+          style={{
+            borderRadius: 16,
+            boxShadow: '0 6px 16px rgba(0, 0, 0, 0.08)'
+          }}
+        />
+        <div style={{ flex: 1 }}>
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 600,
+              color: '#1e293b',
+              marginBottom: 6
+            }}
+          >
+            {item.name}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#64748b', fontSize: 14 }}>
+            <GlobalOutlined />
+            <span>{item.domain}</span>
+          </div>
+        </div>
+      </div>
 
-              <Divider style={{ margin: '12px 0' }} />
+      {/* 描述 */}
+      <Paragraph
+        style={{
+          fontSize: 15,
+          color: '#475569',
+          lineHeight: 1.8,
+          marginBottom: 28
+        }}
+      >
+        {item.description}
+      </Paragraph>
 
-              <Row gutter={16} style={{ textAlign: 'center', marginBottom: 16 }}>
-                <Col span={8}>
-                  <Statistic title="文章" value={blogData.author.articles} />
-                </Col>
-                <Col span={8}>
-                  <Statistic title="粉丝" value={blogData.author.fans} />
-                </Col>
-                <Col span={8}>
-                  <Statistic title="获赞" value={blogData.author.likes} />
-                </Col>
-              </Row>
-
-              <Button type="primary" block size="large" style={{ borderRadius: 6 }}>
-                关注作者
-              </Button>
-            </Card>
-          </Col>
-
-          {/* 右侧文章 */}
-          <Col xs={24} md={18}>
-            
-          </Col>
-        </Row>
-      </Content>
+      {/* 统计信息 */}
+      <Row gutter={[16, 16]} align="middle">
+        <Col xs={8}>
+          <Space direction="vertical" size={4} align="center" style={{ width: '100%' }}>
+            <Text style={{ fontSize: 12, color: '#94a3b8' }}>文章总数</Text>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <FileTextOutlined style={{ color: '#3b82f6' }} />
+              <Text style={{ fontSize: 18, fontWeight: 600, color: '#0f172a' }}>
+                {item.postCount}
+              </Text>
+            </div>
+          </Space>
+        </Col>
+        <Col xs={8}>
+          <Space direction="vertical" size={4} align="center" style={{ width: '100%' }}>
+            <Text style={{ fontSize: 12, color: '#94a3b8' }}>累计访问</Text>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <EyeOutlined style={{ color: '#10b981' }} />
+              <Text style={{ fontSize: 18, fontWeight: 600, color: '#0f172a' }}>
+                {item.accessCount.toLocaleString()}
+              </Text>
+            </div>
+          </Space>
+        </Col>
+        <Col xs={8}>
+          <Space direction="vertical" size={4} align="center" style={{ width: '100%' }}>
+            <Text style={{ fontSize: 12, color: '#94a3b8' }}>最近更新</Text>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <CalendarOutlined style={{ color: '#f59e0b' }} />
+              <Text style={{ fontSize: 15, fontWeight: 500, color: '#0f172a' }}>
+                {item.latestPublishedAt}
+              </Text>
+            </div>
+          </Space>
+        </Col>
+      </Row>
+    </Card>
   );
 };
 
-export default TestPage;
+const BlogListPage: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ background: '#f8fafc', minHeight: '100vh', padding: 40 }}>
+        <Row gutter={[32, 32]}>
+          {[1, 2, 3, 4].map((key) => (
+            <Col xs={24} md={12} key={key}>
+              <Skeleton
+                active
+                avatar={{ size: 70, shape: 'square' }}
+                paragraph={{ rows: 4 }}
+                style={{ borderRadius: 20, padding: 32 }}
+              />
+            </Col>
+          ))}
+        </Row>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ background: '#f8fafc', minHeight: '100vh', padding: 40 }}>
+      <Row gutter={[32, 32]}>
+        {blogList.map((item, index) => (
+          <Col xs={24} md={12} key={index}>
+            <BlogCard item={item} />
+          </Col>
+        ))}
+      </Row>
+    </div>
+  );
+};
+
+export default BlogListPage;

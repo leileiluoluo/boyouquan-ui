@@ -8,9 +8,10 @@ import { formatDateStr } from '../../utils/DateUtil';
 import {
     Layout, Card, Avatar, Typography, Divider,
     Flex, Spin, Row, Col, TimelineProps,
-    Timeline
+    Timeline,
+    Space
 } from 'antd';
-import { LoadingOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import { LoadingOutlined, EnvironmentOutlined, LinkOutlined } from '@ant-design/icons';
 import { getBackgroundColorFromAvatar } from '@utils/CssUtil';
 
 const { Content } = Layout;
@@ -71,7 +72,7 @@ function generateTimelineProps(startYear: number): TimelineProps {
         const isNow = year === currentYear;
         timelineItems.push({
             content: `${year}`,
-            icon: isNow ? <LoadingOutlined style={{ fontSize: '14px' }} /> : undefined,
+            icon: isNow ? <LoadingOutlined spin style={{ fontSize: '16px' }} /> : undefined,
             color: year > currentYear ? '#999' : undefined,
         });
     }
@@ -131,20 +132,25 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
     return (
         <>
             <style>{`
+                /* 强制控制时间轴字体大小 - 100% 生效 */
+                .year-timeline.ant-timeline-horizontal .ant-timeline-item-content {
+                    font-size: 12px !important;
+                    color: inherit;
+                }
+
+                /* 手机端只显示 3 个点 */
                 @media (max-width: 768px) {
                     .year-timeline .ant-timeline-item {
                         display: none !important;
                     }
                     .year-timeline .ant-timeline-item:first-child,
-                    .year-timeline .ant-timeline-item:last-child {
-                        display: flex !important;
-                    }
-                    /* 标记当前年份节点，手机端强制显示 */
-                    .year-timeline .ant-timeline-item:has(.anticon-clock-circle) {
+                    .year-timeline .ant-timeline-item:last-child,
+                    .year-timeline .ant-timeline-item:has(.anticon-loading) {
                         display: flex !important;
                     }
                 }
             `}</style>
+
             <Meta meta={getMeta(blogDetail.name, blogDetail.description)} />
             <Content id="blog-user-info">
                 <Row gutter={[12, 16]}>
@@ -158,22 +164,34 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                             }}
                         >
                             <div style={{ textAlign: 'center', marginBottom: 16 }}>
-                                <Link href={blogDetail.address}>
+                                <Link target="_blank" href={blogDetail.address}>
                                     <Avatar
                                         size={60}
                                         src={blogDetail.blogAdminLargeImageURL}
                                         style={{ border: '4px solid #e6f7ff' }}
                                     />
                                 </Link>
-                                <Link href={blogDetail.address}>
-                                    <Title level={5} style={{ marginTop: 12, marginBottom: 10 }}>
+                                
+                                <Link target="_blank" href={blogDetail.address}>
+                                    <Title level={4} style={{ marginTop: 12, marginBottom: 2 }}>
                                         {blogDetail.name}
                                     </Title>
                                 </Link>
+
+                                <Space style={{marginBottom: 12}}>
+                                    <LinkOutlined style={{ fontSize: 12 }} />
+                                    <Link target="_blank" href={blogDetail.address}>
+                                        <Title style={{ fontSize: 12 }}>
+                                            {blogDetail.domainName}
+                                        </Title>
+                                    </Link>
+                                </Space>
+
                                 <Paragraph type="secondary" style={{ fontSize: 13 }}>
                                     {blogDetail.description}
                                 </Paragraph>
                             </div>
+
                             <Divider style={{ margin: '12px 0' }} />
                             <Flex vertical>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
@@ -226,7 +244,7 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                         fontSize: 12,
                                         fontWeight: 'bold'
                                     }}>
-                                        履约 {years} 年
+                                        已履约 {years} 年
                                     </div>
                                 </Flex>
 

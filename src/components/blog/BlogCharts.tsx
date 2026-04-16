@@ -62,7 +62,7 @@ export default function BlogCharts({ domain }) {
     return (
         <Card hoverable>
             <Flex vertical gap={4}>
-                <Title level={5}>数据统计</Title>
+                <Title level={5} style={{ marginTop: 0 }}>数据统计</Title>
                 <Tabs
                     activeKey={activeTab}
                     onChange={handleTabChange}

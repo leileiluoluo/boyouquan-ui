@@ -154,7 +154,7 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
             <Meta meta={getMeta(blogDetail.name, blogDetail.description)} />
             <Content id="blog-user-info">
                 <Row gutter={[12, 16]}>
-                    <Col xs={24} md={6} style={{ marginBottom: 2 }}>
+                    <Col xs={24} md={6} style={{ marginBottom: 2, alignSelf: 'flex-start' }}>
                         <Card
                             bordered={false}
                             style={{

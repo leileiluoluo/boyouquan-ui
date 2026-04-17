@@ -138,7 +138,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                                 level={5}
                                 style={{
                                     margin: 0,
-                                    color: token.colorPrimary,
                                     wordBreak: 'break-word',
                                     overflow: 'hidden',
                                     textOverflow: 'ellipsis',

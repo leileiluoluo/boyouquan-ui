@@ -6,6 +6,7 @@ import { redirectTo } from '../../utils/CommonUtil';
 import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 import { formatDateStr } from '../../utils/DateUtil';
 import {
+    theme,
     Layout, Card, Avatar, Typography, Divider,
     Flex, Spin, Row, Col, TimelineProps,
     Timeline,
@@ -16,6 +17,8 @@ import { getBackgroundColorFromAvatar } from '@utils/CssUtil';
 
 const { Content } = Layout;
 const { Text, Title, Paragraph, Link } = Typography;
+
+const { useToken } = theme;
 
 const BlogPerformance = lazy(() => import('./BlogPerformance'));
 const BlogCharts = lazy(() => import('./BlogCharts'));
@@ -88,6 +91,8 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
     const [loaded, setLoaded] = useState<boolean>(false);
     const [blogDetail, setBlogDetail] = useState<BlogDetailData>({});
     const [headerBg, setHeaderBg] = useState<string>('linear-gradient(to bottom right, var(--gray-4), rgb(230,229,229))');
+
+    const { token } = useToken();
 
     const boxShadowValue = '0 4px 12px rgba(0,0,0,0.08)';
 
@@ -171,19 +176,24 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                         style={{ border: '4px solid #e6f7ff' }}
                                     />
                                 </Link>
-                                
-                                <Link target="_blank" href={blogDetail.address}>
+
+                                <Link
+                                    target="_blank"
+                                    href={blogDetail.address}
+                                >
                                     <Title level={4} style={{ marginTop: 12, marginBottom: 2 }}>
                                         {blogDetail.name}
                                     </Title>
                                 </Link>
 
-                                <Space style={{marginBottom: 12}}>
+                                <Space style={{ marginBottom: 12 }}>
                                     <LinkOutlined style={{ fontSize: 12 }} />
-                                    <Link target="_blank" href={blogDetail.address}>
-                                        <Title style={{ fontSize: 12 }}>
-                                            {blogDetail.domainName}
-                                        </Title>
+                                    <Link
+                                        target="_blank"
+                                        href={blogDetail.address}
+                                        style={{ fontSize: 12 }}
+                                    >
+                                        {blogDetail.domainName}
                                     </Link>
                                 </Space>
 

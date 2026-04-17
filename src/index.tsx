@@ -20,6 +20,8 @@ ReactDOMClient.createRoot(rootElement).render(
                 token: {
                     colorBgLayout: '#092640',
                     colorTextQuaternary: 'rgba(255,255,255,0.65)',
+                    colorLink: '#000',
+                    colorLinkHover: '#333',
                 }
             }}>
             <App />

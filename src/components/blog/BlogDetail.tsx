@@ -186,7 +186,7 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     </Title>
                                 </Link>
 
-                                <Space style={{ marginBottom: 12 }}>
+                                <Space style={{ marginTop: 2, marginBottom: 12 }}>
                                     <LinkOutlined style={{ fontSize: 12 }} />
                                     <Link
                                         target="_blank"

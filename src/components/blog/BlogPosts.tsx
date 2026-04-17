@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Typography, Tooltip, Spin, Divider, Tag, Space } from 'antd';
+import { theme, Card, Flex, Typography, Tooltip, Spin, Divider, Tag, Space } from 'antd';
 import { getAbstractAddress, getGoAddress } from '../../utils/PageAddressUtil';
 import { Rss, BookText } from 'lucide-react';
 
 const { Title, Text, Link } = Typography;
+
+const { useToken } = theme;
 
 export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const [page, setPage] = useState(1);
@@ -15,6 +17,8 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
     const [loading, setLoading] = useState(false);
     const scrollRef = useRef(null);
     const isFetchingRef = useRef(false);
+
+    const { token } = useToken();
 
     // 按年份分组 + 排序
     const groupedByYear = (posts) => {
@@ -111,7 +115,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
 
                     <Tooltip title="订阅 RSS">
                         <Link href={rssAddress} target="_blank" style={{ fontSize: 16 }}>
-                            <Rss size={18} color="#faad14" />
+                            <Rss size={18} color={token.colorPrimary} />
                         </Link>
                     </Tooltip>
                 </Flex>

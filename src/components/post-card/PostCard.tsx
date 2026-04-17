@@ -77,14 +77,14 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                     </Flex>
                     <Flex vertical gap={4} align="center">
                         <Tooltip title="履约年数" styles={{ root: { fontSize: 12 } }}>
-                            <Space align="center">
-                                <StarOutlined style={{ color: '#faad14' }} />
+                            <Space size={4} align="center">
+                                <StarOutlined style={{ color: token.colorPrimary }} />
                                 <Text type="secondary" style={{ fontSize: 12 }}>履约 {post.blogJoinYears} 年</Text>
                             </Space>
                         </Tooltip>
                         <Tooltip title="总浏览数" styles={{ root: { fontSize: 12 } }}>
                             <Space size={4} align="center">
-                                <EyeOutlined />
+                                <EyeOutlined style={{ color: token.colorPrimary }} />
                                 <Text type="secondary" style={{ fontSize: 12 }}>{post.blogTotalAccessCount}</Text>
                             </Space>
                         </Tooltip>
@@ -127,7 +127,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                             {showPinned && post.pinned && (
                                 <PushpinOutlined
                                     style={{
-                                        color: '#faad14',
+                                        color: token.colorPrimary,
                                         fontSize: 16,
                                         flexShrink: 0 // 防止图标被挤压
                                     }}

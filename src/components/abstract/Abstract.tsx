@@ -13,6 +13,7 @@ import { getURLParameter, redirectTo } from '@utils/CommonUtil';
 import { NOT_FOUND_ADDRESS } from '@utils/PageAddressUtil';
 
 import { MetaFields, PostInfo } from '@types';
+import PostCard from '@components/post-card/PostCard';
 
 const { Text } = Typography;
 
@@ -100,42 +101,6 @@ export default function Abstract({ isSharingPage }: AbstractProps) {
     }
 
     return (
-        <>
-            {loaded ? (
-                <Fragment>
-                    <Meta meta={getMeta(isSharingPage, postInfo.title, postInfo.description)} />
-                    <Card
-                        style={{
-                            borderRadius: '12px',
-                            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-                            border: '1px solid #f0f0f0'
-                        }}
-                        bodyStyle={{ padding: '24px' }}
-                    >
-                        <Flex vertical gap={8} style={{ width: '100%' }}>
-                            {(!isSharingPage && !postInfo.blogStatusOk) ? (
-                                <Text
-                                    type="danger"
-                                    style={{ fontSize: 12 }}
-                                >
-                                    <WarningOutlined style={{ marginRight: 4 }} />
-                                    * 原始文章地址可能暂时无法访问，本页为文章的摘要信息
-                                </Text>
-                            ) : null}
-                            <AbstractTitle isSharingPage={isSharingPage} title={postInfo.title} link={postInfo.link} />
-                            <AbstractDescription description={postInfo.description} />
-                            <AbstractGo link={postInfo.link} />
-                            <AbstractFooter
-                                blogName={postInfo.blogName}
-                                blogDomainName={postInfo.blogDomainName}
-                                blogAdminMediumImageURL={postInfo.blogAdminMediumImageURL}
-                                publishedAt={postInfo.publishedAt}
-                                linkAccessCount={postInfo.linkAccessCount}
-                            />
-                        </Flex>
-                    </Card>
-                </Fragment>
-            ) : null}
-        </>
+        <PostCard showPinned={false} post={postInfo} descriptionRows={6} />
     );
 }

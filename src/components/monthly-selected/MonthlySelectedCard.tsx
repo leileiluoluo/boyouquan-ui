@@ -90,20 +90,18 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                         }}
                     >
                         <Flex gap={12}>
-                            <Link href={blogURL}>
-                                <Avatar
-                                    shape="circle"
-                                    size={20}
-                                    icon={<UserOutlined />}
-                                    src={postInfo.blogAdminMediumImageURL}
-                                    alt={postInfo.blogName}
-                                    style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
-                                />
-                            </Link>
+                            <Flex gap={6}>
+                                <Link href={blogURL}>
+                                    <Avatar
+                                        shape="circle"
+                                        size={20}
+                                        icon={<UserOutlined />}
+                                        src={postInfo.blogAdminMediumImageURL}
+                                        alt={postInfo.blogName}
+                                        style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
+                                    />
+                                </Link>
 
-                            <div style={{
-                                flexShrink: 0,  /* 优先显示，不压缩 */
-                            }}>
                                 <Link
                                     href={blogURL}
                                     ellipsis
@@ -115,7 +113,7 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                                 >
                                     {postInfo.blogName}
                                 </Link>
-                            </div>
+                            </Flex>
 
                             {/* 剩下的内容：显示不下自动 ... */}
                             <div style={{

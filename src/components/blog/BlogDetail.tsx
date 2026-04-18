@@ -3,7 +3,7 @@ import { Fragment, Suspense, useEffect, useState, lazy } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import Meta from '../common/Meta';
 import { redirectTo } from '../../utils/CommonUtil';
-import { NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
+import { getGoAddress, NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 import { formatDateStr } from '../../utils/DateUtil';
 import {
     theme,
@@ -180,44 +180,36 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                 // 让卡片自身不限制高度，跟随内容撑开
                                 // height: 'auto',
                             }}
-                            styles={{
-                                body: {
-                                    padding: '10px 20px',
-                                }
-                            }}
                         >
                             <div style={{ textAlign: 'center', marginBottom: 16 }}>
-                                <Flex justify="space-between" align="center">
-                                    {/* 状态点：纯 antd Badge 实现 */}
-                                    <Tooltip title={blogDetail.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
-                                        <Badge
-                                            color={blogDetail.statusOk ? token.colorSuccess : token.colorError}
-                                            dot
-                                            style={{ fontSize: '20px' }}
-                                        />
-                                    </Tooltip>
 
-                                    {/* 右上角文字：纯 antd Typography */}
-                                    <Tooltip title={blogDetail.submittedInfoTip} styles={{ root: { fontSize: 12 } }}>
-                                        <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                                            {blogDetail.submittedInfo}
-                                        </Text>
-                                    </Tooltip>
-                                </Flex>
-
-                                <Link target="_blank" href={blogDetail.address}>
-                                    <Avatar
-                                        size={60}
-                                        src={blogDetail.blogAdminLargeImageURL}
-                                        style={{ border: '4px solid #e6f7ff' }}
-                                    />
-                                </Link>
+                                <Tooltip title={blogDetail.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                                    <Badge
+                                        dot
+                                        color={blogDetail.statusOk ? '#52c41a' : 'red'}
+                                        offset={[0, 56]}
+                                        style={{
+                                            border: '2px solid #fff',
+                                            width: 12,
+                                            height: 12,
+                                            borderRadius: '50%',
+                                        }}
+                                    >
+                                        <Link href={getGoAddress(blogDetail.address)}>
+                                            <Avatar
+                                                size={60}
+                                                src={blogDetail.blogAdminLargeImageURL}
+                                                style={{ border: '4px solid #e6f7ff' }}
+                                            />
+                                        </Link>
+                                    </Badge>
+                                </Tooltip>
 
                                 <Link
                                     target="_blank"
-                                    href={blogDetail.address}
+                                    href={getGoAddress(blogDetail.address)}
                                 >
-                                    <Title level={5} style={{ marginTop: 12, marginBottom: 2 }}>
+                                    <Title level={4} style={{ marginTop: 12, marginBottom: 2 }}>
                                         {blogDetail.name}
                                     </Title>
                                 </Link>
@@ -226,7 +218,7 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     <LinkOutlined style={{ fontSize: 12 }} />
                                     <Link
                                         target="_blank"
-                                        href={blogDetail.address}
+                                        href={getGoAddress(blogDetail.address)}
                                         style={{ fontSize: 12 }}
                                     >
                                         {blogDetail.domainName}
@@ -240,6 +232,10 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
 
                             <Divider style={{ margin: '12px 0' }} />
                             <Flex vertical>
+                                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录方式</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{blogDetail.submittedInfo}</Text></Col>
+                                </Row>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录文章</Text></Col>
                                     <Col><Text style={{ fontSize: 13 }}>{blogDetail.postCount}</Text></Col>

@@ -49,42 +49,35 @@ export default function BlogCard({
                 boxShadow: boxShadowValue,
                 position: 'relative',
             }}
-            styles={{
-                body: {
-                    padding: '8px 16px',
-                }
-            }}
         >
-            <Flex justify="space-between" align="center">
-                {/* 状态点：纯 antd Badge 实现 */}
-                <Tooltip title={blog.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
-                    <Badge
-                        color={blog.statusOk ? token.colorSuccess : token.colorError}
-                        dot
-                        style={{ fontSize: '20px' }}
-                    />
-                </Tooltip>
-
-                {/* 右上角文字：纯 antd Typography */}
-                <Tooltip title={blog.submittedInfoTip} styles={{ root: { fontSize: 12 } }}>
-                    <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
-                        {blog.submittedInfo}
-                    </Text>
-                </Tooltip>
-            </Flex>
-
             <div style={{
                 textAlign: 'center',
                 backgroundColor: headerBg,
                 paddingTop: 8,
             }}>
-                <Link href={blogURL}>
-                    <Avatar
-                        size={60}
-                        src={blog.blogAdminLargeImageURL}
-                        style={{ border: '4px solid #e6f7ff' }}
-                    />
-                </Link>
+
+                {/* 正确写法：count + offset，必显示 */}
+                <Tooltip title={blog.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                    <Badge
+                        dot
+                        color={blog.statusOk ? '#52c41a' : 'red'}
+                        offset={[0, 56]}
+                        style={{
+                            border: '2px solid #fff',
+                            width: 12,
+                            height: 12,
+                            borderRadius: '50%',
+                        }}
+                    >
+                        <Link href={blogURL}>
+                            <Avatar
+                                size={60}
+                                src={blog.blogAdminLargeImageURL}
+                                style={{ border: '4px solid #e6f7ff' }}
+                            />
+                        </Link>
+                    </Badge>
+                </Tooltip>
 
                 <Link href={blogURL}>
                     <Title level={5} style={{ marginTop: 12, marginBottom: 2 }}>
@@ -94,7 +87,7 @@ export default function BlogCard({
 
                 <Space size={4} style={{ marginTop: 2, marginBottom: 12 }}>
                     <LinkOutlined style={{ fontSize: 12 }} />
-                    <Link target="_blank" href={blog.address} style={{ fontSize: 12 }}>
+                    <Link target="_blank" href={getGoAddress(blog.address)} style={{ fontSize: 12 }}>
                         {blog.domainName}
                     </Link>
                 </Space>

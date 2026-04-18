@@ -12,9 +12,10 @@ const { useToken } = theme;
 interface PostDataProps {
     showPinned: boolean;
     post: PostData;
+    descriptionRows: number;
 }
 
-const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
+const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }) => {
     const gravatarURL = getGravatarImageFullURL(post.blogAdminLargeImageURL || post.blogAdminMediumImageURL || '');
     const blogURL = getBlogAddress(post.blogDomainName);
     const linkURL = getGoAddress(post.link);
@@ -74,18 +75,19 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                         </Link>
                     </Flex>
                     <Flex vertical gap={4} align="center">
-                        <Tooltip title="履约年数" styles={{ root: { fontSize: 12 } }}>
+                        {post.blogJoinYears && <Tooltip title="履约年数" styles={{ root: { fontSize: 12 } }}>
                             <Space size={4} align="center">
                                 <StarOutlined style={{ color: token.colorPrimary }} />
                                 <Text type="secondary" style={{ fontSize: 12 }}>履约 {post.blogJoinYears} 年</Text>
                             </Space>
-                        </Tooltip>
-                        <Tooltip title="总浏览数" styles={{ root: { fontSize: 12 } }}>
+                        </Tooltip>}
+
+                        {post.blogTotalAccessCount && <Tooltip title="总浏览数" styles={{ root: { fontSize: 12 } }}>
                             <Space size={4} align="center">
                                 <EyeOutlined style={{ color: token.colorPrimary }} />
                                 <Text type="secondary" style={{ fontSize: 12 }}>{post.blogTotalAccessCount}</Text>
                             </Space>
-                        </Tooltip>
+                        </Tooltip>}
                     </Flex>
                 </Flex>
             </PCOnly>
@@ -148,7 +150,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                         </Link>
 
                         <Paragraph
-                            ellipsis={{ rows: 2 }}
+                            ellipsis={{ rows: descriptionRows }}
                             style={{
                                 lineHeight: 1.7,
                                 color: token.colorTextTertiary,
@@ -183,20 +185,18 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                                 overflow: 'hidden',
                             }}>
                                 <MobileOnly>
-                                    <Link href={blogURL}>
-                                        <Avatar
-                                            shape="circle"
-                                            size={20}
-                                            icon={<UserOutlined />}
-                                            src={post.blogAdminMediumImageURL}
-                                            alt={post.blogName}
-                                            style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
-                                        />
-                                    </Link>
+                                    <Flex gap={6}>
+                                        <Link href={blogURL}>
+                                            <Avatar
+                                                shape="circle"
+                                                size={20}
+                                                icon={<UserOutlined />}
+                                                src={post.blogAdminMediumImageURL}
+                                                alt={post.blogName}
+                                                style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
+                                            />
+                                        </Link>
 
-                                    <div style={{
-                                        flexShrink: 0,  /* 优先显示，不压缩 */
-                                    }}>
                                         <Link
                                             href={blogURL}
                                             ellipsis
@@ -208,7 +208,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                                         >
                                             {post.blogName}
                                         </Link>
-                                    </div>
+                                    </Flex>
                                 </MobileOnly>
 
                                 {/* 剩下的内容：显示不下自动 ... */}

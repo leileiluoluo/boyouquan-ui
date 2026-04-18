@@ -1,9 +1,9 @@
-import React from 'react';
-import { Card, Flex, Typography, Tooltip, Avatar } from 'antd';
+import { theme, Card, Flex, Typography, Tooltip, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import specialThanks from '../../../json/specialThanks.json';
 
 const { Title } = Typography;
+const { useToken } = theme;
 
 interface SpecialThanksProps {
     isHome: boolean;
@@ -12,6 +12,8 @@ interface SpecialThanksProps {
 export default function SpecialThanks({ isHome }: SpecialThanksProps) {
     if (!isHome) return null;
 
+    const { token } = useToken();
+
     return (
         <Card style={{ marginTop: 20 }}>
             <Flex vertical align="center" gap={16}>
@@ -19,11 +21,10 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
                     level={5}
                     style={{
                         margin: 0,
-                        color: '#1f2329',
-                        fontWeight: 500,
+                        color: token.colorText,
                     }}
                 >
-                    特别赞助 ✨
+                    特别赞助
                 </Title>
 
                 <Flex wrap="wrap" gap={10} justify="center" align="center">

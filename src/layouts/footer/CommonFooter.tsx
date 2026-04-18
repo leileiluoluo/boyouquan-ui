@@ -63,10 +63,10 @@ const CommonFooter: React.FC = () => {
 
     return (
         <Footer
+            className="common-footer"
             style={{
                 background: token.colorBgLayout, // 与 Header 同色
                 color: token.colorTextQuaternary,
-                padding: '16px 32px',
             }}
         >
             <PCOnly>

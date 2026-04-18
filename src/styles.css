@@ -1,3 +1,38 @@
+.common-header {
+  padding: 0 32px;
+}
+
+.common-footer {
+  padding: 16px 40px;
+}
+
+.common-content {
+  padding: 24px 32px;
+}
+
+.common-main {
+  padding: 24px 32px;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+  .common-header {
+    padding: 0 10px;
+  }
+
+  .common-footer {
+    padding: 8px 20px;
+  }
+
+  .common-content {
+    padding: 10px 10px;
+  }
+
+  .common-main {
+    padding: 0px 0px;
+  }
+}
+
 /* global.css */
 :root {
   /* 轮播的条数，可以覆盖 */

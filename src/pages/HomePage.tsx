@@ -40,14 +40,11 @@ const HomePage: React.FC = () => {
     return (
         <>
             <Meta />
-            <Card>
-                <Flex vertical gap={16}>
-                    <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
-                    <SwitchSortType types={SWITCH_TYPES} />
-                    <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
-                </Flex>
-            </Card>
-
+            <Flex vertical gap={16}>
+                <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
+                <SwitchSortType types={SWITCH_TYPES} />
+                <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />
+            </Flex>
             <Suspense>
                 <SpecialThanks isHome={true} />
             </Suspense>

@@ -185,6 +185,17 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                                 overflow: 'hidden',
                             }}>
                                 <MobileOnly>
+                                    <Link href={blogURL}>
+                                        <Avatar
+                                            shape="circle"
+                                            size={20}
+                                            icon={<UserOutlined />}
+                                            src={post.blogAdminMediumImageURL}
+                                            alt={post.blogName}
+                                            style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
+                                        />
+                                    </Link>
+
                                     <div style={{
                                         flexShrink: 0,  /* 优先显示，不压缩 */
                                     }}>

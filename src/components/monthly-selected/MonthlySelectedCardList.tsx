@@ -57,62 +57,7 @@ export default function MonthlySelectedCardList() {
 
     if (!dataReady) {
         return (
-            <Flex vertical gap={12}>
-                <div id="monthly-selected-container">
-                    <div style={{ marginBottom: 8 }}>
-                        <Skeleton.Input active size="small" style={{ width: 200 }} />
-                    </div>
-                    <Row gutter={[12, 12]}>
-                        {/* 带图片的卡片骨架 */}
-                        {Array.from({ length: 4 }).map((_, index) => (
-                            <Col xs={24} md={12} key={`part1-${index}`}>
-                                <Card style={{ width: '100%' }}>
-                                    <Flex vertical gap={8}>
-                                        <Skeleton.Image active style={{ width: '100%', height: 176 }} />
-                                        <Flex vertical gap={4}>
-                                            <Skeleton.Input active size="small" style={{ width: 240 }} />
-                                            <Skeleton.Input active size="default" style={{ width: '100%' }} />
-                                            <Flex gap={4} align="center">
-                                                <Skeleton.Avatar active size="small" />
-                                                <Skeleton.Input active size="small" style={{ width: 80 }} />
-                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
-                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
-                                                <Skeleton.Button active size="small" shape="circle" />
-                                            </Flex>
-                                        </Flex>
-                                    </Flex>
-                                </Card>
-                            </Col>
-                        ))}
-
-                        {/* 不带图片的卡片骨架 */}
-                        {Array.from({ length: 6 }).map((_, index) => (
-                            <Col xs={24} md={12} key={`part2-${index}`}>
-                                <Card style={{ width: '100%' }}>
-                                    <Flex vertical gap={8}>
-                                        <Flex vertical gap={4}>
-                                            <Skeleton.Input active size="small" style={{ width: 240 }} />
-                                            <Skeleton.Input active size="default" style={{ width: '100%' }} />
-                                            <Flex gap={4} align="center">
-                                                <Skeleton.Avatar active size="small" />
-                                                <Skeleton.Input active size="small" style={{ width: 80 }} />
-                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
-                                                <Skeleton.Input active size="small" style={{ width: 50 }} />
-                                                <Skeleton.Button active size="small" shape="circle" />
-                                            </Flex>
-                                        </Flex>
-                                    </Flex>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-                </div>
-                <Pagination
-                    pageNo={pageNo}
-                    pageSize={pageSize}
-                    total={total}
-                    setCurrectPage={setCurrectPage} />
-            </Flex>
+            <Spin />
         );
     }
 
@@ -120,7 +65,7 @@ export default function MonthlySelectedCardList() {
         <Flex vertical gap={12}>
             <div id="monthly-selected-container">
                 <div style={{ marginBottom: 8 }}>
-                    <Title level={4} style={{ fontWeight: 'bold', marginBottom: 0 }}>
+                    <Title level={4} style={{ marginBottom: 0 }}>
                         {formatDateToChinese(yearMonthStr)}
                     </Title>
                 </div>

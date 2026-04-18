@@ -22,7 +22,7 @@ ReactDOMClient.createRoot(rootElement).render(
                     colorTextQuaternary: 'rgba(255,255,255,0.65)',
                     colorLink: '#092640',
                     colorLinkHover: '#333',
-                }
+                },
             }}>
             <App />
         </ConfigProvider>

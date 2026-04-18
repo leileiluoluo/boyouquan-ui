@@ -1,10 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Flex, Tabs } from 'antd';
+import { theme, Flex, Segmented } from 'antd';
 import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
+
+const { useToken } = theme;
 
 export default function SwitchSortType({ types }) {
     const [activeKey, setActiveKey] = useState('');
+
+    const { token } = useToken();
 
     useEffect(() => {
         let sort = getURLParameter('sort');
@@ -30,25 +34,44 @@ export default function SwitchSortType({ types }) {
             return sortValue === key;
         });
         if (targetItem) {
-            redirectTo(targetItem.href);  // 使用原有的 redirectTo 方法
+            redirectTo(targetItem.href);
         }
     };
 
-    const tabItems = types.map((item) => {
+    // 生成 Segmented 选项
+    const segmentOptions = types.map((item) => {
         const urlParams = new URLSearchParams(item.href.split('?')[1]);
         const sortValue = urlParams.get('sort') || 'recommended';
         return {
-            key: sortValue,
+            value: sortValue,
             label: item.name,
         };
     });
 
     return (
-        <Flex style={{ marginTop: '-8px' }} id="switch-sort-type">
-            <Tabs
-                activeKey={activeKey}
+        <Flex id="switch-sort-type">
+            <Segmented
+                value={activeKey}
                 onChange={handleTabChange}
-                items={tabItems}
+                options={segmentOptions}
+                style={{
+                    // 整体背景
+                    backgroundColor: '#dee3f8',
+                    borderRadius: '8px',
+                    padding: '2px',
+                }}
+                // 选中项样式
+                thumbStyle={{
+                    backgroundColor: token.colorPrimary,
+                    borderRadius: '6px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
+                }}
+                // 文字样式
+                labelStyle={{
+                    color: '#130101',
+                    fontWeight: 600,
+                    padding: '4px 12px',
+                }}
             />
         </Flex>
     );

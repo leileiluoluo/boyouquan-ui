@@ -146,7 +146,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                                     >
                                         {yearGroup.year} 年
                                     </Text>
-                                    <Text>（{yearGroup.posts.length} 篇）</Text>
+                                    {/* <Text>（{yearGroup.posts.length} 篇）</Text> */}
                                 </Space>
 
                                 {/* 文章列表 */}

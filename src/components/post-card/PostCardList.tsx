@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Flex } from 'antd';
+import { Flex, Spin } from 'antd';
 import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
@@ -41,12 +41,16 @@ const PostCardList: React.FC<PostCardListProps> = ({ sort, keyword, showPinned }
         document.getElementById('switch-sort-type').scrollIntoView();
     }
 
+    if (!dataReady) {
+        return <Spin />
+    }
+
     return (
         <Flex vertical gap={12}>
             <Flex vertical gap={8}>
                 {posts.map(
                     (post, index) => (
-                        <PostCard showPinned={showPinned} post={post} />
+                        <PostCard showPinned={showPinned} post={post} descriptionRows={2} />
                     )
                 )}
             </Flex>

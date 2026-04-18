@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Card, Flex, Row, Col, Tooltip } from 'antd';
+import { Space, Typography, Card, Flex, Row, Col, Tooltip, Divider, Avatar } from 'antd';
 import BlogCardDescription from './BlogCardDescription';
 import BlogCardFooter from './BlogCardFooter';
 import BlogCardHeader from './BlogCardHeader';
@@ -12,13 +12,14 @@ import {
     EyeOutlined,
     CalendarOutlined,
     InfoCircleOutlined,
+    EnvironmentOutlined,
 } from '@ant-design/icons';
 import LazyAvatar from '@components/common/avatar/LazyAvatar';
 import { getBackgroundColorFromAvatar } from '@utils/CssUtil';
 import { formatDateStr } from '@utils/DateUtil';
 import { getBlogAddress, getGoAddress } from '@utils/PageAddressUtil';
 
-const { Link, Text, Paragraph } = Typography;
+const { Title, Link, Text, Paragraph } = Typography;
 
 export default function BlogCard({
     blog,
@@ -29,6 +30,10 @@ export default function BlogCard({
 }) {
     const [headerBg, setHeaderBg] = useState<string>('linear-gradient(to bottom right, var(--gray-4), rgb(230,229,229))');
 
+    const boxShadowValue = '0 4px 12px rgba(0,0,0,0.08)';
+
+    const blogURL = getBlogAddress(blog.domainName);
+
     useEffect(() => {
         if (!blog.blogAdminLargeImageURL) return;
         getBackgroundColorFromAvatar(blog.blogAdminLargeImageURL)
@@ -38,138 +43,82 @@ export default function BlogCard({
 
     return (
         <Card
-            hoverable
             bordered={false}
+            style={{
+                boxShadow: boxShadowValue,
+                position: 'sticky',
+                top: 30,
+            }}
         >
-            <Flex vertical gap={18}>
-                {/* 头像 + 名称 + 域名 */}
-                <Flex gap={14} align="center">
+            <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                <Link href={blogURL}>
+                    <Avatar
+                        size={60}
+                        src={blog.blogAdminLargeImageURL}
+                        style={{ border: '4px solid #e6f7ff' }}
+                    />
+                </Link>
+
+                <Link
+                    href={blogURL}
+                >
+                    <Title level={5} style={{ marginTop: 12, marginBottom: 2 }}>
+                        {blog.name}
+                    </Title>
+                </Link>
+
+                <Space style={{ marginTop: 2, marginBottom: 12 }}>
+                    <LinkOutlined style={{ fontSize: 12 }} />
                     <Link
-                        href={getBlogAddress(blog.domainName)}>
-                        <LazyAvatar
-                            style={{
-                                width: 48,
-                                height: 48,
-                                boxShadow: '0 3px 10px rgba(0,0,0,0.06)'
-                            }}
-                            src={blog.blogAdminLargeImageURL}
-                            shape="circle"
-                        />
+                        target="_blank"
+                        href={blog.address}
+                        style={{ fontSize: 12 }}
+                    >
+                        {blog.domainName}
                     </Link>
+                </Space>
 
-                    <Flex vertical gap={4}>
-                        <Link
-                            href={getBlogAddress(blog.domainName)}
-                            strong
-                            style={{
-                                fontSize: 16,
-                                fontWeight: 600,
-                                color: '#1f2937',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            {blog.name}
-                        </Link>
-
-                        <Flex gap={6} align="center">
-                            <GlobalOutlined style={{ fontSize: 13, color: '#6b7280' }} />
-                            <Link
-                                target="_blank"
-                                href={getGoAddress(blog.address)}
-                                style={{
-                                    fontSize: 13,
-                                    color: '#6b7280',
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                {blog.domainName}
-                            </Link>
-                        </Flex>
-                    </Flex>
-                </Flex>
-
-                {/* 描述区块：更深一层灰，分层质感 */}
                 <div
                     style={{
-                        padding: '11px 14px',
-                        background: headerBg,
-                        borderRadius: 12,
+                        fontSize: 13,
+                        color: '#8c8c8c',
+                        lineHeight: '20px',    // 行高
+                        height: '40px',        // 固定两行高度（20×2）
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,    // 只显示2行
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',    // 超出隐藏
+                        wordBreak: 'break-all',
                     }}
                 >
-                    <Paragraph
-                        ellipsis={{ rows: 1 }}
-                        style={{
-                            fontSize: 14,
-                            color: '#4b5563',
-                            margin: 0,
-                            lineHeight: 1.6,
-                        }}
-                    >
-                        {blog.description}
-                    </Paragraph>
+                    {blog.description}
                 </div>
+            </div>
 
-                {/* 统计数据 */}
-                <Row gutter={[12, 12]}>
-                    <Col span={6}>
-                        <Flex vertical align="center" gap={3}>
-                            <Text style={{ fontSize: 12, color: '#71717a' }}>收录文章</Text>
-                            <Text style={{ fontSize: 16, fontWeight: 600, color: '#1f2937' }}>{blog.postCount}</Text>
-                        </Flex>
-                    </Col>
-                    <Col span={6}>
-                        <Flex vertical align="center" gap={3}>
-                            <Text style={{ fontSize: 12, color: '#71717a' }}>浏览文章</Text>
-                            <Text style={{ fontSize: 16, fontWeight: 600, color: '#1f2937' }}>{blog.accessCount}</Text>
-                        </Flex>
-                    </Col>
-                    <Col span={6}>
-                        <Flex vertical align="center" gap={3}>
-                            <Text style={{ fontSize: 12, color: '#71717a' }}>最近更新</Text>
-                            <Text style={{ fontSize: 16, fontWeight: 600, color: '#1f2937' }}>{formatDateStr(blog.latestPublishedAt)}</Text>
-                        </Flex>
-                    </Col>
-                    <Col span={6}>
-                        <Flex vertical align="center" gap={3}>
-                            <Text style={{ fontSize: 12, color: '#71717a' }}>收录时间</Text>
-                            <Text style={{ fontSize: 16, fontWeight: 600, color: '#1f2937' }}>{formatDateStr(blog.domainNameRegisteredAt, true)}</Text>
-                        </Flex>
-                    </Col>
+            <Divider style={{ margin: '12px 0' }} />
+            <Flex vertical>
+                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录文章</Text></Col>
+                    <Col><Text strong style={{ fontSize: 13 }}>{blog.postCount}</Text></Col>
                 </Row>
-
-                {/* 底部分割+状态 */}
-                <Flex
-                    justify="space-between"
-                    align="center"
-                    style={{
-                        paddingTop: 10,
-                        borderTop: '1px solid #e5e7eb'
-                    }}
-                >
-                    <Tooltip title={blog.statusTooltip}>
-                        <Flex align="center" gap={5}>
-                            <div
-                                style={{
-                                    width: 9,
-                                    height: 9,
-                                    borderRadius: '50%',
-                                    backgroundColor: blog.statusOk ? '#10b981' : '#ef4444',
-                                }}
-                            />
-                            <Text style={{ fontSize: 12, color: '#6b7280' }}>
-                                {blog.statusOk ? '运行良好' : '无法访问'}
-                            </Text>
-                        </Flex>
-                    </Tooltip>
-
-                    <Tooltip title={blog.submittedInfoTip}>
-                        <Flex align="center" gap={5}>
-                            <InfoCircleOutlined style={{ fontSize: 13, color: '#9ca3af' }} />
-                            <Text style={{ fontSize: 12, color: '#6b7280' }}>
-                                {blog.submittedInfo}
-                            </Text>
-                        </Flex>
-                    </Tooltip>
+                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                    <Col><Text type="secondary" style={{ fontSize: 13 }}>浏览文章</Text></Col>
+                    <Col><Text strong style={{ fontSize: 13 }}>{blog.accessCount}</Text></Col>
+                </Row>
+                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                    <Col><Text type="secondary" style={{ fontSize: 13 }}>最近更新</Text></Col>
+                    <Col><Text strong style={{ fontSize: 13 }}>{formatDateStr(blog.latestPublishedAt)}</Text></Col>
+                </Row>
+                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录时间</Text></Col>
+                    <Col><Text strong style={{ fontSize: 13 }}>{formatDateStr(blog.collectedAt)}</Text></Col>
+                </Row>
+                <Divider style={{ margin: '12px 0' }} />
+                <Flex align="center">
+                    <EnvironmentOutlined style={{ fontSize: 14, color: '#8c8c8c' }} />
+                    <Text type="secondary" style={{ fontSize: 12, marginLeft: 4 }}>
+                        {blog.blogServerLocation}
+                    </Text>
                 </Flex>
             </Flex>
         </Card>

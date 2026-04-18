@@ -10,7 +10,9 @@ import {
     Layout, Card, Avatar, Typography, Divider,
     Flex, Spin, Row, Col, TimelineProps,
     Timeline,
-    Space
+    Space,
+    Tooltip,
+    Badge
 } from 'antd';
 import { LoadingOutlined, EnvironmentOutlined, LinkOutlined } from '@ant-design/icons';
 import { getBackgroundColorFromAvatar } from '@utils/CssUtil';
@@ -169,7 +171,6 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                         }}
                     >
                         <Card
-                            bordered={false}
                             style={{
                                 boxShadow: boxShadowValue,
                                 width: '100%',
@@ -179,9 +180,31 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                 // 让卡片自身不限制高度，跟随内容撑开
                                 // height: 'auto',
                             }}
-                            bodyStyle={{ height: 'auto' }}
+                            styles={{
+                                body: {
+                                    padding: '10px 20px',
+                                }
+                            }}
                         >
                             <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                                <Flex justify="space-between" align="center">
+                                    {/* 状态点：纯 antd Badge 实现 */}
+                                    <Tooltip title={blogDetail.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                                        <Badge
+                                            color={blogDetail.statusOk ? token.colorSuccess : token.colorError}
+                                            dot
+                                            style={{ fontSize: '20px' }}
+                                        />
+                                    </Tooltip>
+
+                                    {/* 右上角文字：纯 antd Typography */}
+                                    <Tooltip title={blogDetail.submittedInfoTip} styles={{ root: { fontSize: 12 } }}>
+                                        <Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+                                            {blogDetail.submittedInfo}
+                                        </Text>
+                                    </Tooltip>
+                                </Flex>
+
                                 <Link target="_blank" href={blogDetail.address}>
                                     <Avatar
                                         size={60}
@@ -194,7 +217,7 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     target="_blank"
                                     href={blogDetail.address}
                                 >
-                                    <Title level={4} style={{ marginTop: 12, marginBottom: 2 }}>
+                                    <Title level={5} style={{ marginTop: 12, marginBottom: 2 }}>
                                         {blogDetail.name}
                                     </Title>
                                 </Link>
@@ -219,26 +242,32 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                             <Flex vertical>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录文章</Text></Col>
-                                    <Col><Text strong style={{ fontSize: 13 }}>{blogDetail.postCount}</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{blogDetail.postCount}</Text></Col>
                                 </Row>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>浏览文章</Text></Col>
-                                    <Col><Text strong style={{ fontSize: 13 }}>{blogDetail.accessCount}</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{blogDetail.accessCount}</Text></Col>
                                 </Row>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>最近更新</Text></Col>
-                                    <Col><Text strong style={{ fontSize: 13 }}>{formatDateStr(blogDetail.latestPublishedAt)}</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blogDetail.latestPublishedAt)}</Text></Col>
                                 </Row>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录时间</Text></Col>
-                                    <Col><Text strong style={{ fontSize: 13 }}>{formatDateStr(blogDetail.collectedAt)}</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blogDetail.collectedAt)}</Text></Col>
+                                </Row>
+                                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                                    <Col><Text type="secondary" style={{ fontSize: 13 }}>域名年份</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blogDetail.domainNameRegisteredAt)}</Text></Col>
                                 </Row>
                                 <Divider style={{ margin: '12px 0' }} />
                                 <Flex align="center">
                                     <EnvironmentOutlined style={{ fontSize: 14, color: '#8c8c8c' }} />
-                                    <Text type="secondary" style={{ fontSize: 12, marginLeft: 4 }}>
-                                        {blogDetail.blogServerLocation}
-                                    </Text>
+                                    <Tooltip title="该博客的服务器位置（仅供参考）" styles={{ root: { fontSize: 12 } }}>
+                                        <Text type="secondary" style={{ fontSize: 12, marginLeft: 4 }}>
+                                            {blogDetail.blogServerLocation}
+                                        </Text>
+                                    </Tooltip>
                                 </Flex>
                             </Flex>
                         </Card>
@@ -258,9 +287,9 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                         >
                             <Flex vertical gap={12}>
                                 <Flex justify="space-between" align="center">
-                                    <Title level={5} style={{ margin: 0 }}>{blogDetail.name}</Title>
+                                    <Title level={5} style={{ margin: 0 }}>履约进度</Title>
                                     <div style={{
-                                        background: '#faad14',
+                                        background: token.colorPrimary,
                                         color: '#fff',
                                         padding: '2px 10px',
                                         borderRadius: 20,

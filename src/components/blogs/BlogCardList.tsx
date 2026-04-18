@@ -17,11 +17,9 @@ const getSortAndKeywordAndHighligts = () => {
     let createTimeHighlight = false;
 
     if ('collect_time' === sort) {
-        publishedAtHighlight = true;
+        createTimeHighlight = true;
     } else if ('access_count' === sort) {
         accessCountHighlight = true;
-    } else {
-        createTimeHighlight = true;
     }
 
     return { sort, keyword, publishedAtHighlight, accessCountHighlight, createTimeHighlight };

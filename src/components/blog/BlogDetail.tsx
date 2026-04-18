@@ -159,14 +159,27 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
             <Meta meta={getMeta(blogDetail.name, blogDetail.description)} />
             <Content id="blog-user-info">
                 <Row gutter={[12, 16]}>
-                    <Col xs={24} md={6} style={{ marginBottom: 2, alignSelf: 'flex-start' }}>
+                    <Col
+                        xs={24}
+                        md={6}
+                        style={{
+                            // marginBottom: 16,
+                            display: 'flex',
+                            flexDirection: 'column',    // 使子元素可以撑满高度
+                        }}
+                    >
                         <Card
                             bordered={false}
                             style={{
                                 boxShadow: boxShadowValue,
+                                width: '100%',
+                                // position: '-webkit-sticky',
                                 position: 'sticky',
-                                top: 30,
+                                top: 22,
+                                // 让卡片自身不限制高度，跟随内容撑开
+                                // height: 'auto',
                             }}
+                            bodyStyle={{ height: 'auto' }}
                         >
                             <div style={{ textAlign: 'center', marginBottom: 16 }}>
                                 <Link target="_blank" href={blogDetail.address}>

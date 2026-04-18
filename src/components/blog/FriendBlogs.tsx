@@ -38,10 +38,8 @@ export default function FriendBlogs({ domain }) {
         );
     };
 
-    if (linksFromMe.length === 0 && linksToMe.length === 0) {
-        return null;
-    }
-
+    // 🔥 修复：始终渲染 Card，即使没有数据也显示占位符
+    // 这样可以保持右侧内容高度一致，左侧卡片底部就能正确对齐
     return (
         <Card hoverable>
             <Flex vertical gap={8}>

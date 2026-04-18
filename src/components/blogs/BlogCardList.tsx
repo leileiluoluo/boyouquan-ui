@@ -31,13 +31,13 @@ export default function BlogCardList() {
     const { sort, keyword, publishedAtHighlight, accessCountHighlight, createTimeHighlight } = getSortAndKeywordAndHighligts();
 
     const [pageNo, setPageNo] = useState(1);
-    const [pageSize, setPageSize] = useState(0);
+    const [pageSize, setPageSize] = useState(20);
     const [total, setTotal] = useState(0);
     const [blogs, setBlogs] = useState([]);
     const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async (sortType, keyword, pageNo) => {
-        const resp = await RequestUtil.get(`/api/blogs?sort=${sortType}&keyword=${keyword}&page=${pageNo}`);
+        const resp = await RequestUtil.get(`/api/blogs?sort=${sortType}&keyword=${keyword}&page=${pageNo}&size=${pageSize}`);
 
         const respBody = await resp.json();
         setDataReady(true);
@@ -84,7 +84,7 @@ export default function BlogCardList() {
             <Flex vertical gap={12}>
                 <Row gutter={[12, 12]}>
                     {blogs.map((blog, index) => (
-                        <Col xs={24} md={12} key={index}>
+                        <Col xs={24} sm={12} lg={6} key={index}>
                             <BlogCard
                                 blog={blog}
                                 posts={blog.posts}

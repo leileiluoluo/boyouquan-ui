@@ -150,12 +150,12 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                                 </Space>
 
                                 {/* 文章列表 */}
-                                <Flex vertical gap={2}>
+                                <Flex vertical>
                                     {yearGroup.posts.map((post, idx) => (
                                         <div
                                             key={idx}
                                             style={{
-                                                padding: '8px 12px',
+                                                padding: '6px 8px',
                                                 borderRadius: 8,
                                                 transition: 'all 0.2s',
                                             }}

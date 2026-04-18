@@ -32,9 +32,9 @@ const CommonHeader: React.FC = () => {
 
     return (
         <Header
+            className="common-header"
             style={{
                 background: token.colorBgLayout,
-                padding: '0 32px',
             }}
         >
             <Flex justify="space-between" align="center" style={{ height: '100%' }}>

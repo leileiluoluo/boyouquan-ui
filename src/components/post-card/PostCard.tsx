@@ -35,8 +35,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post }) => {
                 width: '100%',
                 maxWidth: '100%',
                 boxSizing: 'border-box',
-                // 仅PC端保留箭头内边距，移动端移除
-                // paddingLeft: window.innerWidth > 768 ? ARROW_SIZE : 0
             }}
         >
             {/* 左侧用户头像区（仅PC端） */}

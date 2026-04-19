@@ -43,7 +43,7 @@ export default function FriendBlogs({ domain }) {
     return (
         <Card hoverable>
             <Flex vertical gap={8}>
-                <Tooltip title="连接系数采集自博客的友链数据，每个月初更新一次" placement="top">
+                <Tooltip title="连接系数采集自博客的友链数据，每个月初更新一次" styles={{ root: { fontSize: 12 } }}>
                     <Title level={5} style={{ marginTop: 0 }}>连接系数</Title>
                 </Tooltip>
                 <Flex vertical gap={8}>

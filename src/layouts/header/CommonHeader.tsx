@@ -54,7 +54,7 @@ const CommonHeader: React.FC = () => {
                 {/* LOGO */}
                 <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
                     <img
-                        src="/assets/images/sites/logo/logo-dark.svg"
+                        src="/assets/images/sites/logo/logo-blue.svg"
                         alt="博友圈"
                         style={{ height: 26 }}
                     />

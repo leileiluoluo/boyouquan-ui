@@ -11,6 +11,7 @@ import { formatDateStr, getYearsTillNow } from '@utils/DateUtil';
 import { stringToSixDigitNumber } from '@utils/StringUtil';
 import Meta from '@components/common/Meta';
 import { MetaFields } from '@types';
+import { Spin } from 'antd';
 
 const getMeta = (name: string, description: string): MetaFields => {
     return {
@@ -348,7 +349,7 @@ export default function CertificatePage() {
     };
 
     if (!loaded) {
-        return <div>加载中...</div>;
+        return <Spin />;
     }
 
     return (

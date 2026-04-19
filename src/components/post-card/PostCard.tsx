@@ -75,14 +75,14 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                         </Link>
                     </Flex>
                     <Flex vertical gap={4} align="center">
-                        {post.blogJoinYears && <Tooltip title="履约年数" styles={{ root: { fontSize: 12 } }}>
+                        {null !== post.blogJoinYears && <Tooltip title="履约年数" styles={{ root: { fontSize: 12 } }}>
                             <Space size={4} align="center">
                                 <StarOutlined style={{ color: token.colorPrimary }} />
                                 <Text type="secondary" style={{ fontSize: 12 }}>履约 {post.blogJoinYears} 年</Text>
                             </Space>
                         </Tooltip>}
 
-                        {post.blogTotalAccessCount && <Tooltip title="总浏览数" styles={{ root: { fontSize: 12 } }}>
+                        {null !== post.blogTotalAccessCount && <Tooltip title="总浏览数" styles={{ root: { fontSize: 12 } }}>
                             <Space size={4} align="center">
                                 <EyeOutlined style={{ color: token.colorPrimary }} />
                                 <Text type="secondary" style={{ fontSize: 12 }}>{post.blogTotalAccessCount}</Text>
@@ -236,7 +236,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                             </div>
 
                             {/* 右侧：固定不压缩，永远完整显示 */}
-                            <Space size={16} align="center" style={{ flexShrink: 0, marginLeft: 8 }}>
+                            <Space size={8} align="center" style={{ flexShrink: 0, marginLeft: 8 }}>
                                 <Link href={abstractURL}>
                                     <ShareAltOutlined />
                                 </Link>

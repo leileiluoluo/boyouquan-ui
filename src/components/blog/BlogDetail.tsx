@@ -4,7 +4,7 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import Meta from '../common/Meta';
 import { redirectTo } from '../../utils/CommonUtil';
 import { getGoAddress, NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
-import { formatDateStr } from '../../utils/DateUtil';
+import { formatDateStr, getYear } from '../../utils/DateUtil';
 import {
     theme,
     Layout, Card, Avatar, Typography, Divider,
@@ -12,7 +12,8 @@ import {
     Timeline,
     Space,
     Tooltip,
-    Badge
+    Badge,
+    Tag
 } from 'antd';
 import { LoadingOutlined, EnvironmentOutlined, LinkOutlined } from '@ant-design/icons';
 import { getBackgroundColorFromAvatar } from '@utils/CssUtil';
@@ -165,45 +166,48 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                         xs={24}
                         md={6}
                         style={{
-                            // marginBottom: 16,
                             display: 'flex',
-                            flexDirection: 'column',    // 使子元素可以撑满高度
+                            flexDirection: 'column',
                         }}
                     >
                         <Card
                             style={{
                                 boxShadow: boxShadowValue,
                                 width: '100%',
-                                // position: '-webkit-sticky',
                                 position: 'sticky',
                                 top: 22,
-                                // 让卡片自身不限制高度，跟随内容撑开
-                                // height: 'auto',
                             }}
                         >
                             <div style={{ textAlign: 'center', marginBottom: 16 }}>
 
-                                <Tooltip title={blogDetail.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
-                                    <Badge
-                                        dot
-                                        color={blogDetail.statusOk ? '#52c41a' : 'red'}
-                                        offset={[0, 56]}
-                                        style={{
-                                            border: '2px solid #fff',
-                                            width: 12,
-                                            height: 12,
-                                            borderRadius: '50%',
-                                        }}
-                                    >
-                                        <Link href={getGoAddress(blogDetail.address)}>
-                                            <Avatar
-                                                size={60}
-                                                src={blogDetail.blogAdminLargeImageURL}
-                                                style={{ border: '4px solid #e6f7ff' }}
-                                            />
-                                        </Link>
-                                    </Badge>
-                                </Tooltip>
+                                {/* 👇 只给小圆点加 Tooltip，头像不加！这是修复核心 */}
+                                <div style={{ position: 'relative', display: 'inline-block' }}>
+                                    <Link href={getGoAddress(blogDetail.address)}>
+                                        <Avatar
+                                            size={60}
+                                            src={blogDetail.blogAdminLargeImageURL}
+                                            style={{ border: '4px solid #e6f7ff' }}
+                                        />
+                                    </Link>
+                                    {/* Tooltip 只包裹 Badge 小圆点 */}
+                                    <Tooltip title={blogDetail.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                                        <Badge
+                                            dot
+                                            color={blogDetail.statusOk ? '#52c41a' : 'red'}
+                                            offset={[10, 44]}
+                                            style={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                right: 0,
+                                                // border: '2px solid #fff',
+                                                width: 12,
+                                                height: 12,
+                                                borderRadius: '50%',
+                                                cursor: 'pointer',
+                                            }}
+                                        />
+                                    </Tooltip>
+                                </div>
 
                                 <Link
                                     target="_blank"
@@ -234,7 +238,11 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                             <Flex vertical>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录方式</Text></Col>
-                                    <Col><Text style={{ fontSize: 13 }}>{blogDetail.submittedInfo}</Text></Col>
+                                    <Col><Tag color={token.colorText} style={{ fontSize: 13 }}>{blogDetail.submittedInfo}</Tag></Col>
+                                </Row>
+                                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录时间</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blogDetail.collectedAt)}</Text></Col>
                                 </Row>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录文章</Text></Col>
@@ -249,12 +257,8 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blogDetail.latestPublishedAt)}</Text></Col>
                                 </Row>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
-                                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录时间</Text></Col>
-                                    <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blogDetail.collectedAt)}</Text></Col>
-                                </Row>
-                                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>域名年份</Text></Col>
-                                    <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blogDetail.domainNameRegisteredAt)}</Text></Col>
+                                    <Col><Text style={{ fontSize: 13 }}>{getYear(blogDetail.domainNameRegisteredAt)}</Text></Col>
                                 </Row>
                                 <Divider style={{ margin: '12px 0' }} />
                                 <Flex align="center">

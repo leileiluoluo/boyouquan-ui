@@ -23,7 +23,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '1',
             label: (
-                <a style={{ fontSize: token.fontSize }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=recommended">
+                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=recommended">
                     推荐文章聚合
                 </a>
             ),
@@ -31,7 +31,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '2',
             label: (
-                <a style={{ fontSize: token.fontSize }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=latest">
+                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=latest">
                     最新文章聚合
                 </a>
             ),
@@ -42,7 +42,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '1',
             label: (
-                <a style={{ fontSize: token.fontSize }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-ui">
+                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-ui">
                     前端源码
                 </a>
             ),
@@ -50,7 +50,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '2',
             label: (
-                <a style={{ fontSize: token.fontSize }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-api">
+                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-api">
                     后端源码
                 </a>
             ),
@@ -88,7 +88,7 @@ const CommonFooter: React.FC = () => {
                                     styles={{
                                         root: {
                                             color: token.colorText,
-                                            fontSize: token.fontSize,
+                                            fontSize: token.fontSizeSM,
                                         }
                                     }}>
                                     <Link target="_blank" href="https://cloud.tencent.com/act/cps/redirect?redirect=5990&cps_key=b47473307f5d83202fb2d8a72cd303d7&from=console"><Cloud color="rgba(255, 255, 255, 0.65)" size={16} /></Link>
@@ -99,7 +99,7 @@ const CommonFooter: React.FC = () => {
                                     styles={{
                                         root: {
                                             color: token.colorText,
-                                            fontSize: token.fontSize,
+                                            fontSize: token.fontSizeSM,
                                         }
                                     }}>
                                     <Link target="_blank" href="mailto:support@boyouquan.com"><Mail color={token.colorTextQuaternary} size={16} /></Link>

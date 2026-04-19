@@ -22,19 +22,19 @@ export default function LinkGraphPage() {
     const [sourceDomainName, setSourceDomainName] = useState<string>(sourceDomainNameFromURL || '');
     const [targetDomainName, setTargetDomainName] = useState<string>(targetDomainNameFromURL || '');
     const [loading, setLoading] = useState<boolean>(false);
-    const [allSourceBlogs, setAllSourceBlogs] = useState<string[]>([]);
-    const [allTargetBlogs, setAllTargetBlogs] = useState<string[]>([]);
+    
+    // 修复：从 string[] 改为 any[] (对象数组)
+    const [allSourceBlogs, setAllSourceBlogs] = useState<any[]>([]);
+    const [allTargetBlogs, setAllTargetBlogs] = useState<any[]>([]);
 
     const fetchSourceBlogs = async (): Promise<void> => {
         const resp = await RequestUtil.get(`/api/blog-intimacies/all-source-blogs`);
-
         const respBody = await resp.json();
         setAllSourceBlogs(respBody);
     };
 
     const fetchTargetBlogs = async (): Promise<void> => {
         const resp = await RequestUtil.get(`/api/blog-intimacies/all-target-blogs`);
-
         const respBody = await resp.json();
         setAllTargetBlogs(respBody);
     };

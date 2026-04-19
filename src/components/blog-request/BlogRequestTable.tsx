@@ -73,7 +73,7 @@ export default function BlogRequestTable({
                     <InfoRow label="审核时间" value={updatedAt} />
                 )}
                 
-                {(status === 'rejected' || status === 'uncollected') && (
+                {(status === 'system_check_invalid' || status === 'rejected' || status === 'uncollected') && (
                     <InfoRow label="驳回原因" value={reason} />
                 )}
             </Card>

@@ -149,7 +149,7 @@ export default function LinkGraphInput({
                     type="primary"
                     onClick={handleSubmit}
                     disabled={loading}
-                    style={{ width: '100%' }}
+                    // style={{ width: '100%' }}
                 >
                     探索
                 </Button>

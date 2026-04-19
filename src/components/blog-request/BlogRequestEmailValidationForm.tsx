@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Flex, Typography, Input, Button, Form, Space } from 'antd';
 import { FormError } from '../../types';
 
 const { Text, Title, Link } = Typography;
 
-const noticeStyle: React.CSSProperties = { marginTop: '18px', fontSize: '12px' };
+const noticeStyle: React.CSSProperties = { marginTop: '18px', fontSize: 12 };
 
 interface BlogRequestEmailValidationFormProps {
     formData: Record<string, string>;
@@ -15,7 +15,7 @@ interface BlogRequestEmailValidationFormProps {
     emailValidationButtonRef: React.RefObject<HTMLButtonElement>;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleValidationButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    handleSubmit: (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => void;
     isAdminPage?: string | boolean;
 }
 
@@ -32,6 +32,11 @@ export default function BlogRequestEmailValidationForm({
     isAdminPage 
 }: BlogRequestEmailValidationFormProps): React.JSX.Element {
     
+    // 倒计时状态（秒数）
+    const [countdown, setCountdown] = useState<number>(0);
+    // 是否已经发送过验证码（用于显示输入框和验证按钮）
+    const [isCodeSent, setIsCodeSent] = useState<boolean>(false);
+
     const hasError = (errorCodes: string[]) => {
         return errorCodes.some(code => error.code === code);
     };
@@ -41,15 +46,37 @@ export default function BlogRequestEmailValidationForm({
         return matchedCode ? error.message : '';
     };
 
+    // 发送验证码点击
+    const handleSendCode = (e: React.MouseEvent<HTMLButtonElement>) => {
+        // 执行你原来的发送逻辑
+        handleValidationButtonClick(e);
+        
+        // 标记已发送 → 显示验证码输入框和验证按钮
+        setIsCodeSent(true);
+        // 启动倒计时 60 秒
+        setCountdown(60);
+    };
+
+    // 倒计时逻辑
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (countdown > 0) {
+            timer = setInterval(() => {
+                setCountdown(prev => prev - 1);
+            }, 1000);
+        }
+        return () => clearInterval(timer);
+    }, [countdown]);
+
     return (
         <>
             {!isAdminPage && (
-                <Title level={4} style={{ fontWeight: 'bold' }}>
+                <Title level={4} style={{margin: 0}}>
                     验证邮箱
                 </Title>
             )}
             <Card style={{ width: '100%' }}>
-                <Form layout="vertical" onSubmitCapture={handleSubmit}>
+                <Form layout="vertical" onSubmitCapture={handleSubmit as any}>
                     <Flex vertical gap={8}>
                         {/* 博主邮箱 */}
                         <Form.Item
@@ -79,16 +106,17 @@ export default function BlogRequestEmailValidationForm({
                         {/* 发送验证码按钮 */}
                         <Form.Item style={{ marginBottom: 0 }}>
                             <Button 
-                                type="default" 
+                                type="primary" 
                                 ref={sendCodeInputRef} 
-                                onClick={handleValidationButtonClick}
+                                onClick={handleSendCode}
+                                disabled={countdown > 0}
                             >
-                                发送验证码
+                                {countdown > 0 ? `${countdown} 秒后重新发送` : '发送验证码'}
                             </Button>
                         </Form.Item>
 
-                        {/* 验证码输入框 */}
-                        <div ref={emailValidationCodeInputRef} style={{ display: formData.emailVerificationCode ? 'block' : 'none' }}>
+                        {/* 验证码输入框 —— 发送后就显示，不再消失 */}
+                        {isCodeSent && (
                             <Form.Item
                                 label={
                                     <Space size={8}>
@@ -103,7 +131,7 @@ export default function BlogRequestEmailValidationForm({
                                 style={{ marginBottom: 0 }}
                             >
                                 <Input
-                                    ref={emailValidationCodeInputRef as any}
+                                    ref={emailValidationCodeInputRef}
                                     type="number"
                                     name="emailVerificationCode"
                                     placeholder="上述邮箱收到的 6 位验证码"
@@ -113,19 +141,20 @@ export default function BlogRequestEmailValidationForm({
                                     style={{ marginTop: 8 }}
                                 />
                             </Form.Item>
-                        </div>
+                        )}
 
-                        {/* 验证按钮 */}
-                        <div ref={emailValidationButtonRef} style={{ display: formData.emailVerificationCode ? 'block' : 'none' }}>
+                        {/* 验证按钮 —— 发送后就显示 */}
+                        {isCodeSent && (
                             <Form.Item style={{ marginBottom: 0 }}>
                                 <Button 
+                                    ref={emailValidationButtonRef}
                                     type="primary" 
                                     onClick={handleSubmit}
                                 >
                                     验证
                                 </Button>
                             </Form.Item>
-                        </div>
+                        )}
 
                         {/* 联系站长 */}
                         {!isAdminPage && (

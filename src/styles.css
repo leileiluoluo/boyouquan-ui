@@ -10,10 +10,6 @@
   padding: 24px 32px;
 }
 
-.common-main {
-  padding: 24px 32px;
-}
-
 /* mobile */
 @media (max-width: 767px) {
   .common-header {
@@ -26,10 +22,6 @@
 
   .common-content {
     padding: 10px 10px;
-  }
-
-  .common-main {
-    padding: 0px 0px;
   }
 }
 
@@ -80,7 +72,7 @@
 }
 
 .latest-news .content ul li a {
-  color: var(--accent-a11);
+  color: '#002bb7c5';
   font-weight: 500;
 }
 

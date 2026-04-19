@@ -31,7 +31,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
     return (
         <>
             {!isAdminPage && (
-                <Title level={4} style={{ fontWeight: 'bold' }}>
+                <Title level={4} style={{ margin: 0 }}>
                     提交博客
                 </Title>
             )}
@@ -41,6 +41,8 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                     layout="vertical"
                     onFinish={handleSubmit}
                     initialValues={formData}
+                    // ✅ 关键修复：关闭自动校验，让提交能触发
+                    validateTrigger={false}
                 >
                     <Flex vertical gap={8}>
                         {/* 博主邮箱 */}
@@ -61,9 +63,9 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                                 </Space>
                             }
                             style={{ marginBottom: 0 }}
+                            name="adminEmail"
                         >
                             <Input
-                                name="adminEmail"
                                 placeholder="博主身份凭据，以及用于展示 Gravatar 头像和获取邮件通知"
                                 id="adminEmail"
                                 value={formData.adminEmail}
@@ -86,9 +88,9 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                                 </Space>
                             }
                             style={{ marginBottom: 0 }}
+                            name="name"
                         >
                             <Input
-                                name="name"
                                 placeholder="您的博客名称"
                                 id="name"
                                 value={formData.name}
@@ -113,9 +115,9 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                                 </Space>
                             }
                             style={{ marginBottom: 0 }}
+                            name="rssAddress"
                         >
                             <Input
-                                name="rssAddress"
                                 placeholder="用于抓取文章"
                                 id="rssAddress"
                                 value={formData.rssAddress}
@@ -137,9 +139,9 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                                 </Space>
                             }
                             style={{ marginBottom: 0 }}
+                            name="description"
                         >
                             <TextArea
-                                name="description"
                                 placeholder="描述一下您的博客，建议 100 字以内"
                                 id="description"
                                 value={formData.description}
@@ -150,10 +152,9 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                         </Form.Item>
 
                         {/* 承诺 */}
-                        <Form.Item style={{ marginBottom: 0 }}>
+                        <Form.Item style={{ marginBottom: 0 }} name="promise">
                             <Space size={8} align="center">
                                 <Radio.Group
-                                    name="promise"
                                     value={formData.promise}
                                     onChange={(e) => handleChange({ target: { name: 'promise', value: e.target.value } } as any)}
                                 >

@@ -140,7 +140,7 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                         </Flex>
 
                         {/* 右侧：固定不压缩，永远完整显示 */}
-                        <Space size={16} align="center" style={{ flexShrink: 0, marginLeft: 8 }}>
+                        <Space size={8} align="center" style={{ flexShrink: 0, marginLeft: 8 }}>
                             <Link href={abstractURL}>
                                 <ShareAltOutlined />
                             </Link>

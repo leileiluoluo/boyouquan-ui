@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import { theme, Flex, Segmented } from 'antd';
 import { getURLParameter, redirectTo } from '../../utils/CommonUtil';
@@ -59,6 +58,7 @@ export default function SwitchSortType({ types }) {
                     backgroundColor: '#dee3f8',
                     borderRadius: '8px',
                     padding: '2px',
+                    fontWeight: 500,
                 }}
                 // 选中项样式
                 thumbStyle={{

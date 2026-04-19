@@ -56,28 +56,33 @@ export default function BlogCard({
                 paddingTop: 8,
             }}>
 
-                {/* 正确写法：count + offset，必显示 */}
-                <Tooltip title={blog.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
-                    <Badge
-                        dot
-                        color={blog.statusOk ? '#52c41a' : 'red'}
-                        offset={[0, 56]}
-                        style={{
-                            border: '2px solid #fff',
-                            width: 12,
-                            height: 12,
-                            borderRadius: '50%',
-                        }}
-                    >
-                        <Link href={blogURL}>
-                            <Avatar
-                                size={60}
-                                src={blog.blogAdminLargeImageURL}
-                                style={{ border: '4px solid #e6f7ff' }}
-                            />
-                        </Link>
-                    </Badge>
-                </Tooltip>
+                <div style={{ position: 'relative', display: 'inline-block' }}>
+                    <Link href={blogURL}>
+                        <Avatar
+                            size={60}
+                            src={blog.blogAdminLargeImageURL}
+                            style={{ border: '4px solid #e6f7ff' }}
+                        />
+                    </Link>
+                    {/* Tooltip 只包裹 Badge 小圆点 */}
+                    <Tooltip title={blog.statusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                        <Badge
+                            dot
+                            color={blog.statusOk ? '#52c41a' : 'red'}
+                            offset={[10, 44]}
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                right: 0,
+                                // border: '2px solid #fff',
+                                width: 12,
+                                height: 12,
+                                borderRadius: '50%',
+                                cursor: 'pointer',
+                            }}
+                        />
+                    </Tooltip>
+                </div>
 
                 <Link href={blogURL}>
                     <Title level={5} style={{ marginTop: 12, marginBottom: 2 }}>

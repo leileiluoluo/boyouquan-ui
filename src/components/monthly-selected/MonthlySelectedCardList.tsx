@@ -62,13 +62,10 @@ export default function MonthlySelectedCardList() {
     }
 
     return (
-        <Flex vertical gap={12}>
-            <div id="monthly-selected-container">
-                <div style={{ marginBottom: 8 }}>
-                    <Title level={4} style={{ marginBottom: 0 }}>
-                        {formatDateToChinese(yearMonthStr)}
-                    </Title>
-                </div>
+        <Flex vertical gap={12} id="monthly-selected-container">
+            <Title level={4} style={{margin: 0}}>
+                    {formatDateToChinese(yearMonthStr)}
+                </Title>
 
                 <Row gutter={[12, 12]}>
                     {postInfos.map((postInfo, index) => (
@@ -80,7 +77,6 @@ export default function MonthlySelectedCardList() {
                         </Col>
                     ))}
                 </Row>
-            </div>
             <Pagination
                 pageNo={pageNo}
                 pageSize={pageSize}

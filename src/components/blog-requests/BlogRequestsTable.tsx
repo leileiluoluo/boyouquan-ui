@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Typography, Tag, Space } from 'antd';
+import { List, Card, Typography, Tag, Space } from 'antd';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAdminBlogRequestAddress, getBlogRequestAddress } from '../../utils/PageAddressUtil';
 import { BlogRequest } from '../../types';
@@ -12,68 +12,53 @@ interface BlogRequestsTableProps {
 }
 
 export default function BlogRequestsTable({ requests, adminPage }: BlogRequestsTableProps): React.JSX.Element {
-    // 定义表格列
-    const columns = [
-        {
-            title: '博客名称',
-            dataIndex: 'name',
-            key: 'name',
-            render: (text: string, record: BlogRequest) => (
-                <Link 
-                    href={adminPage ? getAdminBlogRequestAddress(record.id) : getBlogRequestAddress(record.id)}
-                    style={{
-                        fontWeight: 'bold',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 1,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden'
-                    }}
-                >
-                    {text}
-                </Link>
-            ),
-        },
-        {
-            title: '博主邮箱',
-            dataIndex: 'adminEmail',
-            key: 'adminEmail',
-        },
-        {
-            title: '提交时间',
-            dataIndex: 'requestedAt',
-            key: 'requestedAt',
-            render: (requestedAt: string) => formatDateStr(requestedAt, true),
-        },
-        ...(adminPage ? [{
-            title: '自行提交',
-            dataIndex: 'selfSubmitted',
-            key: 'selfSubmitted',
-            render: (selfSubmitted: boolean) => selfSubmitted ? '是' : '否',
-        }] : []),
-        {
-            title: '审核状态',
-            dataIndex: 'statusInfo',
-            key: 'statusInfo',
-            render: (statusInfo: string, record: BlogRequest) => {
-                let color = 'orange';
-                if (record.approved) {
-                    color = 'green';
-                } else if (record.failed) {
-                    color = 'red';
-                }
-                return <Tag color={color}>{statusInfo}</Tag>;
-            },
-        },
-    ];
 
     return (
-        <Table 
+        <List
             dataSource={requests}
-            columns={columns}
-            rowKey={(record) => record.id}
+            rowKey="id"
             pagination={false}
-            bordered={false}
-            size="middle"
+            renderItem={(item) => (
+                <List.Item>
+                    <Card
+                        size="small"
+                        hoverable
+                        style={{ width: '100%', borderRadius: 8 }}
+                    >
+                        {/* 第一行：博客名称 + 状态 */}
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginBottom: 8
+                        }}>
+                            <Link
+                                href={adminPage ? getAdminBlogRequestAddress(item.id) : getBlogRequestAddress(item.id)}
+                                style={{ fontWeight: 600, fontSize: 15 }}
+                            >
+                                {item.name}
+                            </Link>
+
+                            {/* 状态标签 */}
+                            {(() => {
+                                let color = 'orange';
+                                if (item.approved) color = 'green';
+                                if (item.failed) color = 'red';
+                                return <Tag color={color}>{item.statusInfo}</Tag>;
+                            })()}
+                        </div>
+
+                        {/* 信息行 */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, fontSize: 13, color: '#666' }}>
+                            <Text>博主邮箱：{item.adminEmail}</Text>
+                            <Text>提交时间：{formatDateStr(item.requestedAt, true)}</Text>
+                            {adminPage && (
+                                <Text>自行提交：{item.selfSubmitted ? '是' : '否'}</Text>
+                            )}
+                        </div>
+                    </Card>
+                </List.Item>
+            )}
         />
     );
 }

@@ -11,7 +11,7 @@ interface BlogRequestAddFormProps {
     formData: Record<string, string>;
     error: FormError;
     handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    handleSubmit: (values: Record<string, string>) => void;
     isAdminPage?: string | boolean;
 }
 

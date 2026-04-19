@@ -11,22 +11,14 @@ export default function LinkGraphBlogInput({
     handleInputChange, 
     handleSelectSuggestion 
 }) {
-    // 转换 suggestions 格式为 AutoComplete 需要的格式
-    const options = suggestions.map(suggestion => ({
-        label: (
-            <Flex justify="space-between" gap={8}>
-                <span style={{ color: '#1677ff', fontSize: 12 }}>{suggestion.blogName}</span>
-                <span style={{ color: '#faad14', fontSize: 12 }}>{suggestion.value}</span>
-            </Flex>
-        ),
-        value: suggestion.value
-    }));
+    // 直接使用传递过来的 suggestions（已经在父组件处理好样式了）
+    const options = suggestions;
 
     const handleSearch = (searchText) => {
         handleInputChange(type, searchText, setValue, setSuggestions);
     };
 
-    const handleSelect = (selectedValue) => {
+    const handleSelect = (selectedValue, option) => {
         handleSelectSuggestion(selectedValue, setValue, setSuggestions);
     };
 
@@ -41,7 +33,7 @@ export default function LinkGraphBlogInput({
                 onSelect={handleSelect}
                 options={options}
                 allowClear
-                filterOption={false} // 禁用内置过滤，使用自定义过滤
+                filterOption={false}
             />
         </Flex>
     );

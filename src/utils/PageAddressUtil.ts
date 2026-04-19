@@ -39,3 +39,7 @@ export function getGravatarImageFullURL(imageURL: string): string {
 export function getAdminBlogRequestAddress(id: number | string): string {
   return `/admin/blog-requests/${id}`;
 }
+
+export function getCertificateAddress(domainName: string): string {
+  return `/certificates/${domainName}`;
+}

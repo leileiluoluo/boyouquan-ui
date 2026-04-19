@@ -3,7 +3,7 @@ import { Fragment, Suspense, useEffect, useState, lazy } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
 import Meta from '../common/Meta';
 import { redirectTo } from '../../utils/CommonUtil';
-import { getGoAddress, NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
+import { getCertificateAddress, getGoAddress, NOT_FOUND_ADDRESS } from '../../utils/PageAddressUtil';
 import { formatDateStr, getYear } from '../../utils/DateUtil';
 import {
     theme,
@@ -288,16 +288,21 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                             <Flex vertical gap={12}>
                                 <Flex justify="space-between" align="center">
                                     <Title level={5} style={{ margin: 0 }}>履约进度</Title>
-                                    <div style={{
-                                        background: token.colorPrimary,
-                                        color: '#fff',
-                                        padding: '2px 10px',
-                                        borderRadius: 20,
-                                        fontSize: 12,
-                                        fontWeight: 'bold'
-                                    }}>
-                                        已履约 {years} 年
-                                    </div>
+
+                                    <Tooltip title="点击查看履约证书" styles={{ root: { fontSize: 12 } }}>
+                                        <div style={{
+                                            background: token.colorPrimary,
+                                            color: '#fff',
+                                            padding: '2px 10px',
+                                            borderRadius: 20,
+                                            fontSize: 12,
+                                            fontWeight: 'bold'
+                                        }}>
+                                            <Link href={getCertificateAddress(domain)} style={{ color: '#fff', fontSize: token.fontSizeSM }}>
+                                                已履约 {years} 年
+                                            </Link>
+                                        </div>
+                                    </Tooltip>
                                 </Flex>
 
                                 <Timeline {...timelines} mode="end" />

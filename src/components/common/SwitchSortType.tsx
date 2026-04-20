@@ -55,7 +55,7 @@ export default function SwitchSortType({ types }) {
                 options={segmentOptions}
                 style={{
                     // 整体背景
-                    backgroundColor: '#dee3f8',
+                    backgroundColor: '#f8dede',
                     borderRadius: '8px',
                     padding: '2px',
                     fontWeight: 500,

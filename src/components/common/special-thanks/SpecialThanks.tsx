@@ -36,7 +36,7 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
                                 style={{ display: 'inline-block' }}
                             >
                                 <Avatar
-                                    size={30}
+                                    size={26}
                                     shape="circle"
                                     src={item.avatar}
                                     icon={<UserOutlined />}
@@ -62,7 +62,7 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
                         style={{ display: 'inline-block' }}
                     >
                         <Avatar
-                            size={30}
+                            size={26}
                             shape="circle"
                             style={{
                                 backgroundColor: '#f9fafb',

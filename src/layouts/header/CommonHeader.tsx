@@ -48,15 +48,18 @@ const CommonHeader: React.FC = () => {
             className="common-header"
             style={{
                 background: token.colorBgLayout,
+                height: '54px',    // 核心：把 Header 变窄
+                padding: '0 16px', // 内边距统一
+                lineHeight: '54px'
             }}
         >
             <Flex justify="space-between" align="center" style={{ height: '100%' }}>
                 {/* LOGO */}
                 <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
                     <img
-                        src="/assets/images/sites/logo/logo-blue.svg"
+                        src="/assets/images/sites/logo/logo.svg"
                         alt="博友圈"
-                        style={{ height: 26 }}
+                        style={{ height: 24 }} // 缩小一点更协调
                     />
                 </Link>
 
@@ -65,11 +68,11 @@ const CommonHeader: React.FC = () => {
                     <Menu
                         mode="horizontal"
                         selectedKeys={[getSelectedKey()]}
-                        theme="dark"
                         style={{
+                            // fontWeight: 500,
                             background: 'transparent',
                             borderBottom: 'none',
-                            lineHeight: '62px',
+                            lineHeight: '54px', // 菜单高度同步缩小
                         }}
                         items={MENU_ITEMS.map(item => ({
                             key: item.key,
@@ -121,7 +124,6 @@ const CommonHeader: React.FC = () => {
             >
                 <Menu
                     mode="vertical"
-                    theme="dark"
                     style={{
                         fontWeight: 500,
                     }}

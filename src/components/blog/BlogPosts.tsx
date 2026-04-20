@@ -139,7 +139,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                                         style={{
                                             fontSize: 15,
                                             color: '#000',
-                                            borderLeft: '4px solid #1677ff',
+                                            borderLeft: `4px solid ${token.colorPrimary}`,
                                             paddingLeft: 10,
                                             lineHeight: '16px'
                                         }}

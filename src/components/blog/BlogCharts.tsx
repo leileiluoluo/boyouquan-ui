@@ -39,7 +39,7 @@ export default function BlogCharts({ domain }) {
             '次浏览',
             respBody.yearlyAccessDataLabels,
             respBody.yearlyAccessDataValues,
-            '#fd8754'
+            token.colorPrimary
         );
 
         // 收录图表 ✅ 修复参数顺序！！！
@@ -51,7 +51,7 @@ export default function BlogCharts({ domain }) {
                 '篇文章',
                 respBody.yearlyPublishDataLabels, // 修复：标签在前
                 respBody.yearlyPublishDataValues, // 修复：数值在后
-                '#cc6cf6'
+                token.colorPrimary
             );
         } else {
             setHasPublishChart(false);
@@ -66,7 +66,7 @@ export default function BlogCharts({ domain }) {
                 '次穿梭',
                 respBody.yearlyInitiatedDataLabels,
                 respBody.yearlyInitiatedDataValues,
-                '#4299f5'
+                token.colorPrimary
             );
         } else {
             setHasInitiatedChart(false);
@@ -102,7 +102,7 @@ export default function BlogCharts({ domain }) {
                     style={{
                         marginBottom: 8,
                         width: 'fit-content',
-                        backgroundColor: '#dee3f8',
+                        backgroundColor: '#f8dede',
                         borderRadius: '8px',
                         padding: '2px',
                         fontSize: 13,
@@ -128,17 +128,50 @@ export default function BlogCharts({ domain }) {
 
 // 图表构造函数（参数顺序：id, title, note, labels, values, color）
 function newChart(id, title, note, labels, values, color) {
+    // 强制修复：确保数据干净、长度一致
+    const safeLabels = Array.isArray(labels) ? labels.filter(item => item != null) : [];
+    const safeValues = Array.isArray(values) ? values.filter(v => v != null) : [];
+
+    // 核心：强制长度一致
+    const maxLen = Math.max(safeLabels.length, safeValues.length);
+    const finalLabels = [];
+    const finalValues = [];
+
+    for (let i = 0; i < maxLen; i++) {
+        finalLabels.push(safeLabels[i] ?? '');
+        finalValues.push(safeValues[i] ?? 0);
+    }
+
     return new Chart(id, {
         data: {
-            labels: labels,
-            datasets: [{ name: note, chartType: 'line', values: values }],
+            labels: finalLabels,
+            datasets: [{
+                name: note,
+                chartType: 'line', // 折线
+                values: finalValues
+            }],
         },
         title: title,
-        type: 'bar',
+        type: 'line',        // 必须 line
         height: 200,
         colors: [color],
-        axisOptions: { xIsSeries: true, xAxisMode: 'tick' },
-        lineOptions: { hideDots: 0, regionFill: 1, heatline: 1, dotSize: 6 },
+        isNavigable: false,
+
+        // 关键：强制显示连线！！！
+        lineOptions: {
+            hideDots: 0,
+            dotSize: 5,
+            heatline: 0,        // 关掉这个！它会导致连线异常
+            regionFill: 0,      // 关掉背景填充
+            spline: 1,          // 平滑曲线
+            showLine: 1         // 强制显示连线（Frappe Charts 隐藏参数）
+        },
+
+        axisOptions: {
+            xIsSeries: 1,
+            xAxisMode: 'tick',
+        },
+
         tooltipOptions: {
             formatTooltipX: d => (d + '').toUpperCase(),
             formatTooltipY: d => d,

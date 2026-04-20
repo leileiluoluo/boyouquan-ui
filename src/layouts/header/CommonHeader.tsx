@@ -35,7 +35,6 @@ const MOBILE_MENU_ITEMS = [
 
 const CommonHeader: React.FC = () => {
     const [open, setOpen] = useState(false);
-
     const { token } = useToken();
 
     const getSelectedKey = () => {
@@ -48,39 +47,50 @@ const CommonHeader: React.FC = () => {
             className="common-header"
             style={{
                 background: token.colorBgLayout,
-                height: '54px',    // 核心：把 Header 变窄
-                padding: '0 16px', // 内边距统一
-                lineHeight: '54px'
+                height: 60,          // 标准高度
+                padding: '0 16px',   // 左右内边距
+                borderBottom: '1px solid #f5f5f5',
+                position: 'relative',
             }}
         >
-            <Flex justify="space-between" align="center" style={{ height: '100%' }}>
-                {/* LOGO */}
-                <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+            {/* 核心：占满高度 + 完美垂直居中 */}
+            <Flex 
+                justify="space-between" 
+                align="center" 
+                style={{ height: '100%' }}
+            >
+                {/* LOGO 完美垂直居中 */}
+                <Link href="/" style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    height: '100%' 
+                }}>
                     <img
-                        src="/assets/images/sites/logo/logo.svg"
+                        src="/assets/images/sites/logo/logo-blue.svg"
                         alt="博友圈"
-                        style={{ height: 24 }} // 缩小一点更协调
+                        style={{ height: 30 }}
                     />
                 </Link>
 
-                {/* PC 端横排菜单 */}
+                {/* PC 菜单：完美垂直居中 */}
                 <PCOnly>
                     <Menu
                         mode="horizontal"
                         selectedKeys={[getSelectedKey()]}
                         style={{
-                            // fontWeight: 500,
                             background: 'transparent',
                             borderBottom: 'none',
-                            lineHeight: '54px', // 菜单高度同步缩小
+                            height: '100%',
+                            display: 'flex',
+                            alignItems: 'center',
                         }}
                         items={MENU_ITEMS.map(item => ({
                             key: item.key,
                             label: (
-                                <a
-                                    href={item.href}
-                                    style={{ color: 'inherit', textDecoration: 'none' }}
-                                >
+                                <a href={item.href} style={{ 
+                                    color: 'inherit', 
+                                    textDecoration: 'none' 
+                                }}>
                                     {item.label}
                                 </a>
                             ),
@@ -88,45 +98,27 @@ const CommonHeader: React.FC = () => {
                     />
                 </PCOnly>
 
-                {/* 移动端：菜单按钮 */}
+                {/* 移动端按钮 */}
                 <MobileOnly>
                     <Button
                         type="text"
                         icon={<MenuOutlined />}
                         onClick={() => setOpen(true)}
-                        style={{ color: token.colorTextQuaternary, fontSize: 18 }}
+                        style={{ fontSize: 18 }}
                     />
                 </MobileOnly>
             </Flex>
 
-            {/* 移动端：抽屉菜单 */}
+            {/* 移动端抽屉 */}
             <Drawer
                 title="菜单"
                 placement="right"
                 open={open}
                 onClose={() => setOpen(false)}
                 width={200}
-                keyboard={true}
-                rootStyle={{ position: 'fixed' }}
-                getContainer={false}
-                closeIcon={<span style={{ color: token.colorTextQuaternary, fontSize: 16 }}>✕</span>}
-                headerStyle={{
-                    background: token.colorBgLayout,
-                    color: token.colorTextQuaternary,
-                }}
-                styles={{
-                    body: {
-                        padding: 0,
-                        background: token.colorBgLayout,
-                    },
-                    wrapper: { position: 'fixed' },
-                }}
             >
                 <Menu
                     mode="vertical"
-                    style={{
-                        fontWeight: 500,
-                    }}
                     selectedKeys={[getSelectedKey()]}
                     onClick={() => setOpen(false)}
                     items={MOBILE_MENU_ITEMS.map(item => ({

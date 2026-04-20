@@ -102,7 +102,7 @@ export default function BlogCharts({ domain }) {
                     style={{
                         marginBottom: 8,
                         width: 'fit-content',
-                        backgroundColor: '#f8dede',
+                        backgroundColor: '#e7eef8',
                         borderRadius: '8px',
                         padding: '2px',
                         fontSize: 13,

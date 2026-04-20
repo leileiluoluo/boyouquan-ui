@@ -1,13 +1,16 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { Card, Flex, Typography, Tag, Tooltip, Space } from 'antd';
+import { theme, Card, Flex, Typography, Tag, Tooltip, Space } from 'antd';
 
 const { Title, Text, Link } = Typography;
+const { useToken} = theme;
 
 export default function FriendBlogs({ domain }) {
     const [linksFromMe, setLinksFromMe] = useState([]);
     const [linksToMe, setLinksToMe] = useState([]);
+
+    const { token } = useToken();
 
     const fetchData = async (domain) => {
         const resp = await RequestUtil.get(`/api/blog-intimacies/my-friend-links?blogDomainName=${domain}`);
@@ -31,7 +34,7 @@ export default function FriendBlogs({ domain }) {
             <Space size={4} wrap>
                 {links.map((blog, index) => (
                     <Link key={blog.domainName} href={`/blogs/${blog.domainName}`} style={{ fontSize: 14 }}>
-                        <Tag color="blue">{blog.name}</Tag>
+                        <Tag color="red">{blog.name}</Tag>
                     </Link>
                 ))}
             </Space>

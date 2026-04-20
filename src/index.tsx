@@ -18,11 +18,13 @@ ReactDOMClient.createRoot(rootElement).render(
         <ConfigProvider
             theme={{
                 token: {
-                    colorBgLayout: '#092640',
-                    colorTextQuaternary: 'rgba(255,255,255,0.65)',
-                    colorTextPlaceholder: '#9a9898',
-                    colorLink: '#092640',
-                    colorLinkHover: '#333',
+                    colorPrimary: '#D9304E',
+                    colorBgLayout: '#fcfcfc',
+                    colorTextSecondary: '#D9304E',
+                    colorTextQuaternary: '#2e2e2e',
+                    colorTextPlaceholder: '#979494',
+                    colorLink: '#262525',
+                    colorLinkHover: '#d3062c',
                 },
             }}>
             <App />

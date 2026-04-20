@@ -14,8 +14,8 @@ const CommonFooter: React.FC = () => {
     const { token } = useToken();
 
     const linkFontSize: number = 13;
-    const colorBottomText: string = '#6c757d';
-    const colorDividerBackground: string = 'rgba(255, 255, 255, 0.15)';
+    const colorBottomText: string = '#161717';
+    const colorDividerBackground: string = 'rgba(23, 22, 22, 0.15)';
     const colorArrowUp: string = token.colorTextLightSolid;      // 纯白（柔和）
     const colorArrowUpBackground: string = token.colorPrimary;   // 使用你的主题主色
 
@@ -65,8 +65,8 @@ const CommonFooter: React.FC = () => {
         <Footer
             className="common-footer"
             style={{
-                background: token.colorBgLayout, // 与 Header 同色
-                color: token.colorTextQuaternary,
+                background: '#f9e9e9', // 与 Header 同色
+                color: '#000',
             }}
         >
             <PCOnly>
@@ -91,7 +91,7 @@ const CommonFooter: React.FC = () => {
                                             fontSize: token.fontSizeSM,
                                         }
                                     }}>
-                                    <Link target="_blank" href="https://cloud.tencent.com/act/cps/redirect?redirect=5990&cps_key=b47473307f5d83202fb2d8a72cd303d7&from=console"><Cloud color="rgba(255, 255, 255, 0.65)" size={16} /></Link>
+                                    <Link target="_blank" href="https://cloud.tencent.com/act/cps/redirect?redirect=5990&cps_key=b47473307f5d83202fb2d8a72cd303d7&from=console"><Cloud color={token.colorTextQuaternary} size={16} /></Link>
                                 </Tooltip>
                                 <Tooltip title="站长信箱"
                                     placement="topLeft"
@@ -150,7 +150,7 @@ const CommonFooter: React.FC = () => {
                         <Link target="_blank" href="https://beian.miit.gov.cn/" style={{ color: colorBottomText, fontSize: token.fontSizeSM }}>辽ICP备2022012085号-2</Link>
                         <Text style={{ color: colorBottomText, fontSize: token.fontSizeSM }}>Copyright © 2023-2026</Text>
                         <Link href="/planet-shuttle" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }}>
-                            <img src="/assets/images/sites/logo/planet-shuttle-dark.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
+                            <img src="/assets/images/sites/logo/planet-shuttle.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
                         </Link>
                     </Flex>
                 </Flex>

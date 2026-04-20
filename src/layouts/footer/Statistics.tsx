@@ -14,7 +14,7 @@ const Statistics: React.FC = () => {
 
     const { token } = useToken();
 
-    const countColor: string = '#E0F7FF';
+    const countColor: string = '#9e0310';
     const countFontSize: number = 13;
     const countDisplayDuration: number = 1.5;
 

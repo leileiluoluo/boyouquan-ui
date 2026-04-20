@@ -34,7 +34,7 @@ export default function FriendBlogs({ domain }) {
             <Space size={4} wrap>
                 {links.map((blog, index) => (
                     <Link key={blog.domainName} href={`/blogs/${blog.domainName}`} style={{ fontSize: 14 }}>
-                        <Tag color="red">{blog.name}</Tag>
+                        <Tag color="blue">{blog.name}</Tag>
                     </Link>
                 ))}
             </Space>

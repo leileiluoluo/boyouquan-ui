@@ -1,9 +1,5 @@
-import React from 'react';
-import CommonHeader from '../../components/common/CommonHeader';
-import CommonFooter from '../../components/common/CommonFooter';
 import Meta from '../../components/common/Meta';
 import Login from '../../components/admin/Login';
-import { Box, Container } from '@radix-ui/themes';
 
 const meta = {
     title: '登录 - 管理页面 - 博友圈 · 博客人的朋友圈！',

@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOMClient from 'react-dom/client';
-// import { Theme } from '@radix-ui/themes';
-// import '@radix-ui/themes/styles.css';
 import './styles.css';
 
 import { ConfigProvider } from 'antd';

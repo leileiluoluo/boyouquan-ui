@@ -1,52 +1,88 @@
 import React, { useEffect, useState } from 'react';
-import { Flex, Box, TabNav, Container, Link } from '@radix-ui/themes';
-import { ScrollArea } from '@radix-ui/react-scroll-area';
+import { Menu, Row, Col, Typography } from 'antd';
+import { Link } from 'react-router-dom'; // 如果你项目用的是 next/link 就换成 next/link
+
+const { Text } = Typography;
 
 export default function Header(): React.JSX.Element {
     const [pathname, setPathname] = useState<string>('');
 
+    // 渐变文字样式（完全保留）
     const siteNameStyle: React.CSSProperties = {
         fontSize: '22px',
         fontWeight: 500,
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
-        backgroundImage: 'linear-gradient(to right, rgba(205, 28, 87, 1), rgba(126, 9, 184, 1))'
+        backgroundImage: 'linear-gradient(to right, rgba(205, 28, 87, 1), rgba(126, 9, 184, 1))',
+        cursor: 'pointer',
+        textDecoration: 'none'
     };
 
+    // 获取当前路径
     useEffect(() => {
         setPathname(window.location.pathname);
-    });
+    }, []);
+
+    // 导航选中逻辑
+    const getSelectedKey = () => {
+        if (pathname === '/home') return 'home';
+        if (pathname === '/moments') return 'moments';
+        if (pathname === '/monthly-selected') return 'monthly-selected';
+        if (pathname.startsWith('/blogs')) return 'blogs';
+        if (pathname === '/link-graphs') return 'link-graphs';
+        if (pathname.startsWith('/blog-requests/add')) return 'blog-add';
+        if (pathname.startsWith('/blog-requests')) return 'blog-requests';
+        return 'home';
+    };
+
+    // 导航菜单
+    const menuItems = [
+        { key: 'home', label: <Link to="/home">首页</Link> },
+        { key: 'moments', label: <Link to="/moments">随手一拍</Link> },
+        { key: 'monthly-selected', label: <Link to="/monthly-selected">每月精选</Link> },
+        { key: 'blogs', label: <Link to="/blogs">博客广场</Link> },
+        { key: 'link-graphs', label: <Link to="/link-graphs">连接系数</Link> },
+        { key: 'planet-shuttle', label: <a href="/planet-shuttle" target="_blank" rel="noreferrer">星球穿梭</a> },
+        { key: 'blog-add', label: <Link to="/blog-requests/add/email-validation">提交博客</Link> },
+        { key: 'blog-requests', label: <Link to="/blog-requests">审核结果</Link> },
+    ];
 
     return (
-        <Box mt="-2" style={{ marginBottom: "10px" }}>
-            <Container size="3">
-                <Flex align="center" justify="between">
-                    <Box mt="1" width="20%">
-                        <Link href="/" style={siteNameStyle}>
-                            博友圈
-                        </Link>
-                    </Box>
-                    <Box width="80%">
-                        <ScrollArea type="always" scrollbars="horizontal">
-                            <TabNav.Root size="4" style={{ fontWeight: 'bold' }}>
-                                <TabNav.Link href="/home" active={pathname === "/home"}>首页</TabNav.Link>
-                                <TabNav.Link href="/moments" active={pathname === "/moments"}>随手一拍</TabNav.Link>
-                                <TabNav.Link href="/monthly-selected" active={pathname === "/monthly-selected"}>每月精选</TabNav.Link>
-                                <TabNav.Link href="/blogs" active={pathname.startsWith("/blogs")}>博客广场</TabNav.Link>
-                                <TabNav.Link href="/link-graphs" active={pathname === "/link-graphs"}>连接系数</TabNav.Link>
-                                <TabNav.Link asChild>
-                                    <a href="/planet-shuttle" target="_blank">
-                                        星球穿梭
-                                    </a>
-                                </TabNav.Link>
-                                <TabNav.Link href="/blog-requests/add/email-validation" active={pathname.startsWith("/blog-requests/add")}>提交博客</TabNav.Link>
-                                <TabNav.Link href="/blog-requests" active={!pathname.startsWith("/blog-requests/add") && pathname.startsWith("/blog-requests")}>审核结果</TabNav.Link>
-                            </TabNav.Root>
-                        </ScrollArea>
-                    </Box>
-                </Flex>
-            </Container>
-        </Box>
+        <div style={{ marginTop: -8, marginBottom: 10 }}>
+            <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 16px' }}>
+                <Row align="middle" justify="space-between">
+                    {/* 左侧 Logo */}
+                    <Col flex="20%">
+                        <div style={{ marginTop: 4 }}>
+                            <Link to="/" style={siteNameStyle}>
+                                博友圈
+                            </Link>
+                        </div>
+                    </Col>
+
+                    {/* 右侧横向滚动导航 */}
+                    <Col flex="80%">
+                        <div style={{
+                            whiteSpace: 'nowrap',
+                            overflowX: 'auto',
+                            overflowY: 'hidden',
+                            msOverflowStyle: 'none',
+                            scrollbarWidth: 'none'
+                        }}>
+                            <Menu
+                                mode="horizontal"
+                                selectedKeys={[getSelectedKey()]}
+                                style={{
+                                    fontWeight: 'bold',
+                                    fontSize: 16,
+                                    borderBottom: 'none'
+                                }}
+                                items={menuItems}
+                            />
+                        </div>
+                    </Col>
+                </Row>
+            </div>
+        </div>
     );
 }
-

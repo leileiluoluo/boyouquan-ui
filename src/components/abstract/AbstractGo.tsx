@@ -1,5 +1,8 @@
-import { Box, Link } from '@radix-ui/themes';
+import React from 'react';
+import { Typography } from 'antd';
 import { getGoAddress } from '@utils/PageAddressUtil';
+
+const { Link } = Typography;
 
 interface AbstractGoProps {
     link: string;
@@ -7,11 +10,16 @@ interface AbstractGoProps {
 
 export default function AbstractGo({ link }: AbstractGoProps) {
     const gotoLink = getGoAddress(link);
+    
     return (
-        <Box>
-            <Link href={gotoLink} size="2" weight="bold">
+        <div>
+            <Link 
+                href={gotoLink} 
+                strong 
+                style={{ fontSize: 14 }}
+            >
                 [阅读原文]
             </Link>
-        </Box>
-    )
+        </div>
+    );
 }

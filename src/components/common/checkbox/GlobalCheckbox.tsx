@@ -1,22 +1,32 @@
 import React from 'react';
-import { Box, CheckboxGroup } from '@radix-ui/themes';
+import { Checkbox } from 'antd';
 
-export default function GlobalCheckbox({ options, defaultIdOptions, handleChange }) {
-    return (
-        <Box>
-            <CheckboxGroup.Root
-                onValueChange={handleChange}
-                defaultValue={defaultIdOptions}>
-                {
-                    options.map((option, index) => (
-                        <CheckboxGroup.Item
-                            key={index}
-                            value={option.id}>
-                            {option.label}
-                        </CheckboxGroup.Item>
-                    ))
-                }
-            </CheckboxGroup.Root>
-        </Box>
-    );
+// 类型定义（可选，增强代码提示）
+interface GlobalCheckboxProps {
+  options: { id: string; label: string }[];
+  defaultIdOptions?: string[];
+  handleChange: (value: string[]) => void;
+}
+
+export default function GlobalCheckbox({
+  options,
+  defaultIdOptions,
+  handleChange
+}: GlobalCheckboxProps) {
+  return (
+    <Checkbox.Group
+      defaultValue={defaultIdOptions}
+      onChange={handleChange}
+    >
+      {options.map((option) => (
+        <Checkbox
+          key={option.id}
+          value={option.id}
+          style={{ display: 'block', marginBottom: 8 }}
+        >
+          {option.label}
+        </Checkbox>
+      ))}
+    </Checkbox.Group>
+  );
 }

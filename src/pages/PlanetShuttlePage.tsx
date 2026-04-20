@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Box } from '@radix-ui/themes';
 
 import RequestUtil from '@utils/APIRequestUtil';
 import Meta from '@components/common/Meta';
@@ -99,25 +98,25 @@ export default function PlanetShuttlePage() {
                 <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
                 <script src="/assets/js/tongji.js" type="text/javascript"></script>
             </Helmet>
-            <Box style={planetStyle}>
-                <Box style={textAliginStyle}>
+            <div style={planetStyle}>
+                <div style={textAliginStyle}>
                     <a style={fontStyle} href="/home"><img width="90px" height="28px" src="/assets/images/sites/logo/planet-shuttle-dark.svg"></img></a>
-                </Box>
-                <Box style={fontSizeLargeStyle}>
+                </div>
+                <div style={fontSizeLargeStyle}>
                     {
                         (null !== shuttleInfo.fromBlog) ? <><p style={marginOneStyle}>加入博友圈 {fromBlogJoinDays} 天、总助力值为 {shuttleInfo.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${shuttleInfo.fromBlog.domainName}`} style={animationStyle}>{shuttleInfo.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p></>
                             : <p>您即将穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p>
                     }
-                </Box>
-                <Box style={blogDescriptionStyle}>
+                </div>
+                <div style={blogDescriptionStyle}>
                     {
                         <p>“ {shuttleInfo.blogDescription} ”</p>
                     }
-                </Box>
-                <Box style={marginStyle}>
+                </div>
+                <div style={marginStyle}>
                     <span style={{ fontSize: '12px' }}>Copyright © 2023-2026 <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>博友圈</a></span>
-                </Box>
-            </Box>
+                </div>
+            </div>
         </>
     )
 }

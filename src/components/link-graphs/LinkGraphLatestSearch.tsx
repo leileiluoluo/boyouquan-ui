@@ -1,7 +1,6 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AudioOutlined } from '@ant-design/icons'; // antd 官方喇叭图标
 import RequestUtil from '../../utils/APIRequestUtil';
-import { SpeakerLoudIcon } from '@radix-ui/react-icons';
 
 export default function LinkGraphLatestSearch() {
     const [size, setSize] = useState(0);
@@ -11,7 +10,7 @@ export default function LinkGraphLatestSearch() {
     const fetchData = async () => {
         const resp = await RequestUtil.get('/api/blog-intimacies/search-histories');
         const respBody = await resp.json();
-        if (resp.status == 200 && respBody.length > 0) {
+        if (resp.status === 200 && respBody.length > 0) {
             const first = respBody[0];
             respBody.push(first);
             setSize(respBody.length - 1);
@@ -26,22 +25,21 @@ export default function LinkGraphLatestSearch() {
 
     return (
         <div className="latest-news">
+            {/* 替换为 Ant Design 喇叭图标 */}
             <div className="icon">
-                <SpeakerLoudIcon />
+                <AudioOutlined style={{ fontSize: 16 }} />
             </div>
             <div className="content">
-                {
-                    display && <ul style={{ '--s': size }}>
-                        {
-                            items.map(
-                                (item, index) => (
-                                    <li key={index}><a href={item.link}>{item.title}</a></li>
-                                )
-                            )
-                        }
+                {display && (
+                    <ul style={{ '--s': size } as React.CSSProperties}>
+                        {items.map((item, index) => (
+                            <li key={index}>
+                                <a href={item.link}>{item.title}</a>
+                            </li>
+                        ))}
                     </ul>
-                }
+                )}
             </div>
         </div>
-    )
+    );
 }

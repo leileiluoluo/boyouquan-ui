@@ -814,7 +814,21 @@
         "spentAt": "--",
         "spentOn": "--",
         "spentDetails": [
-            "当前总额：272.1 元"
+            "当前总额：272.10 元"
+        ],
+        "proofs": []
+    },
+    {
+        "blogName": "南香香",
+        "link": "/blogs/99887766554433221100.cn",
+        "sponsoredAt": "2026/04/20",
+        "sponsoredMoney": "8.88 元",
+        "message": "支持站长，让服务器多运行一会～",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：280.98 元"
         ],
         "proofs": []
     }

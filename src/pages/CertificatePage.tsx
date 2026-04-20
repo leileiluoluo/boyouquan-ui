@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import html2canvas from 'html2canvas';
-import { Button } from '@radix-ui/themes';
 
 import RequestUtil from '@utils/APIRequestUtil';
 import { NOT_FOUND_ADDRESS } from '@utils/PageAddressUtil';
@@ -11,7 +10,7 @@ import { formatDateStr, getYearsTillNow } from '@utils/DateUtil';
 import { stringToSixDigitNumber } from '@utils/StringUtil';
 import Meta from '@components/common/Meta';
 import { MetaFields } from '@types';
-import { Spin } from 'antd';
+import { Button, Spin } from 'antd';
 
 const getMeta = (name: string, description: string): MetaFields => {
     return {
@@ -536,7 +535,6 @@ export default function CertificatePage() {
                         {/* 底部按钮区 */}
                         <div className="flex justify-center gap-4 mt-8 print:hidden ignore-capture">
                             <Button
-                                variant="outline"
                                 className="text-yellow-400 bg-black/80 border-yellow-400 rounded-lg text-sm sm:text-base px-4 py-2"
                                 onClick={() => window.print()}
                             >
@@ -544,7 +542,6 @@ export default function CertificatePage() {
                             </Button>
 
                             <Button
-                                variant="outline"
                                 className="text-yellow-400 bg-black/80 border-yellow-400 rounded-lg text-sm sm:text-base px-4 py-2"
                                 onClick={handleScreenCapture} // 调用截屏生成 PNG
                             >

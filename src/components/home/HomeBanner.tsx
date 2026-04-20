@@ -1,11 +1,17 @@
-import { Box } from '@radix-ui/themes';
+import React from 'react';
 
 export default function HomeBanner() {
     return (
-        <Box mt="-5" mb="-4">
+        <div style={{ marginTop: -20, marginBottom: -16 }}>
             <p>
-                <a href="/moments"><img align="center" src="/assets/images/sites/banner/2026-happy-new-year.jpg" /></a>
+                <a href="/moments">
+                    <img 
+                        align="center" 
+                        src="/assets/images/sites/banner/2026-happy-new-year.jpg" 
+                        alt="首页横幅"
+                    />
+                </a>
             </p>
-        </Box>
-    )
+        </div>
+    );
 }

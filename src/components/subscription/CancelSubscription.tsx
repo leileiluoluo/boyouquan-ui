@@ -1,26 +1,25 @@
-import React from 'react';
-import { Form } from '@radix-ui/react-form';
-import { Box, Button, Card, Flex, Heading, TextField, Text } from '@radix-ui/themes';
+import React, { useEffect, useState } from 'react';
+import { Form, Card, Typography, Space, Input, Button, Checkbox, message } from 'antd';
 import { getURLParameter } from '../../utils/CommonUtil';
 import GlobalDialog from '../common/dialog/GlobalDialog';
 import RequestUtil from '../../utils/APIRequestUtil';
-import { useEffect, useState } from 'react';
-import GlobalCheckbox from '../common/checkbox/GlobalCheckbox';
+
+const { Title, Text } = Typography;
 
 export default function CancelSubscription() {
     const email = getURLParameter('email') || '';
     const token = getURLParameter('token') || '';
 
-    const [idOptions, setIdOptions] = useState([]);
-    const [options, setOptions] = useState([]);
-    const [error, setError] = useState({ code: '', message: '' });
+    const [idOptions, setIdOptions] = useState<string[]>([]);
+    const [options, setOptions] = useState<{ id: string; label: string }[]>([]);
+    const [error, setError] = useState<{ code: string; message: string }>({ code: '', message: '' });
     const [dialogOpen, setDialogOpen] = useState(false);
 
-    const fetchData = async (email) => {
+    const fetchData = async (email: string) => {
         const resp = await RequestUtil.get(`/api/subscriptions/${email}`);
-
         const respBody = await resp.json();
-        if (resp.status != 200) {
+
+        if (resp.status !== 200) {
             setError(respBody);
             setDialogOpen(true);
         } else {
@@ -30,28 +29,28 @@ export default function CancelSubscription() {
                 return;
             }
 
-            const optionList = respBody.map(item => ({
+            const optionList = respBody.map((item: any) => ({
                 id: item.type,
                 label: item.name
             }));
             setOptions(optionList);
-
+            setIdOptions(optionList.map(item => item.id)); // 默认全选
             setError({ code: '', message: '' });
         }
     };
 
-    const submit = async (email, token, types) => {
+    const submit = async (email: string, token: string, types: string[]) => {
         const formData = {
-            'email': email,
-            'token': token,
-            'types': types
-        }
+            email: email,
+            token: token,
+            types: types
+        };
 
         const resp = await RequestUtil.delete('/api/subscriptions', JSON.stringify(formData), {
             'Content-Type': 'application/json',
         });
 
-        if (resp.status != 204) {
+        if (resp.status !== 204) {
             const respBody = await resp.json();
             setError(respBody);
         } else {
@@ -60,80 +59,95 @@ export default function CancelSubscription() {
         setDialogOpen(true);
     };
 
-    const handleChange = (value) => {
+    const handleChange = (value: string[]) => {
         setIdOptions(value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
+    const handleSubmit = () => {
         if (idOptions.length <= 0) {
             setError({ code: 'type_not_selected', message: '您未选择任何需要取消的频道' });
             setDialogOpen(true);
             return;
         }
-
         submit(email, token, idOptions);
     };
 
     useEffect(() => {
-        if ('' === email) {
+        if (email === '') {
             setError({ code: 'email_not_provided', message: '未提供邮箱，无法取消订阅' });
             setDialogOpen(true);
             return;
         }
 
-        if ('' === token) {
+        if (token === '') {
             setError({ code: 'token_not_provided', message: '未提供令牌，无法取消订阅' });
             setDialogOpen(true);
             return;
         }
 
         fetchData(email);
-    }, [email]);
+    }, [email, token]);
 
     return (
-        <Flex direction="column" gap="2">
-            <Box>
-                <Heading size="3" weight="bold">取消订阅</Heading>
-            </Box>
-            <Box minHeight="300px">
+        <Space direction="vertical" size="small" style={{ width: '100%' }}>
+            <div>
+                <Title level={3} style={{ fontWeight: 'bold', margin: 0 }}>取消订阅</Title>
+            </div>
+
+            <div style={{ minHeight: '300px' }}>
                 <Card>
-                    <Form>
-                        <Flex gap="2" direction="column">
+                    <Form layout="vertical">
+                        <Space direction="vertical" size="small" style={{ width: '100%' }}>
+                            {/* 提示弹窗 */}
                             <GlobalDialog
-                                title={'' != error.code ? '错误提示' : '提示'}
-                                titleColor={'' != error.code ? 'crimson' : ''}
-                                message={'' != error.code ? error.message : `取消成功！您的邮箱 ${email} 将不再收到对应频道的任何邮件！`}
-                                closeButtonName={'' != error.code ? '返回' : '关闭窗口'}
+                                title={error.code ? '错误提示' : '提示'}
+                                titleColor={error.code ? 'red' : undefined}
+                                message={error.code ? error.message : `取消成功！您的邮箱 ${email} 将不再收到对应频道的任何邮件！`}
+                                closeButtonName={error.code ? '返回' : '关闭窗口'}
                                 dialogOpen={dialogOpen}
                                 setDialogOpen={setDialogOpen}
                             />
 
-                            <Box>
-                                <Text size="2">您的邮箱：</Text>
-                                <TextField.Root mt="2" value={email} readOnly />
-                            </Box>
+                            {/* 邮箱展示 */}
+                            <div>
+                                <Text type="secondary">您的邮箱：</Text>
+                                <Input
+                                    value={email}
+                                    readOnly
+                                    style={{ marginTop: 8 }}
+                                />
+                            </div>
 
-                            <Box>
-                                <Text size="2">您订阅的所有频道：</Text>
-                                <Card mt="2">
-                                    <GlobalCheckbox
+                            {/* 订阅频道选择 */}
+                            <div>
+                                <Text type="secondary">您订阅的所有频道：</Text>
+                                <Card
+                                    size="small"
+                                    style={{ marginTop: 8 }}
+                                >
+                                    <Checkbox.Group
                                         options={options}
-                                        defaultIdOptions={options.map(item => item.id)}
-                                        handleChange={handleChange} />
+                                        value={idOptions}
+                                        onChange={handleChange}
+                                        style={{ width: '100%' }}
+                                    />
                                 </Card>
-                            </Box>
+                            </div>
 
-                            <Text mt="2" size="2">请勾选需要取消的频道，然后点击提交！</Text>
+                            <Text type="secondary" style={{ marginTop: 8 }}>
+                                请勾选需要取消的频道，然后点击提交！
+                            </Text>
 
-                            <Box mt="2">
-                                <Button onClick={handleSubmit}>取消订阅</Button>
-                            </Box>
-                        </Flex>
+                            {/* 提交按钮 */}
+                            <div style={{ marginTop: 8 }}>
+                                <Button type="primary" onClick={handleSubmit}>
+                                    取消订阅
+                                </Button>
+                            </div>
+                        </Space>
                     </Form>
                 </Card>
-            </Box>
-        </Flex>
-    )
+            </div>
+        </Space>
+    );
 }

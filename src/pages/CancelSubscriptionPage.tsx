@@ -1,4 +1,3 @@
-import { Flex } from '@radix-ui/themes';
 
 import { Meta } from '@components/common';
 import CancelSubscription from '@components/subscription/CancelSubscription';
@@ -14,9 +13,7 @@ export default function CancelSubscriptionPage() {
     return (
         <>
             <Meta meta={meta} />
-            <Flex direction="column" gap="4">
-                <CancelSubscription />
-            </Flex>
+            <CancelSubscription />
         </>
     )
 }

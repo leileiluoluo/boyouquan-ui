@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box } from '@radix-ui/themes'
-import FooterBlock from './FooterBlock'
-import SiteFooter from './SiteFooter'
+import FooterBlock from './FooterBlock';
+import SiteFooter from './SiteFooter';
 
 interface CommonFooterProps {
     isHome?: string | boolean;
@@ -9,9 +8,9 @@ interface CommonFooterProps {
 
 export default function CommonFooter({ isHome }: CommonFooterProps): React.JSX.Element {
     return (
-        <Box>
-            <FooterBlock isHome={isHome}/>
+        <div>
+            <FooterBlock isHome={isHome} />
             <SiteFooter />
-        </Box>
-    )
+        </div>
+    );
 }

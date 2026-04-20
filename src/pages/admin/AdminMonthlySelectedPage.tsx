@@ -2,7 +2,6 @@ import React from 'react';
 import CommonHeader from '../../components/common/CommonHeader';
 import CommonFooter from '../../components/common/CommonFooter';
 import Meta from '../../components/common/Meta';
-import { Box, Container } from '@radix-ui/themes';
 import AdminMonthlySelected from '../../components/admin/monthly-selected/AdminMonthlySelected';
 
 const meta = {

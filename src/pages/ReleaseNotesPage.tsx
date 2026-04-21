@@ -14,7 +14,7 @@ const meta: MetaFields = {
 
 const content: JSX.Element = (
     <>
-        <Title level={5} style={{ marginBottom: 16, fontWeight: 'bold' }}>v2.7（当前版本）</Title>
+        <Title level={5} style={{ marginTop: 0, marginBottom: 16, fontWeight: 'bold' }}>v2.7（当前版本）</Title>
         <Paragraph style={{ marginBottom: 16 }}>
             博友圈于 2025 年 10 月 19 日发布了 v2.7 版本！该版本增加了「履约证书」和「连接系数」两个新的页面。前者用于展示博客在博友圈的履约情况；后者用于发现一个博客和另一个博客的连接度。
         </Paragraph>

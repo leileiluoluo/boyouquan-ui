@@ -14,7 +14,7 @@ const meta: MetaFields = {
 const content = (
     <>
         {/* 2025 年度报告 */}
-        <Title level={3} style={{ marginBottom: 16, fontWeight: 'bold' }}>
+        <Title level={5} style={{ marginTop: 0, marginBottom: 16, fontWeight: 'bold' }}>
             2025 年度报告
         </Title>
         <Paragraph style={{ marginBottom: 8 }}>
@@ -22,7 +22,7 @@ const content = (
         </Paragraph>
 
         {/* 2024 年度报告 */}
-        <Title level={3} style={{ marginTop: 16, marginBottom: 16, fontWeight: 'bold' }}>
+        <Title level={5} style={{ marginTop: 16, marginBottom: 16, fontWeight: 'bold' }}>
             2024 年度报告
         </Title>
         <Paragraph style={{ marginBottom: 8 }}>

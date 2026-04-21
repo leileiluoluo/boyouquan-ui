@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { theme, Space, Typography, Card, Flex, Row, Col, Tooltip, Divider, Avatar, Badge } from 'antd';
-import BlogCardDescription from './BlogCardDescription';
-import BlogCardFooter from './BlogCardFooter';
-import BlogCardHeader from './BlogCardHeader';
-import BlogCardLatestPosts from './BlogCardLatestPosts';
-import BlogCardSummary from './BlogCardSummary';
 import {
-    LinkOutlined,
     GlobalOutlined,
-    FileTextOutlined,
-    EyeOutlined,
-    CalendarOutlined,
-    InfoCircleOutlined,
     EnvironmentOutlined,
 } from '@ant-design/icons';
 import LazyAvatar from '@components/common/avatar/LazyAvatar';
@@ -91,9 +81,9 @@ export default function BlogCard({
                 </Link>
 
                 <Space size={4} style={{ marginTop: 2, marginBottom: 12 }}>
-                    <LinkOutlined style={{ fontSize: 12 }} />
-                    <Link target="_blank" href={getGoAddress(blog.address)} style={{ fontSize: 12 }}>
-                        {blog.domainName}
+                    <GlobalOutlined style={{ fontSize: 12, color: '#8c8c8c' }} />
+                    <Link target="_blank" href={getGoAddress(blog.address)} >
+                        <Text style={{ fontSize: 12, color: '#8c8c8c' }}>{blog.domainName}</Text>
                     </Link>
                 </Space>
 

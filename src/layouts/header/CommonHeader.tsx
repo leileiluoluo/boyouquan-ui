@@ -15,9 +15,8 @@ const MENU_ITEMS = [
     { key: '2', label: '每月精选', href: '/monthly-selected' },
     { key: '3', label: '博客广场', href: '/blogs' },
     { key: '4', label: '连接系数', href: '/link-graphs' },
-    { key: '5', label: '星球穿梭', href: '/planet-shuttle' },
-    { key: '6', label: '提交博客', href: '/blog-requests/add' },
-    { key: '7', label: '审核结果', href: '/blog-requests' },
+    { key: '5', label: '提交博客', href: '/blog-requests/add' },
+    { key: '6', label: '审核结果', href: '/blog-requests' },
 ];
 
 const MOBILE_MENU_ITEMS = [
@@ -54,16 +53,16 @@ const CommonHeader: React.FC = () => {
             }}
         >
             {/* 核心：占满高度 + 完美垂直居中 */}
-            <Flex 
-                justify="space-between" 
-                align="center" 
+            <Flex
+                justify="space-between"
+                align="center"
                 style={{ height: '100%' }}
             >
                 {/* LOGO 完美垂直居中 */}
-                <Link href="/" style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    height: '100%' 
+                <Link href="/" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: '100%'
                 }}>
                     <img
                         src="/assets/images/sites/logo/logo-blue.svg"
@@ -87,9 +86,9 @@ const CommonHeader: React.FC = () => {
                         items={MENU_ITEMS.map(item => ({
                             key: item.key,
                             label: (
-                                <a href={item.href} style={{ 
-                                    color: 'inherit', 
-                                    textDecoration: 'none' 
+                                <a href={item.href} style={{
+                                    color: 'inherit',
+                                    textDecoration: 'none'
                                 }}>
                                     {item.label}
                                 </a>
@@ -109,13 +108,26 @@ const CommonHeader: React.FC = () => {
                 </MobileOnly>
             </Flex>
 
-            {/* 移动端抽屉 */}
             <Drawer
                 title="菜单"
                 placement="right"
                 open={open}
                 onClose={() => setOpen(false)}
                 width={200}
+                getContainer={false}
+                maskClosable={true}
+                styles={{
+                    body: {
+                        padding: 0,
+                    },
+                    mask: {
+                        position: 'fixed',
+                    },
+                    wrapper: {
+                        position: 'fixed',
+                    },
+                }}
+                rootStyle={{ position: 'absolute' }}
             >
                 <Menu
                     mode="vertical"

@@ -27,7 +27,7 @@ const getMeta = (isSharingPage: boolean, title: string, description: string): Me
     }
 
     return {
-        title: `文章摘要：「${title}」 - 博友圈 · 博客人的朋友圈！`,
+        title: `「${title}」的摘要 - 博友圈 · 博客人的朋友圈！`,
         keywords: '文章摘要',
         description: description
     };
@@ -101,6 +101,9 @@ export default function Abstract({ isSharingPage }: AbstractProps) {
     }
 
     return (
+        <>
+        <Meta meta={getMeta(isSharingPage, postInfo.title, postInfo.description)} />
         <PostCard showPinned={false} post={postInfo} descriptionRows={6} />
+        </>
     );
 }

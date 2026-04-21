@@ -32,7 +32,7 @@ const RELEASE_INFO_V2_7 = {
             <Paragraph style={{ marginBottom: 8, fontWeight: 500 }}>
                 博客详情页履约进度条：
             </Paragraph>
-            <div style={{ marginBottom: 24 }}>
+            <div style={{ marginBottom: 24, textAlign: 'center' }}>
                 <Image
                     width={480}
                     src="/assets/images/sites/release_notes/v2.7/blog-detail-page.png"
@@ -44,7 +44,7 @@ const RELEASE_INFO_V2_7 = {
             <Paragraph style={{ marginBottom: 8, fontWeight: 500 }}>
                 履约证书：
             </Paragraph>
-            <div style={{ marginBottom: 24 }}>
+            <div style={{ marginBottom: 24, textAlign: 'center' }}>
                 <Image
                     width={480}
                     src="/assets/images/sites/release_notes/v2.7/performance-page.png"
@@ -64,7 +64,7 @@ const RELEASE_INFO_V2_7 = {
             <Paragraph style={{ marginBottom: 8, fontWeight: 500 }}>
                 连接系数页面：
             </Paragraph>
-            <div style={{ marginBottom: 24 }}>
+            <div style={{ marginBottom: 24, textAlign: 'center' }}>
                 <Image
                     width={480}
                     src="/assets/images/sites/release_notes/v2.7/link-graph-page.png"

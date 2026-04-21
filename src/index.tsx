@@ -17,6 +17,7 @@ ReactDOMClient.createRoot(rootElement).render(
             theme={{
                 token: {
                     colorBgLayout: '#ffffff',
+                    // colorLink: '#000000',
                 },
             }}>
             <App />

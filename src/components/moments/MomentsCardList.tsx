@@ -127,34 +127,6 @@ export default function MomentsCardList() {
         };
     }, [hasMore, loading, pageNo, initialLoading]);
 
-    const renderSkeleton = () => {
-        const skeletonCount = dynamicPageSize;
-        const columnsCount = getColumnsCount(windowWidth);
-        
-        return (
-            <Row gutter={[16, 16]}>
-                {Array.from({ length: skeletonCount }).map((_, index) => (
-                    <Col xs={24} md={12} key={index}>
-                        <Card style={{ borderRadius: '12px', height: '100%' }}>
-                            <Flex vertical gap={12}>
-                                <Skeleton.Image active style={{ width: '100%', height: 176 }} />
-                                <Flex vertical gap={8}>
-                                    <Skeleton.Input active size="small" block />
-                                    <Flex gap={8} align="center">
-                                        <Skeleton.Avatar active size="small" />
-                                        <Skeleton.Input active size="small" style={{ width: 80 }} />
-                                        <Skeleton.Input active size="small" style={{ width: 50 }} />
-                                        <Skeleton.Input active size="small" style={{ width: 40 }} />
-                                    </Flex>
-                                </Flex>
-                            </Flex>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-        );
-    };
-
     const renderLoadMore = () => {
         if (!hasMore && moments.length > 0) {
             return (
@@ -179,10 +151,12 @@ export default function MomentsCardList() {
         return (
             <Flex vertical gap={24} style={{ width: '100%' }}>
                 <div id="moments-container">
-                    <Title level={4} style={{ marginBottom: 16, fontWeight: 'bold' }}>
+                    <Title level={4} style={{ margin: 0 }}>
                         最新随拍
                     </Title>
-                    {renderSkeleton()}
+                    <div style={{marginTop: 10}}>
+                        <Spin />
+                    </div>
                 </div>
             </Flex>
         );
@@ -191,14 +165,14 @@ export default function MomentsCardList() {
     return (
         <Flex vertical gap={24} style={{ width: '100%' }}>
             <div id="moments-container">
-                <Title level={4} style={{ marginBottom: 16, fontWeight: 'bold' }}>
+                <Title level={4} style={{ margin: 0 }}>
                     最新随拍
                 </Title>
 
                 {moments.length === 0 ? (
                     <Empty description="暂无随拍内容" />
                 ) : (
-                    <>
+                    <div style={{marginTop: 10}}>
                         <Row gutter={[16, 16]}>
                             {moments.map((moment) => (
                                 <Col xs={24} md={12} key={moment.id}>
@@ -207,7 +181,7 @@ export default function MomentsCardList() {
                             ))}
                         </Row>
                         {renderLoadMore()}
-                    </>
+                    </div>
                 )}
             </div>
         </Flex>

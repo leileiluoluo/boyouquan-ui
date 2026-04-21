@@ -127,7 +127,7 @@ export default function LinkGraphInput({
                 <div className="swap-icon">
                     <Tooltip title="对调">
                         <SwapOutlined
-                            style={{ fontSize: 20, cursor: 'pointer' }}
+                            style={{ fontSize: 20, cursor: 'pointer', color: '#1677ff' }}
                             onClick={handleSwap}
                         />
                     </Tooltip>

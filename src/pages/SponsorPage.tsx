@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Typography, Table, Flex, Divider, Grid, Skeleton as AntSkeleton, Card, Space, Tag } from 'antd';
-import { LinkOutlined, CheckCircleOutlined, DollarOutlined, UserOutlined } from '@ant-design/icons';
+import { Typography, Table, Skeleton as AntSkeleton, Card, Space, Tag } from 'antd';
 
 import { Meta } from '@components/common';
 import Article from '@components/article/Article';
@@ -42,7 +41,7 @@ const columns = [
         key: 'sponsoredMoney',
         width: 100,
         render: (text: string) => (
-            <Text strong style={{ color: '#52c41a' }}>
+            <Text strong>
                 {text}
             </Text>
         ),
@@ -60,9 +59,9 @@ const columns = [
         key: 'status',
         width: 100,
         render: (text: string) => (
-            <Tag color={text === '已完成' ? 'success' : 'default'}>
+            <Text>
                 {text}
-            </Tag>
+            </Text>
         ),
     },
     {
@@ -161,8 +160,8 @@ const content: JSX.Element = (
             完整赞助名单（感谢您的赞助与接力，让博友圈运行至今）：
         </Title>
 
-        <Card 
-            style={{ 
+        <Card
+            style={{
                 marginBottom: 16,
                 borderRadius: '8px',
                 border: '1px solid #f0f0f0'
@@ -170,7 +169,13 @@ const content: JSX.Element = (
             bodyStyle={{ padding: '16px' }}
         >
             <Suspense fallback={<AntSkeleton active paragraph={{ rows: 3 }} />}>
-                <SponsorMotion />
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%'
+                }}>
+                    <SponsorMotion />
+                </div>
             </Suspense>
         </Card>
 

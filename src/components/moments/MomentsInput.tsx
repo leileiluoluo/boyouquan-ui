@@ -213,8 +213,7 @@ export default function MomentsInput() {
                                     placeholder="请写一段话 ..."
                                     value={description}
                                     onChange={handleDescriptionChange}
-                                    showCount
-                                    maxLength={500}
+                                    maxLength={50}
                                 />
                             </Form.Item>
 

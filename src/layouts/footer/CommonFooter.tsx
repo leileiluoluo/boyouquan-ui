@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import type { MenuProps } from 'antd';
 import { Rss, Github, Cloud, Mail, ArrowUp, BarChart3, ExternalLink } from 'lucide-react';
-import { theme, Layout, Divider, Typography, Flex, Button, Spin, Dropdown, Tooltip } from 'antd';
+import { theme, Layout, Divider, Typography, Flex, Button, Spin, Dropdown, Tooltip, Space } from 'antd';
 
 import { MobileOnly, PCOnly } from '@components/common/Responsive';
 
@@ -14,8 +14,7 @@ const CommonFooter: React.FC = () => {
     const { token } = useToken();
 
     const linkFontSize: number = 13;
-    const colorBottomText: string = '#161717';
-    const colorDividerBackground: string = 'rgba(23, 22, 22, 0.15)';
+    const colorDividerBackground: string = 'rgba(237, 233, 233, 0.15)';
     const colorArrowUp: string = token.colorTextLightSolid;      // 纯白（柔和）
     const colorArrowUpBackground: string = token.colorPrimary;   // 使用你的主题主色
 
@@ -23,7 +22,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '1',
             label: (
-                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=recommended">
+                <a style={{ fontSize: token.fontSizeSM, color: '#ffffff' }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=recommended">
                     推荐文章聚合
                 </a>
             ),
@@ -31,7 +30,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '2',
             label: (
-                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=latest">
+                <a style={{ fontSize: token.fontSizeSM, color: '#ffffff' }} target="_blank" rel="noopener noreferrer" href="/feed.xml?sort=latest">
                     最新文章聚合
                 </a>
             ),
@@ -42,7 +41,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '1',
             label: (
-                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-ui">
+                <a style={{ fontSize: token.fontSizeSM, color: '#ffffff' }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-ui">
                     前端源码
                 </a>
             ),
@@ -50,7 +49,7 @@ const CommonFooter: React.FC = () => {
         {
             key: '2',
             label: (
-                <a style={{ fontSize: token.fontSizeSM }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-api">
+                <a style={{ fontSize: token.fontSizeSM, color: '#ffffff' }} target="_blank" rel="noopener noreferrer" href="https://github.com/leileiluoluo/boyouquan-api">
                     后端源码
                 </a>
             ),
@@ -65,8 +64,8 @@ const CommonFooter: React.FC = () => {
         <Footer
             className="common-footer"
             style={{
-                background: token.colorBgLayout, // 与 Header 同色
-                borderTop: '1px solid #f5f5f5',
+                background: '#ecf2f2', // 与 Header 同色
+                borderTop: '1px solid #e0ecec',
             }}
         >
             <PCOnly>
@@ -82,9 +81,9 @@ const CommonFooter: React.FC = () => {
                                 <Dropdown placement="topLeft" menu={{ items: githubItems }}>
                                     <Github size={16} />
                                 </Dropdown>
+
                                 <Tooltip title="本站使用腾讯云主机提供服务"
                                     placement="topRight"
-                                    color={token.colorBgElevated}
                                     styles={{
                                         root: {
                                             color: token.colorText,
@@ -95,7 +94,6 @@ const CommonFooter: React.FC = () => {
                                 </Tooltip>
                                 <Tooltip title="站长信箱"
                                     placement="topLeft"
-                                    color={token.colorBgElevated}
                                     styles={{
                                         root: {
                                             color: token.colorText,

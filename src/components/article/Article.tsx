@@ -15,11 +15,11 @@ export default function Article({ title, content, publishedAt }: ArticleProps): 
         <Space direction="vertical" size="middle" style={{ width: '100%' }}>
             {/* 文章头部 */}
             <div className="article-header">
-                <Title level={4} style={{ marginBottom: 8, marginTop: 0 }}>
+                <Title level={4} style={{ margin: 0 }}>
                     {title}
                 </Title>
                 {publishedAt && (
-                    <Space size="small">
+                    <Space size="small" style={{marginTop: 10}}>
                         <CalendarOutlined style={{ color: '#8c8c8c' }} />
                         <Text type="secondary" style={{ fontSize: 12 }}>
                             {publishedAt}

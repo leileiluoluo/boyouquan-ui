@@ -25,6 +25,23 @@
   }
 }
 
+/* antd */
+.ant-dropdown-menu {
+  background-color: #000000 !important;
+  /*  hover 色 */
+}
+
+.ant-dropdown-menu-item {
+  color: #fff !important;
+  /* 文字白 */
+}
+
+.ant-dropdown-menu-item:hover {
+  background-color: #374151 !important;
+  /*  hover 色 */
+  color: #fff !important;
+}
+
 /* global.css */
 :root {
   /* 轮播的条数，可以覆盖 */
@@ -71,11 +88,6 @@
   animation: liMove calc(var(--speed)) infinite;
 }
 
-.latest-news .content ul li a {
-  color: '#D9304E' !important;
-  font-weight: 500;
-}
-
 @keyframes move {
   0% {
     transform: translate(0, 0);
@@ -98,7 +110,7 @@
 }
 
 a {
-  color: #002bb7c5;
+  color: rgb(22, 119, 255);
 }
 
 a,
@@ -121,12 +133,13 @@ p img {
 }
 
 @keyframes autoClear {
-    0% {
-        filter: blur(8px);
-        transform: scale(1.1);
-    }
-    100% {
-        filter: blur(0);
-        transform: scale(1);
-    }
+  0% {
+    filter: blur(8px);
+    transform: scale(1.1);
+  }
+
+  100% {
+    filter: blur(0);
+    transform: scale(1);
+  }
 }

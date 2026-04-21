@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Flex, Spin } from 'antd';
+import { Empty, Flex, Spin } from 'antd';
 import { scrollToHash, clearHash } from '../../utils/ScrollUtil';
 import PostCard from './PostCard';
 import Pagination from '../pagination/Pagination';
@@ -43,6 +43,22 @@ const PostCardList: React.FC<PostCardListProps> = ({ sort, keyword, showPinned }
 
     if (!dataReady) {
         return <Spin />
+    }
+
+    if (null !== keyword && '' !== keyword && 0 === total) {
+        return (
+            <Flex vertical gap={12}>
+                <Empty
+                    description="未找到相关文章，试试更换关键词吧！"
+                    style={{ marginTop: 40, marginBottom: 40 }}
+                />
+                <Pagination
+                    pageNo={pageNo}
+                    pageSize={pageSize}
+                    total={total}
+                    setCurrectPage={setCurrectPage} />
+            </Flex>
+        );
     }
 
     return (

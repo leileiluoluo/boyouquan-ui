@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import { Chart } from 'frappe-charts';
 import RequestUtil from '../../utils/APIRequestUtil';
@@ -39,7 +38,7 @@ export default function BlogCharts({ domain }) {
             '次浏览',
             respBody.yearlyAccessDataLabels,
             respBody.yearlyAccessDataValues,
-            token.colorPrimary
+            token.colorPrimaryHover
         );
 
         // 收录图表 ✅ 修复参数顺序！！！
@@ -51,7 +50,7 @@ export default function BlogCharts({ domain }) {
                 '篇文章',
                 respBody.yearlyPublishDataLabels, // 修复：标签在前
                 respBody.yearlyPublishDataValues, // 修复：数值在后
-                token.colorPrimary
+                token.colorPrimaryHover
             );
         } else {
             setHasPublishChart(false);
@@ -66,7 +65,7 @@ export default function BlogCharts({ domain }) {
                 '次穿梭',
                 respBody.yearlyInitiatedDataLabels,
                 respBody.yearlyInitiatedDataValues,
-                token.colorPrimary
+                token.colorPrimaryHover
             );
         } else {
             setHasInitiatedChart(false);
@@ -102,7 +101,7 @@ export default function BlogCharts({ domain }) {
                     style={{
                         marginBottom: 8,
                         width: 'fit-content',
-                        backgroundColor: '#e7eef8',
+                        backgroundColor: token.colorPrimaryBg,
                         borderRadius: '8px',
                         padding: '2px',
                         fontSize: 13,
@@ -112,7 +111,7 @@ export default function BlogCharts({ domain }) {
                         borderRadius: '6px',
                     }}
                     labelStyle={{
-                        color: '#130101',
+                        // color: '#130101',
                         padding: '4px 12px',
                     }}
                 />

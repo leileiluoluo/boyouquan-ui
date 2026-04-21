@@ -71,7 +71,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                 fontWeight: token.fontWeightStrong,
                             }}
                             href={blogURL}>
-                            {post.blogName}
+                            <Text>{post.blogName}</Text>
                         </Link>
                     </Flex>
                     <Flex vertical gap={4} align="center">

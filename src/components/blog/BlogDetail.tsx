@@ -15,7 +15,7 @@ import {
     Badge,
     Tag
 } from 'antd';
-import { LoadingOutlined, EnvironmentOutlined, LinkOutlined } from '@ant-design/icons';
+import { LoadingOutlined, EnvironmentOutlined, GlobalOutlined } from '@ant-design/icons';
 import { getBackgroundColorFromAvatar } from '@utils/CssUtil';
 
 const { Content } = Layout;
@@ -218,14 +218,10 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     </Title>
                                 </Link>
 
-                                <Space style={{ marginTop: 2, marginBottom: 12 }}>
-                                    <LinkOutlined style={{ fontSize: 12 }} />
-                                    <Link
-                                        target="_blank"
-                                        href={getGoAddress(blogDetail.address)}
-                                        style={{ fontSize: 12 }}
-                                    >
-                                        {blogDetail.domainName}
+                                <Space size={4} style={{ marginTop: 2, marginBottom: 12 }}>
+                                    <GlobalOutlined style={{ fontSize: 12, color: '#8c8c8c' }} />
+                                    <Link target="_blank" href={getGoAddress(blogDetail.address)} >
+                                        <Text style={{ fontSize: 12, color: '#8c8c8c' }}>{blogDetail.domainName}</Text>
                                     </Link>
                                 </Space>
 

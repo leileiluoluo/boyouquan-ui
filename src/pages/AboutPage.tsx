@@ -133,7 +133,7 @@ const content = (
                         }
                         return (
                             <Link href={value} target="_blank">
-                                <img width={value.includes('logo-small') ? '40px' : value.includes('logo.svg') ? '84px' : '100px'} src={value} alt="logo" />
+                                <img width={value.includes('logo-small') ? '40px' : value.includes('logo.svg') || value.includes('logo-dark.svg') ? '84px' : '100px'} src={value} alt="logo" />
                             </Link>
                         );
                     },
@@ -158,7 +158,7 @@ const content = (
                         }
                         return (
                             <Link href={value} target="_blank">
-                                <img width={value.includes('logo-small') ? '40px' : value.includes('logo') ? '84px' : '100px'} src={value} alt="logo" />
+                                <img width={value.includes('logo-small') ? '40px' : value.includes('logo.svg') || value.includes('logo-dark.svg') ? '84px' : '100px'} src={value} alt="logo" />
                             </Link>
                         );
                     },

@@ -48,13 +48,6 @@
             <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="40s" repeatCount="indefinite" />
         </circle>
 
-        <!-- <text x="120" y="128" text-anchor="middle" dominant-baseline="middle"
-            font-family="微软雅黑, sans-serif" font-weight="bold"
-            fill="#f9f6f9ff" stroke="rgba(205, 28, 28, 1)" stroke-width="0.5"
-            filter="url(#textGlow)" font-size="100">
-            博
-        </text> -->
-
         <g transform="translate(68, 50)">
          <g data-gra="path-name" class="tp-name iconsvg-namesvg" fill="white">
             <g transform="scale(1)">

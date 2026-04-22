@@ -15,7 +15,7 @@ const MENU_ITEMS = [
     { key: '2', label: '每月精选', href: '/monthly-selected' },
     { key: '3', label: '博客广场', href: '/blogs' },
     { key: '4', label: '连接系数', href: '/link-graphs' },
-    { key: '5', label: '提交博客', href: '/blog-requests/add' },
+    { key: '5', label: '提交博客', href: '/blog-requests/add/email-validation' },
     { key: '6', label: '审核结果', href: '/blog-requests' },
 ];
 
@@ -26,7 +26,7 @@ const MOBILE_MENU_ITEMS = [
     { key: '3', label: '博客广场', href: '/blogs' },
     { key: '4', label: '连接系数', href: '/link-graphs' },
     { key: '5', label: '星球穿梭', href: '/planet-shuttle' },
-    { key: '6', label: '提交博客', href: '/blog-requests/add' },
+    { key: '6', label: '提交博客', href: '/blog-requests/add/email-validation' },
     { key: '7', label: '审核结果', href: '/blog-requests' },
     { key: '8', label: '赞助本站', href: '/sponsor' },
     { key: '9', label: '关于本站', href: '/about' },
@@ -36,8 +36,8 @@ const CommonHeader: React.FC = () => {
     const [open, setOpen] = useState(false);
     const { token } = useToken();
 
-    const getSelectedKey = () => {
-        const currentItem = MENU_ITEMS.find(item => location.pathname.includes(item.href));
+    const getSelectedKey = (items) => {
+        const currentItem = items.find(item => location.pathname.includes(item.href));
         return currentItem ? currentItem.key : '0';
     };
 
@@ -75,7 +75,7 @@ const CommonHeader: React.FC = () => {
                 <PCOnly>
                     <Menu
                         mode="horizontal"
-                        selectedKeys={[getSelectedKey()]}
+                        selectedKeys={[getSelectedKey(MENU_ITEMS)]}
                         style={{
                             background: 'transparent',
                             borderBottom: 'none',
@@ -115,23 +115,19 @@ const CommonHeader: React.FC = () => {
                 onClose={() => setOpen(false)}
                 width={200}
                 getContainer={false}
-                maskClosable={true}
+                rootStyle={{ position: 'fixed' }}
                 styles={{
                     body: {
                         padding: 0,
-                    },
-                    mask: {
-                        position: 'fixed',
                     },
                     wrapper: {
                         position: 'fixed',
                     },
                 }}
-                rootStyle={{ position: 'absolute' }}
             >
                 <Menu
                     mode="vertical"
-                    selectedKeys={[getSelectedKey()]}
+                    selectedKeys={[getSelectedKey(MOBILE_MENU_ITEMS)]}
                     onClick={() => setOpen(false)}
                     items={MOBILE_MENU_ITEMS.map(item => ({
                         key: item.key,

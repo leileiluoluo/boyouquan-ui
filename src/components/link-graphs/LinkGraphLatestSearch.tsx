@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AudioOutlined } from '@ant-design/icons'; // antd 官方喇叭图标
+import { AudioOutlined, SoundOutlined } from '@ant-design/icons'; // antd 官方喇叭图标
 import RequestUtil from '../../utils/APIRequestUtil';
 
 export default function LinkGraphLatestSearch() {
@@ -27,7 +27,7 @@ export default function LinkGraphLatestSearch() {
         <div className="latest-news">
             {/* 替换为 Ant Design 喇叭图标 */}
             <div className="icon">
-                <AudioOutlined style={{ fontSize: 16 }} />
+                <SoundOutlined />
             </div>
             <div className="content">
                 {display && (

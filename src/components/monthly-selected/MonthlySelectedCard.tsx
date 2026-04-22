@@ -111,7 +111,7 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                                         fontWeight: token.fontWeightStrong,
                                     }}
                                 >
-                                    {postInfo.blogName}
+                                    <Text>{postInfo.blogName}</Text>
                                 </Link>
                             </Flex>
 
@@ -142,7 +142,7 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
                         {/* 右侧：固定不压缩，永远完整显示 */}
                         <Space size={8} align="center" style={{ flexShrink: 0, marginLeft: 8 }}>
                             <Link href={abstractURL}>
-                                <ShareAltOutlined />
+                                <ShareAltOutlined style={{ color: token.colorText }} />
                             </Link>
                             <MoreOutlined />
                         </Space>

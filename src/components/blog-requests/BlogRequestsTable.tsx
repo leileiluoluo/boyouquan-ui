@@ -36,7 +36,7 @@ export default function BlogRequestsTable({ requests, adminPage }: BlogRequestsT
                                 href={adminPage ? getAdminBlogRequestAddress(item.id) : getBlogRequestAddress(item.id)}
                                 style={{ fontWeight: 600, fontSize: 15 }}
                             >
-                                {item.name}
+                                <Text>{item.name}</Text>
                             </Link>
 
                             {/* 状态标签 */}
@@ -44,7 +44,7 @@ export default function BlogRequestsTable({ requests, adminPage }: BlogRequestsT
                                 let color = 'orange';
                                 if (item.approved) color = 'green';
                                 if (item.failed) color = 'red';
-                                return <Tag color={color}>{item.statusInfo}</Tag>;
+                                return <Tag color={color} style={{fontWeight: 500}}>{item.statusInfo}</Tag>;
                             })()}
                         </div>
 

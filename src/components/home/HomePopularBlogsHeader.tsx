@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Flex } from 'antd';
+import { Flex, Spin } from 'antd';
 import RequestUtil from '../../utils/APIRequestUtil';
 import PopularBlog from './PopularBlog';
 import HomePopularBlogsHeaderFallBack from './HomePopularBlogsHeaderFallback';
@@ -9,7 +9,7 @@ export default function HomePopularBlogsHeader() {
     const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async () => {
-        const resp = await RequestUtil.get('/api/popular-blogs?size=16');
+        const resp = await RequestUtil.get('/api/popular-blogs?size=20');
         const respBody = await resp.json();
         setDataReady(true);
         setBlogs(respBody);
@@ -20,7 +20,7 @@ export default function HomePopularBlogsHeader() {
     }, []);
 
     if (!dataReady) {
-        return <HomePopularBlogsHeaderFallBack />
+        return <Spin />
     }
 
     return (

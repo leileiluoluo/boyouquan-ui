@@ -8,7 +8,7 @@ interface MainContentHeaderProps {
 
 export default function MainContentHeader({ content }: MainContentHeaderProps) {
     return (
-        <div style={{ marginBottom: 2 }}>
+        <div>
             <Text type="secondary" style={{ fontSize: 14 }}>
                 {content}
             </Text>

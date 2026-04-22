@@ -53,7 +53,7 @@
 }
 
 .latest-news {
-  margin-top: 4px;
+  /* margin-top: 4px; */
   height: calc(var(--h) * 1px);
   line-height: calc(var(--h) * 1px);
   border-radius: 6px;

@@ -66,7 +66,7 @@ const PostCardList: React.FC<PostCardListProps> = ({ sort, keyword, showPinned }
             <Flex vertical gap={8}>
                 {posts.map(
                     (post, index) => (
-                        <PostCard showPinned={showPinned} post={post} descriptionRows={2} />
+                        <PostCard key={index} showPinned={showPinned} post={post} descriptionRows={2} />
                     )
                 )}
             </Flex>

@@ -1,11 +1,12 @@
 import React, { lazy, Suspense } from 'react';
 import { Card, Flex } from 'antd';
 
-import { Meta, SearchBox, SwitchSortType } from '@components/common';
+import { MainContentHeader, Meta, SearchBox, SwitchSortType } from '@components/common';
 import PostCardList from '@components/post-card/PostCardList';
 
 import { SwitchType } from '@types';
 import { getURLParameter } from '@utils/CommonUtil';
+import { HomeLatestNews, HomePopularBlogsHeader } from '@components/home';
 
 const SpecialThanks = lazy(() => import('@components/common/special-thanks/SpecialThanks'));
 
@@ -41,6 +42,8 @@ const HomePage: React.FC = () => {
         <>
             <Meta />
             <Flex vertical gap={16}>
+                <MainContentHeader content='博友圈是博客人的专属朋友圈，我们的愿景是将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！' />
+                <HomeLatestNews />
                 <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
                 <SwitchSortType types={SWITCH_TYPES} />
                 <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />

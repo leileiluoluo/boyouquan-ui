@@ -3,7 +3,7 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import BlogRequestsTable from './BlogRequestsTable';
 import Pagination from '../pagination/Pagination';
 import { getURLParameter } from '../../utils/CommonUtil';
-import { Flex, Table, Typography, Skeleton, Empty, Spin } from 'antd';
+import { Flex, Typography, Empty, Spin } from 'antd';
 
 const { Text } = Typography;
 

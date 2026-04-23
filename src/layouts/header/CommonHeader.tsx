@@ -30,6 +30,9 @@ const MOBILE_MENU_ITEMS = [
     { key: '7', label: '审核结果', href: '/blog-requests' },
     { key: '8', label: '赞助本站', href: '/sponsor' },
     { key: '9', label: '关于本站', href: '/about' },
+    { key: '10', label: '发布历史', href: '/release-notes' },
+    { key: '11', label: '年度报告', href: '/annual-reports' },
+    { key: '12', label: '同类网站', href: '/similar-sites' },
 ];
 
 const CommonHeader: React.FC = () => {

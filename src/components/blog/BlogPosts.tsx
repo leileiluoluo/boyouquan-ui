@@ -113,7 +113,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                         <Title level={5} style={{ margin: 0 }}>收录文章</Title>
                     </Flex>
 
-                    <Tooltip title="订阅 RSS">
+                    <Tooltip title="订阅 RSS" styles={{ root: { fontSize: 12 } }}>
                         <Link href={rssAddress} target="_blank" style={{ fontSize: 16 }}>
                             <Rss size={16} color={token.colorPrimary} />
                         </Link>

@@ -182,7 +182,7 @@ const content = (
             标识请求来源为本站的 <Text code>User-Agent</Text> 信息如下：
         </Paragraph>
         <div style={{ overflowX: 'auto', marginBottom: 16 }}>
-            <Text code style={{ whiteSpace: 'nowrap', fontSize: 12 }}>
+            <Text code style={{ whiteSpace: 'nowrap' }}>
                 Mozilla/5.0 (compatible; Boyouquanspider/1.0; +https://www.boyouquan.com/about#data-spider)
             </Text>
         </div>

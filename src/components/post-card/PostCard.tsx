@@ -1,10 +1,12 @@
 import React from 'react';
-import { theme, Flex, Typography, Avatar, Space, Divider, Tooltip } from 'antd';
+import { theme, Flex, Typography, Space, Divider, Tooltip } from 'antd';
 import { PushpinOutlined, ClockCircleOutlined, EyeOutlined, MoreOutlined, ShareAltOutlined, StarOutlined, UserOutlined } from '@ant-design/icons';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
 import { PostData } from '@types/post';
 import { MobileOnly, PCOnly } from '@components/common/Responsive';
+// 👇 引入懒加载 Avatar
+import LazyAvatar from '@components/common/LazyAvatar';
 
 const { Title, Link, Text, Paragraph } = Typography;
 const { useToken } = theme;
@@ -53,7 +55,8 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                 >
                     <Flex vertical align="center" gap={4}>
                         <Link href={blogURL}>
-                            <Avatar
+                            {/* 👇 替换成懒加载 */}
+                            <LazyAvatar
                                 shape="circle"
                                 size={36}
                                 icon={<UserOutlined />}
@@ -123,13 +126,12 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                 alignItems: 'center',
                                 gap: 4
                             }}>
-                            {/* 置顶图标：showPinned 为 true 时显示 */}
                             {showPinned && post.pinned && (
                                 <PushpinOutlined
                                     style={{
                                         color: token.colorPrimary,
                                         fontSize: 16,
-                                        flexShrink: 0 // 防止图标被挤压
+                                        flexShrink: 0
                                     }}
                                 />
                             )}
@@ -164,7 +166,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
 
                         <Divider dashed style={{ margin: '2px 0' }} />
 
-                        {/* 底部操作栏：核心修复，支持移动端换行 */}
                         <Flex
                             justify="space-between"
                             align="center"
@@ -175,7 +176,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                 overflow: 'hidden',
                             }}
                         >
-                            {/* 左侧：优先显示博客名，剩下的自动 ... 省略 */}
                             <div style={{
                                 display: 'flex',
                                 alignItems: 'center',
@@ -187,7 +187,8 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                 <MobileOnly>
                                     <Flex gap={6}>
                                         <Link href={blogURL}>
-                                            <Avatar
+                                            {/* 👇 移动端头像也替换成懒加载 */}
+                                            <LazyAvatar
                                                 shape="circle"
                                                 size={20}
                                                 icon={<UserOutlined />}
@@ -211,7 +212,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                     </Flex>
                                 </MobileOnly>
 
-                                {/* 剩下的内容：显示不下自动 ... */}
                                 <div style={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -235,7 +235,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                 </div>
                             </div>
 
-                            {/* 右侧：固定不压缩，永远完整显示 */}
                             <Space size={8} align="center" style={{ flexShrink: 0, marginLeft: 8 }}>
                                 <Link href={abstractURL}>
                                     <ShareAltOutlined style={{ color: token.colorText }} />
@@ -277,6 +276,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
             </Flex>
         </Flex>
     );
-}
+};
 
 export default PostCard;

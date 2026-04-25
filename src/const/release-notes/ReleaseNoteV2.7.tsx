@@ -32,24 +32,24 @@ const RELEASE_INFO_V2_7 = {
             <Paragraph style={{ marginBottom: 8, fontWeight: 500 }}>
                 博客详情页履约进度条：
             </Paragraph>
-            <div style={{ marginBottom: 24, textAlign: 'center' }}>
+
+            <div style={{ marginBottom: 14, textAlign: 'center' }}>
                 <Image
-                    width={480}
                     src="/assets/images/sites/release_notes/v2.7/blog-detail-page.png"
                     alt="博客详情页履约进度条"
-                    style={{ border: '1px solid #d9d9d9', borderRadius: 4 }}
+                    style={{ width: '60%', border: '1px solid #d9d9d9', borderRadius: 4 }}
                 />
             </div>
 
             <Paragraph style={{ marginBottom: 8, fontWeight: 500 }}>
                 履约证书：
             </Paragraph>
-            <div style={{ marginBottom: 24, textAlign: 'center' }}>
+
+            <div style={{ marginBottom: 14, textAlign: 'center' }}>
                 <Image
-                    width={480}
                     src="/assets/images/sites/release_notes/v2.7/performance-page.png"
                     alt="履约证书"
-                    style={{ border: '1px solid #d9d9d9', borderRadius: 4 }}
+                    style={{ width: '60%', border: '1px solid #d9d9d9', borderRadius: 4 }}
                 />
             </div>
 
@@ -64,12 +64,12 @@ const RELEASE_INFO_V2_7 = {
             <Paragraph style={{ marginBottom: 8, fontWeight: 500 }}>
                 连接系数页面：
             </Paragraph>
-            <div style={{ marginBottom: 24, textAlign: 'center' }}>
+
+            <div style={{ marginBottom: 14, textAlign: 'center' }}>
                 <Image
-                    width={480}
                     src="/assets/images/sites/release_notes/v2.7/link-graph-page.png"
                     alt="连接系数页面"
-                    style={{ border: '1px solid #d9d9d9', borderRadius: 4 }}
+                    style={{ width: '60%', border: '1px solid #d9d9d9', borderRadius: 4 }}
                 />
             </div>
 

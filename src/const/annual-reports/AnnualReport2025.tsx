@@ -1,4 +1,4 @@
-import { Typography, Space } from 'antd';
+import { Typography, Space, Image } from 'antd';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -43,12 +43,11 @@ const REPORT_INFO_2025 = {
         2025 这一年，博友圈共给大家带去了 <Text strong>42532</Text> 个 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：
       </Paragraph>
 
-      <div style={{ textAlign: 'center', margin: '16px 0' }}>
-        <img
-          width={480}
-          style={{ border: '1px solid #e8e8e8' }}
+      <div style={{ marginBottom: 14, textAlign: 'center' }}>
+        <Image
           src="/assets/images/sites/annual_reports/2025/access-map.png"
           alt="访问地图"
+          style={{ width: '60%', border: '1px solid #d9d9d9', borderRadius: 4 }}
         />
       </div>
 

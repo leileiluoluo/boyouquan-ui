@@ -28,12 +28,11 @@ const RELEASE_INFO_V2_6 = {
                 此外，用户在发布随拍后，对应的头像会出现在首页顶部的「活跃博客」一栏，也会促进访客的点击及文章的查看。
             </Paragraph>
 
-            <div style={{ marginBottom: 24, textAlign: 'center' }}>
+            <div style={{ marginBottom: 14, textAlign: 'center' }}>
                 <Image
-                    width={480}
                     src="/assets/images/sites/release_notes/v2.6/moments.png"
                     alt="随手一拍功能"
-                    style={{ border: '1px solid #d9d9d9', borderRadius: 4 }}
+                    style={{ width: '60%', border: '1px solid #d9d9d9', borderRadius: 4 }}
                 />
             </div>
 

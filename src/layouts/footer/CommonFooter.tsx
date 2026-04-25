@@ -156,7 +156,12 @@ const CommonFooter: React.FC = () => {
 
             {/* 移动端：菜单按钮 */}
             <MobileOnly>
-                <Text style={{ color: token.colorTextSecondary, fontSize: token.fontSizeSM }}>Copyright © 2023-2026</Text>
+                <Flex gap={token.padding} wrap="wrap" align="center">
+                    <Text style={{ color: token.colorTextSecondary, fontSize: token.fontSizeSM }}>Copyright © 2023-2026</Text>
+                    <Link href="/planet-shuttle" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }}>
+                        <img src="/assets/images/sites/logo/planet-shuttle-blue.svg" alt="星球穿梭" style={{ height: 18, display: 'block' }} />
+                    </Link>
+                </Flex>
             </MobileOnly>
 
             <Button type="text" icon={<ArrowUp size={16} />} onClick={scrollToTop} style={{

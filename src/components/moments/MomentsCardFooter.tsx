@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Flex, Typography, Avatar, message } from 'antd';
-import { HeartFilled, HeartOutlined } from '@ant-design/icons';
+import { theme, Flex, Typography, Avatar, message, Tooltip, Space } from 'antd';
+import { ClockCircleOutlined, EyeOutlined, HeartFilled, HeartOutlined, UserOutlined } from '@ant-design/icons';
 import { getBlogAddress } from '../../utils/PageAddressUtil';
 import { formatDateStr } from '../../utils/DateUtil';
 import RequestUtil from '../../utils/APIRequestUtil';
@@ -8,12 +8,16 @@ import LazyAvatar from '../common/avatar/LazyAvatar';
 
 const { Text, Link } = Typography;
 
+const { useToken } = theme;
+
 export default function MomentsCardFooter({ moment }) {
     const [animate, setAnimate] = useState(false);
     const [likeCount, setLikeCount] = useState(() => moment.likeCount);
     const [liked, setLiked] = useState(false);
     const [loading, setLoading] = useState(false);
-    
+
+    const { token } = useToken();
+
     const blogURL = getBlogAddress(moment.blogDomainName);
     const createdAtFormatted = formatDateStr(moment.createdAt);
 
@@ -43,52 +47,62 @@ export default function MomentsCardFooter({ moment }) {
     };
 
     return (
-        <Flex gap={8} align="center" wrap="wrap">
-            {/* 博客头像 */}
-            <Link href={blogURL} target="_blank">
-                <LazyAvatar
-                    size={20}
-                    src={moment.blogInfo.blogAdminMediumImageURL}
-                    style={{ flexShrink: 0 }}
-                />
-            </Link>
+        <Flex
+            justify="space-between"
+            align="center"
+            style={{
+                width: '100%',
+                flexWrap: 'nowrap',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+            }}
+        >
+            <Flex gap={12}>
+                <Flex gap={6}>
+                    <Link href={blogURL}>
+                        <Avatar
+                            shape="circle"
+                            size={20}
+                            icon={<UserOutlined />}
+                            src={moment.blogInfo.blogAdminMediumImageURL}
+                            alt={moment.blogInfo.blogName}
+                            style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
+                        />
+                    </Link>
 
-            {/* 博客名称 */}
-            <Link
-                href={blogURL}
-                target="_blank"
-                strong
-                style={{
-                    fontSize: 12,
-                    maxWidth: '150px',
+                    <Link
+                        href={blogURL}
+                        ellipsis
+                        style={{
+                            display: 'block',
+                            textAlign: 'center',
+                            fontWeight: token.fontWeightStrong,
+                        }}
+                    >
+                        <Text>{moment.blogInfo.name}</Text>
+                    </Link>
+                </Flex>
+
+                {/* 剩下的内容：显示不下自动 ... */}
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '16px',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
-                }}
-            >
-                {moment.blogInfo.name}
-            </Link>
+                }}>
+                    <Tooltip title="发布时间" styles={{ root: { fontSize: 12 } }}>
+                        <Space size={4} align="center">
+                            <ClockCircleOutlined />
+                            <Text type="secondary" style={{ fontSize: 12 }}>{createdAtFormatted}</Text>
+                        </Space>
+                    </Tooltip>
+                </div>
+            </Flex>
 
-            <Text type="secondary" style={{ fontSize: 12 }}>·</Text>
-
-            {/* 发布时间 */}
-            <Text
-                type="secondary"
-                style={{
-                    fontSize: 12,
-                    maxWidth: '100px',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
-                }}
-            >
-                {createdAtFormatted}
-            </Text>
-
-            <Text type="secondary" style={{ fontSize: 12 }}>·</Text>
-
+            {/* 右侧：固定不压缩，永远完整显示 */}
             {/* 点赞区域 */}
-            <Flex gap={4} align="center">
+            <Flex gap={0} align="center" style={{ flexShrink: 0 }}>
                 <style>
                     {`
                     @keyframes like-animation {
@@ -128,7 +142,7 @@ export default function MomentsCardFooter({ moment }) {
                     type="secondary"
                     style={{
                         fontSize: 12,
-                        minWidth: '24px',
+                        minWidth: '16px',
                         textAlign: 'center'
                     }}
                 >

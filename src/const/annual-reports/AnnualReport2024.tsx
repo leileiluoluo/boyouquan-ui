@@ -1,4 +1,4 @@
-import { Typography } from 'antd';
+import { Image, Typography } from 'antd';
 
 const { Title, Paragraph, Link } = Typography;
 
@@ -31,12 +31,11 @@ const REPORT_INFO_2024 = {
         2024 全年，博友圈共给大家带去了 <Link strong>541358</Link> 个独立 IP 访问，这些 IP 来自于全国各地，分布如下（颜色愈深访问愈多）：
       </Paragraph>
 
-      <div style={{ textAlign: 'center', margin: '16px 0' }}>
-        <img
-          width={480}
-          style={{ border: '1px solid #e8e8e8' }}
+      <div style={{ marginBottom: 14, textAlign: 'center' }}>
+        <Image
           src="/assets/images/sites/annual_reports/2024/access-map.png"
-          alt="2024 访问地图"
+          alt="访问地图"
+          style={{ width: '60%', border: '1px solid #d9d9d9', borderRadius: 4 }}
         />
       </div>
 
@@ -85,9 +84,9 @@ const REPORT_INFO_2024 = {
       </ul>
 
       {/* 3 年度博客 */}
-      <Title 
-        level={5} 
-        id="annual-blogs" 
+      <Title
+        level={5}
+        id="annual-blogs"
         style={{ marginTop: 24, marginBottom: 16 }}
       >
         3 年度博客

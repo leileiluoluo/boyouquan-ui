@@ -26,12 +26,11 @@ const RELEASE_INFO_V2_5 = {
                 而该版本特别对这部分进行了优化，将表格展示改为了现在的图文展示，相信图文并貌的方式能更好的预展示一部分内容，从而更好的吸引读者的注意。
             </Paragraph>
 
-            <div style={{ marginBottom: 24, textAlign: 'center' }}>
+            <div style={{ marginBottom: 14, textAlign: 'center' }}>
                 <Image
-                    width={480}
                     src="/assets/images/sites/release_notes/v2.5/monthly-selected.png"
                     alt="每月精选优化"
-                    style={{ border: '1px solid #d9d9d9', borderRadius: 4 }}
+                    style={{ width: '60%', border: '1px solid #d9d9d9', borderRadius: 4 }}
                 />
             </div>
 

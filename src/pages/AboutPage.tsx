@@ -123,7 +123,7 @@ const content = (
                             return (
                                 <Space direction="vertical" size={4}>
                                     <Link href={value.src} target="_blank">
-                                        <img width="100px" src={value.src} alt="logo" />
+                                        <img style={{ maxWidth: '100%', height: 'auto', width: '100px' }} src={value.src} alt="logo" />
                                     </Link>
                                     <Text type="secondary" style={{ fontSize: 12 }}>
                                         {value.tip}
@@ -133,7 +133,12 @@ const content = (
                         }
                         return (
                             <Link href={value} target="_blank">
-                                <img width={value.includes('logo-small') ? '40px' : value.includes('logo.svg') || value.includes('logo-dark.svg') ? '84px' : '100px'} src={value} alt="logo" />
+                                <img
+                                    style={{ maxWidth: '100%', height: 'auto' }}
+                                    width={value.includes('logo-small') ? '40px' : value.includes('logo.svg') || value.includes('logo-dark.svg') ? '84px' : '100px'}
+                                    src={value}
+                                    alt="logo"
+                                />
                             </Link>
                         );
                     },
@@ -148,7 +153,7 @@ const content = (
                             return (
                                 <Space direction="vertical" size={4}>
                                     <Link href={value.src} target="_blank">
-                                        <img width="100px" src={value.src} alt="logo" />
+                                        <img style={{ maxWidth: '100%', height: 'auto', width: '100px' }} src={value.src} alt="logo" />
                                     </Link>
                                     <Text type="secondary" style={{ fontSize: 12 }}>
                                         {value.tip}
@@ -158,7 +163,12 @@ const content = (
                         }
                         return (
                             <Link href={value} target="_blank">
-                                <img width={value.includes('logo-small') ? '40px' : value.includes('logo.svg') || value.includes('logo-dark.svg') ? '84px' : '100px'} src={value} alt="logo" />
+                                <img
+                                    style={{ maxWidth: '100%', height: 'auto' }}
+                                    width={value.includes('logo-small') ? '40px' : value.includes('logo.svg') || value.includes('logo-dark.svg') ? '84px' : '100px'}
+                                    src={value}
+                                    alt="logo"
+                                />
                             </Link>
                         );
                     },

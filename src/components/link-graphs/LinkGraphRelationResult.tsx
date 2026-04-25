@@ -10,10 +10,10 @@ export default function LinkGraphRelationResult({ contentWidth, lines, nodes, sv
       style={{
         position: 'relative',
         padding: '2px',
-        backgroundColor: 'rgba(255,255,255,0.6)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '16px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+        // backgroundColor: 'rgba(255,255,255,0.6)',
+        // backdropFilter: 'blur(10px)',
+        // borderRadius: '16px',
+        // boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
         fontFamily: 'sans-serif',
         minHeight: '100px'
       }}

@@ -25,14 +25,13 @@ const MOBILE_MENU_ITEMS = [
     { key: '2', label: '每月精选', href: '/monthly-selected' },
     { key: '3', label: '博客广场', href: '/blogs' },
     { key: '4', label: '连接系数', href: '/link-graphs' },
-    { key: '5', label: '星球穿梭', href: '/planet-shuttle' },
-    { key: '6', label: '提交博客', href: '/blog-requests/add/email-validation' },
-    { key: '7', label: '审核结果', href: '/blog-requests' },
-    { key: '8', label: '赞助本站', href: '/sponsor' },
-    { key: '9', label: '关于本站', href: '/about' },
-    { key: '10', label: '发布历史', href: '/release-notes' },
-    { key: '11', label: '年度报告', href: '/annual-reports' },
-    { key: '12', label: '同类网站', href: '/similar-sites' },
+    { key: '5', label: '提交博客', href: '/blog-requests/add/email-validation' },
+    { key: '6', label: '审核结果', href: '/blog-requests' },
+    { key: '7', label: '赞助本站', href: '/sponsor' },
+    { key: '8', label: '关于本站', href: '/about' },
+    { key: '9', label: '发布历史', href: '/release-notes' },
+    { key: '10', label: '年度报告', href: '/annual-reports' },
+    { key: '11', label: '同类网站', href: '/similar-sites' },
 ];
 
 const CommonHeader: React.FC = () => {

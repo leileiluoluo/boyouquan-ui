@@ -32,9 +32,7 @@ export default function BlogRequestEmailValidationForm({
     isAdminPage 
 }: BlogRequestEmailValidationFormProps): React.JSX.Element {
     
-    // 倒计时状态（秒数）
     const [countdown, setCountdown] = useState<number>(0);
-    // 是否已经发送过验证码（用于显示输入框和验证按钮）
     const [isCodeSent, setIsCodeSent] = useState<boolean>(false);
 
     const hasError = (errorCodes: string[]) => {
@@ -46,18 +44,26 @@ export default function BlogRequestEmailValidationForm({
         return matchedCode ? error.message : '';
     };
 
-    // 发送验证码点击
+    // ==============================================
+    // 【修复】只有邮箱验证成功，才启动倒计时！
+    // ==============================================
     const handleSendCode = (e: React.MouseEvent<HTMLButtonElement>) => {
-        // 执行你原来的发送逻辑
-        handleValidationButtonClick(e);
+        e.preventDefault();
         
-        // 标记已发送 → 显示验证码输入框和验证按钮
+        // 先执行父组件的校验逻辑
+        handleValidationButtonClick(e);
+
+        // ================= 关键修复 =================
+        // 如果有错误 → 不启动倒计时、不显示验证码框
+        if (error.code || !formData.adminEmail) {
+            return;
+        }
+
+        // 只有校验通过，才执行下面逻辑
         setIsCodeSent(true);
-        // 启动倒计时 60 秒
         setCountdown(60);
     };
 
-    // 倒计时逻辑
     useEffect(() => {
         let timer: NodeJS.Timeout;
         if (countdown > 0) {
@@ -78,7 +84,6 @@ export default function BlogRequestEmailValidationForm({
             <Card style={{ width: '100%' }}>
                 <Form layout="vertical" onSubmitCapture={handleSubmit as any}>
                     <Flex vertical gap={8}>
-                        {/* 博主邮箱 */}
                         <Form.Item
                             label={
                                 <Space size={8}>
@@ -103,7 +108,6 @@ export default function BlogRequestEmailValidationForm({
                             />
                         </Form.Item>
 
-                        {/* 发送验证码按钮 */}
                         <Form.Item style={{ marginBottom: 0 }}>
                             <Button 
                                 type="primary" 
@@ -115,7 +119,6 @@ export default function BlogRequestEmailValidationForm({
                             </Button>
                         </Form.Item>
 
-                        {/* 验证码输入框 —— 发送后就显示，不再消失 */}
                         {isCodeSent && (
                             <Form.Item
                                 label={
@@ -143,7 +146,6 @@ export default function BlogRequestEmailValidationForm({
                             </Form.Item>
                         )}
 
-                        {/* 验证按钮 —— 发送后就显示 */}
                         {isCodeSent && (
                             <Form.Item style={{ marginBottom: 0 }}>
                                 <Button 
@@ -156,7 +158,6 @@ export default function BlogRequestEmailValidationForm({
                             </Form.Item>
                         )}
 
-                        {/* 联系站长 */}
                         {!isAdminPage && (
                             <div style={{ marginTop: 8 }}>
                                 <Link style={{fontSize: 12}} href="mailto:support@boyouquan.com?subject=验证邮箱时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">

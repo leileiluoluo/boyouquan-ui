@@ -1,14 +1,16 @@
 import React, { lazy, Suspense } from 'react';
-import { Card, Flex } from 'antd';
+import { Flex, Typography } from 'antd';
 
 import { MainContentHeader, Meta, SearchBox, SwitchSortType } from '@components/common';
 import PostCardList from '@components/post-card/PostCardList';
 
 import { SwitchType } from '@types';
 import { getURLParameter } from '@utils/CommonUtil';
-import { HomeLatestNews, HomePopularBlogsHeader } from '@components/home';
+import { HomeLatestNews } from '@components/home';
 
 const SpecialThanks = lazy(() => import('@components/common/special-thanks/SpecialThanks'));
+
+const { Text, Link } = Typography;
 
 const SWITCH_TYPES = [
     { name: '推荐', href: '/home', default: true },
@@ -51,6 +53,15 @@ const HomePage: React.FC = () => {
             <Suspense>
                 <SpecialThanks isHome={true} />
             </Suspense>
+            <div style={{ marginTop: 20, textAlign: 'center' }}>
+                <Text type="secondary">
+                    特别声明：包含政治、色情、赌博与暴力等违规内容的博客，一经发现，将被永久移出收录名单！举报违规博客，请「
+                    <Link href="mailto:support@boyouquan.com?subject=违规内容举报&amp;body=收录页面：%0d%0a违规内容：%0d%0a">
+                        联系站长
+                    </Link>
+                    」！
+                </Text>
+            </div>
         </>
     );
 };

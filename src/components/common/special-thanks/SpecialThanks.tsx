@@ -67,7 +67,7 @@ export default function SpecialThanks({ isHome }: SpecialThanksProps) {
                         color: token.colorText,
                     }}
                 >
-                    特别赞助
+                    感谢赞助
                 </Title>
 
                 <Flex wrap="wrap" gap={10} justify="center" align="center">

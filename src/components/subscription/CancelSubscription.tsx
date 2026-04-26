@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Card, Typography, Space, Input, Button, Checkbox, message } from 'antd';
+import { useEffect, useState } from 'react';
+import { Form, Card, Typography, Space, Input, Button, Checkbox } from 'antd';
 import { getURLParameter } from '../../utils/CommonUtil';
 import GlobalDialog from '../common/dialog/GlobalDialog';
 import RequestUtil from '../../utils/APIRequestUtil';
@@ -11,7 +11,7 @@ export default function CancelSubscription() {
     const token = getURLParameter('token') || '';
 
     const [idOptions, setIdOptions] = useState<string[]>([]);
-    const [options, setOptions] = useState<{ id: string; label: string }[]>([]);
+    const [options, setOptions] = useState<{ value: string; label: string }[]>([]);
     const [error, setError] = useState<{ code: string; message: string }>({ code: '', message: '' });
     const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -29,12 +29,13 @@ export default function CancelSubscription() {
                 return;
             }
 
+            // ========== 核心修复 ==========
             const optionList = respBody.map((item: any) => ({
-                id: item.type,
-                label: item.name
+                value: String(item.type ?? ''),
+                label: item.name ?? '未知频道'
             }));
             setOptions(optionList);
-            setIdOptions(optionList.map(item => item.id)); // 默认全选
+            setIdOptions(optionList.map(item => item.value));
             setError({ code: '', message: '' });
         }
     };
@@ -89,65 +90,57 @@ export default function CancelSubscription() {
     }, [email, token]);
 
     return (
-        <Space direction="vertical" size="small" style={{ width: '100%' }}>
-            <div>
-                <Title level={3} style={{ fontWeight: 'bold', margin: 0 }}>取消订阅</Title>
-            </div>
+        <>
+            <Title level={4} style={{ margin: 0 }}>取消订阅</Title>
 
-            <div style={{ minHeight: '300px' }}>
-                <Card>
-                    <Form layout="vertical">
-                        <Space direction="vertical" size="small" style={{ width: '100%' }}>
-                            {/* 提示弹窗 */}
-                            <GlobalDialog
-                                title={error.code ? '错误提示' : '提示'}
-                                titleColor={error.code ? 'red' : undefined}
-                                message={error.code ? error.message : `取消成功！您的邮箱 ${email} 将不再收到对应频道的任何邮件！`}
-                                closeButtonName={error.code ? '返回' : '关闭窗口'}
-                                dialogOpen={dialogOpen}
-                                setDialogOpen={setDialogOpen}
+            <Card style={{ marginTop: 16 }}>
+                <Form layout="vertical">
+                    <Space direction="vertical" size="small" style={{ width: '100%' }}>
+                        <GlobalDialog
+                            title={error.code ? '错误提示' : '提示'}
+                            titleColor={error.code ? 'red' : undefined}
+                            message={error.code ? error.message : `取消成功！您的邮箱 ${email} 将不再收到对应频道的任何邮件！`}
+                            closeButtonName={error.code ? '返回' : '关闭窗口'}
+                            dialogOpen={dialogOpen}
+                            setDialogOpen={setDialogOpen}
+                        />
+
+                        <div>
+                            <Text type="secondary">您的邮箱：</Text>
+                            <Input
+                                value={email}
+                                readOnly
+                                style={{ marginTop: 8 }}
                             />
+                        </div>
 
-                            {/* 邮箱展示 */}
-                            <div>
-                                <Text type="secondary">您的邮箱：</Text>
-                                <Input
-                                    value={email}
-                                    readOnly
-                                    style={{ marginTop: 8 }}
+                        <div>
+                            <Text type="secondary">您订阅的所有频道：</Text>
+                            <Card
+                                size="small"
+                                style={{ marginTop: 8 }}
+                            >
+                                <Checkbox.Group
+                                    options={options}
+                                    value={idOptions}
+                                    onChange={handleChange}
+                                    style={{ width: '100%' }}
                                 />
-                            </div>
+                            </Card>
+                        </div>
 
-                            {/* 订阅频道选择 */}
-                            <div>
-                                <Text type="secondary">您订阅的所有频道：</Text>
-                                <Card
-                                    size="small"
-                                    style={{ marginTop: 8 }}
-                                >
-                                    <Checkbox.Group
-                                        options={options}
-                                        value={idOptions}
-                                        onChange={handleChange}
-                                        style={{ width: '100%' }}
-                                    />
-                                </Card>
-                            </div>
+                        <Text type="secondary" style={{ marginTop: 8 }}>
+                            请勾选需要取消的频道，然后点击提交！
+                        </Text>
 
-                            <Text type="secondary" style={{ marginTop: 8 }}>
-                                请勾选需要取消的频道，然后点击提交！
-                            </Text>
-
-                            {/* 提交按钮 */}
-                            <div style={{ marginTop: 8 }}>
-                                <Button type="primary" onClick={handleSubmit}>
-                                    取消订阅
-                                </Button>
-                            </div>
-                        </Space>
-                    </Form>
-                </Card>
-            </div>
-        </Space>
+                        <div style={{ marginTop: 8 }}>
+                            <Button type="primary" onClick={handleSubmit}>
+                                取消订阅
+                            </Button>
+                        </div>
+                    </Space>
+                </Form>
+            </Card>
+        </>
     );
 }

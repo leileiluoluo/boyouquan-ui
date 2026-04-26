@@ -32,19 +32,28 @@ export default function BlogRequestsTable({ requests, adminPage }: BlogRequestsT
                             alignItems: 'center',
                             marginBottom: 8
                         }}>
-                            <Link
-                                href={adminPage ? getAdminBlogRequestAddress(item.id) : getBlogRequestAddress(item.id)}
-                                style={{ fontWeight: 600, fontSize: 15 }}
-                            >
-                                <Text>{item.name}</Text>
-                            </Link>
+                            <Space>
+                                <Link
+                                    href={adminPage ? getAdminBlogRequestAddress(item.id) : getBlogRequestAddress(item.id)}
+                                    style={{ fontSize: 15 }}
+                                >
+                                    {item.id}
+                                </Link>
+
+                                <Link
+                                    href={adminPage ? getAdminBlogRequestAddress(item.id) : getBlogRequestAddress(item.id)}
+                                    style={{ fontWeight: 600, fontSize: 15 }}
+                                >
+                                    <Text>{item.name}</Text>
+                                </Link>
+                            </Space>
 
                             {/* 状态标签 */}
                             {(() => {
                                 let color = 'orange';
                                 if (item.approved) color = 'green';
                                 if (item.failed) color = 'red';
-                                return <Tag color={color} style={{fontWeight: 500}}>{item.statusInfo}</Tag>;
+                                return <Tag color={color} style={{ fontWeight: 500 }}>{item.statusInfo}</Tag>;
                             })()}
                         </div>
 

@@ -3,11 +3,12 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import BlogRequestsTable from './BlogRequestsTable';
 import Pagination from '../pagination/Pagination';
 import { getURLParameter } from '../../utils/CommonUtil';
-import { Flex, Typography, Empty, Spin } from 'antd';
-
-const { Text } = Typography;
+import { Flex, Empty, Spin } from 'antd';
 
 export default function BlogRequests() {
+    const keywordParam = getURLParameter('keyword') || '';
+    const statuses = getURLParameter('statuses') || '';
+
     const [keyword, setKeyword] = useState('');
     const [pageNo, setPageNo] = useState(1);
     const [pageSize, setPageSize] = useState(0);
@@ -16,7 +17,7 @@ export default function BlogRequests() {
     const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async (keyword, pageNo) => {
-        const resp = await RequestUtil.get(`/api/blog-requests?keyword=${keyword}&page=${pageNo}`);
+        const resp = await RequestUtil.get(`/api/blog-requests?statuses=${statuses}&keyword=${keyword}&page=${pageNo}`);
 
         const respBody = await resp.json();
         setDataReady(true);
@@ -26,10 +27,9 @@ export default function BlogRequests() {
     };
 
     useEffect(() => {
-        let keyword = getURLParameter('keyword') || '';
-        setKeyword(keyword);
+        setKeyword(keywordParam);
 
-        fetchData(keyword, pageNo);
+        fetchData(keywordParam, pageNo);
     }, [pageNo]);
 
     const setCurrectPage = (pageNo) => {

@@ -118,6 +118,15 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
         setLoaded(true);
     };
 
+    const handleOpenCertificate = () => {
+        const certLink = `/certificates/${domain}`;
+        window.open(
+            certLink,
+            '博友圈',
+            'height=800,width=960,top=0,right=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no'
+        );
+    };
+
     useEffect(() => {
         fetchData(domain);
     }, [domain]);
@@ -286,17 +295,17 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     <Title level={5} style={{ margin: 0 }}>履约进度</Title>
 
                                     <Tooltip title="点击查看履约证书" styles={{ root: { fontSize: 12 } }}>
-                                        <div style={{
-                                            background: token.colorPrimary,
-                                            color: '#fff',
-                                            padding: '2px 10px',
-                                            borderRadius: 20,
-                                            fontSize: 12,
-                                            fontWeight: 'bold'
-                                        }}>
-                                            <Link href={getCertificateAddress(domain)} style={{ color: '#fff', fontSize: token.fontSizeSM }}>
-                                                已履约 {years} 年
-                                            </Link>
+                                        <div
+                                            onClick={handleOpenCertificate}
+                                            style={{
+                                                background: token.colorPrimary,
+                                                color: '#fff',
+                                                padding: '2px 10px',
+                                                borderRadius: 20,
+                                                fontSize: 12,
+                                                fontWeight: 'bold'
+                                            }}>
+                                            已履约 {years} 年
                                         </div>
                                     </Tooltip>
                                 </Flex>

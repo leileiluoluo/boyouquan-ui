@@ -26,7 +26,7 @@ const MainLayout: React.FC = () => {
                 className="common-content"
                 style={{
                     // padding: '24px 32px',
-                    background: '#f4f9f9',
+                    background: 'rgb(250 252 252)',
                     minHeight: 'calc(100vh - 64px)',
                     display: 'flex',
                     justifyContent: 'center',

@@ -18,7 +18,7 @@ interface PostDataProps {
 }
 
 const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }) => {
-    const gravatarURL = getGravatarImageFullURL(post.blogAdminLargeImageURL || post.blogAdminMediumImageURL || '');
+    const gravatarURL = getGravatarImageFullURL(post.blogAdminLargeImageURL || '');
     const blogURL = getBlogAddress(post.blogDomainName);
     const linkURL = getGoAddress(post.link);
     const abstractURL = getAbstractAddress(post.link);

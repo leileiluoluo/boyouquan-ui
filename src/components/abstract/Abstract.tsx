@@ -14,6 +14,7 @@ import { NOT_FOUND_ADDRESS } from '@utils/PageAddressUtil';
 
 import { MetaFields, PostInfo } from '@types';
 import PostCard from '@components/post-card/PostCard';
+import AbstractCard from './AbstractCard';
 
 const { Text } = Typography;
 
@@ -102,8 +103,8 @@ export default function Abstract({ isSharingPage }: AbstractProps) {
 
     return (
         <>
-        <Meta meta={getMeta(isSharingPage, postInfo.title, postInfo.description)} />
-        <PostCard showPinned={false} post={postInfo} descriptionRows={6} />
+            <Meta meta={getMeta(isSharingPage, postInfo.title, postInfo.description)} />
+            <AbstractCard showPinned={false} post={postInfo} descriptionRows={6} />
         </>
     );
 }

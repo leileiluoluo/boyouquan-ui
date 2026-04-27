@@ -64,7 +64,7 @@ const CommonFooter: React.FC = () => {
         <Footer
             className="common-footer"
             style={{
-                background: '#ecf2f2', // 与 Header 同色
+                background: '#f5f9f9', // 与 Header 同色
                 borderTop: '1px solid #e0ecec',
             }}
         >

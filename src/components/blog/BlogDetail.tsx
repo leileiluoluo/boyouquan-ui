@@ -17,6 +17,7 @@ import {
 } from 'antd';
 import { LoadingOutlined, EnvironmentOutlined, GlobalOutlined } from '@ant-design/icons';
 import { getBackgroundColorFromAvatar } from '@utils/CssUtil';
+import { PCOnly } from '@components/common/Responsive';
 
 const { Content } = Layout;
 const { Text, Title, Paragraph, Link } = Typography;
@@ -286,7 +287,6 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                 padding: '18px 22px',
                                 marginBottom: 16,
                                 border: '1px solid #e8e8e8',
-                                minHeight: 110,
                                 transition: 'background 0.3s ease'
                             }}
                         >
@@ -310,7 +310,9 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     </Tooltip>
                                 </Flex>
 
-                                <Timeline {...timelines} mode="end" />
+                                <PCOnly>
+                                    <Timeline {...timelines} mode="end" />
+                                </PCOnly>
                             </Flex>
                         </div>
 

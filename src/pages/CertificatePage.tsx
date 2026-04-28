@@ -438,7 +438,7 @@ export default function CertificatePage() {
                                             <div className="text-xs sm:text-sm text-yellow-200/80">
                                                 收录地址
                                             </div>
-                                            <div className="text-yellow-400 font-semibold text-base sm:text-lg">
+                                            <div className="text-yellow-400 font-semibold text-base sm:text-lg break-all">
                                                 <a
                                                     href={`/blogs/${domainName}`}
                                                     target="_blank"

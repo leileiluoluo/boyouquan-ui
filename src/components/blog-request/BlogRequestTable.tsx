@@ -63,7 +63,7 @@ export default function BlogRequestTable({
                 <InfoRow label="RSS 地址" value={<Link href={rssAddress} target="_blank">{rssAddress}</Link>} />
                 <InfoRow label="博主邮箱" value={adminEmail} />
                 <InfoRow label="提交时间" value={requestedAt} />
-                <InfoRow label="审核状态" value={<Tag color={getStatusColor()}>{statusInfo}</Tag>} />
+                <InfoRow label="审核状态" value={<Tag color={getStatusColor()} style={{ fontWeight: 500 }}>{statusInfo}</Tag>} />
 
                 {status === 'approved' && (
                     <InfoRow label="收录地址" value={<Link href={blogAddress}>{blogAddress}</Link>} />

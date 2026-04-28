@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme, Flex, Typography, Space, Divider, Tooltip } from 'antd';
+import { theme, Flex, Typography, Space, Divider, Tooltip, Badge, Avatar } from 'antd';
 import { PushpinOutlined, ClockCircleOutlined, EyeOutlined, MoreOutlined, ShareAltOutlined, StarOutlined, UserOutlined } from '@ant-design/icons';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
@@ -54,17 +54,37 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                     }}
                 >
                     <Flex vertical align="center" gap={4}>
-                        <Link href={blogURL}>
-                            {/* 👇 替换成懒加载 */}
-                            <LazyAvatar
-                                shape="circle"
-                                size={36}
-                                icon={<UserOutlined />}
-                                src={gravatarURL}
-                                alt={post.blogName}
-                                style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
-                            />
-                        </Link>
+                        <div style={{ position: 'relative', display: 'inline-block' }}>
+                            <Link href={blogURL}>
+                                <Avatar
+                                    shape="circle"
+                                    size={36}
+                                    icon={<UserOutlined />}
+                                    src={gravatarURL}
+                                    alt={post.blogName}
+                                    style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
+                                />
+                            </Link>
+                            {/* 状态 Badge - 固定在头像右下角 */}
+                            <Tooltip title={post.blogStatusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                                <Badge
+                                    dot
+                                    color={post.blogStatusOk ? '#52c41a' : 'red'}
+                                    style={{
+                                        position: 'absolute',
+                                        bottom: 0,    // 贴底部
+                                        right: 0,     // 贴右侧
+                                        transform: 'translate(45%, 5%)', // 向外偏移一点，完美卡在右下角
+                                        width: 12,
+                                        height: 12,
+                                        borderRadius: '50%',
+                                        cursor: 'pointer',
+                                        // zIndex: 1,
+                                    }}
+                                />
+                            </Tooltip>
+                        </div>
+
                         <Link
                             ellipsis
                             style={{

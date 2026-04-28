@@ -26,7 +26,7 @@ export default function MomentsCardList() {
     const [hasMore, setHasMore] = useState(true);
     const [initialLoading, setInitialLoading] = useState(true);
     const [dynamicPageSize, setDynamicPageSize] = useState(6);
-    
+
     const observerRef = useRef(null);
     const loadingRef = useRef(null);
 
@@ -35,7 +35,7 @@ export default function MomentsCardList() {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
         };
-        
+
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -45,7 +45,7 @@ export default function MomentsCardList() {
         const columnsCount = getColumnsCount(windowWidth);
         const newPageSize = getPageSizeByColumns(columnsCount);
         setDynamicPageSize(newPageSize);
-        
+
         // 如果 pageSize 变化且不是初始加载，重新获取数据
         if (!initialLoading && moments.length > 0) {
             setPageNo(1);
@@ -57,28 +57,28 @@ export default function MomentsCardList() {
 
     const fetchData = async (page: number, isLoadMore = false, customPageSize?: number) => {
         if (loading) return;
-        
+
         const size = customPageSize || dynamicPageSize;
         setLoading(true);
         try {
             const resp = await RequestUtil.get(`/api/moments?page=${page}&size=${size}`);
             const respBody = await resp.json();
-            
+
             const newResults = respBody.results || [];
             const currentTotal = respBody.total || 0;
-            
+
             if (page === 1) {
                 setMoments(newResults);
             } else {
                 setMoments(prev => [...prev, ...newResults]);
             }
-            
+
             setTotal(currentTotal);
-            
+
             // 判断是否还有更多数据
             const loadedCount = page === 1 ? newResults.length : moments.length + newResults.length;
             setHasMore(loadedCount < currentTotal);
-            
+
         } catch (error) {
             message.error('加载失败，请稍后重试');
         } finally {
@@ -98,7 +98,7 @@ export default function MomentsCardList() {
     // 无限滚动监听
     useEffect(() => {
         if (initialLoading) return;
-        
+
         const options = {
             root: null,
             rootMargin: '100px',
@@ -115,7 +115,7 @@ export default function MomentsCardList() {
         };
 
         observerRef.current = new IntersectionObserver(callback, options);
-        
+
         if (loadingRef.current) {
             observerRef.current.observe(loadingRef.current);
         }
@@ -135,7 +135,7 @@ export default function MomentsCardList() {
                 </Flex>
             );
         }
-        
+
         if (loading && moments.length > 0) {
             return (
                 <Flex justify="center" style={{ padding: '20px 0' }}>
@@ -143,7 +143,7 @@ export default function MomentsCardList() {
                 </Flex>
             );
         }
-        
+
         return <div ref={loadingRef} style={{ height: '20px' }} />;
     };
 
@@ -154,7 +154,7 @@ export default function MomentsCardList() {
                     <Title level={4} style={{ margin: 0 }}>
                         最新随拍
                     </Title>
-                    <div style={{marginTop: 10}}>
+                    <div style={{ marginTop: 10, textAlign: 'center' }}>
                         <Spin />
                     </div>
                 </div>
@@ -172,7 +172,7 @@ export default function MomentsCardList() {
                 {moments.length === 0 ? (
                     <Empty description="暂无随拍内容" />
                 ) : (
-                    <div style={{marginTop: 10}}>
+                    <div style={{ marginTop: 10 }}>
                         <Row gutter={[16, 16]}>
                             {moments.map((moment) => (
                                 <Col xs={24} md={12} key={moment.id}>

@@ -62,9 +62,17 @@ export default function AdminBlogRequestAdd(): React.JSX.Element {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-        e.preventDefault();
-        postData(formData);
+    // ✅ 正确写法（AntD Form onFinish 传递的是表单值，无需 preventDefault）
+    const handleSubmit = (values: Record<string, string>): void => {
+        const promise = values.promise || formData.promise;
+
+        if (!promise) {
+            setError({ code: 'promise_not_selected', message: '您未做出个人承诺' });
+            return;
+        }
+
+        // 用最新的表单值提交
+        postData({ ...formData, ...values });
     };
 
     useEffect(() => {

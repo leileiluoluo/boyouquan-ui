@@ -19,7 +19,7 @@ export default function Article({ title, content, publishedAt }: ArticleProps): 
                     {title}
                 </Title>
                 {publishedAt && (
-                    <Space size="small" style={{marginTop: 10}}>
+                    <Space size="small" style={{ marginTop: 10 }}>
                         <CalendarOutlined style={{ color: '#8c8c8c' }} />
                         <Text type="secondary" style={{ fontSize: 12 }}>
                             {publishedAt}
@@ -29,19 +29,7 @@ export default function Article({ title, content, publishedAt }: ArticleProps): 
             </div>
 
             {/* 文章内容卡片 */}
-            <Card
-                variant="borderless"
-                style={{
-                    backgroundColor: '#fafafa',
-                    borderRadius: 12,
-                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02)'
-                }}
-                bodyStyle={{
-                    padding: 20,
-                    fontSize: 14,
-                    lineHeight: 1.7
-                }}
-            >
+            <Card>
                 {typeof content === 'string' ? (
                     <Paragraph style={{ marginBottom: 0, color: 'rgba(0, 0, 0, 0.85)' }}>
                         {content}

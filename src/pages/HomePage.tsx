@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
         <>
             <Meta />
             <Flex vertical gap={16}>
-                <MainContentHeader content='博友圈是博客人的专属朋友圈，我们的愿景是将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！' />
+                <MainContentHeader content='博友圈是博客人的专属朋友圈！我们深信每个博客背后都是一个独特的灵魂，让我们跨越山海彼此相连，一起用文字打败时间！' />
                 <HomeLatestNews />
                 <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
                 <SwitchSortType types={SWITCH_TYPES} />

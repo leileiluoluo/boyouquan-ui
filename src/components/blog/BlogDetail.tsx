@@ -192,7 +192,7 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
 
                                 {/* 👇 只给小圆点加 Tooltip，头像不加！这是修复核心 */}
                                 <div style={{ position: 'relative', display: 'inline-block' }}>
-                                    <Link href={getGoAddress(blogDetail.address)}>
+                                    <Link target="_blank" href={getGoAddress(blogDetail.address)}>
                                         <Avatar
                                             size={60}
                                             src={blogDetail.blogAdminLargeImageURL}

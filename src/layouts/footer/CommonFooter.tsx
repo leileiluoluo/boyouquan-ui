@@ -73,7 +73,7 @@ const CommonFooter: React.FC = () => {
                     <Flex justify="space-between" gap={token.padding} wrap="wrap">
                         <Flex vertical gap={token.paddingSM}>
                             <Text style={{ fontSize: token.fontSizeXL, color: token.colorText }}>博友圈</Text>
-                            <Text style={{ fontSize: linkFontSize, color: token.colorText, lineHeight: 2 }}>将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！</Text>
+                            <Text style={{ fontSize: linkFontSize, color: token.colorText, lineHeight: 2 }}>让我们跨越山海彼此相连，一起用文字打败时间！</Text>
                             <Flex gap={token.paddingSM}>
                                 <Dropdown placement="topRight" menu={{ items: rssItems }}>
                                     <Rss color={token.colorText} size={16} />

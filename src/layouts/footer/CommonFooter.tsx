@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import type { MenuProps } from 'antd';
-import { Rss, Github, Cloud, Mail, ArrowUp, BarChart3, ExternalLink } from 'lucide-react';
+import { Rss, Github, Cloud, Mail, ArrowUp, BarChart3, ExternalLink, QrCode } from 'lucide-react';
 import { theme, Layout, Divider, Typography, Flex, Button, Spin, Dropdown, Tooltip, Space } from 'antd';
 
 import { MobileOnly, PCOnly } from '@components/common/Responsive';
@@ -139,6 +139,24 @@ const CommonFooter: React.FC = () => {
                                 <Link href="/release-notes" style={{ color: token.colorText, fontSize: linkFontSize }}>发布历史</Link>
                                 <Link href="/annual-reports" style={{ color: token.colorText, fontSize: linkFontSize }}>年度报告</Link>
                             </Flex>
+                        </Flex>
+
+                        {/* 小程序码 */}
+                        <Flex vertical gap={token.paddingXS}>
+                            <Flex align="center" gap={token.paddingXS} style={{ marginBottom: token.marginXXS }}>
+                                <QrCode size={16} style={{ color: token.colorText }} />
+                                <Text style={{ color: token.colorText, fontSize: token.fontSize }}>小程序</Text>
+                            </Flex>
+                            <img
+                                src="/assets/images/sites/mini-program/qr-code.jpg"
+                                alt="博友圈小程序码"
+                                style={{
+                                    width: 68,
+                                    height: 68,
+                                    objectFit: 'cover',
+                                    borderRadius: 4
+                                }}
+                            />
                         </Flex>
                     </Flex>
 

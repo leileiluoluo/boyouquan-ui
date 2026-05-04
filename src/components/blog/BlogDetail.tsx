@@ -98,6 +98,8 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
 
     const { token } = useToken();
 
+    const qrcodeUrl = `/api/mini-programs/qr-codes?blogDomainName=${domain}`;
+
     const boxShadowValue = '0 4px 12px rgba(0,0,0,0.08)';
 
     const joinedYear = blogDetail.collectedAt ? new Date(blogDetail.collectedAt).getFullYear() : 0;
@@ -275,6 +277,25 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                         </Text>
                                     </Tooltip>
                                 </Flex>
+
+                                {/* ========== 小程序码展示区 ========== */}
+                                <Divider style={{ margin: '12px 0' }} />
+                                <div style={{ textAlign: 'center' }}>
+                                    <Text type="secondary" style={{ fontSize: 12, display: 'block', marginBottom: 8 }}>
+                                        专属小程序主页
+                                    </Text>
+                                    <img
+                                        src={qrcodeUrl}
+                                        alt="小程序码"
+                                        style={{
+                                            width: 100,        // 大小合适
+                                            height: 100,
+                                            borderRadius: 4,
+                                            border: '1px solid #e8e8e8',
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                </div>
                             </Flex>
                         </Card>
                     </Col>

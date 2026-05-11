@@ -174,7 +174,10 @@ export default function CertificatePage() {
     const certRef = useRef(null);
     const [loaded, setLoaded] = useState(false);
     const [blogDetail, setBlogDetail] = useState({});
-    const [qrUrl, setQrUrl] = useState('');
+    // const [qrUrl, setQrUrl] = useState('');
+
+    const qrUrl = `/api/mini-programs/qr-codes?blogDomainName=${domainName}`;
+
     const [joinedDate, setJoinedDate] = useState('');
     const [level, setLevel] = useState('LEVEL 0');
     const [certificateId, setCertificateId] = useState(
@@ -208,12 +211,12 @@ export default function CertificatePage() {
     useEffect(() => {
         fetchData(domainName);
 
-        const verifyUrl = `https://www.boyouquan.com/certificates/${domainName}`;
-        toBase64(
-            `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(
-                verifyUrl
-            )}`
-        ).then(setQrUrl);
+        // const verifyUrl = `https://www.boyouquan.com/certificates/${domainName}`;
+        // toBase64(
+        //     `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(
+        //         verifyUrl
+        //     )}`
+        // ).then(setQrUrl);
     }, [domainName]);
 
     const handleScreenCapture = async () => {
@@ -526,7 +529,7 @@ export default function CertificatePage() {
                                         />
                                     )}
                                     <div className="text-[10px] sm:text-xs opacity-80">
-                                        扫码验证真伪
+                                        微信扫码验证真伪
                                     </div>
                                 </div>
                             </footer>

@@ -185,7 +185,8 @@ const CommonFooter: React.FC = () => {
             <Button type="text" icon={<ArrowUp size={16} />} onClick={scrollToTop} style={{
                 position: 'fixed', bottom: 24, right: 24, background: colorArrowUpBackground, color: colorArrowUp,
                 borderRadius: '50%', width: 36, height: 36, display: 'flex', alignItems: 'center',
-                justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', border: '1px solid #dee2e6'
+                justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', border: '1px solid #dee2e6',
+                zIndex: 9999,
             }} />
         </Footer>
     );

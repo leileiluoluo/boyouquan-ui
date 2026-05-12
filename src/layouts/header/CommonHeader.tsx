@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
     theme, Layout, Flex, Menu, Typography, Drawer, Button,
+    Tag,
 } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { MobileOnly, PCOnly } from '@components/common/Responsive';
@@ -14,9 +15,10 @@ const MENU_ITEMS = [
     { key: '1', label: '随手一拍', href: '/moments' },
     { key: '2', label: '每月精选', href: '/monthly-selected' },
     { key: '3', label: '博客广场', href: '/blogs' },
-    { key: '4', label: '连接系数', href: '/link-graphs' },
-    { key: '5', label: '提交博客', href: '/blog-requests/add/email-validation' },
-    { key: '6', label: '审核结果', href: '/blog-requests' },
+    { key: '4', label: '付费服务', href: '/services', new: true },
+    { key: '5', label: '连接系数', href: '/link-graphs' },
+    { key: '6', label: '提交博客', href: '/blog-requests/add/email-validation' },
+    { key: '7', label: '审核结果', href: '/blog-requests' },
 ];
 
 const MOBILE_MENU_ITEMS = [
@@ -24,14 +26,15 @@ const MOBILE_MENU_ITEMS = [
     { key: '1', label: '随手一拍', href: '/moments' },
     { key: '2', label: '每月精选', href: '/monthly-selected' },
     { key: '3', label: '博客广场', href: '/blogs' },
-    { key: '4', label: '连接系数', href: '/link-graphs' },
-    { key: '5', label: '提交博客', href: '/blog-requests/add/email-validation' },
-    { key: '6', label: '审核结果', href: '/blog-requests' },
-    { key: '7', label: '赞助本站', href: '/sponsor' },
-    { key: '8', label: '关于本站', href: '/about' },
-    { key: '9', label: '发布历史', href: '/release-notes' },
-    { key: '10', label: '年度报告', href: '/annual-reports' },
-    { key: '11', label: '同类网站', href: '/similar-sites' },
+    { key: '4', label: '付费服务', href: '/services', new: true },
+    { key: '5', label: '连接系数', href: '/link-graphs' },
+    { key: '6', label: '提交博客', href: '/blog-requests/add/email-validation' },
+    { key: '7', label: '审核结果', href: '/blog-requests' },
+    { key: '8', label: '赞助本站', href: '/sponsor' },
+    { key: '9', label: '关于本站', href: '/about' },
+    { key: '10', label: '发布历史', href: '/release-notes' },
+    { key: '11', label: '年度报告', href: '/annual-reports' },
+    { key: '12', label: '同类网站', href: '/similar-sites' },
 ];
 
 const CommonHeader: React.FC = () => {
@@ -89,7 +92,7 @@ const CommonHeader: React.FC = () => {
                             key: item.key,
                             label: (
                                 <a href={item.href} style={{
-                                    color: 'inherit',
+                                    color: item.new ? 'red' : 'inherit',
                                     textDecoration: 'none'
                                 }}>
                                     {item.label}
@@ -133,7 +136,12 @@ const CommonHeader: React.FC = () => {
                     onClick={() => setOpen(false)}
                     items={MOBILE_MENU_ITEMS.map(item => ({
                         key: item.key,
-                        label: <a href={item.href}>{item.label}</a>,
+                        label: <a href={item.href} style={{
+                            color: item.new ? 'red' : 'inherit',
+                            textDecoration: 'none'
+                        }}>
+                            {item.label}
+                        </a>,
                     }))}
                 />
             </Drawer>

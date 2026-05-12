@@ -11,6 +11,14 @@ import {
   RobotOutlined,
   SafetyOutlined,
 } from '@ant-design/icons';
+import { MetaFields } from '@types';
+import { Meta } from '@components/common';
+
+const meta: MetaFields = {
+  title: '专业博客服务 - 博友圈 · 博客人的朋友圈！',
+  keywords: '博客服务, 博客搭建, 博客优化, 小程序',
+  description: '博友圈专业博客付费服务。'
+}
 
 interface ServiceItem {
   title: string;
@@ -98,7 +106,7 @@ const ServicePage: React.FC = () => {
     },
     {
       title: '服务托管',
-      desc: '稳定云服务器托管，免运维省心部署',
+      desc: '服务器托管，免运维省心部署',
       icon: <CloudServerOutlined />,
       color: '#52c41a'
     },
@@ -120,7 +128,7 @@ const ServicePage: React.FC = () => {
   const otherServices: ServiceItem[] = [
     {
       title: '技术支持',
-      desc: '7×24 在线答疑与故障排查',
+      desc: '7×10 在线管家式答疑与故障排查',
       icon: <CloudServerOutlined />,
       color: '#52c41a'
     },
@@ -137,8 +145,8 @@ const ServicePage: React.FC = () => {
       color: '#ff4d4f'
     },
     {
-      title: '博客 AI 增值赋能',
-      desc: 'AI智能推荐、内容审核、个性化流量分发',
+      title: '高效运维',
+      desc: '博客搬家、数据迁移、网站备份',
       icon: <RobotOutlined />,
       color: '#13c2c2'
     },
@@ -147,100 +155,103 @@ const ServicePage: React.FC = () => {
   // 定制服务
   const customServices: ServiceItem[] = [
     {
-      title: '博客小程序开发',
-      desc: '微信小程序端博客定制开发与发布',
+      title: '小程序开发',
+      desc: '微信小程序端博客定制开发',
       icon: <AppstoreOutlined />,
       color: '#eb2f96'
     },
     {
-      title: '博客 App 开发',
-      desc: 'iOS / Android 移动端独立应用打包',
+      title: 'App 开发',
+      desc: 'iOS / Android 移动端应用开发',
       icon: <MobileOutlined />,
       color: '#13c2c2'
     },
     {
       title: '博客营销',
-      desc: '流量推广、SEO 优化与品牌引流运营',
+      desc: '流量推广、SEO 优化与引流运营',
       icon: <LineChartOutlined />,
       color: '#faad14'
     },
     {
-      title: '博客 AI 赋能',
-      desc: 'AI文章创作、智能摘要、评论自动回复',
+      title: 'AI 赋能',
+      desc: '创意配图、创意视频、自动回复',
       icon: <RobotOutlined />,
       color: '#2f54eb'
     },
   ];
 
   return (
-    <div
-      style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '60px 20px',
-        backgroundColor: '#f5f7fa',
-        minHeight: '100vh',
-      }}
-    >
-      <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <Typography.Title level={2} style={{ marginBottom: 16, fontWeight: 700 }}>
-          专业博客服务解决方案
-        </Typography.Title>
-        <Typography.Paragraph style={{ fontSize: 16, color: '#6b7280' }}>
-          一站式博客搭建、定制开发与运营增值服务
-        </Typography.Paragraph>
-      </div>
+    <>
+      <Meta meta={meta} />
 
-      <Row gutter={[24, 24]} justify="center">
-        <Col xs={24} sm={12} md={8}>
-          <ServiceCard title="基础服务" price="19.9" services={basicServices} />
-        </Col>
-        <Col xs={24} sm={12} md={8}>
-          <ServiceCard title="增值服务" price="99" services={otherServices} />
-        </Col>
-        <Col xs={24} sm={12} md={8}>
-          <ServiceCard title="定制服务" price="199" services={customServices} />
-        </Col>
-      </Row>
-
-      {/* 底部微信咨询二维码区块 */}
       <div
         style={{
-          maxWidth: 800,
-          margin: '60px auto 0',
-          padding: '32px 24px',
-          backgroundColor: '#fff',
-          borderRadius: 16,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-          textAlign: 'center',
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '20px 20px',
+          backgroundColor: '#f5f7fa',
+          minHeight: '100vh',
         }}
       >
-        <Typography.Title level={4} style={{ marginBottom: 8, fontWeight: 600 }}>
-          一对一专属咨询
-        </Typography.Title>
-        <Typography.Paragraph style={{ color: '#6b7280', marginBottom: 24 }}>
-          扫码添加微信，获取定制方案与专属优惠
-        </Typography.Paragraph>
+        <div style={{ textAlign: 'center', marginBottom: 34 }}>
+          <Typography.Title level={2} style={{ marginTop: 30, marginBottom: 16, fontWeight: 700 }}>
+            专业可信赖的博客服务
+          </Typography.Title>
+          <Typography.Paragraph style={{ fontSize: 16, color: '#6b7280' }}>
+            一站式博客搭建、博客托管、自动化运维与定制开发服务
+          </Typography.Paragraph>
+        </div>
 
-        {/* 替换为你自己的微信二维码图片地址 */}
-        <img
-          src="/assets/images/sites/service/wechat-service.jpg"
-          alt="微信咨询二维码"
+        <Row gutter={[24, 24]} justify="center">
+          <Col xs={24} sm={12} md={8}>
+            <ServiceCard title="基础服务" price="99" services={basicServices} />
+          </Col>
+          <Col xs={24} sm={12} md={8}>
+            <ServiceCard title="增值服务" price="199" services={otherServices} />
+          </Col>
+          <Col xs={24} sm={12} md={8}>
+            <ServiceCard title="定制服务" price="999" services={customServices} />
+          </Col>
+        </Row>
+
+        {/* 底部微信咨询二维码区块 */}
+        <div
           style={{
-            width: 200,
-            height: 200,
-            borderRadius: 12,
-            border: '4px solid #f5f7fa',
-            objectFit: 'cover'
+            maxWidth: 800,
+            margin: '30px auto 20px',
+            padding: '32px 24px',
+            backgroundColor: '#fff',
+            borderRadius: 16,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            textAlign: 'center',
           }}
-        />
+        >
+          <Typography.Title level={4} style={{ marginBottom: 8, fontWeight: 600 }}>
+            一对一专属咨询
+          </Typography.Title>
+          <Typography.Paragraph style={{ color: '#6b7280', marginBottom: 24 }}>
+            扫码添加微信，获取定制方案与专属优惠
+          </Typography.Paragraph>
 
-        <div style={{ marginTop: 16, fontSize: 14, color: '#888' }}>
-          微信号：<span style={{ color: '#1890ff', fontWeight: 500 }}>wx_id_haoran</span>
+          {/* 替换为你自己的微信二维码图片地址 */}
+          <img
+            src="/assets/images/sites/service/wechat-service.jpg"
+            alt="微信咨询二维码"
+            style={{
+              width: 200,
+              height: 200,
+              borderRadius: 12,
+              border: '4px solid #f5f7fa',
+              objectFit: 'cover'
+            }}
+          />
+
+          <div style={{ marginTop: 16, fontSize: 14, color: '#888' }}>
+            微信号：<span style={{ color: '#1890ff', fontWeight: 500 }}>wx_id_haoran</span>
+          </div>
         </div>
       </div>
-
-    </div>
+    </>
   );
 };
 

@@ -108,5 +108,10 @@
         "name": "博客之家论坛",
         "link": "https://52blog.cn/",
         "description": "专注各类博客程序交流"
+    },
+    {
+        "name": "好站网",
+        "link": "https://haozhan.wang/",
+        "description": "收录优质中文独立网站"
     }
 ]

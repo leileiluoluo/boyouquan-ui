@@ -193,7 +193,7 @@ const ServicePage: React.FC = () => {
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: 34 }}>
-          <Typography.Title level={2} style={{ marginTop: 30, marginBottom: 16, fontWeight: 700 }}>
+          <Typography.Title level={2} style={{ marginTop: 10, marginBottom: 16, fontWeight: 700 }}>
             专业可信赖的博客服务
           </Typography.Title>
           <Typography.Paragraph style={{ fontSize: 16, color: '#6b7280' }}>
@@ -217,8 +217,8 @@ const ServicePage: React.FC = () => {
         <div
           style={{
             maxWidth: 800,
-            margin: '30px auto 20px',
-            padding: '32px 24px',
+            margin: '30px auto 10px',
+            padding: '10px 24px',
             backgroundColor: '#fff',
             borderRadius: 16,
             boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
@@ -228,7 +228,7 @@ const ServicePage: React.FC = () => {
           <Typography.Title level={4} style={{ marginBottom: 8, fontWeight: 600 }}>
             一对一专属咨询
           </Typography.Title>
-          <Typography.Paragraph style={{ color: '#6b7280', marginBottom: 24 }}>
+          <Typography.Paragraph style={{ color: '#6b7280', marginBottom: 20 }}>
             扫码添加微信，获取定制方案与专属优惠
           </Typography.Paragraph>
 
@@ -245,7 +245,7 @@ const ServicePage: React.FC = () => {
             }}
           />
 
-          <div style={{ marginTop: 16, fontSize: 14, color: '#888' }}>
+          <div style={{ marginTop: 16, marginBottom: 20, fontSize: 14, color: '#888' }}>
             微信号：<span style={{ color: '#1890ff', fontWeight: 500 }}>wx_id_haoran</span>
           </div>
         </div>

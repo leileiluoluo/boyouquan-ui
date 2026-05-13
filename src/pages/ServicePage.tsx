@@ -189,7 +189,6 @@ const ServicePage: React.FC = () => {
           maxWidth: 1200,
           margin: '0 auto',
           padding: '20px 20px',
-          backgroundColor: '#f5f7fa',
           minHeight: '100vh',
         }}
       >

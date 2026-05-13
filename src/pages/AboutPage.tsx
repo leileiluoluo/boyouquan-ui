@@ -68,7 +68,7 @@ const content = (
         <ul style={{ marginBottom: 16, paddingLeft: 24 }}>
             <li>站名：博友圈</li>
             <li>网址：<Link href="https://www.boyouquan.com/home" target="_blank">https://www.boyouquan.com/home</Link></li>
-            <li>描述：博客人的朋友圈，将一个个散落在各处的孤岛连接成一片广袤无垠的新大陆！</li>
+            <li>描述：让我们跨越山海彼此相连，一起用文字打败时间！</li>
             <li>星球穿梭页：<Link href="https://www.boyouquan.com/planet-shuttle" target="_blank">https://www.boyouquan.com/planet-shuttle</Link></li>
             <li>素材：各尺寸 Logo 如下，请按需自取！</li>
         </ul>

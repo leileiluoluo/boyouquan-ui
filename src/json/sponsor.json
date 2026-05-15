@@ -837,5 +837,25 @@
                 "link": "/assets/images/sites/sponsor/cost_details/2026/04/host_renewal.png"
             }
         ]
+    },
+    {
+        "blogName": "obaby 𝐢‍𝐧⃝ void",
+        "link": "/blogs/zhongxiaojie.cn",
+        "sponsoredAt": "2026/05/14",
+        "sponsoredMoney": "69.00 元",
+        "message": "支持站长，让服务器多运行一会～",
+        "status": "已完成",
+        "spentAt": "2026/05/14",
+        "spentOn": "小程序认证年费",
+        "spentDetails": [
+            "当前总额：84.86 元，本次花费：30.00 元，本次结余：54.86 元",
+            "博友圈 Mini 微信小程序认证年费"
+        ],
+        "proofs": [
+            {
+                "name": "花费证明",
+                "link": "/assets/images/sites/sponsor/cost_details/2026/05/wechat_miniprogram_cert.jpg"
+            }
+        ]
     }
 ]

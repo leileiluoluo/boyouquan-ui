@@ -197,7 +197,7 @@ const ServicePage: React.FC = () => {
             专业可信赖的博客服务
           </Typography.Title>
           <Typography.Paragraph style={{ fontSize: 16, color: '#6b7280' }}>
-            一站式博客搭建、博客托管、自动化运维与定制开发服务
+            博友圈站长推出的一站式博客搭建、博客托管、自动化运维与定制开发服务
           </Typography.Paragraph>
         </div>
 

@@ -288,8 +288,8 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                         src={qrcodeUrl}
                                         alt="小程序码"
                                         style={{
-                                            width: 100,        // 大小合适
-                                            height: 100,
+                                            width: 90,        // 大小合适
+                                            height: 90,
                                             borderRadius: 4,
                                             border: '1px solid #e8e8e8',
                                             objectFit: 'cover'

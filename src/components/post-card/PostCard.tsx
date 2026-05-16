@@ -5,7 +5,6 @@ import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
 import { PostData } from '@types/post';
 import { MobileOnly, PCOnly } from '@components/common/Responsive';
-// 👇 引入懒加载 Avatar
 import LazyAvatar from '@components/common/LazyAvatar';
 
 const { Title, Link, Text, Paragraph } = Typography;
@@ -65,21 +64,19 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                     style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
                                 />
                             </Link>
-                            {/* 状态 Badge - 固定在头像右下角 */}
                             <Tooltip title={post.blogStatusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
                                 <Badge
                                     dot
                                     color={post.blogStatusOk ? '#52c41a' : 'red'}
                                     style={{
                                         position: 'absolute',
-                                        bottom: 0,    // 贴底部
-                                        right: 0,     // 贴右侧
-                                        transform: 'translate(45%, 5%)', // 向外偏移一点，完美卡在右下角
+                                        bottom: 0,
+                                        right: 0,
+                                        transform: 'translate(45%, 5%)',
                                         width: 12,
                                         height: 12,
                                         borderRadius: '50%',
                                         cursor: 'pointer',
-                                        // zIndex: 1,
                                     }}
                                 />
                             </Tooltip>
@@ -125,6 +122,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                     minWidth: 0,
                 }}
             >
+                {/* 👇 这就是加了 hover 的卡片区域 */}
                 <div
                     style={{
                         padding: '16px 20px',
@@ -133,7 +131,19 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                         backgroundColor: token.colorBgContainer,
                         width: '100%',
                         boxSizing: 'border-box',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        cursor: 'pointer',
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.08)';
+                        e.currentTarget.style.borderColor = token.colorPrimary;
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.borderColor = token.colorBorder;
                     }}
                 >
                     <Flex vertical gap={4} style={{ width: '100%' }}>
@@ -207,7 +217,6 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                 <MobileOnly>
                                     <Flex gap={6}>
                                         <Link href={blogURL}>
-                                            {/* 👇 移动端头像也替换成懒加载 */}
                                             <LazyAvatar
                                                 shape="circle"
                                                 size={20}

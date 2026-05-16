@@ -67,7 +67,7 @@ export default function AdminPostImageAdd(): React.JSX.Element {
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-        e.preventDefault();
+        // e.preventDefault();
 
         let imageURL = formData['imageURL'];
         const customImageURL = formData['customImageURL'];

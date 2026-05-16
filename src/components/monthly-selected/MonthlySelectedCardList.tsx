@@ -54,7 +54,7 @@ export default function MonthlySelectedCardList() {
     if (!dataReady) {
         return (
             <Flex justify="center" align="center" style={{ padding: '100px 0' }}>
-                <Spin size="large" />
+                <Spin />
             </Flex>
         );
     }
@@ -69,7 +69,7 @@ export default function MonthlySelectedCardList() {
             </Flex>
 
             {imageCount > 0 && (
-                <Row gutter={[24, 24]}>
+                <Row gutter={[12, 24]}>
                     {postInfos.slice(0, imageCount).map((postInfo, index) => (
                         <Col xs={24} lg={12} key={index}>
                             <MonthlySelectedCard postInfo={postInfo} showImage={true} />

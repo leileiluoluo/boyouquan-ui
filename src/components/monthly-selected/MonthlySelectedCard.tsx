@@ -20,14 +20,11 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
   const abstractURL = getAbstractAddress(postInfo.link);
   const publishedAtFormatted = formatDateStr(postInfo.publishedAt, true);
 
-  // ==============================================
-  // hasImage = true → 展示大图卡片（自动用 imageURL）
-  // ==============================================
   if (showImage && postInfo.hasImage && postInfo.imageURL) {
     return (
       <Card
         hoverable
-        style={{ borderRadius: 16, overflow: 'hidden' }}
+        style={{ overflow: 'hidden' }}
         cover={
           <div style={{ height: 240, overflow: 'hidden' }}>
             <LazyImg
@@ -57,9 +54,21 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
           </Paragraph>
 
           <Flex justify="space-between" align="center" wrap="wrap" gap={8}>
-            <Flex align="center" gap={10}>
-              <Avatar size={24} src={postInfo.blogAdminMediumImageURL} icon={<UserOutlined />} />
-              <AntText style={{ fontSize: 13, fontWeight: 500 }}>{postInfo.blogName}</AntText>
+            <Flex align="center" gap={6}>
+              <Link href={blogURL}>
+                <Avatar size={20} src={postInfo.blogAdminMediumImageURL} icon={<UserOutlined />} />
+              </Link>
+              <Link
+                href={blogURL}
+                ellipsis
+                style={{
+                  display: 'block',
+                  textAlign: 'center',
+                  fontWeight: token.fontWeightStrong,
+                }}
+              >
+                <AntText style={{ fontSize: 13, fontWeight: 500 }}>{postInfo.blogName}</AntText>
+              </Link>
             </Flex>
 
             <Flex gap={16}>
@@ -83,13 +92,10 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
     );
   }
 
-  // ==============================================
-  // 无图文章 → 展示精致小卡片
-  // ==============================================
   return (
     <Card
       hoverable
-      style={{ borderRadius: 12, borderWidth: 1 }}
+      style={{ borderWidth: 1 }}
       bodyStyle={{ padding: '16px 20px' }}
     >
       <Flex vertical gap={12}>
@@ -107,9 +113,21 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
         </Paragraph>
 
         <Flex justify="space-between" align="center" wrap="wrap" gap={8}>
-          <Flex align="center" gap={10}>
-            <Avatar size={24} src={postInfo.blogAdminMediumImageURL} icon={<UserOutlined />} />
-            <AntText style={{ fontSize: 13, fontWeight: 500 }}>{postInfo.blogName}</AntText>
+          <Flex align="center" gap={6}>
+            <Link href={blogURL}>
+              <Avatar size={20} src={postInfo.blogAdminMediumImageURL} icon={<UserOutlined />} />
+            </Link>
+            <Link
+              href={blogURL}
+              ellipsis
+              style={{
+                display: 'block',
+                textAlign: 'center',
+                fontWeight: token.fontWeightStrong,
+              }}
+            >
+              <AntText style={{ fontSize: 13, fontWeight: 500 }}>{postInfo.blogName}</AntText>
+            </Link>
           </Flex>
 
           <Flex gap={16}>

@@ -35,9 +35,25 @@ export default function BlogCard({
 
     return (
         <Card
+            hoverable={false}
             style={{
+                borderWidth: 1,
                 boxShadow: boxShadowValue,
                 position: 'relative',
+                transition: 'all 0.4s ease',
+                borderRadius: '14px',
+                overflow: 'hidden',
+                borderColor: 'transparent',
+            }}
+            onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-6px)';
+                e.currentTarget.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.style.borderColor = token.colorPrimary;
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = boxShadowValue;
+                e.currentTarget.style.borderColor = 'transparent';
             }}
         >
             <div style={{

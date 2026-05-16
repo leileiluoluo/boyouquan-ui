@@ -11,12 +11,22 @@ export default function MomentsCard({ moment }) {
 
     return (
         <Card
-            style={{
-                borderRadius: '8px',
-                overflow: 'hidden',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
-            }}
             bodyStyle={{ padding: 0 }}
+            style={{
+                borderRadius: '12px', // 更圆润大气
+                overflow: 'hidden',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', // 丝滑动画
+            }}
+            // hover 效果
+            onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 20px rgba(0, 0, 0, 0.12)';
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            }}
         >
             <Flex vertical gap={8}>
                 {/* 图片区域 - 16:9 比例 */}

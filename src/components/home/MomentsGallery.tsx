@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Spin, Empty } from 'antd';
 import { request } from '@utils/request';
-import { getGoAddress } from '@utils/PageAddressUtil';
+import { getGoAddress, getMomentsAddress } from '@utils/PageAddressUtil';
 
 interface BlogInfo {
     name: string;
@@ -135,7 +135,7 @@ const MomentsGallery: React.FC = () => {
                                         transition: 'transform 0.2s ease',
                                         display: 'block',
                                     }}
-                                    onClick={() => window.open(getGoAddress(item.blogInfo.address), '_blank')}
+                                    onClick={() => window.open(getMomentsAddress())}
                                     onMouseEnter={(e) =>
                                         (e.currentTarget.style.transform = 'scale(1.02)')
                                     }

@@ -36,6 +36,10 @@ export function getGravatarImageFullURL(imageURL: string): string {
   return imageURL;
 }
 
+export function getMomentsAddress() {
+  return '/moments';
+}
+
 export function getAdminBlogRequestAddress(id: number | string): string {
   return `/admin/blog-requests/${id}`;
 }

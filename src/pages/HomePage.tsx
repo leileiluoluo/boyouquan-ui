@@ -7,6 +7,7 @@ import PostCardList from '@components/post-card/PostCardList';
 import { SwitchType } from '@types';
 import { getURLParameter } from '@utils/CommonUtil';
 import { HomeLatestNews } from '@components/home';
+import MomentsGallery from '@components/home/MomentsGallery';
 
 const SpecialThanks = lazy(() => import('@components/common/special-thanks/SpecialThanks'));
 
@@ -46,6 +47,7 @@ const HomePage: React.FC = () => {
             <Flex vertical gap={16}>
                 <MainContentHeader content='博友圈是博客人的专属朋友圈！我们深信每个博客背后都是一个独特的灵魂，让我们跨越山海彼此相连，一起用文字打败时间！' />
                 <HomeLatestNews />
+                <MomentsGallery />
                 <SearchBox placeholder="搜索文章 ↵" gotoPage="/home" sortType="latest" />
                 <SwitchSortType types={SWITCH_TYPES} />
                 <PostCardList sort={sort} keyword={keyword} showPinned={showPinned} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { theme, Flex, Typography, Space, Divider, Tooltip, Badge, Avatar } from 'antd';
 import { PushpinOutlined, ClockCircleOutlined, EyeOutlined, MoreOutlined, ShareAltOutlined, StarOutlined, UserOutlined } from '@ant-design/icons';
 import { formatDateStr } from '../../utils/DateUtil';
@@ -28,6 +28,8 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
     const LEFT_BAR_WIDTH = 100;
     const ARROW_SIZE = 10;
     const CARD_PADDING_VERTICAL = 20;
+
+    const [hovered, setHovered] = useState(false);
 
     return (
         <Flex
@@ -117,16 +119,16 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                 vertical
                 flex={1}
                 style={{
-                    position: 'relative',
+                    position: 'relative', // 为箭头提供定位参考
                     zIndex: 2,
                     minWidth: 0,
                 }}
             >
-                {/* 👇 这就是加了 hover 的卡片区域 */}
+                {/* 卡片区域 */}
                 <div
                     style={{
                         padding: '16px 20px',
-                        border: `1px solid ${token.colorBorder}`,
+                        border: `1px solid ${hovered ? token.colorPrimary : token.colorBorder}`,
                         borderRadius: 12,
                         backgroundColor: token.colorBgContainer,
                         width: '100%',
@@ -134,17 +136,10 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                         overflow: 'hidden',
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                         cursor: 'pointer',
+                        boxShadow: hovered ? '0 8px 20px rgba(0, 0, 0, 0.08)' : 'none',
                     }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.08)';
-                        e.currentTarget.style.borderColor = token.colorPrimary;
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = 'none';
-                        e.currentTarget.style.borderColor = token.colorBorder;
-                    }}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
                 >
                     <Flex vertical gap={4} style={{ width: '100%' }}>
                         <Link
@@ -274,7 +269,9 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                     </Flex>
                 </div>
 
+                {/* 左侧三角形箭头（仅PC端） */}
                 <PCOnly>
+                    {/* 外层箭头（边框色） */}
                     <div
                         style={{
                             position: 'absolute',
@@ -284,10 +281,13 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                             height: 0,
                             borderTop: `${ARROW_SIZE}px solid transparent`,
                             borderBottom: `${ARROW_SIZE}px solid transparent`,
-                            borderRight: `${ARROW_SIZE}px solid ${token.colorBorder}`,
-                            zIndex: 3
+                            borderRight: `${ARROW_SIZE}px solid ${hovered ? token.colorPrimary : token.colorBorder}`,
+                            zIndex: 3,
+                            pointerEvents: 'none', // 避免干扰鼠标事件
+                            transition: 'border-right-color 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                         }}
                     />
+                    {/* 内层箭头（背景色） */}
                     <div
                         style={{
                             position: 'absolute',
@@ -298,7 +298,8 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                             borderTop: `${ARROW_SIZE}px solid transparent`,
                             borderBottom: `${ARROW_SIZE}px solid transparent`,
                             borderRight: `${ARROW_SIZE}px solid ${token.colorBgContainer}`,
-                            zIndex: 4
+                            zIndex: 4,
+                            pointerEvents: 'none',
                         }}
                     />
                 </PCOnly>

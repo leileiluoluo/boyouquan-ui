@@ -72,19 +72,23 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
             </Flex>
 
             <Flex gap={16}>
-              <Tooltip title="发布时间">
+              <Tooltip title="发布时间" styles={{ root: { fontSize: 12 } }}>
                 <Space size={4} align="center" style={{ fontSize: 12 }}>
                   <ClockCircleOutlined />
                   {publishedAtFormatted}
                 </Space>
               </Tooltip>
 
-              <Tooltip title="阅读量">
+              <Tooltip title="阅读量" styles={{ root: { fontSize: 12 } }}>
                 <Space size={4} align="center" style={{ fontSize: 12 }}>
                   <EyeOutlined />
                   {postInfo.linkAccessCount}
                 </Space>
               </Tooltip>
+
+              <Link href={abstractURL}>
+                <ShareAltOutlined style={{ fontSize: 14 }} />
+              </Link>
             </Flex>
           </Flex>
         </Flex>

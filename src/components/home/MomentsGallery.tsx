@@ -30,8 +30,9 @@ const MomentsGallery: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const animationRef = useRef<number | null>(null);
-    const isHoveringRef = useRef(false);
-    const SCROLL_SPEED = 0.5;
+    const shouldScrollRef = useRef(true); // 改用 shouldScroll，不再区分 hover/touch
+
+    const SCROLL_SPEED = 0.5; // 加快到 1px/帧，移动端更明显
 
     useEffect(() => {
         const fetchMoments = async () => {
@@ -56,8 +57,9 @@ const MomentsGallery: React.FC = () => {
 
         const scrollStep = () => {
             if (!container) return;
-            if (!isHoveringRef.current) {
+            if (shouldScrollRef.current) {
                 container.scrollLeft += SCROLL_SPEED;
+                // 循环滚动
                 if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
                     container.scrollLeft = 0;
                 }
@@ -80,11 +82,12 @@ const MomentsGallery: React.FC = () => {
         return () => stopAutoScroll();
     }, [list]);
 
-    const handleMouseEnter = () => {
-        isHoveringRef.current = true;
+    // 鼠标（PC）和触摸（手机）共用暂停逻辑
+    const handlePause = () => {
+        shouldScrollRef.current = false;
     };
-    const handleMouseLeave = () => {
-        isHoveringRef.current = false;
+    const handleResume = () => {
+        shouldScrollRef.current = true;
     };
 
     return (
@@ -99,12 +102,15 @@ const MomentsGallery: React.FC = () => {
                             display: 'flex',
                             overflowX: 'auto',
                             gap: '12px',
-                            paddingBottom: '8px',
+                            paddingBottom: '4px', // 减小内边距，避免高度计算问题
                             cursor: 'grab',
+                            WebkitOverflowScrolling: 'touch', // 移动端平滑滚动
                         }}
                         className="horizontal-scroll"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
+                        onMouseEnter={handlePause}
+                        onMouseLeave={handleResume}
+                        onTouchStart={handlePause}
+                        onTouchEnd={handleResume}
                     >
                         {list.map((item) => (
                             <div
@@ -137,14 +143,8 @@ const MomentsGallery: React.FC = () => {
                                         (e.currentTarget.style.transform = 'scale(1)')
                                     }
                                 />
-                                {/* 顶部显示博客名 */}
-                                <div className="blog-name">
-                                    {`${item.blogInfo.name}的随拍`}
-                                </div>
-                                {/* 底部显示描述 */}
-                                <div className="image-description">
-                                    {item.description}
-                                </div>
+                                <div className="blog-name">{`${item.blogInfo.name}的随拍`}</div>
+                                <div className="image-description">{item.description}</div>
                             </div>
                         ))}
                     </div>
@@ -166,7 +166,7 @@ const MomentsGallery: React.FC = () => {
           top: 0;
           left: 0;
           right: 0;
-          background: rgba(243, 238, 238, 0.65);
+          background: rgba(243, 238, 238, 0.85);
           color: #1f1e1e;
           font-size: 12px;
           font-weight: 500;
@@ -188,7 +188,7 @@ const MomentsGallery: React.FC = () => {
           bottom: 0;
           left: 0;
           right: 0;
-          background: rgba(243, 238, 238, 0.65);
+          background: rgba(243, 238, 238, 0.85);
           color: #1f1e1e;
           font-size: 12px;
           padding: 6px 8px;
@@ -203,9 +203,14 @@ const MomentsGallery: React.FC = () => {
           pointer-events: none;
         }
 
-        /* 悬浮时同时显示顶部博客名和底部描述 */
+        /* 悬浮/触摸时显示信息 */
         .moment-image-wrapper:hover .blog-name,
         .moment-image-wrapper:hover .image-description {
+          opacity: 1;
+        }
+        /* 移动端使用 touch 时，通过父容器状态来显示描述（可选） */
+        .moment-image-wrapper:active .blog-name,
+        .moment-image-wrapper:active .image-description {
           opacity: 1;
         }
       `}</style>

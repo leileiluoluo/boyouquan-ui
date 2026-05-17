@@ -38,7 +38,7 @@ const MomentsGallery: React.FC = () => {
         const fetchMoments = async () => {
             try {
                 setLoading(true);
-                const url = `/api/moments?page=1&size=6`;
+                const url = `/api/moments?page=1&size=10`;
                 const data: MomentsRes = await request(url);
                 setList(data.results || []);
             } catch (err) {
@@ -101,7 +101,7 @@ const MomentsGallery: React.FC = () => {
                         style={{
                             display: 'flex',
                             overflowX: 'auto',
-                            gap: '12px',
+                            gap: '8px',
                             paddingBottom: '4px', // 减小内边距，避免高度计算问题
                             cursor: 'grab',
                             WebkitOverflowScrolling: 'touch', // 移动端平滑滚动
@@ -119,12 +119,12 @@ const MomentsGallery: React.FC = () => {
                                 style={{
                                     position: 'relative',
                                     flexShrink: 0,
-                                    width: '160px',
-                                    height: '160px',
+                                    width: '120px',
+                                    height: '120px',
                                 }}
                             >
                                 <img
-                                    src={item.imageURL}
+                                    src={`https://www.boyouquan.com${item.imageURL}`}
                                     alt={item.description}
                                     style={{
                                         width: '100%',

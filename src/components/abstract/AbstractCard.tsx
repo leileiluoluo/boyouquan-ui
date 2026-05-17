@@ -1,5 +1,5 @@
 import React from 'react';
-import { message, theme, Flex, Typography, Space, Divider, Tooltip, Alert, Badge, Avatar } from 'antd';
+import { theme, Flex, Typography, Space, Divider, Tooltip, Alert, Badge, Avatar, Dropdown, MenuProps } from 'antd';
 import { PushpinOutlined, ClockCircleOutlined, EyeOutlined, MoreOutlined, ShareAltOutlined, StarOutlined, UserOutlined } from '@ant-design/icons';
 import { formatDateStr } from '../../utils/DateUtil';
 import { getAbstractAddress, getBlogAddress, getGoAddress, getGravatarImageFullURL, getSharingAddress } from '../../utils/PageAddressUtil';
@@ -26,6 +26,18 @@ const AbstractCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRo
     const publishedAtFormatted = formatDateStr(post.publishedAt);
 
     const { token } = useToken();
+
+    const moreMenuItems: MenuProps['items'] = [
+        {
+            key: '1',
+            label: (
+                <a style={{ fontSize: token.fontSizeSM, color: '#ffffff' }} target="_blank" rel="noopener noreferrer" href="mailto:support@boyouquan.com?subject=违规内容举报&amp;body=收录页面：%0d%0a违规内容：%0d%0a">
+                    举报
+                </a>
+            ),
+        }
+    ];
+
     const LEFT_BAR_WIDTH = 100;
     const ARROW_SIZE = 10;
     const CARD_PADDING_VERTICAL = 20;
@@ -280,7 +292,9 @@ const AbstractCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRo
                                     <Link href={abstractURL}>
                                         <ShareAltOutlined style={{ color: token.colorText }} />
                                     </Link>
-                                    <MoreOutlined />
+                                    <Dropdown menu={{ items: moreMenuItems }} trigger={['click']}>
+                                        <MoreOutlined style={{ cursor: 'pointer', color: token.colorText }} onClick={(e) => e.stopPropagation()} />
+                                    </Dropdown>
                                 </Space>
                             </Flex>
                         </Flex>

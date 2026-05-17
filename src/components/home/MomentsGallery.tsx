@@ -124,7 +124,7 @@ const MomentsGallery: React.FC = () => {
                                 }}
                             >
                                 <img
-                                    src={`https://www.boyouquan.com${item.imageURL}`}
+                                    src={item.imageURL}
                                     alt={item.description}
                                     style={{
                                         width: '100%',

@@ -27,15 +27,17 @@ export default function MonthlySelectedCard({ postInfo, showImage }) {
         style={{ overflow: 'hidden' }}
         cover={
           <div style={{ height: 240, overflow: 'hidden' }}>
-            <LazyImg
-              src={postInfo.imageURL}
-              alt={postInfo.title}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }}
-            />
+            <Link href={linkURL} target="_blank">
+              <LazyImg
+                src={postInfo.imageURL}
+                alt={postInfo.title}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            </Link>
           </div>
         }
       >

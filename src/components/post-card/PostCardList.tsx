@@ -13,13 +13,21 @@ interface PostCardListProps {
 }
 
 const PostCardList: React.FC<PostCardListProps> = ({ sort, keyword, showPinned }: PostCardListProps) => {
-    const [pageNo, setPageNo] = useState(1);
+    // 从 URL 读取 page 参数
+    const getPageFromURL = () => {
+        const params = new URLSearchParams(window.location.search);
+        const page = params.get('page');
+        return page ? parseInt(page) : 1;
+    };
+
+    const [pageNo, setPageNo] = useState(getPageFromURL);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
     const [posts, setPosts] = useState<PostData[]>([]);
     const [dataReady, setDataReady] = useState(false);
 
     const fetchData = async (params: PostDataListParams) => {
+        setDataReady(false);
         const resp: PostDataList = await getPosts(params);
 
         setDataReady(true);
@@ -35,10 +43,32 @@ const PostCardList: React.FC<PostCardListProps> = ({ sort, keyword, showPinned }
         fetchData(params);
     }, [sort, keyword, pageNo]);
 
-    const setCurrectPage = (pageNo) => {
-        setPageNo(pageNo);
+    const setCurrectPage = (newPageNo: number) => {
+        if (newPageNo === pageNo) return;
+        
+        // 更新 URL
+        const url = new URL(window.location.href);
+        if (newPageNo > 1) {
+            url.searchParams.set('page', newPageNo.toString());
+        } else {
+            url.searchParams.delete('page');
+        }
+        // 如果有 keyword，也保留在 URL 中
+        if (keyword) {
+            url.searchParams.set('keyword', keyword);
+        } else {
+            url.searchParams.delete('keyword');
+        }
+        // 保留 sort 参数
+        if (sort && sort !== 'recommended') {
+            url.searchParams.set('sort', sort);
+        }
+        window.history.pushState({}, '', url.toString());
+        
+        // 更新页码
+        setPageNo(newPageNo);
         clearHash();
-        document.getElementById('switch-sort-type').scrollIntoView();
+        document.getElementById('switch-sort-type')?.scrollIntoView();
     }
 
     if (!dataReady) {

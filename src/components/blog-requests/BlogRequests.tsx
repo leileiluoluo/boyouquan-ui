@@ -6,18 +6,29 @@ import { getURLParameter } from '../../utils/CommonUtil';
 import { Flex, Empty, Spin } from 'antd';
 
 export default function BlogRequests() {
-    const keywordParam = getURLParameter('keyword') || '';
     const statuses = getURLParameter('statuses') || '';
+    
+    // 从 URL 读取 keyword 和 page 参数
+    const getKeywordFromURL = () => {
+        return getURLParameter('keyword') || '';
+    };
+    
+    const getPageFromURL = () => {
+        const params = new URLSearchParams(window.location.search);
+        const page = params.get('page');
+        return page ? parseInt(page) : 1;
+    };
 
-    const [keyword, setKeyword] = useState('');
-    const [pageNo, setPageNo] = useState(1);
+    const [keyword, setKeyword] = useState(getKeywordFromURL);
+    const [pageNo, setPageNo] = useState(getPageFromURL);
     const [pageSize, setPageSize] = useState(0);
     const [total, setTotal] = useState(0);
     const [blogRequests, setBlogRequests] = useState([]);
     const [dataReady, setDataReady] = useState(false);
 
-    const fetchData = async (keyword, pageNo) => {
-        const resp = await RequestUtil.get(`/api/blog-requests?statuses=${statuses}&keyword=${keyword}&page=${pageNo}`);
+    const fetchData = async (keywordValue, pageNoValue) => {
+        setDataReady(false);
+        const resp = await RequestUtil.get(`/api/blog-requests?statuses=${statuses}&keyword=${keywordValue}&page=${pageNoValue}`);
 
         const respBody = await resp.json();
         setDataReady(true);
@@ -27,15 +38,29 @@ export default function BlogRequests() {
     };
 
     useEffect(() => {
-        setKeyword(keywordParam);
+        fetchData(keyword, pageNo);
+    }, [keyword, pageNo]);
 
-        fetchData(keywordParam, pageNo);
-    }, [pageNo]);
-
-    const setCurrectPage = (pageNo) => {
-        setPageNo(pageNo);
-
-        document.getElementById('blog-requests').scrollIntoView();
+    const setCurrectPage = (newPageNo) => {
+        if (newPageNo === pageNo) return;
+        
+        // 更新 URL
+        const url = new URL(window.location.href);
+        if (newPageNo > 1) {
+            url.searchParams.set('page', newPageNo.toString());
+        } else {
+            url.searchParams.delete('page');
+        }
+        // 保持 keyword 参数
+        if (keyword) {
+            url.searchParams.set('keyword', keyword);
+        }
+        window.history.pushState({}, '', url.toString());
+        
+        // 更新页码（会触发 useEffect 重新请求数据）
+        setPageNo(newPageNo);
+        
+        document.getElementById('blog-requests')?.scrollIntoView();
     }
 
     if (!dataReady) {

@@ -113,5 +113,10 @@
         "name": "好站网",
         "link": "https://haozhan.wang/",
         "description": "收录优质中文独立网站"
+    },
+    {
+        "name": "BlogBlog.Club",
+        "link": "https://blogblog.club/",
+        "description": "部落部落俱樂部，一個專門推坑大家寫部落格的地方"
     }
 ]

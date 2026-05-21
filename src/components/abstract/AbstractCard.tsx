@@ -100,7 +100,7 @@ const AbstractCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRo
                                     />
                                 </Link>
                                 {/* 状态 Badge - 固定在头像右下角 */}
-                                <Tooltip title={post.blogStatusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                                <Tooltip title={post.blogStatusOk ? '该博客运行正常' : '该博客目前无法访问'} styles={{ root: { fontSize: 12 } }}>
                                     <Badge
                                         dot
                                         color={post.blogStatusOk ? '#52c41a' : 'red'}
@@ -134,7 +134,7 @@ const AbstractCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRo
                             {null !== post.blogJoinYears && <Tooltip title="履约年数" styles={{ root: { fontSize: 12 } }}>
                                 <Space size={4} align="center">
                                     <StarOutlined style={{ color: token.colorPrimary }} />
-                                    <Text type="secondary" style={{ fontSize: 12 }}>履约 {post.blogJoinYears} 年</Text>
+                                    <Text type="secondary" style={{ fontSize: 12 }}>已履约 {post.blogJoinYears} 年</Text>
                                 </Space>
                             </Tooltip>}
 

@@ -118,5 +118,10 @@
         "name": "BlogBlog.Club",
         "link": "https://blogblog.club/",
         "description": "部落部落俱樂部，一個專門推坑大家寫部落格的地方"
+    },
+    {
+        "name": "壹個博客",
+        "link": "https://oneblog.net/",
+        "description": "散落在互联网各个角落的独立博客，值得被更多人看见"
     }
 ]

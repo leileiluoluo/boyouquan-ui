@@ -25,7 +25,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
     const publishedAtFormatted = formatDateStr(post.publishedAt);
 
     const { token } = useToken();
-    const LEFT_BAR_WIDTH = 100;
+    const LEFT_BAR_WIDTH = 120;
     const ARROW_SIZE = 10;
     const CARD_PADDING_VERTICAL = 20;
 
@@ -77,7 +77,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                                     style={{ border: '1px solid #e5e7eb', boxSizing: 'border-box' }}
                                 />
                             </Link>
-                            <Tooltip title={post.blogStatusOk ? '该博客运行正常' : '该博客无法访问'} styles={{ root: { fontSize: 12 } }}>
+                            <Tooltip title={post.blogStatusOk ? '该博客运行正常' : '该博客当前无法访问'} styles={{ root: { fontSize: 12 } }}>
                                 <Badge
                                     dot
                                     color={post.blogStatusOk ? '#52c41a' : 'red'}
@@ -111,7 +111,7 @@ const PostCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRows }
                         {null !== post.blogJoinYears && <Tooltip title="履约年数" styles={{ root: { fontSize: 12 } }}>
                             <Space size={4} align="center">
                                 <StarOutlined style={{ color: token.colorPrimary }} />
-                                <Text type="secondary" style={{ fontSize: 12 }}>履约 {post.blogJoinYears} 年</Text>
+                                <Text type="secondary" style={{ fontSize: 12 }}>已履约 {post.blogJoinYears} 年</Text>
                             </Space>
                         </Tooltip>}
 

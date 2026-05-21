@@ -38,7 +38,7 @@ const AbstractCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRo
         }
     ];
 
-    const LEFT_BAR_WIDTH = 100;
+    const LEFT_BAR_WIDTH = 120;
     const ARROW_SIZE = 10;
     const CARD_PADDING_VERTICAL = 20;
 

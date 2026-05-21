@@ -216,8 +216,8 @@ const MomentsGallery: React.FC = () => {
           top: 0;
           left: 0;
           right: 0;
-          background: rgba(7, 7, 7, 0.85);
-          color: #faf8f8;
+          background: rgba(243, 238, 238, 0.85);
+          color: #1f1e1e;
           font-size: 12px;
           font-weight: 500;
           padding: 6px 8px;
@@ -237,8 +237,8 @@ const MomentsGallery: React.FC = () => {
           bottom: 0;
           left: 0;
           right: 0;
-          background: rgba(7, 7, 7, 0.85);
-          color: #faf8f8;
+          background: rgba(243, 238, 238, 0.85);
+          color: #1f1e1e;
           font-size: 12px;
           padding: 6px 8px;
           text-align: center;

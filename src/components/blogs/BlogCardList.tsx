@@ -28,14 +28,22 @@ const getSortAndKeywordAndHighligts = () => {
 export default function BlogCardList() {
     const { sort, keyword, publishedAtHighlight, accessCountHighlight, createTimeHighlight } = getSortAndKeywordAndHighligts();
 
-    const [pageNo, setPageNo] = useState(1);
+    // 从 URL 读取 page 参数
+    const getPageFromURL = () => {
+        const params = new URLSearchParams(window.location.search);
+        const page = params.get('page');
+        return page ? parseInt(page) : 1;
+    };
+
+    const [pageNo, setPageNo] = useState(getPageFromURL);
     const [pageSize, setPageSize] = useState(20);
     const [total, setTotal] = useState(0);
     const [blogs, setBlogs] = useState([]);
     const [dataReady, setDataReady] = useState(false);
 
-    const fetchData = async (sortType, keyword, pageNo) => {
-        const resp = await RequestUtil.get(`/api/blogs?sort=${sortType}&keyword=${keyword}&page=${pageNo}&size=${pageSize}`);
+    const fetchData = async (sortType, keywordValue, pageNoValue) => {
+        setDataReady(false);
+        const resp = await RequestUtil.get(`/api/blogs?sort=${sortType}&keyword=${keywordValue}&page=${pageNoValue}&size=${pageSize}`);
 
         const respBody = await resp.json();
         setDataReady(true);
@@ -48,9 +56,22 @@ export default function BlogCardList() {
         fetchData(sort, keyword, pageNo);
     }, [sort, keyword, pageNo]);
 
-    const setCurrectPage = (pageNo) => {
-        setPageNo(pageNo);
-        document.getElementById('switch-sort-type').scrollIntoView();
+    const setCurrectPage = (newPageNo) => {
+        if (newPageNo === pageNo) return;
+        
+        // 更新 URL
+        const url = new URL(window.location.href);
+        if (newPageNo > 1) {
+            url.searchParams.set('page', newPageNo.toString());
+        } else {
+            url.searchParams.delete('page');
+        }
+        window.history.pushState({}, '', url.toString());
+        
+        // 更新页码
+        setPageNo(newPageNo);
+        
+        document.getElementById('switch-sort-type')?.scrollIntoView();
     }
 
     if (!dataReady) {

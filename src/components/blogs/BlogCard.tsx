@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { theme, Space, Typography, Card, Flex, Row, Col, Tooltip, Divider, Avatar, Badge } from 'antd';
+import { theme, Space, Typography, Card, Flex, Row, Col, Tooltip, Divider, Avatar, Badge, Tag } from 'antd';
 import {
     GlobalOutlined,
     EnvironmentOutlined,
@@ -105,7 +105,7 @@ export default function BlogCard({
 
                 <div style={{
                     fontSize: 13,
-                    color: '#8c8c8c',
+                    color: token.colorTextSecondary,
                     lineHeight: '20px',
                     height: '40px',
                     display: '-webkit-box',
@@ -121,26 +121,52 @@ export default function BlogCard({
             <Divider style={{ margin: '12px 0' }} />
             <Flex vertical style={{ marginBottom: 4 }}>
                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录方式</Text></Col>
+                    <Col>
+                        <Tag
+                            style={{
+                                fontSize: 13,
+                                backgroundColor: blog.selfSubmitted ? 'rgb(230, 244, 255)' : 'rgb(253, 249, 211)'
+                            }}>
+                            {blog.submittedInfo}
+                        </Tag>
+                    </Col>
+                </Row>
+                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录时间</Text></Col>
+                    <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blog.collectedAt)}</Text></Col>
+                </Row>
+                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录文章</Text></Col>
                     <Col><Text style={{ fontSize: 13 }}>{blog.postCount}</Text></Col>
                 </Row>
                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                     <Col><Text type="secondary" style={{ fontSize: 13 }}>浏览文章</Text></Col>
-                    <Col><Text style={{ fontSize: 13, fontWeight: accessCountHighlight ? 500 : '', color: accessCountHighlight ? token.colorPrimary : '' }}>{blog.accessCount}</Text></Col>
+                    <Col><Text style={{ fontSize: 13 }}>{blog.accessCount}</Text></Col>
                 </Row>
                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                     <Col><Text type="secondary" style={{ fontSize: 13 }}>最近更新</Text></Col>
                     <Col><Text style={{ fontSize: 13 }}>{formatDateStr(blog.latestPublishedAt)}</Text></Col>
                 </Row>
-                <Row justify="space-between" align="middle" style={{ width: '100%' }}>
-                    <Col><Text type="secondary" style={{ fontSize: 13 }}>收录时间</Text></Col>
-                    <Col><Text style={{ fontSize: 13, fontWeight: createTimeHighlight ? 500 : '', color: createTimeHighlight ? token.colorPrimary : '' }}>{formatDateStr(blog.collectedAt)}</Text></Col>
-                </Row>
                 <Divider style={{ margin: '12px 0' }} />
-                <Flex align="center">
-                    <EnvironmentOutlined style={{ fontSize: 14, color: '#8c8c8c' }} />
-                    <Tooltip title="该博客的服务器位置（仅供参考）" styles={{ root: { fontSize: 12 } }}>
-                        <Text type="secondary" style={{ fontSize: 12, marginLeft: 4 }}>
+                <Flex align="center" style={{ minWidth: 0 }}>  {/* 关键：Flex 子项需要 minWidth:0 才能正确截断 */}
+                    <EnvironmentOutlined style={{ fontSize: 14, color: '#8c8c8c', flexShrink: 0 }} />
+                    <Tooltip
+                        title="该博客的服务器位置（仅供参考）"
+                        styles={{ root: { fontSize: 12 } }}
+                    >
+                        <Text
+                            type="secondary"
+                            style={{
+                                fontSize: 12,
+                                marginLeft: 4,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                flex: 1,  // 让文本占据剩余空间
+                                minWidth: 0  // Flex 子项溢出截断必需
+                            }}
+                        >
                             {blog.blogServerLocation}
                         </Text>
                     </Tooltip>

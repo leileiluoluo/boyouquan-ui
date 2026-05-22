@@ -237,7 +237,7 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                     </Link>
                                 </Space>
 
-                                <Paragraph type="secondary" style={{ fontSize: 13 }}>
+                                <Paragraph type="secondary" style={{ fontSize: 13, color: token.colorTextSecondary, }}>
                                     {blogDetail.description}
                                 </Paragraph>
                             </div>
@@ -246,7 +246,27 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                             <Flex vertical>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录方式</Text></Col>
-                                    <Col><Tag color={token.colorText} style={{ fontSize: 13 }}>{blogDetail.submittedInfo}</Tag></Col>
+                                    <Col>
+
+                                        {blogDetail.selfSubmitted && <Tag color={token.colorText} style={{
+                                            fontSize: 13,
+                                            backgroundColor: 'rgb(230, 244, 255)'
+                                        }}>
+                                            {blogDetail.submittedInfo}
+                                        </Tag>}
+
+                                        {!blogDetail.selfSubmitted &&
+                                            <Tooltip title="该博客由博友圈后台收录，认领博客或不想被收录可以邮件联系我们" styles={{ root: { fontSize: 12 } }}>
+                                                <Tag
+                                                    style={{
+                                                        fontSize: 13,
+                                                        backgroundColor: 'rgb(253, 249, 211)'
+                                                    }}>
+                                                    {blogDetail.submittedInfo}
+                                                </Tag>
+                                            </Tooltip>
+                                        }
+                                    </Col>
                                 </Row>
                                 <Row justify="space-between" align="middle" style={{ width: '100%' }}>
                                     <Col><Text type="secondary" style={{ fontSize: 13 }}>收录时间</Text></Col>
@@ -308,7 +328,8 @@ export default function BlogDetail({ domain }: BlogDetailProps): React.JSX.Eleme
                                 padding: '18px 22px',
                                 marginBottom: 16,
                                 border: '1px solid #e8e8e8',
-                                transition: 'background 0.3s ease'
+                                transition: 'background 0.3s ease',
+                                userSelect: 'none'
                             }}
                         >
                             <Flex vertical gap={12}>

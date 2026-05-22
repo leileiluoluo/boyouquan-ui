@@ -4,7 +4,7 @@ import RequestUtil from '../../utils/APIRequestUtil';
 import { theme, Card, Flex, Typography, Tag, Tooltip, Space } from 'antd';
 
 const { Title, Text, Link } = Typography;
-const { useToken} = theme;
+const { useToken } = theme;
 
 export default function FriendBlogs({ domain }) {
     const [linksFromMe, setLinksFromMe] = useState([]);
@@ -40,6 +40,10 @@ export default function FriendBlogs({ domain }) {
             </Space>
         );
     };
+
+    if (0 == linksFromMe.length || 0 == linksToMe.length) {
+        return null;
+    }
 
     // 🔥 修复：始终渲染 Card，即使没有数据也显示占位符
     // 这样可以保持右侧内容高度一致，左侧卡片底部就能正确对齐

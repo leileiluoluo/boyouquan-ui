@@ -109,9 +109,9 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
             <Flex vertical gap={16}>
                 {/* 标题区：大气、简洁、高级 */}
                 <Flex justify="space-between" align="center">
-                    <Flex align="center" gap={8}>
-                        <Title level={5} style={{ margin: 0 }}>收录文章</Title>
-                    </Flex>
+                    <Tooltip placement="top" title="文章数据每两个小时从 RSS 地址采集一次" styles={{ root: { fontSize: 12 } }}>
+                        <Title level={5} style={{ marginTop: 0 }}>收录文章</Title>
+                    </Tooltip>
 
                     <Tooltip title="订阅 RSS" styles={{ root: { fontSize: 12 } }}>
                         <Link href={rssAddress} target="_blank" style={{ fontSize: 16 }}>

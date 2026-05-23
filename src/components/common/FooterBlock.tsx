@@ -39,7 +39,7 @@ export default function FooterBlock({ isHome }) {
                     <div>
                         <Text type="secondary">
                             特别声明：包含政治、色情、赌博与暴力等违规内容的博客，一经发现，将被永久移出收录名单！举报违规博客，请「
-                            <Link href="mailto:support@boyouquan.com?subject=违规内容举报&amp;body=收录页面：%0d%0a违规内容：%0d%0a">
+                            <Link href="mailto:support@boyouquan.com">
                                 联系站长
                             </Link>
                             」！

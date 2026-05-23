@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { Typography, List, Skeleton as AntSkeleton, Card, Space, Tag, Divider } from 'antd';
+import { Typography, List, Skeleton as AntSkeleton, Card, Space, Tag, Divider, Collapse, CollapseProps } from 'antd';
+import { CaretRightOutlined } from '@ant-design/icons';
 
 import { Meta } from '@components/common';
 import Article from '@components/article/Article';
@@ -7,6 +8,7 @@ import sponsorList from '@json/sponsor.json';
 import { MetaFields } from '@types';
 
 const { Title, Paragraph, Text, Link } = Typography;
+const { Panel } = Collapse;
 
 const SponsorMotion = lazy(() => import('@components/sponsor/SponsorMotion'));
 
@@ -15,6 +17,111 @@ const meta: MetaFields = {
     keywords: "赞助本站",
     description: "赞助本站，以使得本站能更好的运营下去。",
 };
+
+// 辅助函数：从赞助日期中提取年份
+const getYearFromDate = (dateStr: string): number => {
+    const year = parseInt(dateStr.split('/')[0], 10);
+    return isNaN(year) ? 0 : year;
+};
+
+// 将赞助列表按年份分组
+const groupSponsorsByYear = (sponsors: typeof sponsorList) => {
+    const groups: { [year: number]: typeof sponsorList } = {};
+    
+    sponsors.forEach(sponsor => {
+        const year = getYearFromDate(sponsor.sponsoredAt);
+        if (year === 0) return;
+        
+        if (!groups[year]) {
+            groups[year] = [];
+        }
+        groups[year].push(sponsor);
+    });
+    
+    // 按年份降序排序（最新的年份在前）
+    return Object.keys(groups)
+        .map(Number)
+        .sort((a, b) => b - a)
+        .map(year => ({
+            year,
+            sponsors: groups[year]
+        }));
+};
+
+// 渲染单个赞助条目（每年从1开始计数）
+const renderSponsorItem = (item: typeof sponsorList[0], index: number) => (
+    <List.Item key={item.key || `${index}`} style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+        {/* 1. 赞助人 + 时间 + 金额 + 状态 */}
+        <Space wrap size={8}>
+            <Text>{index + 1}</Text>
+            <Space wrap size={16}>
+                <Link href={item.link} target="_blank" strong>
+                    {item.blogName}
+                </Link>
+                <Text>{item.sponsoredAt}</Text>
+                <Text strong>¥{item.sponsoredMoney}</Text>
+                <Tag color="green" style={{ fontWeight: 500 }}>{item.status}</Tag>
+            </Space>
+        </Space>
+
+        {/* 2. 寄语 */}
+        {item.message && '--' !== item.message && (
+            <Space wrap size={0}>
+                <Text>寄语：</Text>
+                <Text type="secondary">{item.message}</Text>
+            </Space>
+        )}
+
+        {/* 3. 资金用途 + 完成时间 */}
+        {item.spentOn && '--' !== item.spentOn && (
+            <Space wrap size={0}>
+                <Text>用途：</Text>
+                <Text type="secondary">{item.spentOn}</Text>
+            </Space>
+        )}
+
+        {item.spentAt && '--' !== item.spentAt && (
+            <Space wrap size={0}>
+                <Text>完成时间：</Text>
+                <Text type="secondary">{item.spentAt}</Text>
+            </Space>
+        )}
+
+        {/* 4. 花费明细 */}
+        {item.spentDetails?.length > 0 && (
+            <Space wrap size={0}>
+                <Text>明细：</Text>
+                {item.spentDetails.map((d, i) => (
+                    <Text key={i} type="secondary">
+                        {d}
+                        {i < item.spentDetails.length - 1 && ' | '}
+                    </Text>
+                ))}
+            </Space>
+        )}
+
+        {/* 5. 花费证明 */}
+        {item.proofs?.length > 0 && (
+            <Space wrap size={0}>
+                <Text>证明：</Text>
+                {item.proofs.map((p, i) => (
+                    <Link key={i} href={p.link} target="_blank">
+                        {p.name}
+                        {i < item.proofs.length - 1 && ' | '}
+                    </Link>
+                ))}
+            </Space>
+        )}
+    </List.Item>
+);
+
+// 渲染单个年份的列表（每年独立计数）
+const renderYearList = (year: number, sponsors: typeof sponsorList) => (
+    <List
+        dataSource={sponsors}
+        renderItem={(item, idx) => renderSponsorItem(item, idx)}
+    />
+);
 
 const content: JSX.Element = (
     <>
@@ -85,80 +192,41 @@ const content: JSX.Element = (
             </Suspense>
         </Card>
 
-        {/* 👇 修复换行后的 List */}
-        <Card
-            bordered
-            size="middle"
-            style={{ marginBottom: 16, borderRadius: 8 }}
-        >
-            <List
-                dataSource={sponsorList}
-                rowKey={(item, index) => index}
-                renderItem={(item, index) => (
-                    <List.Item key={item.key} style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
-                        {/* 1. 赞助人 + 时间 + 金额 + 状态 */}
-                        <Space wrap size={8}>
-                            <Text>{index + 1}</Text>
-                            <Space wrap size={16}>
-                                <Link href={item.link} target="_blank" strong>
-                                    {item.blogName}
-                                </Link>
-                                <Text>{item.sponsoredAt}</Text>
-                                <Text strong>¥{item.sponsoredMoney}</Text>
-                                <Tag color="green" style={{ fontWeight: 500 }}>{item.status}</Tag>
+        {/* 👇 按年份分组的赞助列表 - 每一年分别从1开始计数 */}
+        <Card bordered size="middle" style={{ marginBottom: 16, borderRadius: 8 }}>
+            {(() => {
+                const groupedSponsors = groupSponsorsByYear(sponsorList);
+                
+                // 只展开最新的一年（第一个年份）
+                const defaultActiveKey = groupedSponsors.length > 0 
+                    ? [String(groupedSponsors[0].year)] 
+                    : [];
+                
+                // 构建 Collapse 的面板数据
+                const collapseItems: CollapseProps['items'] = groupedSponsors.map(({ year, sponsors }) => {
+                    return {
+                        key: String(year),
+                        label: (
+                            <Space>
+                                <span style={{ fontWeight: 500 }}>{year} 年</span>
+                                <Tag color="blue">共 {sponsors.length} 笔赞助</Tag>
                             </Space>
-                        </Space>
-
-                        {/* 2. 寄语 */}
-                        {item.message && '--' !== item.message && <Space wrap size={0}>
-                            <Text>寄语：</Text>
-                            <Text type="secondary">{item.message}</Text>
-                        </Space>
-                        }
-
-                        {/* 3. 资金用途 + 完成时间 */}
-                        {item.spentOn && '--' !== item.spentOn && <Space wrap size={0}>
-                            <Text>用途：</Text>
-                            <Text type="secondary">{item.spentOn}</Text>
-                        </Space>
-                        }
-
-                        {item.spentAt && '--' !== item.spentAt && <Space wrap size={0}>
-                            <Text>完成时间：</Text>
-                            <Text type="secondary">{item.spentAt}</Text>
-                        </Space>
-                        }
-
-                        {/* 4. 花费明细 */}
-                        {item.spentDetails?.length > 0 && (
-                            <Space wrap size={0}>
-                                <Text>明细：</Text>
-                                {item.spentDetails.map((d, i) => (
-                                    <Text key={i} type="secondary">
-                                        {d}
-                                        {i < item.spentDetails.length - 1 && ' | '}
-                                    </Text>
-                                ))}
-                            </Space>
-                        )}
-
-                        {/* 5. 花费证明 */}
-                        {item.proofs?.length > 0 && (
-                            <Space wrap size={0}>
-                                <Text>证明：</Text>
-                                {item.proofs.map((p, i) => (
-                                    <Link key={i} href={p.link} target="_blank">
-                                        {p.name}
-                                        {i < item.proofs.length - 1 && ' | '}
-                                    </Link>
-                                ))}
-                            </Space>
-                        )}
-                    </List.Item>
-                )}
-            />
+                        ),
+                        children: renderYearList(year, sponsors),
+                    };
+                });
+                
+                return (
+                    <Collapse
+                        bordered={false}
+                        defaultActiveKey={defaultActiveKey}
+                        expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
+                        items={collapseItems}
+                    />
+                );
+            })()}
         </Card>
-        {/* 👆 修复结束 */}
+        {/* 👆 按年份分组结束 */}
 
         <Paragraph style={{ marginTop: 16, marginBottom: 16 }}>
             <Text strong>
@@ -168,7 +236,7 @@ const content: JSX.Element = (
         <Paragraph style={{ marginBottom: 16 }}>
             <Text strong>
                 除了个人赞助以外，博友圈还愿意承接一些跟博客或站长相关的、不影响用户体验、内容健康的广告内容，若您有合作意向，请联系：
-                <Link href="mailto:support@boyouquan.com?subject=广告合作&amp;body=合作说明：%0d%0a">
+                <Link href="mailto:support@boyouquan.com">
                     support@boyouquan.com
                 </Link>
                 。

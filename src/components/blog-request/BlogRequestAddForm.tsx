@@ -181,7 +181,7 @@ export default function BlogRequestAddForm({ formData, error, handleChange, hand
                         {!isAdminPage && (
                             <div style={{ marginTop: 8 }}>
                                 <Text style={noticeStyle}>
-                                    <Link href="mailto:support@boyouquan.com?subject=提交博客时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">
+                                    <Link href="mailto:support@boyouquan.com">
                                         提交博客遇到问题？我要联系站长！
                                     </Link>
                                 </Text>

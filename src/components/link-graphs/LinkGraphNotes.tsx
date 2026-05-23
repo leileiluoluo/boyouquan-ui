@@ -41,7 +41,7 @@ export default function LinkGraphNotes() {
                 <Text type="secondary" style={{ fontSize: 12 }}>
                     * 若您不想您的友链数据被采集，可以「
                     <Link 
-                        href="mailto:support@boyouquan.com?subject=请将我移出友链抓取名单&body=我的博客地址：%0d%0a"
+                        href="mailto:support@boyouquan.com"
                         style={{ color: '#1677ff', fontSize: 12 }}
                     >
                         联系站长

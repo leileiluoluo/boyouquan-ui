@@ -164,7 +164,7 @@ export default function BlogRequestEmailValidationForm({
 
                         {!isAdminPage && (
                             <div style={{ marginTop: 8 }}>
-                                <Link style={{ fontSize: 12 }} href="mailto:support@boyouquan.com?subject=验证邮箱时遇到了问题&body=RSS地址：%0d%0a问题描述：%0d%0a">
+                                <Link style={{ fontSize: 12 }} href="mailto:support@boyouquan.com">
                                     收不到验证码？我要联系站长！
                                 </Link>
                             </div>

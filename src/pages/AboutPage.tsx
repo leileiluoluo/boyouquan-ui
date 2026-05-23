@@ -52,10 +52,10 @@ const content = (
             修改博客
         </Title>
         <Paragraph style={{ marginBottom: 16 }}>
-            若您因域名更换、站点重建等各种原因，想对已收录的博客信息进行修改，请使用能证明您是博客所有者的邮箱「<Link href="mailto:support@boyouquan.com?subject=博客信息修改&amp;body=博客地址：%0d%0a需要修改的信息：%0d%0a">给我们发送邮件</Link>」，信息修改成功后会收到邮件通知！
+            若您因域名更换、站点重建等各种原因，想对已收录的博客信息进行修改，请使用能证明您是博客所有者的邮箱「<Link href="mailto:support@boyouquan.com">给我们发送邮件</Link>」，信息修改成功后会收到邮件通知！
         </Paragraph>
         <Paragraph style={{ marginBottom: 16 }}>
-            若您因任何原因，不想自己的博客被博友圈收录，也可以「<Link href="mailto:support@boyouquan.com?subject=博客删除申请&amp;body=博客地址：%0d%0a原因：%0d%0a">联系我们</Link>」进行删除，博客删除成功后也会收到邮件通知！
+            若您因任何原因，不想自己的博客被博友圈收录，也可以「<Link href="mailto:support@boyouquan.com">联系我们</Link>」进行删除，博客删除成功后也会收到邮件通知！
         </Paragraph>
 
         <Title level={5} style={{ marginTop: 24, marginBottom: 16, fontWeight: 'bold' }} id="add-link">
@@ -218,9 +218,6 @@ const content = (
         </Title>
         <Paragraph style={{ marginBottom: 16 }}>
             博友圈是一个前后端分离的 Web 项目，前端使用 React 编写，后端使用 Java 编写。源码已在 GitHub 开源，欢迎编码爱好者添加关注！您也可以完全自由的使用该开源代码搭建另一个「博友圈」，要求仅有一条，就是在您的网站底部标注一句话「本站使用博友圈（www.boyouquan.com）开源程序创建」。
-        </Paragraph>
-        <Paragraph style={{ marginBottom: 16 }}>
-            此外，您若想了解博友圈的技术架构，请参阅站长的「<Link href="https://leileiluoluo.com/posts/boyouquan-v2-introduction.html" target="_blank">这篇博客文章</Link>」。
         </Paragraph>
         <ul style={{ marginBottom: 16, paddingLeft: 24 }}>
             <li>前端源码：<Link href="https://github.com/leileiluoluo/boyouquan-ui" target="_blank">github.com/leileiluoluo/boyouquan-ui</Link></li>

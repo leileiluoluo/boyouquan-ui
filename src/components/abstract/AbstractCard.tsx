@@ -31,7 +31,7 @@ const AbstractCard: React.FC<PostDataProps> = ({ showPinned, post, descriptionRo
         {
             key: '1',
             label: (
-                <a style={{ fontSize: token.fontSizeSM, color: '#ffffff' }} target="_blank" rel="noopener noreferrer" href="mailto:support@boyouquan.com?subject=违规内容举报&amp;body=收录页面：%0d%0a违规内容：%0d%0a">
+                <a style={{ fontSize: token.fontSizeSM, color: '#ffffff' }} target="_blank" rel="noopener noreferrer" href="mailto:support@boyouquan.com">
                     举报
                 </a>
             ),

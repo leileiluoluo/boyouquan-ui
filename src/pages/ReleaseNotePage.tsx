@@ -22,11 +22,16 @@ import { META_V2_4, RELEASE_INFO_V2_4 } from '@const/release-notes/ReleaseNoteV2
 import { META_V2_5, RELEASE_INFO_V2_5 } from '@const/release-notes/ReleaseNoteV2.5';
 import { META_V2_6, RELEASE_INFO_V2_6 } from '@const/release-notes/ReleaseNoteV2.6';
 import { META_V2_7, RELEASE_INFO_V2_7 } from '@const/release-notes/ReleaseNoteV2.7';
+import { META_V3_0, RELEASE_INFO_V3_0 } from '@const/release-notes/ReleaseNoteV3.0';
 
 const getMetaAndVersionInfo = (version?: string) => {
     let meta: any = null
     let releaseInfo: any = null
     switch (version) {
+        case 'v3.0':
+            meta = META_V3_0;
+            releaseInfo = RELEASE_INFO_V3_0;
+            break;
         case 'v2.7':
             meta = META_V2_7;
             releaseInfo = RELEASE_INFO_V2_7;

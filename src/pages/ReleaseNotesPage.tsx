@@ -14,7 +14,15 @@ const meta: MetaFields = {
 
 const content: JSX.Element = (
     <>
-        <Title level={5} style={{ marginTop: 0, marginBottom: 16, fontWeight: 'bold' }}>v2.7（当前版本）</Title>
+        <Title level={5} style={{ marginTop: 0, marginBottom: 16, fontWeight: 'bold' }}>v3.0（当前版本）</Title>
+        <Paragraph style={{ marginBottom: 16 }}>
+            博友圈于 2026 年 5 月 24 日发布了 v3.0 版本！这是一个大的版本升级，该版本启用了基于 antd 的全新 UI，并开发了「博友圈 Mini」微信小程序。
+        </Paragraph>
+        <Paragraph style={{ marginBottom: 24 }}>
+            <Link href="/release-notes/v3.0">点击查看版本详情！</Link>
+        </Paragraph>
+
+        <Title level={5} style={{ marginTop: 0, marginBottom: 16, fontWeight: 'bold' }}>v2.7</Title>
         <Paragraph style={{ marginBottom: 16 }}>
             博友圈于 2025 年 10 月 19 日发布了 v2.7 版本！该版本增加了「履约证书」和「连接系数」两个新的页面。前者用于展示博客在博友圈的履约情况；后者用于发现一个博客和另一个博客的连接度。
         </Paragraph>

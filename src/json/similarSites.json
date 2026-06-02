@@ -123,5 +123,10 @@
         "name": "壹個博客",
         "link": "https://oneblog.net/",
         "description": "散落在互联网各个角落的独立博客，值得被更多人看见"
+    },
+    {
+        "name": "博客中心",
+        "link": "https://bokehub.com/home",
+        "description": "每一个博客，都是一个独特的世界"
     }
 ]

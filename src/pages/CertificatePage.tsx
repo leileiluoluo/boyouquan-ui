@@ -359,7 +359,6 @@ export default function CertificatePage() {
             <Meta meta={getMeta(blogDetail.name, blogDetail.description)} />
             <Helmet>
                 <link rel="stylesheet" href="/assets/css/tailwind/tailwind.css" />
-                {/* <script src="/assets/js/tongji.js" type="text/javascript"></script> */}
             </Helmet>
             <div style={{ backgroundColor: 'white' }}>
                 <div id="capture-area" className="flex items-center justify-center min-h-screen bg-neutral-100 text-neutral-900 p-4 sm:p-8">

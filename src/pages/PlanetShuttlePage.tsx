@@ -96,7 +96,6 @@ export default function PlanetShuttlePage() {
                 <style>{headStyle}</style>
                 <script src="/assets/js/planet-shuttle/lib/TweenMax.min.js" type="text/javascript"></script>
                 <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
-                {/* <script src="/assets/js/tongji.js" type="text/javascript"></script> */}
             </Helmet>
             <div style={planetStyle}>
                 <div style={textAliginStyle}>

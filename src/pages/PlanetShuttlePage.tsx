@@ -25,19 +25,19 @@ const headStyle = `
     body {
         background: radial-gradient(#000, #111), #000 !important;
         min-height: 100vh !important;
-        height: 100vh;
-        margin: 0;
-        overflow: hidden;
+        width: 100%;
     }
 
+    /* 适配原有动画JS，保留margin-top，横向铺满、高度占满视口 */
     canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
+        margin-top: -800px !important;
         width: 100vw;
         height: 100vh;
         pointer-events: none;
-        z-index: -1;
+        /* 层级改为0，和背景同层，星星正常显示 */
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 
     @keyframes typing {
@@ -137,7 +137,6 @@ export default function PlanetShuttlePage() {
                 ></script>
             </Helmet>
 
-            {/* 全屏容器，防止布局错乱 */}
             <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
                 <div style={planetStyle}>
                     <div style={textAliginStyle}>

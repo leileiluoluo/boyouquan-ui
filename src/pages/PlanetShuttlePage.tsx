@@ -16,76 +16,109 @@ const meta: MetaFields = {
 
 const headStyle = `
     * {
-    box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
 
+    html,
     body {
-    background: radial-gradient(#000, #111), #000 !important;
-    min-height: 100vh !important;
+        background: radial-gradient(#000, #111), #000 !important;
+        min-height: 100vh !important;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
     }
 
     canvas {
-    margin-top: -800px !important;
-    // position: fixed;
-    height: 100vh;
-    width: 100vw;
-    pointer-events: none; /* 让 canvas 不阻止鼠标事件 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: -1;
     }
 
     @keyframes typing {
-    50% {
-        opacity: 0.0;
-    }
+        50% {
+            opacity: 0.0;
+        }
     }
 `;
 
 const textAliginStyle = { textAlign: 'center', marginBottom: '28px' };
-const planetStyle = { fontFamily: '-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif', color: 'white', textAlign: 'center', position: 'absolute', top: '45%', left: '50%', transform: 'translate(-50%, -50%)' };
-const fontStyle = { fontSize: '20px', textDecoration: 'none', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundImage: 'linear-gradient(to right, #d3a497, #d55b5b, #9877f1)' };
+const planetStyle = {
+    fontFamily: '-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif',
+    color: 'white',
+    textAlign: 'center',
+    position: 'absolute',
+    top: '45%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+} as React.CSSProperties;
+const fontStyle = {
+    fontSize: '20px',
+    textDecoration: 'none',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundImage: 'linear-gradient(to right, #d3a497, #d55b5b, #9877f1)'
+} as React.CSSProperties;
 const marginStyle = { marginTop: '28px' };
 const fontSizeLargeStyle = { fontSize: '16px' };
-const blogDescriptionStyle = { fontSize: '14px', color: 'gray', marginTop: '20px', maxWidth: '460px' };
-const animationStyle = { color: 'white', textDecoration: 'auto', animation: 'typing 0.7s infinite' };
+const blogDescriptionStyle = {
+    fontSize: '14px',
+    color: 'gray',
+    marginTop: '20px',
+    maxWidth: '460px'
+};
+const animationStyle = {
+    color: 'white',
+    textDecoration: 'auto',
+    animation: 'typing 0.7s infinite'
+} as React.CSSProperties;
 const colorWhiteStyle = { color: 'white' };
 const marginOneStyle = { margin: '1px 1px' };
 
 export default function PlanetShuttlePage() {
     const [shuttleInfo, setShuttleInfo] = useState({
-        'fromBlog': { 'blogName': '', 'blogAddress': '' },
+        fromBlog: { blogName: '', blogAddress: '', domainName: '', name: '', collectedAt: '' },
+        blogAddress: '',
+        blogName: '',
+        blogDescription: '',
+        fromBlogInitiatedCount: 0
     });
 
     const [fromBlogJoinDays, setFromBlogJoinDays] = useState(0);
 
     const fetchData = async (referrer: string) => {
         const resp = await RequestUtil.get('/api/planet-shuttle', {
-            'From': referrer
+            From: referrer
         });
 
-        let respBody;
+        let respBody: any = {};
         if (typeof resp === 'string') {
             try {
                 respBody = JSON.parse(resp);
             } catch (e) {
                 console.error('Failed to parse response string', e);
-                respBody = {};
             }
         } else {
             respBody = await resp.json();
         }
 
         setShuttleInfo(respBody);
-        if (null !== respBody.fromBlog) {
+        if (respBody?.fromBlog) {
             const days = getDaysTillNow(respBody.fromBlog.collectedAt);
             setFromBlogJoinDays(days);
         }
 
-        redirectTo(getGoAddress(respBody.blogAddress), 3);
+        redirectTo(getGoAddress(respBody?.blogAddress || ''), 3);
     };
 
     useEffect(() => {
         document.body.classList.remove('list');
-
-        let referrer = document.referrer;
+        const referrer = document.referrer;
         fetchData(referrer);
     }, []);
 
@@ -94,28 +127,82 @@ export default function PlanetShuttlePage() {
             <Meta meta={meta} />
             <Helmet>
                 <style>{headStyle}</style>
-                <script src="/assets/js/planet-shuttle/lib/TweenMax.min.js" type="text/javascript"></script>
-                <script src="/assets/js/planet-shuttle/index.js" type="text/javascript"></script>
+                <script
+                    src="/assets/js/planet-shuttle/lib/TweenMax.min.js"
+                    type="text/javascript"
+                ></script>
+                <script
+                    src="/assets/js/planet-shuttle/index.js"
+                    type="text/javascript"
+                ></script>
             </Helmet>
-            <div style={planetStyle}>
-                <div style={textAliginStyle}>
-                    <a style={fontStyle} href="/home"><img width="90px" height="28px" src="/assets/images/sites/logo/planet-shuttle-dark.svg"></img></a>
-                </div>
-                <div style={fontSizeLargeStyle}>
-                    {
-                        (null !== shuttleInfo.fromBlog) ? <><p style={marginOneStyle}>加入博友圈 {fromBlogJoinDays} 天、总助力值为 {shuttleInfo.fromBlogInitiatedCount} 的</p><p>「<a id="shuttle" href={`/blogs/${shuttleInfo.fromBlog.domainName}`} style={animationStyle}>{shuttleInfo.fromBlog.name}</a>」正在带您穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p></>
-                            : <p>您即将穿梭到「<a id="shuttle" href={getGoAddress(shuttleInfo.blogAddress)} style={animationStyle}>{shuttleInfo.blogName}</a>」的星球！</p>
-                    }
-                </div>
-                <div style={blogDescriptionStyle}>
-                    {
+
+            {/* 全屏容器，防止布局错乱 */}
+            <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+                <div style={planetStyle}>
+                    <div style={textAliginStyle}>
+                        <a style={fontStyle} href="/home">
+                            <img
+                                width="90"
+                                height="28"
+                                src="/assets/images/sites/logo/planet-shuttle-dark.svg"
+                                alt="logo"
+                            />
+                        </a>
+                    </div>
+
+                    <div style={fontSizeLargeStyle}>
+                        {shuttleInfo.fromBlog?.name ? (
+                            <>
+                                <p style={marginOneStyle}>
+                                    加入博友圈 {fromBlogJoinDays} 天、总助力值为 {shuttleInfo.fromBlogInitiatedCount} 的
+                                </p>
+                                <p>
+                                    「
+                                    <a
+                                        href={`/blogs/${shuttleInfo.fromBlog.domainName}`}
+                                        style={animationStyle}
+                                    >
+                                        {shuttleInfo.fromBlog.name}
+                                    </a>
+                                    」正在带您穿梭到「
+                                    <a
+                                        href={getGoAddress(shuttleInfo.blogAddress)}
+                                        style={animationStyle}
+                                    >
+                                        {shuttleInfo.blogName}
+                                    </a>
+                                    」的星球！
+                                </p>
+                            </>
+                        ) : (
+                            <p>
+                                您即将穿梭到「
+                                <a
+                                    href={getGoAddress(shuttleInfo.blogAddress)}
+                                    style={animationStyle}
+                                >
+                                    {shuttleInfo.blogName}
+                                </a>
+                                」的星球！
+                            </p>
+                        )}
+                    </div>
+
+                    <div style={blogDescriptionStyle}>
                         <p>“ {shuttleInfo.blogDescription} ”</p>
-                    }
-                </div>
-                <div style={marginStyle}>
-                    <span style={{ fontSize: '12px' }}>Copyright © 2023-2026 <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>博友圈</a></span>
+                    </div>
+
+                    <div style={marginStyle}>
+                        <span style={{ fontSize: '12px' }}>
+                            Copyright © 2023-2026{' '}
+                            <a href="https://www.boyouquan.com/home" style={colorWhiteStyle}>
+                                博友圈
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </>
-    )
+    );
 }

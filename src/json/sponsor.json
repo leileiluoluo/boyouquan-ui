@@ -885,5 +885,19 @@
             "当前总额：77.74 元"
         ],
         "proofs": []
+    },
+    {
+        "blogName": "流情的博客",
+        "link": "/blogs/liuqingwushui.top",
+        "sponsoredAt": "2026/06/24",
+        "sponsoredMoney": "19.00 元",
+        "message": "相约十年，希望越来越好！",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：96.74 元"
+        ],
+        "proofs": []
     }
 ]

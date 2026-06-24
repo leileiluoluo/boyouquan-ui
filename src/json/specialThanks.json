@@ -243,5 +243,10 @@
         "name": "好站网",
         "link": "https://haozhan.wang/",
         "avatar": "/assets/images/sites/special_thanks/haozhan.wang.jpg"
+    },
+    {
+        "name": "流情的博客",
+        "link": "/blogs/liuqingwushui.top",
+        "avatar": "/assets/images/sites/special_thanks/liuqingwushui.top.jpeg"
     }
 ]

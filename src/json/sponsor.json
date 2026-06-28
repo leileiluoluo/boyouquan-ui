@@ -839,6 +839,20 @@
         ]
     },
     {
+        "blogName": "liseezn",
+        "link": "/blogs/xuexb.com",
+        "sponsoredAt": "2026/04/30",
+        "sponsoredMoney": "1.00 元",
+        "message": "支持站长，让服务器多运行一会～",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：16.86 元"
+        ],
+        "proofs": []
+    },
+    {
         "blogName": "obaby 𝐢‍𝐧⃝ void",
         "link": "/blogs/zhongxiaojie.cn",
         "sponsoredAt": "2026/05/14",
@@ -848,7 +862,7 @@
         "spentAt": "2026/05/14",
         "spentOn": "小程序认证年费",
         "spentDetails": [
-            "当前总额：84.86 元，本次花费：30.00 元，本次结余：54.86 元",
+            "当前总额：85.86 元，本次花费：30.00 元，本次结余：55.86 元",
             "博友圈 Mini 微信小程序认证年费"
         ],
         "proofs": [
@@ -868,7 +882,7 @@
         "spentAt": "--",
         "spentOn": "--",
         "spentDetails": [
-            "当前总额：73.86 元"
+            "当前总额：74.86 元"
         ],
         "proofs": []
     },
@@ -882,7 +896,7 @@
         "spentAt": "--",
         "spentOn": "--",
         "spentDetails": [
-            "当前总额：77.74 元"
+            "当前总额：78.74 元"
         ],
         "proofs": []
     },
@@ -896,7 +910,7 @@
         "spentAt": "--",
         "spentOn": "--",
         "spentDetails": [
-            "当前总额：96.74 元"
+            "当前总额：97.74 元"
         ],
         "proofs": []
     },
@@ -906,12 +920,18 @@
         "sponsoredAt": "2026/06/28",
         "sponsoredMoney": "200.00 元",
         "message": "支持，博主很用心！",
-        "status": "已计入总额，待后续使用",
-        "spentAt": "--",
-        "spentOn": "--",
+        "status": "已完成",
+        "spentAt": "2026/04/28",
+        "spentOn": "主机续费",
         "spentDetails": [
-            "当前总额：296.74 元"
+            "当前总额：297.74 元，本次花费：285.12 元，本次结余：12.62 元",
+            "腾讯云主机续费一年，由 2030/02/11 续费至 2031/05/11"
         ],
-        "proofs": []
+        "proofs": [
+            {
+                "name": "花费证明",
+                "link": "/assets/images/sites/sponsor/cost_details/2026/06/host_renewal.png"
+            }
+        ]
     }
 ]

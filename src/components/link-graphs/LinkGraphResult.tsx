@@ -156,7 +156,7 @@ export default function LinkGraphResult({
       return (
         <Image
           src="/assets/images/sites/link-graph/spherical_network_25_nodes_static.svg"
-          alt="No Data"
+          alt="无数据"
           preview={false}
           style={{ width: 300, marginTop: 40 }}
         />

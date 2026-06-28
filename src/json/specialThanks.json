@@ -248,5 +248,10 @@
         "name": "流情的博客",
         "link": "/blogs/liuqingwushui.top",
         "avatar": "/assets/images/sites/special_thanks/liuqingwushui.top.jpeg"
+    },
+    {
+        "name": "前端小武",
+        "link": "/blogs/xuexb.com",
+        "avatar": "/assets/images/sites/special_thanks/xuexb.com.jpeg"
     }
 ]

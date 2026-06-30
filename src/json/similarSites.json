@@ -125,6 +125,11 @@
         "description": "散落在互联网各个角落的独立博客，值得被更多人看见"
     },
     {
+        "name": "博客大全",
+        "link": "https://eeenav.com/blogs",
+        "description": "把散落全网的小众博客一网打尽"
+    },
+    {
         "name": "博客中心",
         "link": "https://bokehub.com/home",
         "description": "每一个博客，都是一个独特的世界"

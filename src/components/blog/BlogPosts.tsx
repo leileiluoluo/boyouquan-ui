@@ -201,7 +201,7 @@ export default function BlogPosts({ domain, rssAddress, blogStatusOk }) {
                             <Text type="secondary" style={{ fontSize: 12 }}>向下滚动加载更多</Text>
                         ) : (
                             <Divider plain style={{ margin: 0 }}>
-                                <Text type="secondary" style={{ fontSize: 12 }}>— 已显示全部文章 —</Text>
+                                <Text type="secondary" style={{ fontSize: 12 }}>已显示全部文章</Text>
                             </Divider>
                         )}
                     </div>

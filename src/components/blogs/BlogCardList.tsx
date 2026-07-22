@@ -36,7 +36,7 @@ export default function BlogCardList() {
     };
 
     const [pageNo, setPageNo] = useState(getPageFromURL);
-    const [pageSize, setPageSize] = useState(20);
+    const [pageSize, setPageSize] = useState(16);
     const [total, setTotal] = useState(0);
     const [blogs, setBlogs] = useState([]);
     const [dataReady, setDataReady] = useState(false);

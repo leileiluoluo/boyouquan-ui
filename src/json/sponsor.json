@@ -933,5 +933,19 @@
                 "link": "/assets/images/sites/sponsor/cost_details/2026/06/host_renewal.png"
             }
         ]
+    },
+    {
+        "blogName": "轻淡时光",
+        "link": "/blogs/www.lybblog.cn",
+        "sponsoredAt": "2026/07/25",
+        "sponsoredMoney": "19.00 元",
+        "message": "支持站长，让服务器多运行一会～",
+        "status": "已计入总额，待后续使用",
+        "spentAt": "--",
+        "spentOn": "--",
+        "spentDetails": [
+            "当前总额：31.62 元"
+        ],
+        "proofs": []
     }
 ]

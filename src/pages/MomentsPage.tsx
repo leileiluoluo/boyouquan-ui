@@ -16,7 +16,7 @@ export default function MomentsPage() {
         <>
             <Meta meta={meta} />
             <Flex vertical gap={16} style={{ width: '100%' }}>
-                <MainContentHeader content="随手拍一张照片，然后附上一段话，分享您此刻看到的一处美景或一个瞬间！" />
+                <MainContentHeader content="随手拍一张照片，然后附上一段话，分享您此刻看到的一个瞬间！" />
                 <MomentsInput />
                 <MomentsCardList />
             </Flex>

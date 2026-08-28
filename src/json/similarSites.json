@@ -133,5 +133,15 @@
         "name": "博客中心",
         "link": "https://bokehub.com/home",
         "description": "每一个博客，都是一个独特的世界"
+    },
+    {
+        "name": "博客大联盟",
+        "link": "https://bo.ke/",
+        "description": "发现值得反复阅读的独立博客"
+    },
+    {
+        "name": "博兰亭序",
+        "link": "https://lanti.ng/",
+        "description": "让仍在写作的人彼此遇见"
     }
 ]

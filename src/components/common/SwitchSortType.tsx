@@ -38,12 +38,18 @@ export default function SwitchSortType({ types }) {
     };
 
     // 生成 Segmented 选项
+    // 注意：Segmented 的 onChange 不会响应「点击已选中项」，因此在 label 上包一层 onClick，
+    // 保证点击 Active 项时也能跳转（href 不含分页参数，页面刷新后即为初始状态）
     const segmentOptions = types.map((item) => {
         const urlParams = new URLSearchParams(item.href.split('?')[1]);
         const sortValue = urlParams.get('sort') || 'recommended';
         return {
             value: sortValue,
-            label: item.name,
+            label: (
+                <span onClick={() => handleTabChange(sortValue)}>
+                    {item.name}
+                </span>
+            ),
         };
     });
 
